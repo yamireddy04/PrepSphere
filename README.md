@@ -6,29 +6,32 @@
 
 This is a modular and scalable project with features split across well-organized folders:
 
+```
 PrepSphere/
-├── aptitude/             # Aptitude questions and logic
-├── coverletter/         # Cover letter builder tool
-├── gd/                  # Group Discussion prep content
-├── hirehub/             # Company/job insights
-├── hr/                  # HR round prep
-├── images/              # Image assets
-├── index/               # Landing pages and home screens
-├── intervyu/            # Interview question sets
-├── Jam/                 # Just a Minute (JAM) practice
-├── login/               # Login & authentication
-├── mcqs/                # Multiple choice quizzes
-├── mmi/                 # Mock interview interface
-├── my-interview-app/    # App for live mock interviews
-├── Phase1/              # Phase 1 of structured prep
-├── Phase2/              # Phase 2 of structured prep
-├── Phase3/              # Phase 3 of structured prep
-├── prepmaster/          # AI-based company-specific prep engine
-├── register/            # Registration module
-├── resume/              # Resume builder
-├── roadmap/             # Preparation roadmap
-├── shared/              # Common components and scripts
-└── technical/           # Technical round resources
+├── aptitude/         # Aptitude questions and logic
+├── coverletter/      # Cover letter builder tool
+├── gd/               # Group Discussion prep content
+├── hirehub/          # Company/job insights
+├── hr/               # HR round prep
+├── images/           # Image assets
+├── index/            # Landing pages and home screens
+├── intervyu/         # Interview question sets
+├── Jam/              # Just a Minute (JAM) practice
+├── login/            # Login & authentication
+├── mcqs/             # Multiple choice quizzes
+├── mmi/              # Mock interview interface
+├── my-interview-app/ # App for live mock interviews
+├── Phase1/           # Phase 1 of structured prep
+├── Phase2/           # Phase 2 of structured prep
+├── Phase3/           # Phase 3 of structured prep
+├── prepmaster/       # AI-based company-specific prep engine
+├── register/         # Registration module
+├── resume/           # Resume builder
+├── roadmap/          # Preparation roadmap
+├── shared/           # Common components and scripts
+└── technical/        # Technical round resources
+```
+
 
 
 > ✅ *The full source code is kept private. This repo is for showcasing project features and structure.*
