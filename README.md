@@ -67,7 +67,7 @@ register/index.html
 
 prepmaster/index.html
 
-Add screenshots to the screenshots/ folder for a visual showcase.
+Added screenshots to the screenshots/ folder for a visual showcase.
 
 # Planned Enhancements:
 
