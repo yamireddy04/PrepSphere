@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
         body {
             font-family: 'Bookman Old Style', sans-serif;
             background-color: #0f172a;
@@ -15,30 +17,35 @@
 
         /* Styles for the new navigation buttons */
         .navigation-buttons button {
-          transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-          border: none;
-          cursor: pointer;
-          background: linear-gradient(to right, #2563eb, #3b82f6); /* Initial gradient */
-          color: white;
+            transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(to right, #2563eb, #3b82f6);
+            /* Initial gradient */
+            color: white;
         }
 
         .navigation-buttons button:hover {
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); /* Enhanced shadow on hover */
-          background: linear-gradient(to right, #3b82f6, #60a5fa); /* Lighter gradient on hover */
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+            /* Enhanced shadow on hover */
+            background: linear-gradient(to right, #3b82f6, #60a5fa);
+            /* Lighter gradient on hover */
         }
-        
+
         .navigation-buttons button:active {
-          transform: translateY(0) scale(1);
-          box-shadow: none;
+            transform: translateY(0) scale(1);
+            box-shadow: none;
         }
 
         /* Additional styling for the main container */
         .container {
-            max-width: 1200px; /* Setting a consistent max-width for the content */
+            max-width: 1200px;
+            /* Setting a consistent max-width for the content */
         }
     </style>
 </head>
+
 <body class="text-slate-200">
 
     <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
@@ -55,16 +62,21 @@
         <!-- Interview Process Section -->
         <section class="p-8 mb-8 bg-slate-800 rounded-xl shadow-xl border-l-4 border-blue-600">
             <h2 class="text-3xl font-bold text-white mb-4">Interview Process:</h2>
-            <img src="../images/ip.jpeg" alt="An image showing a person in a technical interview." class="w-full rounded-xl shadow-lg mb-6">
+            <img src="../images/ip.jpeg" alt="An image showing a person in a technical interview."
+                class="w-full rounded-xl shadow-lg mb-6">
             <div class="space-y-4 text-slate-300">
                 <p>
-                    <strong class="text-blue-400">Coding Round:</strong> Problem-solving on platforms like <a href="https://leetcode.com" target="_blank" class="text-sky-400 hover:underline">LeetCode</a>, use of algorithms and data structures, writing clean and efficient code.
+                    <strong class="text-blue-400">Coding Round:</strong> Problem-solving on platforms like <a
+                        href="https://leetcode.com" target="_blank" class="text-sky-400 hover:underline">LeetCode</a>,
+                    use of algorithms and data structures, writing clean and efficient code.
                 </p>
                 <p>
-                    <strong class="text-blue-400">System Design Round:</strong> Designing scalable systems, addressing performance and reliability, discussing design trade-offs.
+                    <strong class="text-blue-400">System Design Round:</strong> Designing scalable systems, addressing
+                    performance and reliability, discussing design trade-offs.
                 </p>
                 <p>
-                    <strong class="text-blue-400">Technical Interview Round:</strong> Technical questions (languages, OS, DBMS), debugging and problem-solving.
+                    <strong class="text-blue-400">Technical Interview Round:</strong> Technical questions (languages,
+                    OS, DBMS), debugging and problem-solving.
                 </p>
             </div>
         </section>
@@ -103,37 +115,59 @@
             <h2 class="text-3xl font-bold text-white mb-4">💻 Recommended Platforms</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://www.hackerrank.com" target="_blank" class="hover:underline">HackerRank</a>:</strong> Data structures, algorithms, SQL, and interview prep. Used by companies for hiring.
+                    <strong class="text-blue-400"><a href="https://www.hackerrank.com" target="_blank"
+                            class="hover:underline">HackerRank</a>:</strong> Data structures, algorithms, SQL, and
+                    interview prep. Used by companies for hiring.
                 </div>
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://leetcode.com" target="_blank" class="hover:underline">LeetCode</a>:</strong> FAANG-level interview prep, problem-solving, and company-wise sets.
+                    <strong class="text-blue-400"><a href="https://leetcode.com" target="_blank"
+                            class="hover:underline">LeetCode</a>:</strong> FAANG-level interview prep, problem-solving,
+                    and company-wise sets.
                 </div>
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://www.codechef.com" target="_blank" class="hover:underline">CodeChef</a>:</strong> Competitive programming, contests, and beginner-friendly learning paths.
+                    <strong class="text-blue-400"><a href="https://www.codechef.com" target="_blank"
+                            class="hover:underline">CodeChef</a>:</strong> Competitive programming, contests, and
+                    beginner-friendly learning paths.
                 </div>
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://www.geeksforgeeks.org" target="_blank" class="hover:underline">GeeksforGeeks</a>:</strong> Theory + practice problems, contests, company-specific prep.
+                    <strong class="text-blue-400"><a href="https://www.geeksforgeeks.org" target="_blank"
+                            class="hover:underline">GeeksforGeeks</a>:</strong> Theory + practice problems, contests,
+                    company-specific prep.
                 </div>
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://www.codecademy.com" target="_blank" class="hover:underline">Codecademy</a>:</strong> Interactive learning of Python, JavaScript, HTML, etc.
+                    <strong class="text-blue-400"><a href="https://www.codecademy.com" target="_blank"
+                            class="hover:underline">Codecademy</a>:</strong> Interactive learning of Python, JavaScript,
+                    HTML, etc.
                 </div>
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://codeforces.com" target="_blank" class="hover:underline">Codeforces</a>:</strong> Timed contests, global rankings, and real-time coding environment.
+                    <strong class="text-blue-400"><a href="https://codeforces.com" target="_blank"
+                            class="hover:underline">Codeforces</a>:</strong> Timed contests, global rankings, and
+                    real-time coding environment.
                 </div>
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://atcoder.jp" target="_blank" class="hover:underline">AtCoder</a>:</strong> Respected Japanese platform with quality problems and clean UI.
+                    <strong class="text-blue-400"><a href="https://atcoder.jp" target="_blank"
+                            class="hover:underline">AtCoder</a>:</strong> Respected Japanese platform with quality
+                    problems and clean UI.
                 </div>
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://www.topcoder.com" target="_blank" class="hover:underline">TopCoder</a>:</strong> Oldest coding platform with gigs and competitions.
+                    <strong class="text-blue-400"><a href="https://www.topcoder.com" target="_blank"
+                            class="hover:underline">TopCoder</a>:</strong> Oldest coding platform with gigs and
+                    competitions.
                 </div>
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://cses.fi/problemset/" target="_blank" class="hover:underline">CSES Problem Set</a>:</strong> Learn algorithms & data structures with curated problems.
+                    <strong class="text-blue-400"><a href="https://cses.fi/problemset/" target="_blank"
+                            class="hover:underline">CSES Problem Set</a>:</strong> Learn algorithms & data structures
+                    with curated problems.
                 </div>
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://www.freecodecamp.org" target="_blank" class="hover:underline">freeCodeCamp</a>:</strong> Web dev, data viz, APIs, and certifications via projects.
+                    <strong class="text-blue-400"><a href="https://www.freecodecamp.org" target="_blank"
+                            class="hover:underline">freeCodeCamp</a>:</strong> Web dev, data viz, APIs, and
+                    certifications via projects.
                 </div>
                 <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://exercism.org" target="_blank" class="hover:underline">Exercism</a>:</strong> Practice, mentorship, and language-specific code reviews.
+                    <strong class="text-blue-400"><a href="https://exercism.org" target="_blank"
+                            class="hover:underline">Exercism</a>:</strong> Practice, mentorship, and language-specific
+                    code reviews.
                 </div>
             </div>
         </section>
@@ -141,22 +175,26 @@
         <!-- Resources Section -->
         <section class="p-8 bg-slate-800 rounded-xl shadow-xl border-l-4 border-blue-600">
             <h2 class="text-3xl font-bold text-white mb-4">📄 Resources</h2>
-                <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
-                    <strong class="text-blue-400"><a href="https://www.designgurus.io/blind75" target="_blank" class="hover:underline">LeetCode 75 (Blind 75) PDF</a></strong><br>
-                    A curated list of 75 essential LeetCode questions for interview prep.
-                </div>
+            <div class="p-4 bg-slate-700 rounded-lg transition-all duration-300 hover:bg-slate-600">
+                <strong class="text-blue-400"><a href="https://www.designgurus.io/blind75" target="_blank"
+                        class="hover:underline">LeetCode 75 (Blind 75) PDF</a></strong><br>
+                A curated list of 75 essential LeetCode questions for interview prep.
             </div>
-        </section>
+    </div>
+    </section>
 
     </div>
-    
+
     <!-- Added navigation buttons at the end of the container -->
     <div class="navigation-buttons flex justify-between mt-8 max-w-7xl mx-auto px-4">
-      <!-- Links to the previous JAM page -->
-      <button onclick="window.location.href = '../jam/jam.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Previous</button>
-      <!-- Links to a placeholder for a future page -->
-      <button onclick="window.location.href = '../hr/hr.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
+        <!-- Links to the previous JAM page -->
+        <button onclick="window.location.href = '../Jam/jam.html'"
+            class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Previous</button>
+        <!-- Links to a placeholder for a future page -->
+        <button onclick="window.location.href = '../hr/hr.html'"
+            class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
     </div>
 
 </body>
+
 </html>
