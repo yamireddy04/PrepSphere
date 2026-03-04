@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireHub: Your Complete Job Application Companion</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #d2d2d2;
+            --container-bg: #ffffff;
+            --primary-color: #2f8ff6;
+            --secondary-color: #1a237e;
+            --text-dark: #2d526c;
+            --text-light: #627d98;
+            --border-color: #e2e8f0;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Bookman Old Style', sans-serif;
+            background-color: var(--background-color);
+            color: black;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        h2, h3 {
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            position: relative;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 0;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.75rem;
+            margin-top: 3rem;
+            padding-left: 1.5rem;
+        }
+
+        h3::before {
+            content: '›';
+            position: absolute;
+            left: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.75;
+            color: var(--text-light);
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 2rem;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+            line-height: 1.6;
+            color: var(--text-light);
+        }
+
+        li strong {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        li::before {
+            content: '✔️';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2.5rem;
+            background-color: #fff;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 10px var(--shadow-light);
+        }
+
+        thead tr {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        th, td {
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f7f9fb;
+        }
+
+        tbody tr:hover {
+            background-color: #e9f2ff;
+        }
+
+        .navigation-footer {
+            max-width: 55rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: auto;
+        }
+        
+        .centered-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .end-buttons {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .button {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            outline: none;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+            text-align: center;
+            min-width: 180px;
+            letter-spacing: 0.5px;
+        }
+
+        .button:hover {
+            background-color: lightskyblue;
+            transform: translateY(-5px) scale(1.05);
+        }
+        
+        section {
+            max-width: 55rem;
+            width: 100%;
+            margin: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            background-color: var(--container-bg);
+            box-shadow: 0 4px 10px var(--shadow-light);
+        }
+
+        .centered-image {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px var(--shadow-light);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>HireHub</h2>
+        <p class="tagline">Your Complete Job Application Companion</p>
+        <p>
+            HireHub is a dedicated module designed to guide job seekers through every critical phase of the job application lifecycle before, during, and after applying. It serves as a centralized hub that consolidates essential tools, platforms, and strategies to help candidates secure the right opportunities efficiently and professionally.
+        </p>
+    </section>
+
+    <section>
+        <h3>How Job Portals Help Job Seekers</h3>
+        <img class="centered-image" src="../images/jobportal.jpeg" alt="A laptop showing job search on a website" width="600" height="300">
+        <ul>
+            <li><strong>Centralized Access to Opportunities:</strong> Job portals aggregate thousands of job listings across various industries and locations, giving you access to a wide range of opportunities from one place.</li>
+            <li><strong>Easy Resume Submission:</strong> Most portals allow users to upload their resumes and apply for jobs with a single click, saving time and effort compared to applying through individual company websites.</li>
+            <li><strong>Personalized Recommendations:</strong> Based on your profile, experience, and job preferences, portals suggest relevant job roles tailored specifically for you.</li>
+            <li><strong>Filters for Targeted Search:</strong> Users can apply filters such as location, salary, job type, experience level, and company to narrow down the listings and find the best matches.</li>
+            <li><strong>Company Information & Reviews:</strong> Many platforms provide insights about employers, including salary reports, company culture, interview processes, and employee reviews (e.g., Glassdoor).</li>
+            <li><strong>Resume Building and Profile Scoring:</strong> Some portals offer tools to create or optimize your resume and provide a profile score to help you understand how appealing your application is to recruiters.</li>
+            <li><strong>Job Alerts and Notifications:</strong> Users can set up job alerts via email or mobile apps, so they are instantly notified when a new role matching their criteria is posted.</li>
+            <li><strong>Application Tracking:</strong> Portals help you track the status of your applications, whether it's under review, shortlisted, rejected, or accepted.</li>
+        </ul>
+    </section>
+    
+    <section>
+        <h3>Job Portals: Your Medium to Apply for Jobs</h3>
+        <img class="centered-image" src="../images/jb2.jpeg" alt="Person searching for jobs on a laptop" width="100" height="80">
+        <p>
+            Job portals act as a vital medium for job seekers to explore and apply to various opportunities across sectors, locations, and experience levels. Below is a categorized list of global, Indian, startup-focused, internship-specific, and remote work job platforms to guide your job search effectively.
+        </p>
+
+        <h3>Global Job Portals</h3>
+        <ul>
+            <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/jobs" target="_blank">https://www.linkedin.com/jobs</a> for Networking + job listings, company insights, recruiter connections.</li>
+            <li><strong>Indeed:</strong> <a href="https://www.indeed.com" target="_blank">https://www.indeed.com</a> for Massive job database, company reviews, salary info.</li>
+            <li><strong>Glassdoor:</strong> <a href="https://www.glassdoor.com" target="_blank">https://www.glassdoor.com</a> for Job listings + company reviews + interview experiences.</li>
+            <li><strong>Monster:</strong> <a href="https://www.monster.com" target="_blank">https://www.monster.com</a> for International job listings and resume tools.</li>
+            <li><strong>CareerBuilder:</strong> <a href="https://www.careerbuilder.com" target="_blank">https://www.careerbuilder.com</a> for U.S.-centric platform with resume building and career tips.</li>
+            <li><strong>SimplyHired:</strong> <a href="https://www.simplyhired.com" target="_blank">https://www.simplyhired.com</a> for Jobs + salary estimator, freelance roles.</li>
+        </ul>
+        
+        <h3>Top Indian Job Portals</h3>
+        <ul>
+            <li><strong>Naukri.com:</strong> <a href="https://www.naukri.com" target="_blank">https://www.naukri.com</a> for India most widely used portal for all job categories.</li>
+            <li><strong>Shine.com:</strong> <a href="https://www.shine.com" target="_blank">https://www.shine.com</a> for Jobs + certifications and resume services.</li>
+            <li><strong>TimesJobs:</strong> <a href="https://www.timesjobs.com" target="_blank">https://www.timesjobs.com</a> fror Jobs across various Indian sectors and regions.</li>
+            <li><strong>Freshersworld:</strong> <a href="https://www.freshersworld.com" target="_blank">https://www.freshersworld.com</a> for Jobs and government exams for freshers.</li>
+            <li><strong>PlacementIndia:</strong> <a href="https://www.placementindia.com" target="_blank">https://www.placementindia.com</a> for Job listings, walk-ins, and resume postings.</li>
+            <li><strong>WisdomJobs:</strong> <a href="https://www.wisdomjobs.com" target="_blank">https://www.wisdomjobs.com</a> for Career services with assessment tests.</li>
+        </ul>
+        
+        <h3>Startup and Tech-Specific Portals</h3>
+        <ul>
+            <li><strong>AngelList / Wellfound:</strong> <a href="https://www.wellfound.com/jobs" target="_blank">https://www.wellfound.com/jobs</a> for Jobs at startups, remote-friendly and equity-based.</li>
+            <li><strong>HackerRank Jobs:</strong> <a href="https://www.hackerrank.com/jobs" target="_blank">https://www.hackerrank.com/jobs</a> for Coding-based job platform for techies.</li>
+            <li><strong>CutShort:</strong> <a href="https://cutshort.io" target="_blank">https://cutshort.io</a> for AI-based matching with startup and tech roles.</li>
+            <li><strong>Instahyre:</strong> <a href="https://www.instahyre.com" target="_blank">https://www.instahyre.com</a> for Premium jobs in top startups and MNCs, invite-based.</li>
+            <li><strong>GeekTrust:</strong> <a href="https://www.geektrust.in" target="_blank">https://www.geektrust.in</a> for Developer-focused hiring through coding challenges.</li>
+        </ul>
+        
+        <h3>Internship and Entry-Level Job Portals</h3>
+        <ul>
+            <li><strong>Internshala:</strong> <a href="https://internshala.com" target="_blank">https://internshala.com</a> for Internships, jobs for students and freshers.</li>
+            <li><strong>LetsIntern:</strong> <a href="https://www.letsintern.com" target="_blank">https://www.letsintern.com</a> for Startup internships, fresher jobs.</li>
+            <li><strong>Twenty19:</strong> <a href="https://www.twenty19.com" target="_blank">https://www.twenty19.com</a> for Internships, campus ambassador roles, online courses.</li>
+            <li><strong>HelloIntern:</strong> <a href="https://www.hellointern.com" target="_blank">https://www.hellointern.com</a> for Internships across India and abroad.</li>
+        </ul>
+        
+        <h3>Remote Work & Freelancing Platforms</h3>
+        <ul>
+            <li><strong>Remote OK:</strong> <a href="https://remoteok.io" target="_blank">https://remoteok.io</a> for Tech and design jobs that are fully remote.</li>
+            <li><strong>We Work Remotely:</strong> <a href="https://weworkremotely.com" target="_blank">https://weworkremotely.com</a> for Remote jobs across engineering, design, marketing.</li>
+            <li><strong>Toptal:</strong> <a href="https://www.toptal.com" target="_blank">https://www.toptal.com</a> for High-end freelancing for developers and designers.</li>
+            <li><strong>Upwork:</strong> <a href="https://www.upwork.com" target="_blank">https://www.upwork.com</a> for Freelancing projects across various categories.</li>
+            <li><strong>Fiverr:</strong> <a href="https://www.fiverr.com" target="_blank">https://www.fiverr.com</a> for Short gigs for freelancers globally.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Job Listings and Details</h3>
+        <img class="centered-image" src="../images/jb21.jpeg" alt="Job listings on a computer screen" width="400" height="300">
+        <p>
+            This module also features a comprehensive list of job openings and application links, each accompanied by a detailed job description and compensation package to support informed decision-making.
+        </p>
+        <table border="1" cellpadding="8" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Company Name</th>
+                    <th>Package</th>
+                    <th>Job Description</th>
+                    <th>Application Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Example Corp</td>
+                    <td>1 LPA</td>
+                    <td>Full Stack Developer role with React and Node.js</td>
+                    <td><a href="#">Apply Now</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h3>Proactive Outreach Strategies</h3>
+        <img class="centered-image" src="../images/dm.jpeg" alt="A person typing an email on a laptop" width="100" height="200">
+        <p>
+            In cases where there is no response after applying for jobs, proactive outreach becomes essential. This includes strategies such as:
+        </p>
+        <ul>
+            <li><strong>Cold Emailing:</strong> Reach out to HR professionals or hiring managers directly via email, expressing your interest in the role and how your skills align with their needs.</li>
+            <li><strong>LinkedIn Messaging:</strong> Connect with employees or recruiters on LinkedIn and send a concise, polite message showing initiative and enthusiasm.</li>
+            <li><strong>Follow-Ups:</strong> If you have already applied and have not heard back, send a follow-up email after 1 to 2 weeks to express continued interest.</li>
+        </ul>
+    </section>
+
+    <!-- Navigation Buttons -->
+    <div class="navigation-footer">
+        <div class="centered-buttons">
+            <a href="./coldmail.html" class="button">Cold Mailing</a>
+            <a href="./dm.html" class="button">Direct Message</a>
+            <a href="./afterrej.html" class="button">After Rejection</a>
+        </div>
+        <div class="end-buttons">
+            <a href="../phase3/phase3.html" class="button">Previous</a>
+            <a href="coldmail.html" class="button">Next</a>
+        </div>
+    </div>
+</body>
+</html>

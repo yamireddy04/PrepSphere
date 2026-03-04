@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepSphere | Mock My Interview Studio</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-studio: #0a0c10;
+            --surface: #161a22;
+            --accent: #94a3b8;
+            --text-main: #f8fafc;
+            --text-muted: #64748b;
+            --accent-blue: #3b82f6;
+        }
+
+        body {
+            background-color: var(--bg-studio);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .studio-gradient {
+            background: radial-gradient(circle at center, #111827 0%, #020617 100%);
+            min-height: 100vh;
+        }
+
+        .glass-studio {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Elegant Card Styling for Questions */
+        .q-card { 
+            background: #1e293b; 
+            border: 1px solid rgba(255,255,255,0.03);
+            border-left: 3px solid var(--accent-blue); 
+            transition: 0.3s ease; 
+            cursor: pointer; 
+        }
+        .q-card:hover { 
+            background: #253347; 
+            transform: translateX(4px);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        .answer-box { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1); 
+            background: rgba(10, 12, 16, 0.5); 
+        }
+        .answer-box.open { 
+            max-height: 1500px; 
+            transition: max-height 1s ease-in; 
+            padding: 1.5rem; 
+            margin-top: 1rem; 
+            border-top: 1px solid rgba(255,255,255,0.05); 
+        }
+
+        .topic-tag { 
+            background: rgba(255,255,255,0.05); 
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-main);
+            padding: 0.5rem 1.2rem; 
+            border-radius: 8px; 
+            font-weight: 600; 
+            font-size: 0.85rem; 
+            transition: 0.2s;
+        }
+        .topic-tag:hover {
+            background: var(--text-main);
+            color: var(--bg-studio);
+        }
+
+        .btn-elegant {
+            background: var(--text-main);
+            color: var(--bg-studio);
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .btn-elegant:hover:not(:disabled) {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Styles */
+        .nav-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-prev { color: var(--text-muted); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .nav-prev:hover { color: white; background: rgba(255, 255, 255, 0.05); }
+        .nav-next { background: rgba(255, 255, 255, 0.05); color: var(--text-main); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .nav-next:hover { background: var(--text-main); color: var(--bg-studio); }
+
+    </style>
+</head>
+<body class="studio-gradient">
+    <div class="max-w-4xl mx-auto px-6 py-20">
+        
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Mock My Interview</h1>
+            <p class="text-lg text-slate-400 font-medium max-w-xl mx-auto">Analyze any Job Description and get a custom preparation topics and questions.</p>
+        </header>
+
+        <div id="input-section" class="glass-studio p-8 rounded-3xl shadow-2xl">
+            <label class="block text-[10px] font-bold text-slate-500 mb-4 uppercase tracking-[0.2em]">Target Job Description</label>
+            <textarea id="jd-input" 
+                class="w-full h-72 p-6 bg-[#0f172a] rounded-2xl border border-white/5 text-slate-200 focus:border-slate-500 outline-none transition text-lg resize-none" 
+                placeholder="Paste the full JD requirements here..."></textarea>
+            
+            <button onclick="generateMock()" id="gen-btn" 
+                class="btn-elegant w-full mt-8 py-5 rounded-2xl text-lg shadow-xl">Analyze & Generate Prep</button>
+            
+            <div id="loader" class="hidden mt-8 text-center text-slate-400 p-6 animate-pulse">
+                <div class="flex items-center justify-center gap-3">
+                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                    <span class="text-sm font-medium tracking-widest uppercase">Predicting Interview Patterns...</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="prep-dashboard" class="hidden mt-12 space-y-16">
+            
+            <section>
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="text-[10px] bg-white/5 border border-white/10 px-3 py-1 rounded-full text-slate-400 font-bold uppercase tracking-widest">Step 01</span>
+                    <h2 class="text-xl font-bold">Core Mastery Topics</h2>
+                </div>
+                <div id="topics-list" class="flex flex-wrap gap-3"></div>
+            </section>
+
+            <section>
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="text-[10px] bg-white/5 border border-white/10 px-3 py-1 rounded-full text-slate-400 font-bold uppercase tracking-widest">Step 02</span>
+                    <h2 class="text-xl font-bold">Predicted Question Bank</h2>
+                </div>
+                <div id="questions-list" class="space-y-4"></div>
+            </section>
+
+            <div class="text-center pt-10">
+                <button onclick="location.reload()" class="text-slate-500 hover:text-white text-sm font-medium transition">← Reset & Re-analyze</button>
+            </div>
+        </div>
+
+        <footer class="nav-footer">
+            <a href="../hr/hr.html" class="nav-link nav-prev">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                Previous
+            </a>
+            <a href="../phase2_transition/phase2_transition.html" class="nav-link nav-next">
+                Next
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+        </footer>
+    </div>
+
+    <script type="module">
+        // Fixed Path to config.js
+        import { API_BASE_URL } from '../js/config.js';
+
+        async function generateMock() {
+            const jd = document.getElementById('jd-input').value;
+            if (!jd || jd.length < 50) return alert("Please provide a more comprehensive Job Description.");
+
+            document.getElementById('gen-btn').disabled = true;
+            document.getElementById('loader').classList.remove('hidden');
+
+            try {
+                // Hits your server.js route
+                const response = await fetch(`${API_BASE_URL}/api/mock-interview`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ jobDescription: jd })
+                });
+                
+                if (!response.ok) throw new Error("API Connection Error");
+                
+                const data = await response.json();
+                renderDashboard(data);
+            } catch (err) {
+                console.error(err);
+                alert("The AI engine is currently busy. Please check if your backend is running on Port 5000.");
+            } finally {
+                document.getElementById('gen-btn').disabled = false;
+                document.getElementById('loader').classList.add('hidden');
+            }
+        }
+
+        function renderDashboard(data) {
+            localStorage.setItem('mmi_completed', 'true');
+            document.getElementById('input-section').classList.add('hidden');
+            document.getElementById('prep-dashboard').classList.remove('hidden');
+
+            const topicsContainer = document.getElementById('topics-list');
+            topicsContainer.innerHTML = '';
+            data.topics.forEach(topic => {
+                const span = document.createElement('span');
+                span.className = 'topic-tag';
+                span.innerText = topic;
+                topicsContainer.appendChild(span);
+            });
+
+            const qContainer = document.getElementById('questions-list');
+            qContainer.innerHTML = '';
+            data.interviews.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'q-card p-6 rounded-2xl shadow-lg';
+                div.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <p class="text-lg font-bold">${item.question}</p>
+                        <span class="text-slate-500 text-[10px] uppercase font-bold tracking-widest">Reveal Answer</span>
+                    </div>
+                    <div class="answer-box rounded-xl leading-relaxed text-slate-300">
+                        <strong class="text-white block mb-2 uppercase text-[10px] tracking-widest opacity-60">Strategic Response:</strong>
+                        ${item.answer}
+                    </div>
+                `;
+                div.onclick = () => {
+                    const box = div.querySelector('.answer-box');
+                    box.classList.toggle('open');
+                };
+                qContainer.appendChild(div);
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // REQUIRED for onclick to work
+        window.generateMock = generateMock;
+    </script>
+</body>
+</html>

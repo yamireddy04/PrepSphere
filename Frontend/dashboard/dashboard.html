@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepSphere | Universal Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: white; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.8s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .module-card { transition: 0.3s ease; border-left: 4px solid #334155; }
+        .module-card.completed { border-left: 4px solid #10b981; opacity: 1; }
+        .module-card.pending { border-left: 4px solid #3b82f6; opacity: 0.7; }
+        
+        /* Hover effect for interactive feel */
+        .module-card:hover { transform: translateX(5px); background: rgba(51, 65, 85, 0.8); }
+    </style>
+</head>
+<body class="p-8 min-h-screen bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-900 via-slate-900 to-black">
+    <div class="max-w-6xl mx-auto">
+        <header class="flex justify-between items-center mb-12">
+            <div>
+                <h1 class="text-4xl font-black tracking-tight text-white italic">PrepSphere Dashboard</h1>
+                <p class="text-blue-400 font-medium">Your step-by-step career preparation progress.</p>
+            </div>
+            <button onclick="if(confirm('Reset all progress?')) { localStorage.clear(); location.reload(); }" 
+                    class="text-xs text-slate-500 hover:text-red-400 uppercase tracking-widest font-bold border border-slate-700 px-4 py-2 rounded-lg transition">
+                Reset Journey
+            </button>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-1 glass p-10 rounded-3xl text-center flex flex-col items-center justify-center shadow-2xl">
+                <svg class="progress-ring" width="200" height="200">
+                    <circle class="text-slate-800" stroke-width="12" stroke="currentColor" fill="transparent" r="80" cx="100" cy="100"/>
+                    <circle id="progress-circle" class="text-blue-500 progress-ring__circle" stroke-width="12" stroke-dasharray="502.6" stroke-dashoffset="502.6" stroke-linecap="round" stroke="currentColor" fill="transparent" r="80" cx="100" cy="100"/>
+                </svg>
+                <div class="mt-6">
+                    <span id="percent-text" class="text-6xl font-black text-white">0%</span>
+                    <p class="text-slate-400 uppercase tracking-widest text-sm mt-2 font-bold">Career Readiness</p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 space-y-4">
+                <h3 class="text-xl font-bold mb-6 text-blue-200 flex items-center gap-2">
+                    <span class="w-2 h-2 bg-blue-500 rounded-full"></span> 
+                    Phase Progress
+                </h3>
+                
+                <div id="card-resume" class="module-card pending glass p-6 rounded-2xl flex justify-between items-center shadow-lg">
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Phase 1: Resume Optimization</h4>
+                        <p class="text-sm text-slate-400">ATS formatting and buzzword integration</p>
+                    </div>
+                    <span id="status-resume" class="px-4 py-1 rounded-full bg-slate-800 text-[10px] font-black tracking-tighter">INCOMPLETE</span>
+                </div>
+
+                <div id="card-coverletter" class="module-card pending glass p-6 rounded-2xl flex justify-between items-center shadow-lg">
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Phase 2: Cover Letter Design</h4>
+                        <p class="text-sm text-slate-400">AI-tailored letters for specific roles</p>
+                    </div>
+                    <span id="status-coverletter" class="px-4 py-1 rounded-full bg-slate-800 text-[10px] font-black tracking-tighter">INCOMPLETE</span>
+                </div>
+
+                <div id="card-quiz" class="module-card pending glass p-6 rounded-2xl flex justify-between items-center shadow-lg">
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Phase 3: Skill Validation</h4>
+                        <p class="text-sm text-slate-400">Interactive AI-generated technical tests</p>
+                    </div>
+                    <span id="status-quiz" class="px-4 py-1 rounded-full bg-slate-800 text-[10px] font-black tracking-tighter">INCOMPLETE</span>
+                </div>
+
+                <div id="card-mmi" class="module-card pending glass p-6 rounded-2xl flex justify-between items-center shadow-lg">
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Phase 4: Mock Interview Prep</h4>
+                        <p class="text-sm text-slate-400">JD analysis and behavioral roadmap</p>
+                    </div>
+                    <span id="status-mmi" class="px-4 py-1 rounded-full bg-slate-800 text-[10px] font-black tracking-tighter">INCOMPLETE</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 flex justify-center gap-4">
+            <button onclick="window.location.href='/resume/resume.html'" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 px-10 py-4 rounded-xl font-black text-white shadow-xl transition-all transform hover:scale-105">
+                Continue Preparation →
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Updated to include 4 modules
+        const modules = [
+            { id: 'resume', key: 'resume_completed' },
+            { id: 'coverletter', key: 'coverletter_completed' },
+            { id: 'quiz', key: 'quiz_completed' },
+            { id: 'mmi', key: 'mmi_completed' }
+        ];
+
+        function updateDashboard() {
+            let completedCount = 0;
+
+            modules.forEach(mod => {
+                const isDone = localStorage.getItem(mod.key) === 'true';
+                const card = document.getElementById(`card-${mod.id}`);
+                const status = document.getElementById(`status-${mod.id}`);
+
+                if (isDone && card && status) {
+                    completedCount++;
+                    card.classList.remove('pending');
+                    card.classList.add('completed');
+                    status.innerText = 'COMPLETED';
+                    status.classList.remove('bg-slate-800');
+                    status.classList.add('bg-green-600', 'text-white');
+                }
+            });
+
+            // Calculate Percentage based on 4 modules
+            const percent = Math.round((completedCount / modules.length) * 100);
+            document.getElementById('percent-text').innerText = `${percent}%`;
+
+            // Update Progress Circle (SVG Logic)
+            const circle = document.getElementById('progress-circle');
+            const circumference = 80 * 2 * Math.PI; // Approx 502.6
+            const offset = circumference - (percent / 100 * circumference);
+            circle.style.strokeDashoffset = offset;
+
+            // Optional: Glow effect when 100% complete
+            if(percent === 100) {
+                document.getElementById('progress-circle').classList.replace('text-blue-500', 'text-green-400');
+            }
+        }
+
+        window.onload = updateDashboard;
+    </script>
+</body>
+</html>

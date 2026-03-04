@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PrepShere | Conventional Roadmap</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Bookman Old Style', sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      padding: 0;
+      background-color: #0d1a26; /* Consistent body background */
+      color: #000000;
+    }
+
+    /* --- Conventional Roadmap Specific Styles --- */
+
+    .conventional-roadmap-section {
+      background-color: #dbd7d7; /* A very light, almost white background */
+      padding: 35px 30px;
+      margin: 50px auto; /* Center the section and add margin */
+      max-width: 800px; /* Max width for better readability */
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      border: 1px solid #eee; /* Subtle, light border */
+      counter-reset: conventional-step; /* Initialize counter for steps */
+      overflow: hidden; /* Ensures shadows and transitions are contained */
+    }
+
+    .conventional-roadmap-section h2 {
+      font-family: 'Georgia', serif; /* Different font for the heading */
+      color: #325293; /* Darker grey for sophistication */
+      font-size: 2.6em;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 40px;
+      position: relative;
+      padding-bottom: 15px;
+      letter-spacing: 1px;
+      /* Clear any previous H2 styles that might conflict */
+      border-left: none !important; /* Force no left border */
+      padding-left: 0 !important; /* Force no left padding */
+    }
+
+    .conventional-roadmap-section h2::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 5px;
+      background: linear-gradient(to right, #093d67, #7bbffe); /* Warm gradient underline */
+      margin: 10px auto 0;
+      border-radius: 3px;
+    }
+
+    /* Styles for the individual accordion item container */
+    .roadmap-accordion-item {
+      margin-bottom: 15px; /* Space between accordion items */
+      border-radius: 10px;
+      overflow: hidden; /* Important for border-radius on children */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for each item */
+    }
+
+    /* Styles for the clickable header */
+    .roadmap-accordion-header {
+      background-color: #ffffff; /* White background for the header */
+      padding: 18px 25px;
+      border-left: 6px solid #3792c6; /* Accent color bar */
+      cursor: pointer;
+      position: relative;
+      z-index: 2; /* Ensure it's above content */
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      display: flex;
+      align-items: center;
+      margin-bottom: 0; /* Remove default paragraph margin */
+    }
+
+    .roadmap-accordion-header:hover {
+      background-color: #fffaf7; /* Lighter on hover */
+      transform: translateY(-2px); /* Slight lift */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Increased shadow */
+    }
+
+    /* Counter for main roadmap steps on the header */
+    .roadmap-accordion-header::before {
+      counter-increment: conventional-step;
+      content: counter(conventional-step);
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #325293; /* Warm accent color */
+      margin-right: 15px;
+      min-width: 30px; /* Ensure space for double digits */
+      text-align: center;
+    }
+
+    /* Strong text inside the header */
+    .roadmap-accordion-header strong {
+      color: #333; /* Darker text for readability */
+      font-size: 1.2em;
+      flex-grow: 1; /* Allows it to take available space */
+    }
+
+    /* Arrow icon for expand/collapse */
+    .roadmap-accordion-header::after {
+      content: '▼'; /* Down arrow */
+      font-size: 0.8em;
+      color: #109390;
+      margin-left: 15px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .roadmap-accordion-header.active::after {
+      content: '▲'; /* Up arrow when active */
+      transform: rotate(0deg); /* Reset rotation */
+    }
+
+    /* Styles for the collapsible content */
+    .roadmap-accordion-content {
+      background-color: #fffefb; /* Very light background for content */
+      padding: 0 25px; /* Padding for left/right */
+      max-height: 0; /* Initially hidden */
+      overflow: hidden; /* Hide overflowing content */
+      transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Smooth slide transition */
+      border-top: 1px solid #ffe8d9; /* Subtle border at the top of content */
+      padding-bottom: 0; /* Initial bottom padding */
+    }
+
+    .roadmap-accordion-content.open {
+      max-height: 500px; /* Adjust as needed for content height */
+      padding-top: 15px; /* Add padding when open */
+      padding-bottom: 20px; /* Add padding when open */
+    }
+
+    /* Sub-item specific styling within the content */
+    .roadmap-accordion-content p {
+      margin-bottom: 10px; /* General paragraph spacing */
+      color: #555;
+    }
+
+    .roadmap-accordion-content p.sub-item {
+      margin-left: 30px; /* Indent sub-items */
+      padding: 10px 15px;
+      background-color: #fff9f5; /* Lighter warm background for sub-items */
+      border-left: 3px dashed #47afd5; /* Dashed accent border */
+      border-radius: 5px;
+      margin-top: 5px; /* Space from previous paragraph */
+      margin-bottom: 15px; /* Space to next element */
+      position: relative;
+      color: #666;
+    }
+
+    .roadmap-accordion-content p.sub-item::before {
+      content: '➔'; /* Custom arrow bullet point */
+      position: absolute;
+      left: -15px; /* Position left of the indented box */
+      color: #5fe2ff; /* Matching accent color */
+      font-size: 1.2em;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Styling for the underlined text within sub-points */
+    .roadmap-accordion-content p.sub-item u {
+      color: #53adc6; /* Deep orange for underlined text */
+      text-decoration: none; /* Remove default underline */
+      border-bottom: 2px dotted #1f5e6a; /* Custom dotted underline */
+      cursor: pointer;
+      transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    }
+
+    .roadmap-accordion-content p.sub-item u:hover {
+      color: #00eeff; /* Brighter orange on hover */
+      border-bottom-color: #22a2c2;
+    }
+
+    /* Styles for Bottom Navigation Buttons */
+    .bottom-nav-container {
+      text-align: center;
+      margin-top: 50px; /* Space above the button container */
+      padding: 20px 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1); /* Subtle separator */
+    }
+
+    .bottom-nav-button {
+      display: inline-block;
+      margin: 0 15px; /* Space between buttons */
+      padding: 12px 25px;
+      background-color: rgb(0, 191, 255); /* Electric Blue */
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3); /* Electric blue shadow */
+      border: none; /* Ensure no default button border */
+    }
+
+    .bottom-nav-button:hover {
+      background-color: rgb(0, 160, 255); /* Slightly darker electric blue on hover */
+      transform: translateY(-2px); /* Lift effect */
+      box-shadow: 0 6px 15px rgba(0, 191, 255, 0.5); /* Stronger shadow on hover */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="conventional-roadmap-section">
+    <h2>Conventional Roadmap</h2>
+    <h4> A standard operating procedure for preparing for interviews is:</h4>
+    <div class="roadmap-accordion-item">
+      <p class="roadmap-accordion-header"><strong>Foundation Building</strong></p>
+      <div class="roadmap-accordion-content">
+        <p>1. Choose a Path, something that you truly want to become, achieve and willing to put your blood into.</p>
+        <p>2. Prepare your resume (acc to field chosen) </p>
+        <p>3. Prepare your Cover Letter (acc to field chosen) </p>
+      </div>
+    </div>
+
+    <div class="roadmap-accordion-item">
+      <p class="roadmap-accordion-header"><strong>Preparation </strong></p>
+      <div class="roadmap-accordion-content">
+        <p>Prepare for assessments (interviews)</p>
+        <p class="sub-item">
+           Mock Interviews: Practice mock questions of all interview rounds
+          (PrepMaster, MockIt, MockMyInterview)
+        </p>
+      </div>
+    </div>
+
+    <div class="roadmap-accordion-item">
+      <p class="roadmap-accordion-header"><strong>Apply for Jobs</strong></p>
+      <div class="roadmap-accordion-content">
+        <p>Use HireHub to find job registrations with details</p>
+        <p class="sub-item">
+          Post-Interview Reflection: Reflect on the interview process and identify areas for improvement.
+        </p>
+      </div>
+      <h4>Dive into our curated technical and non-technical roadmaps, designed to provide a structured blueprint for every career path.</h4>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const headers = document.querySelectorAll('.roadmap-accordion-header');
+
+      headers.forEach(header => {
+        header.addEventListener('click', function() {
+          const content = this.nextElementSibling; // Get the next sibling, which is the content div
+
+          // Toggle the 'active' class on the header
+          this.classList.toggle('active');
+          // Toggle the 'open' class on the content
+          content.classList.toggle('open');
+
+          // Optional: Close other open accordion items (uncomment to enable)
+          // headers.forEach(otherHeader => {
+          //   if (otherHeader !== this && otherHeader.classList.contains('active')) {
+          //     otherHeader.classList.remove('active');
+          //     otherHeader.nextElementSibling.classList.remove('open');
+          //   }
+          // });
+        });
+      });
+    });
+  </script>
+
+  <div class="bottom-nav-container">
+    <a href="roadmap.html" class="bottom-nav-button">previous</a>
+    <a href="tech.html" class="bottom-nav-button">Technical Career Roadmaps</a>
+    <a href="nontech.html" class="bottom-nav-button">Non-Technical Career Roadmaps</a>
+    <a href="../resume/resume.html" class="bottom-nav-button">next</a>
+  </div>
+</body>
+</html>

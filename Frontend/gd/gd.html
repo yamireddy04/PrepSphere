@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Group Discussion|PrepSphere | Ultimate Prep Guide</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #3b82f6;
+      --secondary-color: #1e3a8a;
+      --background-color: #eef2ff;
+      --card-bg-color: #ffffff;
+      --text-color: #1f2937;
+      --subtle-text-color: #6b7280;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --border-radius: 12px;
+    }
+    
+    body {
+      font-family: 'Bookman Old Style', sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    h1, h3 {
+      font-weight: 700;
+      color: var(--secondary-color);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sub {
+      text-align: center;
+      font-style: italic;
+      color: var(--subtle-text-color);
+      margin-bottom: 2.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .image-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .image-container img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+    }
+
+    .fade-box {
+      background: linear-gradient(to right, var(--card-bg-color), var(--background-color));
+      padding: 2rem;
+      border-left: 5px solid var(--primary-color);
+      border-radius: var(--border-radius);
+      margin-bottom: 2.5rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: var(--shadow);
+    }
+
+    .fade-box h3 {
+      margin-top: 0;
+      color: var(--secondary-color);
+    }
+
+    .fade-box ul {
+      padding-left: 1.5rem;
+      color: var(--text-color);
+    }
+
+    details {
+      max-width: 900px;
+      margin: 1.5rem auto;
+      background: var(--card-bg-color);
+      padding: 1rem 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    details[open] {
+      border-left: 4px solid var(--primary-color);
+      background-color: var(--background-color);
+    }
+
+    details summary {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--secondary-color);
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+      list-style-type: '👉';
+    }
+
+    details[open] summary {
+      list-style-type: '👇';
+    }
+
+    ul.question-list {
+      padding-left: 2rem;
+      margin-top: 1rem;
+    }
+
+    ul.question-list li {
+      padding: 0.5rem 0;
+      color: var(--text-color);
+    }
+
+    .section {
+      max-width: 850px;
+      margin: 2.5rem auto;
+      padding: 2rem;
+      background: var(--card-bg-color);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .section h3 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .tips-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .tips-list li {
+      margin-bottom: 1rem;
+      background-color: var(--background-color);
+      padding: 1rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+      transition: transform 0.3s ease;
+    }
+
+    .tips-list li:hover {
+      transform: translateX(5px);
+    }
+
+    /* Added new styles for the navigation buttons */
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: 2.5rem auto;
+    }
+    
+    .navigation-buttons button {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background-color: var(--primary-color);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .navigation-buttons button:hover {
+      background-color: var(--secondary-color);
+      transform: translateY(-2px);
+    }
+    .navigation-buttons button:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Group Discussions</h1>
+  <p class="sub">Mastering the Art of Conversation</p>
+
+  <!-- What is a GD -->
+  <div class="section">
+    <h3>What is a GD?</h3>
+    <p>A structured discussion to evaluate communication, critical thinking, and teamwork.</p>
+  </div>
+
+  <!-- Added images to make the page more stylish -->
+  <div class="image-container">
+    <img src="../images/gd0.jpeg" alt="People having a productive group discussion around a table">
+    <img src="../images/gd1.jpeg" alt="A team collaborating and working together">
+  </div>
+
+  <!-- Fade Box: Skills Assessed + Structure -->
+  <div class="fade-box">
+    <h3>Skills Assessed:</h3>
+    <ul>
+      <li>Communication</li>
+      <li>Teamwork</li>
+      <li>Problem-solving</li>
+      <li>Leadership</li>
+      <li>Flexibility</li>
+      <li>Subject knowledge</li>
+      <li>Listening skills</li>
+    </ul>
+    <h3>Structure of a GD:</h3>
+    <ul>
+      <li>Introduction</li>
+      <li>Body (discussion and participation)</li>
+      <li>Conclusion (summary and final point)</li>
+    </ul>
+  </div>
+
+
+  <!-- Types of GD -->
+  <div class="section">
+    <h3>Types of GDs:</h3>
+    <ul>
+      <li><strong>General/Factual:</strong> Climate change, poverty, AI pros and cons</li>
+      <li><strong>Controversial:</strong> Regulation of social media, ethics of animal testing</li>
+      <li><strong>Case Studies:</strong> Company outsourcing, water shortage solutions</li>
+      <li><strong>Abstract:</strong> Future of work, meaning of happiness</li>
+    </ul>
+  </div>
+
+  <!-- Sample GD Questions: Collapsible Sections -->
+  <details>
+    <summary>🔹 Current Affairs</summary>
+    <ul class="question-list">
+      <li>Is Artificial Intelligence a threat to jobs?</li>
+      <li>India’s stance on climate change: Is it enough?</li>
+      <li>Impact of Social Media on Politics</li>
+      <li>Is the Indian economy recovering post-COVID?</li>
+      <li>One Nation, One Election – Pros and Cons</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>🔹 Abstract Topics</summary>
+    <ul class="question-list">
+      <li>Red is the color of power</li>
+      <li>Numbers speak louder than words</li>
+      <li>When money speaks, truth is silent</li>
+      <li>Success is a journey, not a destination</li>
+      <li>Freedom vs. Discipline</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>🔹 Business & Economy</summary>
+    <ul class="question-list">
+      <li>Should cryptocurrencies be legalized in India?</li>
+      <li>Is privatization the only way forward for PSUs?</li>
+      <li>Startup culture in India – Sustainable or a bubble?</li>
+      <li>Gig economy: Empowering or Exploitative?</li>
+      <li>Are mergers and acquisitions good for the economy?</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>🔹 Social Issues</summary>
+    <ul class="question-list">
+      <li>Is reservation system still relevant in India?</li>
+      <li>Gender equality: How far have we come?</li>
+      <li>The rise of fake news – Who is responsible?</li>
+      <li>Online education vs. traditional education</li>
+      <li>Mental health: Still a taboo in India?</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>🔹 Technology</summary>
+    <ul class="question-list">
+      <li>Is data the new oil?</li>
+      <li>Can India become a global tech leader?</li>
+      <li>Impact of 5G on digital India</li>
+      <li>Should there be limits on AI development?</li>
+      <li>Tech addiction among youth – A growing concern</li>
+    </ul>
+  </details>
+  <div class="section">
+    <h3>Tips for Effective GD Participation:</h3>
+    <ul class="tips-list">
+      <li>Prepare and research topics</li>
+      <li>Listen actively</li>
+      <li>Communicate effectively</li>
+      <li>Use positive body language</li>
+      <li>Be flexible but assertive</li>
+      <li>Work as a team</li>
+    </ul>
+  </div>
+
+  <!-- Added navigation buttons at the end of the page -->
+  <div class="navigation-buttons">
+    <!-- Add the link for the previous page here -->
+    <button onclick="window.location.href = '../MockIt/mockit.html'">Previous</button>
+    <!-- Add the link for the next page here -->
+    <button onclick="window.location.href = '../aptitude/aptitude.html'">Next</button>
+  </div>
+</body>
+</html>

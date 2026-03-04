@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intervyu</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Bookman Old Style', sans-serif;
+      background: linear-gradient(to right, #e0f7ff, #f8fbff);
+      /* Corrected background image properties for responsiveness */
+      background-image: url('/images/p2.jpeg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: #333;
+      padding: 2rem;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      max-width: 800px;
+      /* Adjusted margin to move the container slightly down */
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem 3rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #409fe8;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    ul {
+      margin-left: 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* Added new styles for the navigation buttons */
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+    
+    .navigation-buttons button {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background-color: #409fe8;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .navigation-buttons button:hover {
+      background-color: #2e86d2;
+      transform: translateY(-2px);
+    }
+    .navigation-buttons button:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎯 Intervyu</h1>
+    <p>Intervyu module encompasses all resources and tools to ace the technical round.</p>
+    <p>It includes modules:</p>
+    <ul>
+      <li><strong>PrepMaster</strong> – Company specific details</li>
+      <li><strong>MockIt</strong> – resources and assessments to simulate real exams</li>
+      <li><strong>MockMyInterview</strong> – Simulated HR/Technical interviews</li>
+    </ul>
+
+    <!-- Added navigation buttons at the end of the container -->
+    <div class="navigation-buttons">
+      <!-- Add the link for the previous page here -->
+      <button onclick="window.location.href = '../phase2/phase2.html'">Previous</button>
+      <!-- Add the link for the next page here -->
+      <button onclick="window.location.href = '../MockIt/mockit.html'">Next</button>
+    </div>
+  </div>
+</body>
+</html>

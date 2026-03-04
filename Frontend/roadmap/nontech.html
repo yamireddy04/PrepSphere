@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Non-Technical Career Roadmaps</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Bookman Old Style', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 0; /* Add top/bottom padding for content */
+      background-color: #0d1a26; /* Very dark blue background */
+      color: #e0f2f7; /* Light blue-grey text */
+      display: flex;
+      flex-direction: column; /* Allow content and footer to stack */
+      justify-content: flex-start;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Styles for Bottom Navigation Buttons */
+    .bottom-nav-container {
+      text-align: center;
+      margin-top: 50px; /* Space above the button container */
+      padding: 20px 0;
+      width: 100%; /* Ensure it spans the width */
+      /* background-color: rgba(0, 0, 0, 0.1); Optional: subtle background for the button area */
+    }
+
+    .bottom-nav-button {
+      display: inline-block;
+      margin: 0 15px; /* Space between buttons */
+      padding: 12px 25px;
+      background-color: rgb(0, 191, 255); /* Electric Blue */
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3); /* Electric blue shadow */
+      border: none; /* Ensure no default button border */
+    }
+
+    .bottom-nav-button:hover {
+      background-color: rgb(0, 160, 255); /* Slightly darker electric blue on hover */
+      transform: translateY(-2px); /* Lift effect */
+      box-shadow: 0 6px 15px rgba(0, 191, 255, 0.5); /* Stronger shadow on hover */
+    }
+
+    .roadmap-container {
+      width: 90%;
+      max-width: 900px; /* Constrain width for readability */
+      background-color: #1a2a3a; /* Slightly lighter dark blue for the container */
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Stronger, diffused shadow */
+      padding: 30px;
+      box-sizing: border-box;
+      flex-grow: 1; /* Allow container to grow and push footer down */
+    }
+
+    h1 {
+      font-family: Georgia, sans-serif; /* Futuristic font for the main title */
+      color: #33e0ff; /* Bright aqua blue for main title */
+      text-align: center;
+      font-size: 2.8em;
+      margin-bottom: 50px;
+      text-shadow: 0 0 15px rgba(51, 224, 255, 0.7), 0 0 30px rgba(51, 224, 255, 0.4); /* Glowing effect */
+      animation: glowPulse 2s infinite alternate; /* Subtle pulse animation */
+    }
+
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 10px rgba(51, 224, 255, 0.7), 0 0 20px rgba(51, 224, 255, 0.4); }
+      to { text-shadow: 0 0 20px rgba(51, 224, 255, 0.9), 0 0 40px rgba(51, 224, 255, 0.6); }
+    }
+
+    /* Individual Roadmap Item */
+    .roadmap-item {
+      margin-bottom: 25px;
+      border-radius: 12px;
+      overflow: hidden; /* Contains content overflow and border-radius */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(50, 100, 150, 0.4); /* Subtle blue border */
+    }
+
+    /* Roadmap Header (Clickable Part) */
+    .roadmap-header {
+      background: linear-gradient(135deg, #2b4560, #3c5a75); /* Gradient of darker blues */
+      padding: 20px 30px;
+      font-size: 1.4em;
+      font-weight: 600;
+      color: #b0d8ea; /* Lighter blue text color */
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      position: relative;
+      border-bottom: 2px solid rgba(51, 224, 255, 0.3); /* Aqua accent line */
+    }
+
+    .roadmap-header:hover {
+      background: linear-gradient(135deg, #3c5a75, #4d7090); /* Slightly brighter blue gradient on hover */
+      color: #ffffff; /* White text on hover */
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .roadmap-header.active {
+      background: linear-gradient(135deg, #33e0ff, #0099e0); /* Vibrant aqua to deep blue gradient when active */
+      color: #ffffff;
+      box-shadow: 0 5px 20px rgba(51, 224, 255, 0.6); /* Glowing blue shadow when active */
+      border-bottom: 2px solid #fff; /* White line for active state */
+    }
+
+    .roadmap-header .header-number {
+      font-family: 'Orbitron', sans-serif; /* Use Orbitron for numbers */
+      color: #00e0ff; /* Bright cyan accent for numbers */
+      font-size: 1.2em;
+      margin-right: 15px;
+      text-shadow: 0 0 5px rgba(0, 224, 255, 0.9);
+    }
+
+    /* Toggle Icon (Plus/Minus or Arrow) */
+    .roadmap-header .toggle-icon {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .roadmap-header .toggle-icon::before,
+    .roadmap-header .toggle-icon::after {
+      content: '';
+      position: absolute;
+      background-color: #33e0ff; /* Bright aqua color */
+      border-radius: 2px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .roadmap-header .toggle-icon::before {
+      width: 100%;
+      height: 3px;
+    }
+
+    .roadmap-header .toggle-icon::after {
+      width: 3px;
+      height: 100%;
+    }
+
+    .roadmap-header.active .toggle-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg) scaleX(0); /* Hide vertical bar for minus sign */
+      background-color: #fff; /* White when active */
+    }
+    .roadmap-header.active .toggle-icon::before {
+      background-color: #fff; /* White when active */
+    }
+
+
+    /* Roadmap Content (Hidden by default) */
+    .roadmap-content {
+      background-color: #14212e; /* Slightly darker blue than container, lighter than body */
+      padding: 0 30px;
+      max-height: 0; /* Hidden by default */
+      overflow: hidden;
+      transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide down */
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .roadmap-content.open {
+      max-height: 1000px; /* A large enough value to accommodate content */
+      padding-top: 20px;
+      padding-bottom: 30px;
+    }
+
+    .roadmap-content h3 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00c0ff; /* Medium blue for h3 */
+      font-size: 1.2em;
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-shadow: 0 0 5px rgba(0, 192, 255, 0.5);
+    }
+
+    .roadmap-content ul {
+      list-style: none; /* Remove default bullets */
+      padding-left: 0;
+      margin-bottom: 15px;
+    }
+
+    .roadmap-content ul li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 10px;
+      color: #cce9f2; /* Light blue for list items */
+    }
+
+    .roadmap-content ul li::before {
+      content: '⚡'; /* Cute lightning bolt bullet */
+      position: absolute;
+      left: 0;
+      color: #33e0ff; /* Bright aqua blue bullet */
+      font-size: 0.9em;
+      line-height: 1.6;
+    }
+
+    .roadmap-content ul.nested-list {
+      padding-left: 20px; /* Indent nested lists */
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .roadmap-content ul.nested-list li::before {
+      content: '•'; /* Simple dot for nested lists */
+      color: #00aaff; /* A distinct blue dot */
+      font-size: 1.5em; /* Make dot more visible */
+      top: -2px; /* Adjust vertical alignment */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="roadmap-container">
+    <h1>Non-Technical Career Roadmaps</h1>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">1.</span> 📈 Marketing & Communications Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Develop and execute marketing strategies, manage brand image.</h3>
+        <ul>
+          <li>Digital Marketing: SEO, SEM, Social Media Marketing</li>
+          <li>Content Creation: Copywriting, Blogging, Video Production</li>
+          <li>Public Relations: Media Outreach, Crisis Communication</li>
+          <li>Market Research: Consumer Behavior, Trend Analysis</li>
+          <li>Analytics: Google Analytics, Campaign Performance</li>
+          <li>Tools: HubSpot, Mailchimp, CRM Software</li>
+          <li>Portfolio: Build case studies of successful campaigns</li>
+          <li>Path: Marketing Coordinator → Marketing Specialist → Marketing Manager</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">2.</span> 🧑‍🤝‍ Human Resources (HR) Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Manage employee relations, talent acquisition, and organizational development.</h3>
+        <ul>
+          <li>HR Fundamentals: Recruitment, Onboarding, Compensation & Benefits</li>
+          <li>Labor Law & Compliance: EEO, OSHA, FMLA</li>
+          <li>HRIS: Workday, SAP SuccessFactors, ADP</li>
+          <li>Employee Relations: Conflict Resolution, Performance Management</li>
+          <li>Talent Management: Training & Development, Succession Planning</li>
+          <li>Certifications: SHRM-CP/SCP, HRCI (PHR/SPHR)</li>
+          <li>Experience: HR Intern → HR Generalist → HR Manager</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">3.</span> 💰 Finance & Accounting Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Manage financial records, investments, or provide financial advice.</h3>
+        <ul>
+          <li>Accounting Principles: GAAP, IFRS</li>
+          <li>Financial Modeling & Analysis: Valuation, Forecasting</li>
+          <li>Software Proficiency: Excel (advanced), QuickBooks, SAP ERP</li>
+          <li>Certifications: CPA (Certified Public Accountant), CFA (Chartered Financial Analyst)</li>
+          <li>Investment Knowledge: Stocks, Bonds, Mutual Funds, Derivatives</li>
+          <li>Risk Management: Credit Risk, Market Risk</li>
+          <li>Ethical Standards: Fiduciary Duty, Regulatory Compliance</li>
+          <li>Path: Junior Accountant → Financial Analyst → Finance Manager</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">4.</span> 🤝 Sales & Business Development Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Drive revenue by acquiring new clients and growing existing accounts.</h3>
+        <ul>
+          <li>Sales Techniques: Prospecting, Cold Calling, Presentation Skills</li>
+          <li>Communication & Negotiation: Active Listening, Persuasion</li>
+          <li>CRM Software: Salesforce, Zoho CRM, Microsoft Dynamics</li>
+          <li>Lead Generation: Networking, Digital Outreach</li>
+          <li>Product Knowledge: Deep understanding of offerings</li>
+          <li>Target Setting & Forecasting: Sales Metrics, Quotas</li>
+          <li>Relationship Building: Client Retention, Upselling</li>
+          <li>Path: Sales Development Rep → Account Executive → Sales Manager</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">5.</span> 🗓️ General Project Management Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Lead and execute projects efficiently across various industries.</h3>
+        <ul>
+          <li>Project Lifecycle: Initiation, Planning, Execution, Monitoring, Closing</li>
+          <li>Methodologies: Agile, Scrum, Waterfall, Hybrid</li>
+          <li>Tools: Jira, Asana, Monday.com, Microsoft Project</li>
+          <li>Risk Management: Identification, Mitigation, Contingency Planning</li>
+          <li>Stakeholder Communication: Reporting, Expectation Management</li>
+          <li>Leadership & Team Building: Delegation, Motivation</li>
+          <li>Certifications: PMP, CAPM, CSM (Certified ScrumMaster)</li>
+          <li>Path: Project Coordinator → Project Manager → Senior Project Manager</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">6.</span> 🧑‍🏫 Education & Teaching Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Educate and inspire students in various subjects and settings.</h3>
+        <ul>
+          <li>Subject Matter Expertise: Deep knowledge in chosen field</li>
+          <li>Pedagogy & Didactics: Teaching Theories, Learning Styles</li>
+          <li>Classroom Management: Behavior, Engagement Strategies</li>
+          <li>Curriculum Development: Lesson Planning, Assessment Design</li>
+          <li>Certifications: State Teaching License, Subject-specific endorsements</li>
+          <li>Student Assessment: Formative, Summative, Differentiated Instruction</li>
+          <li>Professional Development: Ongoing Learning, Collaboration</li>
+          <li>Path: Student Teacher → Classroom Teacher → Department Head / Administrator</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">7.</span> 🏥 Healthcare Administration Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Manage operations in hospitals, clinics, or public health organizations.</h3>
+        <ul>
+          <li>Healthcare Systems: Knowledge of policies, regulations (HIPAA)</li>
+          <li>Medical Terminology: Understanding clinical language</li>
+          <li>Financial Management: Budgeting, Billing, Revenue Cycle</li>
+          <li>Leadership & Operations: Staffing, Quality Improvement</li>
+          <li>EHR Systems: Epic, Cerner, Meditech</li>
+          <li>Public Health Concepts: Epidemiology, Health Policy</li>
+          <li>Compliance: Accreditation Standards, Legal Issues</li>
+          <li>Path: Administrative Assistant → Healthcare Coordinator → Clinic Manager</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">8.</span> ✍️ Journalism & Content Writing Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Research, write, and report news or create engaging content for various platforms.</h3>
+        <ul>
+          <li>Research Skills: Fact-checking, Source Verification</li>
+          <li>Interviewing Techniques: Asking effective questions</li>
+          <li>Writing & Editing: Clarity, Conciseness, Storytelling</li>
+          <li>Media Ethics & Law: Defamation, Copyright</li>
+          <li>SEO & Digital Content: Keywords, Web Analytics</li>
+          <li>CMS Platforms: WordPress, Joomla, Squarespace</li>
+          <li>Multimedia Skills: Basic video/audio editing (optional)</li>
+          <li>Portfolio: Showcase articles, blog posts, scripts</li>
+          <li>Path: Intern/Freelancer → Staff Writer → Editor / Senior Journalist</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">9.</span> 🧑‍⚖️ Legal Professions Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Provide legal advice, represent clients, or conduct legal research.</h3>
+        <ul>
+          <li>Legal Education: Bachelor's Degree → Law School (J.D.)</li>
+          <li>Bar Examination: State-specific licensing exam</li>
+          <li>Legal Research: Westlaw, LexisNexis, Caselaw</li>
+          <li>Specialized Law: Corporate, Criminal, Environmental, Family, IP Law</li>
+          <li>Moot Court & Debating: Argumentation Skills</li>
+          <li>Client Counseling: Interviewing, Advising</li>
+          <li>Ethics: Professional Conduct, Confidentiality</li>
+          <li>Path: Law Clerk → Associate Attorney → Partner / Senior Counsel</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">10.</span> 🎭 Creative Arts & Design Roadmap (Non-Digital)
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Express creativity through various artistic mediums or design spaces.</h3>
+        <ul>
+          <li>Foundational Skills: Drawing, Painting, Sculpting, Photography</li>
+          <li>Art History & Theory: Context, Movements, Critiques</li>
+          <li>Medium Specialization: Ceramics, Textiles, Printmaking, Interior Design, Fashion Design</li>
+          <li>Portfolio Development: Curated collection of best works</li>
+          <li>Business Skills: Pricing, Marketing (for freelancers/artists)</li>
+          <li>Networking: Exhibitions, Galleries, Design Fairs</li>
+          <li>Critique & Iteration: Receiving and applying feedback</li>
+          <li>Path: Emerging Artist/Designer → Established Professional → Educator / Curator</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const roadmapHeaders = document.querySelectorAll('.roadmap-header');
+
+      roadmapHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          const content = this.nextElementSibling; // The .roadmap-content div
+          
+          // Toggle the 'active' class on the header
+          this.classList.toggle('active');
+          
+          // Toggle the 'open' class on the content
+          content.classList.toggle('open');
+        });
+      });
+    });
+  </script>
+
+  <div class="bottom-nav-container">
+    <a href="conventional.html" class="bottom-nav-button">Back to Conventional Roadmaps</a>
+  </div>
+</body>
+</html>

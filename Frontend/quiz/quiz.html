@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepSphere | AI Assessment Studio</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-studio: #0a0c10;
+            --surface: #161a22;
+            --accent: #94a3b8; /* Sophisticated Slate */
+            --accent-glow: rgba(148, 163, 184, 0.1);
+            --correct: #10b981;
+            --wrong: #991b1b;
+            --text-main: #f8fafc;
+            --text-muted: #64748b;
+        }
+
+        body {
+            background-color: var(--bg-studio);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .studio-gradient {
+            background: radial-gradient(circle at center, #111827 0%, #020617 100%);
+            min-height: 100vh;
+        }
+
+        .glass-studio {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-studio:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Elegant Option Styling */
+        .option-btn {
+            width: 100%;
+            text-align: left;
+            padding: 1.1rem 1.5rem;
+            margin-bottom: 0.8rem;
+            border-radius: 12px;
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            color: var(--text-main);
+            font-weight: 400;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: #334155;
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .correct {
+            background: rgba(16, 185, 129, 0.1) !important;
+            border-color: var(--correct) !important;
+            color: var(--correct) !important;
+        }
+
+        .wrong {
+            background: rgba(153, 27, 27, 0.1) !important;
+            border-color: var(--wrong) !important;
+            color: #fca5a5 !important;
+        }
+
+        /* Minimalist Buttons */
+        .btn-elegant {
+            background: var(--text-main);
+            color: var(--bg-studio);
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        .btn-elegant:hover:not(:disabled) {
+            background: #e2e8f0;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation Styles */
+        .nav-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .nav-prev {
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-prev:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-next {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-next:hover {
+            background: var(--text-main);
+            color: var(--bg-studio);
+        }
+
+        #progress-bar-inner {
+            height: 100%;
+            background: var(--text-main);
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+
+<body class="studio-gradient">
+    <div class="max-w-4xl mx-auto px-6 py-20">
+        
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">AI MCQ Generator</h1>
+            <p class="text-lg text-slate-400 font-medium max-w-xl mx-auto">Transform your study material into an interactive 10-question quiz.</p>
+        </header>
+
+        <div id="setup-section" class="glass-studio p-8 rounded-3xl shadow-2xl">
+            <label class="block text-xs font-bold text-slate-500 mb-4 uppercase tracking-[0.2em]">Source Material</label>
+            <textarea id="quiz-content"
+                class="w-full h-72 p-6 bg-[#0f172a] rounded-2xl border border-white/5 text-slate-200 focus:border-slate-500 outline-none transition text-lg resize-none"
+                placeholder="Paste your research, notes, or PDF content here..."></textarea>
+
+            <button onclick="generateQuiz()" id="gen-btn"
+                class="btn-elegant w-full mt-8 py-5 rounded-2xl text-lg shadow-xl">Initialize Assessment</button>
+
+            <div id="loader" class="hidden mt-8 text-center text-slate-400 p-6 animate-pulse">
+                <div class="flex items-center justify-center gap-3">
+                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                    <span class="text-sm font-medium tracking-widest uppercase">Analyzing Architecture...</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="quiz-section" class="hidden glass-studio p-10 rounded-3xl shadow-2xl">
+            <div class="flex items-center justify-between mb-12">
+                <div class="flex-1">
+                    <span id="progress-text" class="text-xs font-bold text-slate-500 uppercase tracking-widest">Question 1 / 10</span>
+                    <div class="w-full h-1 bg-white/5 rounded-full mt-4">
+                        <div id="progress-bar-inner" style="width: 10%"></div>
+                    </div>
+                </div>
+                <div class="ml-10 text-right">
+                    <span class="text-[10px] uppercase font-bold text-slate-500 tracking-[0.2em]">Accuracy</span>
+                    <p id="live-score" class="text-3xl font-light text-white">0</p>
+                </div>
+            </div>
+
+            <h2 id="question-text" class="text-2xl font-semibold mb-10 leading-relaxed">Question text goes here?</h2>
+
+            <div id="options-container" class="space-y-1"></div>
+
+            <div class="flex justify-end mt-12">
+                <button onclick="nextQuestion()" id="next-btn"
+                    class="hidden btn-elegant px-10 py-4 rounded-xl text-sm">Next Step →</button>
+            </div>
+        </div>
+
+        <div id="result-section" class="hidden glass-studio p-16 rounded-3xl text-center">
+            <h2 class="text-4xl font-bold mb-4">Assessment Concluded</h2>
+            <p id="final-score" class="text-lg text-slate-400 mb-10">You reached a score of 0 / 10</p>
+            <div class="flex gap-4 justify-center">
+                <button onclick="location.reload()" class="btn-elegant px-10 py-4 rounded-xl text-sm">New Session</button>
+                <button onclick="window.location.href='../quiz/quiz.html'" class="px-10 py-4 rounded-xl text-sm border border-white/10 hover:bg-white/5 transition">Return to AI MCQ Generator</button>
+            </div>
+        </div>
+
+        <footer class="nav-footer">
+            <a href="../mcqs/mcqs.html" class="nav-link nav-prev">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+                Previous
+            </a>
+            <a href="../Jam/jam.html" class="nav-link nav-next">
+                Next
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            </a>
+        </footer>
+    </div>
+
+    <script type="module">
+        // Fixed: Use standard relative pathing to ensure the config is found
+        import { API_BASE_URL } from '../js/config.js';
+
+        let questions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let answered = false;
+
+        async function generateQuiz() {
+            const content = document.getElementById('quiz-content').value;
+            if (!content || content.trim().length < 50) {
+                return alert("Insufficient data. Please provide more context (at least 50 characters) to generate a valid assessment.");
+            }
+
+            document.getElementById('gen-btn').disabled = true;
+            document.getElementById('loader').classList.remove('hidden');
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/generate-quiz`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ content })
+                });
+
+                if (!response.ok) throw new Error("API Error");
+                const data = await response.json();
+                questions = data.questions;
+
+                if (!questions || questions.length === 0) {
+                    throw new Error("No questions returned");
+                }
+
+                document.getElementById('setup-section').classList.add('hidden');
+                document.getElementById('quiz-section').classList.remove('hidden');
+                showQuestion();
+            } catch (err) {
+                console.error("Quiz Generation Error:", err);
+                alert("The AI engine is currently busy or content was invalid. Please try again.");
+            } finally {
+                document.getElementById('gen-btn').disabled = false;
+                document.getElementById('loader').classList.add('hidden');
+            }
+        }
+
+        function showQuestion() {
+            answered = false;
+            const q = questions[currentIndex];
+            document.getElementById('progress-text').innerText = `Question ${currentIndex + 1} / ${questions.length}`;
+            document.getElementById('progress-bar-inner').style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+            document.getElementById('question-text').innerText = q.question;
+            document.getElementById('next-btn').classList.add('hidden');
+
+            const container = document.getElementById('options-container');
+            container.innerHTML = '';
+
+            q.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opt;
+                btn.onclick = () => selectOption(btn, i);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectOption(btn, index) {
+            if (answered) return;
+            answered = true;
+            const correctIndex = questions[currentIndex].answer;
+            const allOptions = document.getElementById('options-container').children;
+
+            if (index === correctIndex) {
+                btn.classList.add('correct');
+                score++;
+                document.getElementById('live-score').innerText = score;
+            } else {
+                btn.classList.add('wrong');
+                allOptions[correctIndex].classList.add('correct');
+            }
+
+            for (let b of allOptions) b.disabled = true;
+            document.getElementById('next-btn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentIndex++;
+            if (currentIndex < questions.length) {
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('result-section').classList.remove('hidden');
+            document.getElementById('final-score').innerText = `You reached a score of ${score} / ${questions.length}`;
+            localStorage.setItem('quiz_completed', 'true');
+        }
+
+        // REQUIRED: Expose functions to the global window scope so HTML onclick works
+        window.generateQuiz = generateQuiz;
+        window.nextQuestion = nextQuestion;
+        window.selectOption = selectOption;
+    </script>
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cover Letter Guide</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <style>
+        /* General Styles - Copied from Resume Guide */
+        body {
+            font-family: 'Bookman Old Style', sans-serif;
+            background-color: #eef2ff;
+            /* Lighter blue background */
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1000px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            border-left: 4px solid #3b82f6;
+            /* Accent blue border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1e3a8a;
+            /* Darker blue heading */
+        }
+
+        h2 {
+            color: #1e40af;
+            /* Blue heading */
+        }
+
+        h3 {
+            color: #1e3a8a;
+        }
+
+        .list-style {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list-style li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .list-style li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .btn {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Buzzword Generator styles */
+        .buzzword-container {
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            width: 100%;
+        }
+
+        .buzzword-container h2 {
+            font-weight: 600;
+            color: #1e40af;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .buzzword-container p {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .interactive-form {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            box-sizing: border-box;
+            min-height: 200px;
+        }
+
+        .buzzword-btn {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .buzzword-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .loading-indicator {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #3b82f6;
+            text-align: center;
+            animation: fade-in-out 1.5s infinite;
+        }
+
+        .results-box {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: #e3f2fd;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            border: 1px solid #60a5fa;
+            word-wrap: break-word;
+        }
+
+        .results-box h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fade-in-out {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Cover Letter Template Page Styles */
+        .cover-letter-container-full {
+            max-width: 8.5in;
+            min-height: 11in;
+            margin: 2rem auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            display: none;
+            line-height: 1.6;
+        }
+
+        [contenteditable]:hover {
+            outline: 2px dashed #93c5fd;
+            cursor: text;
+        }
+
+        [contenteditable]:focus {
+            outline: 2px solid #3b82f6;
+        }
+
+        .cover-letter-container-full h1,
+        .cover-letter-container-full h2,
+        .cover-letter-container-full h3 {
+            font-weight: 600;
+        }
+
+        .cover-letter-container-full h1 {
+            color: #1f2937;
+        }
+
+        .cover-letter-container-full h2 {
+            color: #374151;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            gap: 1rem;
+            max-width: 8.5in;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .page-buttons .nav-button, .page-buttons .action-button {
+            background-color: #3b82f6;
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .page-buttons .nav-button:hover, .page-buttons .action-button:hover {
+            background-color: #2563eb;
+        }
+
+        @media print {
+            #guide-page,
+            .page-buttons {
+                display: none !important;
+            }
+
+            .cover-letter-container-full {
+                display: block !important;
+                box-shadow: none;
+                margin: 0;
+                padding: 0.5in;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-6 md:p-12">
+
+    <div id="main-app-container">
+
+        <div id="guide-page">
+            <div class="container mx-auto space-y-12">
+                <header class="text-center">
+                    <h1 class="text-5xl font-bold mb-2">Cover Letter Guide</h1>
+                    <p class="text-xl text-gray-500 italic">Everything you need to know about crafting a compelling
+                        cover letter.</p>
+                </header>
+
+                <div class="card">
+                    <h2 class="text-3xl font-semibold mb-4">🌟 What is a Cover Letter?</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        A cover letter is a one-page document that you submit with your resume when applying for a job.
+                        It's your opportunity to tell a story that your resume can't—showcasing your personality,
+                        explaining your specific interest in the role and company, and highlighting how your unique
+                        skills and experiences make you the perfect candidate.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h2 class="text-3xl font-semibold mb-4">🎯 Why is it Used?</h2>
+                        <ul class="list-style text-gray-700">
+                            <li>To express genuine interest in the company and position.</li>
+                            <li>To expand on key achievements from your resume.</li>
+                            <li>To explain career gaps or transitions.</li>
+                            <li>To demonstrate your communication skills and personality.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h2 class="text-3xl font-semibold mb-4">🔍 What Recruiters Look For</h2>
+                        <ul class="list-style text-gray-700">
+                            <li>A personalized letter, not a generic one.</li>
+                            <li>Direct connections between your skills and the job's needs.</li>
+                            <li>A professional and enthusiastic tone.</li>
+                            <li>Correct grammar, spelling, and consistent formatting.</li>
+                            <li>A concise document that is easy to read.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 max-w-3xl mx-auto">
+                    <img src="../images/cv.jpeg"
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x450/eef2ff/3b82f6?text=Image+Placeholder:+Recruiting';"
+                        class="w-full md:w-1/2 rounded-lg shadow-md"
+                        alt="A stylized illustration of recruiters analyzing a cv." />
+                    <img src="../images/cv2.jpeg"
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x450/eef2ff/3b82f6?text=Image+Placeholder:+Recruiting';"
+                        class="w-full md:w-1/2 rounded-lg shadow-md"
+                        alt="A stylized illustration of recruiters analyzing a cv." />
+                    <img src="../images/cv3.jpeg"
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x450/eef2ff/3b82f6?text=Image+Placeholder:+Recruiting';"
+                        class="w-full md:w-1/2 rounded-lg shadow-md"
+                        alt="A stylized illustration of recruiters analyzing a cv." />
+                </div>
+                <div class="card">
+                    <h2 class="text-3xl font-semibold mb-4">🧩 Key Components & Writing Tips</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A strong cover letter has a clear structure and uses compelling language to make a lasting
+                        impression.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Core Sections</h3>
+                            <ul class="list-style text-gray-700">
+                                <li>Header: Your and the Recipient's contact info.</li>
+                                <li>Introduction: State the role and your enthusiasm.</li>
+                                <li>Body: Connect your skills and experience to the job.</li>
+                                <li>Conclusion: Reiterate your interest and call to action.</li>
+                                <li>Closing: A professional sign-off.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2">Best Practices</h3>
+                            <ul class="list-style text-gray-700">
+                                <li>Address the hiring manager by name.</li>
+                                <li>Use storytelling to illustrate your impact.</li>
+                                <li>Mention the company's name and mission.</li>
+                                <li>Proofread carefully to avoid typos.</li>
+                                <li>Keep it to a single page.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="text-3xl font-semibold mb-4">📝 Cover Letter Templates</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Templates provide a solid starting point, helping you structure your cover letter professionally
+                        while still allowing for personalization.
+                    </p>
+                    <h3 class="text-xl font-semibold mb-2">How to Use Them Effectively</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Treat templates as a guide, not a final document. Always customize each section to reflect your
+                        unique story, skills, and genuine enthusiasm for the specific job you're applying for.
+                    </p>
+                </div>
+
+                <div class="card grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                    <button onclick="showPage('students-template')"
+                        class="btn bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg text-lg hover:bg-blue-700">
+                        Templates for Students and Freshers
+                    </button>
+                    <button onclick="showPage('pivots-template')"
+                        class="btn bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg text-lg hover:bg-blue-700">
+                        Templates for Pivots
+                    </button>
+                </div>
+
+                <div class="card">
+                    <h2 class="text-3xl font-semibold mb-4">Buzzwords</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        While the resume is the primary document scanned by ATS for keyword matching and formatting,
+                        some modern systems (like Lever, Greenhouse, or Workday) also scan cover letters — especially if
+                        they're uploaded as separate documents or attached fields.If you upload your cover letter as
+                        part of your resume (like a 2-page PDF), it will be parsed as one document, so the cover letter
+                        content is included in ATS processing.In such cases the cover letter must also have buzzwords to
+                        get past the shorlisting stage. Hiring managers often use ATS to search for skills,
+                        certifications, and role-specific keywords. If your cover letter has relevant buzzwords from the
+                        job description (like “REST APIs,” “team collaboration,” “TypeScript,” “data structures,” etc.),
+                        it improves your match score.
+                    </p>
+                </div>
+
+                <div class="card buzzword-container mx-auto mt-12">
+                    <h2 class="text-3xl font-semibold mb-4">✨ Buzzword Generator</h2>
+                    <p>Paste a job description to extract key buzzwords and skills relevant for a cover letter.</p>
+                    <div class="interactive-form">
+                        <textarea id="job-description"
+                            placeholder="Paste the full text of the job description here..."></textarea>
+
+                        <button onclick="generateBuzzwords()" class="buzzword-btn">Generate Buzzwords</button>
+
+                        <div id="loading-indicator" class="loading-indicator" style="display: none;">Analyzing job
+                            description...</div>
+
+                        <div id="results-box" class="results-box" style="display: none;">
+                            <h3 id="results-title">Generated Buzzwords:</h3>
+                            <div id="buzzword-list" class="tag-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mt-12">
+                    <button onclick="window.location.href = '../resume/resume.html'" class="btn bg-blue-600 text-white font-semibold py-2 px-8 rounded-lg">
+                        Previous
+                    </button>
+                    <button onclick="window.location.href = '../phase1_transition/phase1_transition.html'" class="btn bg-blue-600 text-white font-semibold py-2 px-8 rounded-lg">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="students-template" class="hidden">
+            <div id="cover-letter-page-students" class="cover-letter-container-full" style="display: block;">
+                <div class="mb-8">
+                    <h1 contenteditable="true" class="text-xl font-bold mb-1">Your Name</h1>
+                    <p contenteditable="true" class="text-gray-600 mb-1">Your Major Student</p>
+                    <div class="flex flex-wrap items-center text-xs text-gray-600 space-x-2">
+                        <span contenteditable="true">your.email@gmail.com</span>
+                        <span contenteditable="true" class="hidden md:inline">|</span>
+                        <span contenteditable="true">+91 XXXXXXXXXX</span>
+                        <span contenteditable="true" class="hidden md:inline">|</span>
+                        <span contenteditable="true">linkedin username</span>
+                        <span contenteditable="true" class="hidden md:inline">|</span>
+                        <span contenteditable="true">City, Country</span>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <p contenteditable="true" class="mb-4">Date:</p>
+                    <p contenteditable="true" class="font-semibold">To:</p>
+                    <p contenteditable="true" class="font-semibold">Hiring Manager's Name (if known)</p>
+                    <p contenteditable="true">Job Title</p>
+                    <p contenteditable="true">Company Name</p>
+                    <p contenteditable="true">Company Address</p>
+                </div>
+                <p contenteditable="true" class="mb-4">Dear [Hiring Manager's Name] (if known)</p>
+                <p contenteditable="true" class="mb-4">Dear Hiring Manager (if not known)</p>
+                <p contenteditable="true" class="mb-4">
+                    I am writing to express my enthusiastic interest in the [Job Title] position at [Company Name], as
+                    advertised on [Platform where you saw the job posting]. Having closely followed [Company Name]'s
+                    innovative approach to [Company's area of expertise] for several years, I am particularly excited by
+                    the opportunity to contribute my skills and passion to a company I deeply admire.
+                </p>
+                <p contenteditable="true" class="mb-4">
+                    My coursework in [Relevant Course 1], [Relevant Course 2], and [Relevant Course 3] has provided me
+                    with a strong foundation in [Relevant Skills 1, 2, and 3], which I believe would be valuable assets
+                    in this role.
+                </p>
+                <p contenteditable="true" class="mb-4">
+                    I am particularly drawn to [Company Name]'s [Mention something specific about the company that
+                    interests you, e.g., innovative work in [field], commitment to [value], company culture]. I am
+                    confident that this internship would provide me with invaluable hands-on experience and allow me to
+                    contribute to [Company Name]'s success while I further develop my professional skills.
+                </p>
+                <p contenteditable="true" class="mb-4">
+                    Thank you for your time and consideration. I have attached my resume for your review and welcome the
+                    opportunity to discuss my qualifications further in an interview.
+                </p>
+                <p contenteditable="true" class="mt-8 mb-2">Sincerely,</p>
+                <p contenteditable="true" class="font-semibold">Your Name</p>
+            </div>
+            <div class="page-buttons">
+                <button onclick="showPage('guide-page')" class="nav-button">Previous</button>
+                <button onclick="downloadAsPdf('cover-letter-page-students')" class="action-button">Download as PDF</button>
+                <button onclick="showPage('pivots-template')" class="nav-button">Next</button>
+            </div>
+        </div>
+
+        <div id="pivots-template" class="hidden">
+            <div id="cover-letter-page-pivots" class="cover-letter-container-full" style="display: block;">
+                <div class="mb-8">
+                    <h1 contenteditable="true" class="text-xl font-bold mb-1">Your Name</h1>
+                    <div class="flex flex-wrap items-center text-xs text-gray-600 space-x-2">
+                        <span contenteditable="true">your.email@gmail.com</span>
+                        <span contenteditable="true" class="hidden md:inline">|</span>
+                        <span contenteditable="true">+91 XXXXXXXXXX</span>
+                        <span contenteditable="true" class="hidden md:inline">|</span>
+                        <span contenteditable="true">linkedin username</span>
+                        <span contenteditable="true" class="hidden md:inline">|</span>
+                        <span contenteditable="true">City, Country</span>
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <p contenteditable="true" class="mb-4">Date:</p>
+                    <p contenteditable="true" class="font-semibold">To:</p>
+                    <p contenteditable="true" class="font-semibold">Hiring Manager's Name (if known)</p>
+                    <p contenteditable="true">Job Title</p>
+                    <p contenteditable="true">Company Name</p>
+                    <p contenteditable="true">Company Address</p>
+                </div>
+                <p contenteditable="true" class="mb-4">Dear [Hiring Manager's Name (if known)]</p>
+                <p contenteditable="true" class="mb-4">
+                    I am writing to express my keen interest in the [Job Title] position at [Company Name], as
+                    advertised on [Platform where you saw the posting]. With [Number] years of experience in [Your
+                    Previous Field] and a proven track record of success in [Mention 1-2 key achievements], I am
+                    confident I possess the skills and expertise to significantly contribute to your team's objectives.
+                </p>
+                <p contenteditable="true" class="mb-4">
+                    In my previous role as [Your Previous Role] at [Your Previous Company], I was responsible for [List
+                    2-3 key responsibilities]. I consistently exceeded expectations by [Quantifiable achievement 1] and
+                    [Quantifiable achievement 2]. My expertise in [List 2-3 key skills] has enabled me to [Describe how
+                    these skills have benefited previous employers].
+                </p>
+                <p contenteditable="true" class="mb-4">
+                    I am particularly drawn to [Company Name]'s [Mention something specific about the company that
+                    interests you, e.g., innovative work in [field], commitment to [value], company culture]. I am eager
+                    to leverage my experience and contribute to a dynamic and results-oriented environment where I can
+                    further develop my professional skills and make a meaningful impact.
+                </p>
+                <p contenteditable="true" class="mb-4">
+                    Thank you for your time and consideration. I have attached my resume for your review and welcome the
+                    opportunity to discuss my qualifications further in an interview.
+                </p>
+                <p contenteditable="true" class="mt-8 mb-2">Sincerely,</p>
+                <p contenteditable="true" class="font-semibold">Your Name</p>
+            </div>
+            <div class="page-buttons">
+                <button onclick="showPage('students-template')" class="nav-button">Previous</button>
+                <button onclick="downloadAsPdf('cover-letter-page-pivots')" class="action-button">Download as PDF</button>
+                <button onclick="showPage('guide-page')" class="nav-button">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { API_BASE_URL } from '../js/config.js';
+
+        // --- NAVIGATION ---
+        window.showPage = function(pageId) {
+            const pages = ['guide-page', 'students-template', 'pivots-template'];
+            pages.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.classList.add('hidden');
+                    element.style.display = 'none';
+                }
+            });
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.remove('hidden');
+                activePage.style.display = 'block';
+            }
+            window.scrollTo(0, 0);
+        }
+
+        window.onload = function () {
+            showPage('guide-page');
+        };
+
+        // --- PDF EXPORT ---
+        window.downloadAsPdf = function(pageId) {
+            const container = document.getElementById(pageId);
+            const button = document.querySelector(`#${pageId.replace('cover-letter-page-', '')}-template .action-button`) || document.querySelector('.action-button');
+            const originalText = button.textContent;
+
+            button.textContent = 'Processing...';
+            button.disabled = true;
+
+            const opt = {
+                margin: 0.5,
+                filename: 'CoverLetter.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(container).save().then(() => {
+                button.textContent = originalText;
+                button.disabled = false;
+                localStorage.setItem('coverletter_completed', 'true');
+            }).catch(err => {
+                console.error("PDF Error:", err);
+                button.textContent = originalText;
+                button.disabled = false;
+            });
+        }
+
+        // --- REAL AI BUZZWORD LOGIC ---
+        window.generateBuzzwords = async function() {
+            const jobDescription = document.getElementById('job-description').value;
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const resultsBox = document.getElementById('results-box');
+            const buzzwordList = document.getElementById('buzzword-list');
+            const btn = document.querySelector('.buzzword-btn');
+
+            if (!jobDescription.trim()) {
+                alert('Please paste a job description.');
+                return;
+            }
+
+            loadingIndicator.style.display = 'block';
+            resultsBox.style.display = 'none';
+            buzzwordList.innerHTML = '';
+            btn.disabled = true;
+
+            try {
+                // Corrected to match your server.js route
+                const response = await fetch(`${API_BASE_URL}/api/generate-buzzwords`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ jobDescription })
+                });
+
+                if (!response.ok) throw new Error('Network error. Is your backend running?');
+                
+                const data = await response.json();
+                
+                if (data.buzzwords && Array.isArray(data.buzzwords)) {
+                    data.buzzwords.forEach(word => {
+                        const tag = document.createElement('span');
+                        tag.className = 'tag';
+                        tag.textContent = word;
+                        buzzwordList.appendChild(tag);
+                    });
+                    resultsBox.style.display = 'block';
+                }
+            } catch (error) {
+                console.error("AI Error:", error);
+                alert("Connection failed. Ensure backend is on Port 5000.");
+            } finally {
+                loadingIndicator.style.display = 'none';
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

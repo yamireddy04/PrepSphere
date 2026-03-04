@@ -1,0 +1,441 @@
+<link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+<script>
+  if(!localStorage.getItem("token")){
+    window.location.href="../login.html";
+  }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrepSphere | Ultimate Prep Guide</title>
+  <style>
+    /* Your existing CSS for home.html */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Bookman Old Style', sans-serif;
+      background-color: #f4f6fa;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #111827;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bodoni-heading {
+      font-family: 'Bodoni 72 Smallcaps', serif;
+      font-size: 2.5rem;
+      font-variant: small-caps;
+      color: #60a5fa;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: #e5e7eb;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem;
+    }
+
+    nav a:hover {
+      color: #3b82f6;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #1f2937;
+      min-width: 180px;
+      z-index: 1;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .dropdown-content a {
+      color: #e5e7eb;
+      padding: 0.75rem 1rem;
+      display: block;
+      text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #374151;
+      color: #60a5fa;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(to right, #3b82f6, #6366f1);
+      color: white;
+    }
+
+    .hero img {
+      max-width: 320px;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+    }
+
+    .hero .bradley {
+      font-family: 'Bradley Hand', cursive;
+      font-size: 1.8rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero button {
+      background-color: white;
+      color: #3b82f6;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .hero button:hover {
+      background-color: #e0e7ff;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section h3 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #1e3a8a;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-box {
+      background-color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-box h4 {
+      margin-bottom: 0.8rem;
+      color: #2563eb;
+    }
+
+    .illustrations {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .illustrations img {
+      max-width: 300px;
+      height: auto;
+      border-radius: 12px;
+    }
+    
+    footer {
+      background-color: #111827;
+      color: #d1d5db;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: #93c5fd;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1000; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+      position: relative;
+      max-height: 90vh; /* Limits the height of the modal to 90% of the viewport height */
+      overflow-y: auto; /* Adds a scrollbar if content exceeds the max-height */
+    }
+
+    .close-btn {
+      color: #aaa;
+      float: right;
+      font-size: 2rem;
+      font-weight: bold;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+
+    .close-btn:hover,
+    .close-btn:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal-content h3 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .contact-info a {
+      color: #3b82f6;
+      text-decoration: underline;
+    }
+
+    .privacy-policy-content h4 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #2563eb;
+    }
+
+    .privacy-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .privacy-buttons button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .accept-btn {
+      background-color: #459648; /* Green */
+      color: white;
+    }
+
+    .decline-btn {
+      background-color: #f93b3b; /* Red */
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 class="bodoni-heading">PrepSphere</h1>
+    <nav>
+      <a href="./index.html">Home</a> 
+
+      <div class="dropdown">
+        <a href="#">Phase 1</a>
+        <div class="dropdown-content">
+          <a href="../roadmap/roadmap.html">Roadmap</a>
+          <a href="../resume/resume.html">Resume</a>
+          <a href="../coverletter/coverletter.html">Cover Letter</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#">Phase 2</a>
+        <div class="dropdown-content">
+          <a href="../intervyu/intervyu.html">Intervyu :</a>
+          <a href="../prepmaster/prepmaster.html">PrepMaster</a>
+          <a href="../MockIt/mockit.html">MockIt</a>
+          <a href="../mmi/mmi.html">MockMyInterview</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#">Phase 3</a>
+        <div class="dropdown-content">
+          <a href="../hirehub/hirehub.html">HireHub</a>
+        </div>
+      </div>
+      <a href="../login.html">Login</a>
+      <a href="../register.html">Register</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="bradley">The Ultimate Interview Prep Guide: Prepare, Practice, Succeed.</div>
+    <button onclick="window.location.href='../exp/exp.html'">Get Started</button>
+  </section>
+
+  <section class="section">
+    <h3>Why PrepSphere .... ?</h3>
+    <div class="features">
+      <div class="feature-box">
+        <h4>Your One-Stop Interview Prep Guide</h4>
+        <p>PrepSphere brings everything under one roof — from resume preparation to post-interview reflection.</p>
+      </div>
+      <div class="feature-box">
+        <h4>Comprehensive Interview Insights</h4>
+        <p>We provide in-depth guidance on the entire interview process — covering the what, why, and how of every interview round.</p>
+      </div>
+      <div class="feature-box">
+        <h4>Mock Questions & Practice Resources</h4>
+        <p>Master your next interview with an extensive library of mock questions, aptitude challenges, and coding tasks. Dive into structured resources and topic-wise quizzes designed to sharpen your skills and build your confidence through focused practice.</p>
+      </div>
+      <div class="feature-box">
+        <h4>AI-Powered Modules</h4>
+        <p>Prepsphere is an AI-driven preparation ecosystem that transforms job descriptions and raw data into targeted mock interviews, custom assessments, and optimized resume content to ensure comprehensive candidate readiness.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 PrepSphere. All rights reserved.</p>
+    <p>
+      <a href="#" onclick="openModal('contactModal')">Contact Us</a> |
+      <a href="#" onclick="openModal('privacyModal')">Privacy Policy</a>
+    </p>
+  </footer>
+
+  <!-- Contact Us Modal -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('contactModal')">&times;</span>
+      <h3>Contact Us</h3>
+      <p>Have a question or need support? You can reach us by email at:</p>
+      <div class="contact-info">
+        <p><a href="mailto:prepsphere146@gmail.com">prepsphere146@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Policy Modal -->
+  <div id="privacyModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('privacyModal')">&times;</span>
+      <h3>Privacy Policy</h3>
+      <div class="privacy-policy-content">
+        <p>Your privacy is important to us. This policy outlines how we collect, use, and protect your information when you use our services.</p>
+        
+        <h4>Information We Collect</h4>
+        <p>We collect personal information that you provide to us, such as your name and email address, when you register for an account, subscribe to our newsletter, or contact us. We also collect usage data, such as IP addresses and browsing behavior, to improve our services.</p>
+
+        <h4>How We Use Your Information</h4>
+        <p>We use your information to provide, maintain, and improve our services, to communicate with you about your account, and to send you updates and promotional materials. We may also use data for research and analytics to enhance user experience.</p>
+        
+        <h4>Data Protection</h4>
+        <p>We implement a variety of security measures to maintain the safety of your personal information. We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties without your consent.</p>
+
+        <h4>Third-Party Links</h4>
+        <p>Our website may contain links to third-party sites. We are not responsible for the privacy practices or the content of these external sites.</p>
+
+        <h4>Your Consent</h4>
+        <p>By using our site, you consent to our privacy policy.</p>
+        
+        <h4>Changes to This Policy</h4>
+        <p>We reserve the right to update this privacy policy at any time. We will notify you of any changes by posting the new policy on this page.</p>
+      </div>
+      <div class="privacy-buttons">
+        <button class="accept-btn" onclick="handlePrivacyPolicy('accept')">Accept</button>
+        <button class="decline-btn" onclick="handlePrivacyPolicy('decline')">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get the modal elements
+    const contactModal = document.getElementById('contactModal');
+    const privacyModal = document.getElementById('privacyModal');
+
+    // Function to open a specific modal
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = 'flex';
+    }
+
+    // Function to close a specific modal
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
+
+    // Function to handle the privacy policy button clicks
+    function handlePrivacyPolicy(action) {
+      if (action === 'accept') {
+        alert('You have accepted the privacy policy.');
+        // Here you would add code to set a cookie or store user preference
+      } else {
+        alert('You have declined the privacy policy.');
+        // Here you would add code to handle the decline action
+      }
+      closeModal('privacyModal');
+    }
+
+    // Close the modal if the user clicks outside of it
+    window.onclick = function(event) {
+      if (event.target == contactModal) {
+        contactModal.style.display = 'none';
+      }
+      if (event.target == privacyModal) {
+        privacyModal.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

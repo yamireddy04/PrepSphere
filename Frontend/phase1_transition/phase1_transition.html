@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepSphere | Ultimate Prep Guide</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-base: #020617;
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Subtle mesh background - Not "gamey", just premium */
+        .mesh-gradient {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(59, 130, 246, 0.05) 0px, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .status-chip {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 span {
+            color: var(--text-secondary);
+        }
+
+        .hero-text {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Modern Progress Steps */
+        .stepper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .step {
+            height: 4px;
+            flex: 1;
+            max-width: 100px;
+            background: var(--border);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .step.completed { background: var(--accent-green); }
+        .step.active { background: var(--accent-blue); box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+
+        .step-label {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            font-weight: 600;
+            white-space: nowrap;
+            color: var(--text-secondary);
+        }
+
+        .active .step-label { color: var(--accent-blue); }
+
+        /* The Card */
+        .focus-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .focus-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .focus-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Actions */
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover { background: var(--glass); border-color: var(--text-secondary); }
+
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-base);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            filter: brightness(0.9);
+        }
+
+        @media (max-width: 600px) {
+            .actions { flex-direction: column-reverse; }
+            .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mesh-gradient"></div>
+
+    <div class="container">
+        <h1>Paper-Ready. <span>Now, Interview-Ready.</span></h1>
+        
+        <p class="hero-text">
+            Foundation building is officially complete. You've audited the roadmaps, optimized your resume, and finalized your cover letter strategy. Now, we shift from <b>brand identity</b> to <b>technical execution</b>.
+        </p>
+
+        <div class="stepper">
+            <div class="step completed"><div class="step-label">PHASE 1</div></div>
+            <div class="step active"><div class="step-label">PHASE 2</div></div>
+            <div class="step"><div class="step-label">PHASE 3</div></div>
+        </div>
+
+        <div class="focus-card">
+            <h3><span>⚡</span> Phase 2: The Interview gauntlet</h3>
+            <p>We’re moving into deep-work mode. Get ready for company-specific prep patterns, mock environment simulations, and high-probability question banks. No fluff, just the data and resources you need to clear every round—from Aptitude to HR.</p>
+        </div>
+
+        
+
+        <div class="actions">
+            <a href="../Phase1/Phase1.html" class="btn btn-secondary">Review Foundation</a>
+            <a href="../phase2/phase2.html" class="btn btn-primary">Start Technical Prep</a>
+        </div>
+    </div>
+
+    <script>
+        // Subtle hover interaction for the card
+        const card = document.querySelector('.focus-card');
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+    </script>
+</body>
+</html>

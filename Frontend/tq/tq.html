@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Complete | PrepSphere</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-base: #020617;
+            --accent-gold: #fbbf24;
+            --accent-blue: #3b82f6;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .mesh-gradient {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(at 50% 0%, rgba(59, 130, 246, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(251, 191, 36, 0.03) 0px, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 90%;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            /* Fixed Gradient Text Styling */
+            color: #ffffff; 
+            background: linear-gradient(to bottom, #ffffff 40%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Image Showcase moved after text */
+        .image-showcase {
+            width: 100%;
+            max-width: 650px;
+            height: 380px;
+            margin: 0 auto 4rem auto;
+            border-radius: 32px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 40px 100px -20px rgba(0,0,0,0.6);
+        }
+
+        .image-showcase img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder-text {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            position: absolute;
+        }
+
+        .success-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .success-card::before {
+            content: '✨';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            background: var(--bg-base);
+            padding: 0 15px;
+        }
+
+        .success-card p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .nav-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.9rem;
+        }
+
+        .btn-prev {
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-prev:hover {
+            background: var(--glass);
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .btn-next {
+            background: var(--text-primary);
+            color: var(--bg-base);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+        }
+
+        .btn-next:hover {
+            transform: translateY(-3px) translateX(5px);
+            filter: brightness(0.9);
+        }
+
+        @media (max-width: 600px) {
+            .nav-footer { flex-direction: column; gap: 1rem; }
+            .nav-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mesh-gradient"></div>
+
+    <div class="container">
+        
+        <h1>Beyond Preparation.</h1>
+        
+        <p class="hero-text">
+            PrepSphere ends here, but your career trajectory is just beginning. You’ve evolved from a candidate into a <b>strategist</b>. You have the tools, the logic, and the technical confidence to own any room you walk into.
+        </p>
+
+        <div class="image-showcase">
+            <img src="../images/tq.jpeg" alt="PrepSphere Completion" onerror="this.style.display='none'">
+        </div>
+        
+
+        <div class="success-card">
+            <p>
+                "The future belongs to those who prepare for it today." <br>
+                <span style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 400; margin-top: 10px; display: block;">You are officially Interview-Ready.</span>
+            </p>
+        </div>
+
+        <div class="nav-footer">
+            <a href="../phase3/phase3.html" class="nav-btn btn-prev">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Previous: Phase 3
+            </a>
+            
+            <a href="../index/index.html" class="nav-btn btn-next">
+                Return to Dashboard
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12h18M13 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

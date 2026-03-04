@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Technical Career Roadmaps</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Bookman Old Style', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 40px 0; /* Add top/bottom padding for content */
+      background-color: #0d1a26; /* Very dark blue background */
+      color: #e0f2f7; /* Light blue-grey text */
+      display: flex;
+      flex-direction: column; /* Allow content and footer to stack */
+      justify-content: flex-start;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Styles for Bottom Navigation Buttons */
+    .bottom-nav-container {
+      text-align: center;
+      margin-top: 50px; /* Space above the button container */
+      padding: 20px 0;
+      width: 100%; /* Ensure it spans the width */
+      /* background-color: rgba(0, 0, 0, 0.1); Optional: subtle background for the button area */
+    }
+
+    .bottom-nav-button {
+      display: inline-block;
+      margin: 0 15px; /* Space between buttons */
+      padding: 12px 25px;
+      background-color: rgb(0, 191, 255); /* Electric Blue */
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3); /* Electric blue shadow */
+      border: none; /* Ensure no default button border */
+    }
+
+    .bottom-nav-button:hover {
+      background-color: rgb(0, 160, 255); /* Slightly darker electric blue on hover */
+      transform: translateY(-2px); /* Lift effect */
+      box-shadow: 0 6px 15px rgba(0, 191, 255, 0.5); /* Stronger shadow on hover */
+    }
+
+    .roadmap-container {
+      width: 90%;
+      max-width: 900px; /* Constrain width for readability */
+      background-color: #1a2a3a; /* Slightly lighter dark blue for the container */
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Stronger, diffused shadow */
+      padding: 30px;
+      box-sizing: border-box;
+      flex-grow: 1; /* Allow container to grow and push footer down */
+    }
+
+    h1 {
+      font-family: Georgia, sans-serif; /* Futuristic font for the main title */
+      color: #33e0ff; /* Bright aqua blue for main title */
+      text-align: center;
+      font-size: 2.8em;
+      margin-bottom: 50px;
+      text-shadow: 0 0 15px rgba(51, 224, 255, 0.7), 0 0 30px rgba(51, 224, 255, 0.4); /* Glowing effect */
+      animation: glowPulse 2s infinite alternate; /* Subtle pulse animation */
+    }
+
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 10px rgba(51, 224, 255, 0.7), 0 0 20px rgba(51, 224, 255, 0.4); }
+      to { text-shadow: 0 0 20px rgba(51, 224, 255, 0.9), 0 0 40px rgba(51, 224, 255, 0.6); }
+    }
+
+    /* Individual Roadmap Item */
+    .roadmap-item {
+      margin-bottom: 25px;
+      border-radius: 12px;
+      overflow: hidden; /* Contains content overflow and border-radius */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(50, 100, 150, 0.4); /* Subtle blue border */
+    }
+
+    /* Roadmap Header (Clickable Part) */
+    .roadmap-header {
+      background: linear-gradient(135deg, #2b4560, #3c5a75); /* Gradient of darker blues */
+      padding: 20px 30px;
+      font-size: 1.4em;
+      font-weight: 600;
+      color: #b0d8ea; /* Lighter blue text color */
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+      position: relative;
+      border-bottom: 2px solid rgba(51, 224, 255, 0.3); /* Aqua accent line */
+    }
+
+    .roadmap-header:hover {
+      background: linear-gradient(135deg, #3c5a75, #4d7090); /* Slightly brighter blue gradient on hover */
+      color: #ffffff; /* White text on hover */
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .roadmap-header.active {
+      background: linear-gradient(135deg, #33e0ff, #0099e0); /* Vibrant aqua to deep blue gradient when active */
+      color: #ffffff;
+      box-shadow: 0 5px 20px rgba(51, 224, 255, 0.6); /* Glowing blue shadow when active */
+      border-bottom: 2px solid #fff; /* White line for active state */
+    }
+
+    .roadmap-header .header-number {
+      font-family: 'Orbitron', sans-serif; /* Use Orbitron for numbers */
+      color: #00e0ff; /* Bright cyan accent for numbers */
+      font-size: 1.2em;
+      margin-right: 15px;
+      text-shadow: 0 0 5px rgba(0, 224, 255, 0.9);
+    }
+
+    /* Toggle Icon (Plus/Minus or Arrow) */
+    .roadmap-header .toggle-icon {
+      width: 20px;
+      height: 20px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .roadmap-header .toggle-icon::before,
+    .roadmap-header .toggle-icon::after {
+      content: '';
+      position: absolute;
+      background-color: #33e0ff; /* Bright aqua color */
+      border-radius: 2px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .roadmap-header .toggle-icon::before {
+      width: 100%;
+      height: 3px;
+    }
+
+    .roadmap-header .toggle-icon::after {
+      width: 3px;
+      height: 100%;
+    }
+
+    .roadmap-header.active .toggle-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg) scaleX(0); /* Hide vertical bar for minus sign */
+      background-color: #fff; /* White when active */
+    }
+    .roadmap-header.active .toggle-icon::before {
+      background-color: #fff; /* White when active */
+    }
+
+
+    /* Roadmap Content (Hidden by default) */
+    .roadmap-content {
+      background-color: #14212e; /* Slightly darker blue than container, lighter than body */
+      padding: 0 30px;
+      max-height: 0; /* Hidden by default */
+      overflow: hidden;
+      transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide down */
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .roadmap-content.open {
+      max-height: 1000px; /* A large enough value to accommodate content */
+      padding-top: 20px;
+      padding-bottom: 30px;
+    }
+
+    .roadmap-content h3 {
+      font-family: 'Montserrat', sans-serif;
+      color: #00c0ff; /* Medium blue for h3 */
+      font-size: 1.2em;
+      margin-top: 0;
+      margin-bottom: 15px;
+      text-shadow: 0 0 5px rgba(0, 192, 255, 0.5);
+    }
+
+    .roadmap-content ul {
+      list-style: none; /* Remove default bullets */
+      padding-left: 0;
+      margin-bottom: 15px;
+    }
+
+    .roadmap-content ul li {
+      position: relative;
+      padding-left: 25px;
+      margin-bottom: 10px;
+      color: #cce9f2; /* Light blue for list items */
+    }
+
+    .roadmap-content ul li::before {
+      content: '⚡'; /* Cute lightning bolt bullet */
+      position: absolute;
+      left: 0;
+      color: #33e0ff; /* Bright aqua blue bullet */
+      font-size: 0.9em;
+      line-height: 1.6;
+    }
+
+    .roadmap-content ul.nested-list {
+      padding-left: 20px; /* Indent nested lists */
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .roadmap-content ul.nested-list li::before {
+      content: '•'; /* Simple dot for nested lists */
+      color: #00aaff; /* A distinct blue dot */
+      font-size: 1.5em; /* Make dot more visible */
+      top: -2px; /* Adjust vertical alignment */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="roadmap-container">
+    <h1>Technical Career Roadmaps</h1>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">1.</span> 🧑‍💻 Software Developer Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Become a Front-End, Back-End, or Full Stack Developer</h3>
+        <ul>
+          <li>Basics: Learn C/C++ or Python, then move to Java or JavaScript</li>
+          <li>Web Dev: HTML, CSS, JavaScript</li>
+          <li>Choose Path:
+            <ul class="nested-list">
+              <li>Front-End: React, Angular, Tailwind</li>
+              <li>Back-End: Node.js, Java (Spring Boot), Python (Django/Flask)</li>
+            </ul>
+          </li>
+          <li>Databases: SQL (MySQL, PostgreSQL) & NoSQL (MongoDB)</li>
+          <li>Version Control: Git & GitHub</li>
+          <li>Projects: Build CRUD apps, portfolio website, mini projects</li>
+          <li>Apply: Internships → Jobs</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">2.</span> 📊 Data Science & Analytics Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Become Data Analyst or Data Scientist</h3>
+        <ul>
+          <li>Programming: Python (Pandas, NumPy), R (optional)</li>
+          <li>Statistics & Math: Descriptive stats, probability, linear algebra</li>
+          <li>Tools: Excel, SQL, Power BI/Tableau</li>
+          <li>Machine Learning: Scikit-learn, regression, clustering, classification</li>
+          <li>Projects: Data cleaning, visualization dashboards, ML models</li>
+          <li>Certifications: Google Data Analytics, IBM Data Science</li>
+          <li>Apply: Analyst internships → Junior Data Scientist</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">3.</span> 🤖 Machine Learning / AI Engineer Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Develop AI/ML systems</h3>
+        <ul>
+          <li>Python & Libraries: NumPy, Pandas, Matplotlib, Scikit-learn</li>
+          <li>Math: Linear Algebra, Calculus, Probability</li>
+          <li>Algorithms: Supervised/unsupervised learning</li>
+          <li>Advanced ML: Deep Learning (TensorFlow, PyTorch)</li>
+          <li>NLP/CV: Transformers, OpenCV</li>
+          <li>Projects: Spam classifier, image recognition, chatbots</li>
+          <li>Research or Jobs: Start as ML Intern → ML Engineer</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">4.</span> 🛡️ Cybersecurity Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Protect systems from threats</h3>
+        <ul>
+          <li>Basics: Networking (TCP/IP, DNS), Linux, Scripting (Python, Bash)</li>
+          <li>Certifications: CompTIA Security+, CEH (Certified Ethical Hacker)</li>
+          <li>Tools: Wireshark, Metasploit, Burp Suite</li>
+          <li>Learn Domains: Network security, cryptography, OWASP</li>
+          <li>Simulations: Capture-the-flag (CTF), bug bounty</li>
+          <li>Internships: Join SOC team or red team</li>
+          <li>Jobs: Security Analyst → Ethical Hacker</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">5.</span> ☁️ Cloud Computing / DevOps Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Manage cloud infrastructure and CI/CD</h3>
+        <ul>
+          <li>Linux & Networking</li>
+          <li>Cloud Providers: AWS, Azure, GCP (start with AWS Free Tier)</li>
+          <li>DevOps Tools: Docker, Kubernetes, Jenkins, Terraform</li>
+          <li>CI/CD Pipelines</li>
+          <li>Certifications: AWS Cloud Practitioner → Solutions Architect</li>
+          <li>Projects: Deploy full-stack apps, CI/CD pipelines</li>
+          <li>Jobs: Cloud Intern → DevOps Engineer</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">6.</span> ⚙️ Embedded Systems / IoT Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Work on smart devices and low-level systems</h3>
+        <ul>
+          <li>Languages: C/C++, Assembly, Python (for Raspberry Pi)</li>
+          <li>Microcontrollers: Arduino, Raspberry Pi</li>
+          <li>Electronics: Sensors, circuit design</li>
+          <li>IoT Protocols: MQTT, HTTP, Bluetooth</li>
+          <li>Projects: Home automation, smart sensors</li>
+          <li>Apply: Embedded Dev roles or IoT startups</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">7.</span> 🎨 UI/UX Design Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Design user-friendly interfaces</h3>
+        <ul>
+          <li>Design Basics: Typography, color theory, layouts</li>
+          <li>Tools: Figma, Adobe XD, Sketch</li>
+          <li>UX Principles: User research, wireframing, prototyping</li>
+          <li>UI Development: HTML, CSS, basic JS (optional)</li>
+          <li>Portfolio: Create mock apps/websites</li>
+          <li>Intern → UX Designer / Researcher</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">8.</span> 💼 Product / Project Management Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Lead product strategy or project execution</h3>
+        <ul>
+          <li>Understand Tech: Basics of web dev, databases</li>
+          <li>Tools: Jira, Trello, Asana, Notion</li>
+          <li>Certifications: Scrum Master, PMP, APM</li>
+          <li>Skills: Communication, market research, agile/scrum</li>
+          <li>Experience: Intern/associate → Junior PM → PM</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">9.</span> 🧪 Research / Academia Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Contribute to scientific advancements</h3>
+        <ul>
+          <li>Strong Fundamentals: Focus on academic excellence</li>
+          <li>Programming + Math</li>
+          <li>Research Skills: Read papers, use LaTeX, join labs</li>
+          <li>Publish Papers: Conferences, journals</li>
+          <li>Apply: MS/PhD (via GRE, TOEFL, GATE, etc.)</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">10.</span> 🧠 Freelancer / Entrepreneur Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Independent career or startup founder</h3>
+        <ul>
+          <li>Specialize: Web dev, app dev, data, or AI</li>
+          <li>Freelance Platforms: Upwork, Fiverr, Toptal</li>
+          <li>Build a Portfolio</li>
+          <li>Find Clients: LinkedIn, cold outreach, gigs</li>
+          <li>Scale: Hire, build team → Startup</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">11.</span> 🏛️ Government / PSU Jobs Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Work in public sector or research bodies</h3>
+        <ul>
+          <li>Identify Target Exams:
+            <ul class="nested-list">
+              <li>GATE → PSUs</li>
+              <li>ISRO/DRDO/BARC → Written + Interview</li>
+              <li>SSC JE/UPSC ESE → Engineering Services</li>
+            </ul>
+          </li>
+          <li>Study Plan: Core subjects + previous papers</li>
+          <li>Practice: Mock tests, join coaching if needed</li>
+          <li>Apply: Based on score/interview</li>
+        </ul>
+      </div>
+    </div>
+  
+    <div class="roadmap-item">
+      <div class="roadmap-header">
+        <span class="header-number">12.</span> 🌐 Blockchain & Web3 Roadmap
+        <span class="toggle-icon"></span>
+      </div>
+      <div class="roadmap-content">
+        <h3>Goal: Work with decentralized technologies</h3>
+        <ul>
+          <li>Learn Blockchain Basics</li>
+          <li>Cryptography + Smart Contracts (Solidity)</li>
+          <li>Build DApps</li>
+          <li>Platforms: Ethereum, Polygon, Solana</li>
+          <li>Contribute to Open Source/Web3 Projects</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const roadmapHeaders = document.querySelectorAll('.roadmap-header');
+
+      roadmapHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          const content = this.nextElementSibling; // The .roadmap-content div
+          
+          // Toggle the 'active' class on the header
+          this.classList.toggle('active');
+          
+          // Toggle the 'open' class on the content
+          content.classList.toggle('open');
+        });
+      });
+    });
+  </script>
+
+  <div class="bottom-nav-container">
+    <a href="conventional.html" class="bottom-nav-button">Back to Conventional Roadmaps</a>
+  </div>
+</body>
+</html>

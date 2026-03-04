@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phase 3: Apply for Jobs</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+  <style>
+    /*
+      CSS Styles for the Job Application Guide
+      This version features a dynamic, multi-column layout with
+      interactive elements while retaining the classy dark/gold color palette.
+    */
+
+    /* Import elegant fonts from Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+
+    /* General body styles with a dark background and a new font */
+    body {
+      font-family: 'Bookman Old Style', sans-serif;
+      background-image: url('images/job-application-background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: #35597d; /* Fallback */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #34495e;
+    }
+
+    /* Main content container with a refined look */
+    .container {
+      max-width: 1200px; /* Increased max-width for the new layout */
+      width: 95%;
+      margin: 20px;
+      background-color: rgba(255, 255, 255, 0.98);
+      padding: 50px;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      text-align: left;
+    }
+
+    /* Main heading with an animation */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 700;
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      border-bottom: 3px solid #f39c12;
+      padding-bottom: 15px;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInSlideDown 1s forwards;
+    }
+
+    /* Keyframe animation for the heading */
+    @keyframes fadeInSlideDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: #f39c12;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-left: 5px solid #bdc3c7;
+      padding-left: 15px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #34495e;
+      line-height: 1.9;
+      margin-bottom: 30px;
+    }
+
+    /* Styling for image elements */
+    .section-image {
+      width: 80%;
+      height: auto;
+      border-radius: 12px;
+      margin: 40px auto;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      display: block; /* Ensures the element is a block for margin: auto to work */
+    }
+
+    /* Dynamic hover effect for images */
+    .section-image:hover {
+      transform: scale(1.02);
+    }
+    
+    /* Using CSS Grid for a dynamic list layout */
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 30px;
+    }
+    
+    .list-grid li {
+      position: relative;
+      background-color: #f8f8f8;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+
+    /* Dynamic hover effect for list items */
+    .list-grid li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      background-color: #fffaf0; /* Light change on hover */
+    }
+
+    .list-grid li strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #2c3e50;
+      font-size: 18px;
+    }
+    
+    .list-grid li::before {
+      display: none; /* Hide the default bullet */
+    }
+
+    /* Styling for the nested lists inside the grid */
+    .list-grid .nested-list {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+
+    .list-grid .nested-list li {
+      padding: 0;
+      background: none;
+      box-shadow: none;
+      transition: none;
+      font-size: 16px;
+    }
+
+    .list-grid .nested-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #f39c12;
+      font-weight: bold;
+    }
+
+    /* Card-like styling for the "Additional Tips" section */
+    .tips-card {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      margin-top: 40px;
+    }
+
+    .tips-card h2 {
+      color: #f39c12;
+      border-left-color: #f39c12;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .tips-card ul {
+      margin: 0;
+    }
+
+    .tips-card li {
+      color: #ecf0f1;
+    }
+
+    .tips-card li::before {
+      color: #f39c12;
+    }
+
+    /* Navigation buttons container */
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+    }
+
+    /* Button styling with a classy, subtle feel */
+    .nav-button {
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      text-decoration: none; /* Add this to remove underline from links */
+    }
+
+    .nav-button:hover {
+      background-color: #e67e22;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px;
+      }
+      h1 {
+        font-size: 40px;
+        letter-spacing: 2px;
+      }
+      h2 {
+        font-size: 24px;
+      }
+      p {
+        font-size: 16px;
+      }
+      .list-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+      }
+      .nav-button {
+        font-size: 15px;
+        padding: 12px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Phase 3: Apply for Jobs</h1>
+  <p>
+    Job applications are the practical step toward realizing your career goals. By actively seeking and applying for jobs that align with your skills and interests, you significantly improve your chances of securing a fulfilling and rewarding career.
+  </p>
+
+  <h2>Job Search Strategies</h2>
+  <ul class="list-grid">
+    <li>
+      <strong>Leverage Online Job Boards:</strong>
+      <p>Use platforms like LinkedIn, Indeed, and Glassdoor to discover job openings that match your profile.</p>
+    </li>
+    <li>
+      <strong>Directly Visit Company Websites:</strong>
+      <p>Regularly check the careers pages of companies you admire and apply directly.</p>
+    </li>
+    <li>
+      <strong>Network Strategically:</strong>
+      <p>Build relationships with professionals in your field to learn about job opportunities and gain referrals.</p>
+    </li>
+    <li>
+      <strong>Attend Industry Events:</strong>
+      <p>Participate in job fairs, hackathons, and career expos to connect with recruiters and hiring managers.</p>
+    </li>
+  </ul>
+  
+  <img class="section-image" src="../images/p31.jpeg" alt="An illustration of a person with a bright idea in a crowd of people.">
+
+  <h2>How to Apply Effectively</h2>
+  <ul class="list-grid">
+    <li>
+      <strong>Tailor Your Resume and Cover Letter:</strong>
+      <ul class="nested-list">
+        <li>Customize your documents for each job by highlighting the most relevant skills and accomplishments.</li>
+        <li>Use strong action verbs and quantify your achievements to stand out.</li>
+        <li>Write a compelling cover letter that clearly shows your interest in the role and how you meet the requirements.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Thorough Research:</strong>
+      <ul class="nested-list">
+        <li>Study the company's mission, culture, and recent updates.</li>
+        <li>Understand the job description and key responsibilities.</li>
+        <li>Identify the specific skills and experiences the company is looking for.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Effective Online Presence:</strong>
+      <ul class="nested-list">
+        <li>Maintain a professional LinkedIn profile with updated achievements and projects.</li>
+        <li>Use industry-relevant keywords to improve visibility in recruiter searches.</li>
+        <li>Engage with posts, connect with peers, and participate in discussions.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Follow-Up:</strong>
+      <ul class="nested-list">
+        <li>Send a thank-you email after interviews to express appreciation and reiterate interest.</li>
+        <li>Politely follow up with the recruiter if you have not heard back within the expected time frame.</li>
+      </ul>
+    </li>
+  </ul>
+  
+  <img class="section-image" src="/images/p3.jpeg" alt="An illustration of a person with a bright idea in a crowd of people.">
+
+  <div class="tips-card">
+    <h2>Additional Tips</h2>
+    <ul class="list-grid">
+      <li>
+        <strong>Practice Interview Questions:</strong>
+        <p>Familiarize yourself with common technical and HR questions.</p>
+      </li>
+      <li>
+        <strong>Conduct Mock Interviews:</strong>
+        <p>Practice with friends or mentors to improve confidence and performance.</p>
+      </li>
+      <li>
+        <strong>Stay Positive and Persistent:</strong>
+        <p>Rejections are part of the journey—keep applying and improving.</p>
+      </li>
+      <li>
+        <strong>Continuous Learning:</strong>
+        <p>Keep upgrading your skills with certifications, courses, or side projects.</p>
+      </li>
+    </ul>
+  </div>
+
+  <p>
+    By following these strategies and remaining proactive and resilient, you will significantly boost your chances of landing your dream job.
+  </p>
+
+  <div class="navigation-buttons">
+    <a href="../phase2_transition/phase2_transition.html" class="nav-button">Previous</a>
+    <a href="../hirehub/hirehub.html" class="nav-button">Next</a>
+  </div>
+</div>
+
+</body>
+</html>

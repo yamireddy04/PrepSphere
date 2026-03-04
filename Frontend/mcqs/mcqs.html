@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCQ|PrepSphere | Ultimate Prep Guide</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary-color: #ebe9e9;
+      --secondary-color: #e2e8f0;
+      --background-color: #1e293b; /* Changed background color for dark theme */
+      --card-bg-color: #2d3748;
+      --text-color: #e2e8f0;
+      --subtle-text-color: #a0aec0;
+      --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.3);
+      --border-radius: 12px;
+    }
+    
+    body {
+      font-family: 'Bookman Old Style', sans-serif;
+      background-color: var(--background-color);
+      margin: 0;
+      padding: 2rem 1rem;
+      color: var(--text-color); /* Updated text color for new background */
+      line-height: 1.6;
+    }
+
+    .highlight-section {
+      max-width: 1000px;
+      color: var(--text-color); /* Updated text color */
+      margin: 2rem auto;
+      padding: 0;
+    }
+    
+    .highlight-section h2 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      color: var(--primary-color); /* Updated text color */
+      text-align: center;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+      width: fit-content;
+      margin: 0 auto 0.5rem auto;
+    }
+
+    .highlight-section p.subheading {
+      font-size: 1rem;
+      font-style: italic;
+      text-align: center;
+      margin-top: 0;
+      color: var(--subtle-text-color); /* Updated text color */
+      margin-bottom: 2rem;
+    }
+    
+    /* New container for the adjacent images */
+    .image-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; /* Allows images to stack on small screens */
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .image-container {
+      max-width: 45%; /* Allows two images to sit side-by-side */
+      text-align: center;
+      margin: 0;
+    }
+    
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-md);
+    }
+
+    .flip-box-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .flip-box {
+      background-color: transparent;
+      width: 100%;
+      max-width: 300px;
+      perspective: 1000px;
+      cursor: pointer;
+      flex-grow: 1;
+    }
+
+    .flip-box-inner {
+      position: relative;
+      width: 100%;
+      min-height: 200px; /* Use a minimum height so it's not tiny */
+      height: auto; /* Let the content determine the height */
+      text-align: center;
+      transition: transform 0.6s ease;
+      transform-style: preserve-3d;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-light);
+    }
+
+    .flip-box:hover .flip-box-inner,
+    .flip-box.clicked .flip-box-inner {
+      transform: rotateY(180deg);
+      box-shadow: var(--shadow-md);
+    }
+
+    .flip-box-front, .flip-box-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      padding: 1.5rem;
+      backface-visibility: hidden;
+      border-radius: var(--border-radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px; /* Ensure content can push the height */
+      box-sizing: border-box; /* Include padding in the element's total width and height */
+    }
+    
+    .flip-box-front {
+      background-color: var(--card-bg-color);
+      color: var(--text-color);
+    }
+
+    .flip-box-back {
+      background-color: var(--card-bg-color);
+      transform: rotateY(180deg);
+      color: var(--text-color);
+    }
+
+    .flip-box.red .flip-box-front { border-left: 6px solid #f87171; }
+    .flip-box.green .flip-box-front { border-left: 6px solid #48bb78; }
+    .flip-box.blue .flip-box-front { border-left: 6px solid #4299e1; }
+    
+    .flip-box.red .flip-box-back { border-left: 6px solid #f87171; }
+    .flip-box.green .flip-box-back { border-left: 6px solid #48bb78; }
+    .flip-box.blue .flip-box-back { border-left: 6px solid #4299e1; }
+
+    .flip-box .emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .flip-box-front h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+      color: var(--secondary-color);
+    }
+
+    .flip-box-back ul {
+      text-align: left;
+      padding-left: 1.5rem;
+      margin: 0;
+    }
+    
+    .flip-box-back ul li {
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .resource-table {
+      width: 100%;
+      max-width: 1000px;
+      margin: 3rem auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      box-shadow: var(--shadow-md);
+      background-color: var(--card-bg-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+
+    .resource-table th,
+    .resource-table td {
+      padding: 1rem 1.5rem;
+      text-align: left;
+      border-bottom: 1px solid #2d3748;
+    }
+
+    .resource-table thead tr {
+      background-color: #222935;
+      color: #fff;
+    }
+
+    .resource-table th:first-child,
+    .resource-table td:first-child {
+      border-left: none;
+    }
+
+    .resource-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .resource-table tbody tr:hover {
+      background-color: #3d4659;
+      transition: background-color 0.2s ease;
+    }
+
+    .resource-table a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .resource-table a:hover {
+      text-decoration: underline;
+    }
+
+    /* Styles for the new navigation buttons */
+    .navigation-buttons button {
+      transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(to right, #2563eb, #3b82f6); /* Initial gradient */
+      color: white;
+    }
+
+    .navigation-buttons button:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); /* Enhanced shadow on hover */
+      background: linear-gradient(to right, #3b82f6, #60a5fa); /* Lighter gradient on hover */
+    }
+    
+    .navigation-buttons button:active {
+      transform: translateY(0) scale(1);
+      box-shadow: none;
+    }
+
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+      }
+      .tagline {
+        font-size: 1rem;
+      }
+      .highlight-section h2 {
+        font-size: 1.5rem;
+        width: auto;
+      }
+      .flip-box-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .flip-box {
+        max-width: 90%;
+      }
+      .resource-table, .resource-table tbody, .resource-table tr, .resource-table td {
+        display: block;
+        width: 100%;
+      }
+      .resource-table thead {
+        display: none;
+      }
+      .resource-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid var(--card-bg-color);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-light);
+      }
+      .resource-table td {
+        text-align: right;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #2d3748;
+      }
+      .resource-table td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--primary-color);
+      }
+      .resource-table td:last-child {
+        border-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="highlight-section">
+    <h2>Multiple Choice Questions (MCQ)</h2>
+    <p class="subheading">A Common Interview Assessment</p>
+    
+    <div class="image-row">
+      <div class="image-container">
+        <img src="../images/mcqs1.jpeg" alt="A person studying and taking notes for an exam.">
+      </div>
+      <div class="image-container">
+        <img src="../images/mcqs2.jpeg" alt="A person studying and taking notes for an exam.">
+      </div>
+    </div>
+
+    <div class="flip-box-container">
+      <div class="flip-box red" onclick="this.classList.toggle('clicked')">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+            <div class="emoji">🤔</div>
+            <h3>Why MCQs Are Used?</h3>
+          </div>
+          <div class="flip-box-back">
+            <ul>
+              <li>Objective Assessment</li>
+              <li>Efficiency in scoring</li>
+              <li>Broad topic coverage</li>
+              <li>Quick feedback</li>
+              <li>Reduced bias</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-box green" onclick="this.classList.toggle('clicked')">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+            <div class="emoji">📘</div>
+            <h3>Common MCQ Topics</h3>
+          </div>
+          <div class="flip-box-back">
+            <ul>
+              <li>Technical Subjects</li>
+              <li>Aptitude & Reasoning</li>
+              <li>Domain-Specific Knowledge</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-box blue" onclick="this.classList.toggle('clicked')">
+        <div class="flip-box-inner">
+          <div class="flip-box-front">
+            <div class="emoji">🧠</div>
+            <h3>Subjects Covered</h3>
+          </div>
+          <div class="flip-box-back">
+            <ul>
+              <li>C, C++</li>
+              <li>Python, Java</li>
+              <li>IoT</li>
+              <li>DBMS</li>
+              <li>CN</li>
+              <li>Aptitude & Logical MCQs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MCQ Resource Table -->
+  <table class="resource-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Subject Name</th>
+        <th>YouTube Link</th>
+        <th>Mock Questions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="S.No">1</td>
+        <td data-label="Subject Name">C</td>
+        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=irqbmMNs2Bo" target="_blank">Watch</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1mLZ_5AXFQ-Gz1kUNAfH8ZfuV03DNefdv/view?usp=sharing">Practice</a></td>
+      </tr>
+      <tr>
+        <td data-label="S.No">2</td>
+        <td data-label="Subject Name">C++</td>
+        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank">Watch</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1-vR0ECJTnKtqjRuafvn6AoNPoAdVglYu/view?usp=sharing">Practice</a></td>
+      </tr>
+      <tr>
+        <td data-label="S.No">3</td>
+        <td data-label="Subject Name">Java</td>
+        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=UmnCZ7-9yDY" target="_blank">Watch</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/13rY8Gh0WtNj9ZNm0Pasq7rWC43Ngkrf6/view?usp=sharing">Practice</a></td>
+      </tr>
+      <tr>
+        <td data-label="S.No">4</td>
+        <td data-label="Subject Name">Python</td>
+        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=vLqTf2b6GZw" target="_blank">Watch</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1FjUGmPLAg7KUQpDc5f1pqUQbq3Im4gCo/view?usp=sharing">Practice</a></td>
+      </tr>
+      <tr>
+        <td data-label="S.No">5</td>
+        <td data-label="Subject Name">DBMS</td>
+        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=xHJ8Gtm0ILg" target="_blank">Watch</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1jJijLzPXmK0tIWEnUG-yXsey8k_L4ZGY/view?usp=sharing">Practice</a></td>
+      </tr>
+      <tr>
+        <td data-label="S.No">6</td>
+        <td data-label="Subject Name">OS</td>
+        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=8XBtAjKwCm4" target="_blank">Watch</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1-ZegyQ-2tihNFnaj2sO2XQOYJTASfuzc/view?usp=sharing">Practice</a></td>
+      </tr>
+      <tr>
+        <td data-label="S.No">7</td>
+        <td data-label="Subject Name">CN</td>
+        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=qUBHLZEtS0M" target="_blank">Watch</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1Dv21Gkz0xBWG9DzzVcJ4chpSVEAF6qM2/view?usp=sharing">Practice</a></td>
+      </tr>
+      <tr>
+        <td data-label="S.No">8</td>
+        <td data-label="Subject Name">SQL</td>
+        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=hlGoQC332VM" target="_blank">Watch</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1mfMff6cDu629H7TWCnzaqnhedIJ088tr/view?usp=sharing">Practice</a></td>
+      </tr>
+      <tr>
+        <td data-label="S.No">9</td>
+        <td data-label="Subject Name">Front End(HTML,CSS,Js)</td>
+        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=hddqkYK5eMQ" target="_blank">Watch</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1r7G9iFNVDBHEn25GgADsLoSJUwKdjg-Q/view?usp=sharing">Practice</a></td>
+      </tr>
+      <tr>
+        <td data-label="S.No">10</td>
+        <td data-label="Subject Name">Back End</td>
+        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=1lqRA_8ArqU" target="_blank">Watch</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1MYCAkJkl8OWoltnwd7JTkkADL2KAQeYb/view?usp=sharing">Practice</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Added navigation buttons at the end of the container -->
+  <div class="navigation-buttons flex justify-between mt-8 max-w-6xl mx-auto">
+    <!-- Links to the previous aptitude page -->
+    <button onclick="window.location.href = '../aptitude/aptitude.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Previous</button>
+    <!-- Links to a placeholder for a future coding page -->
+    <button onclick="window.location.href = '../quiz/quiz.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
+  </div>
+  
+  <script>
+  </script>
+</body>
+</html>

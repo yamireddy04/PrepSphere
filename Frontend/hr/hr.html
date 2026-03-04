@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Interview Round|PrepSphere | Ultimate Prep Guide</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Bookman Old Style', sans-serif;
+            background-color: #ffffff;
+            background-image: url('../images/hr1.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .overlay {
+            min-height: 100vh;
+        }
+        
+        .answer-box.hidden {
+            display: none;
+        }
+
+        /* Styles for the navigation buttons */
+        .navigation-buttons button {
+          transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+          border: none;
+          cursor: pointer;
+          background: linear-gradient(to right, #2563eb, #3b82f6);
+          color: white;
+        }
+
+        .navigation-buttons button:hover {
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+          background: linear-gradient(to right, #3b82f6, #60a5fa);
+        }
+        
+        .navigation-buttons button:active {
+          transform: translateY(0) scale(1);
+          box-shadow: none;
+        }
+
+        /* Additional styling for the main container */
+        .container {
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body class="text-slate-200">
+    <div class="overlay">
+        <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
+            <!-- Header Section with Dark Container -->
+            <div class="bg-slate-900 rounded-xl p-8 mb-16 shadow-xl">
+                <header class="text-center">
+                    <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-md">
+                        HR Round 
+                    </h1>
+                    <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                        This guide will prepare you for the behavioral and situational questions of the HR interview round.
+                    </p>
+                </header>
+            </div>
+
+            <!-- Purpose and Tips Grid Section -->
+            <section class="mb-16 grid lg:grid-cols-2 gap-8">
+                <!-- Purpose Card -->
+                <div class="p-8 bg-slate-800/70 rounded-xl shadow-xl border-l-4 border-blue-600 transition-shadow duration-300 hover:shadow-2xl">
+                    <h2 class="text-3xl font-bold text-white mb-4">🎯 Purpose</h2>
+                    <ul class="list-disc list-inside space-y-2 text-slate-300">
+                        <li>Assess personality and soft skills</li>
+                        <li>Check cultural fit</li>
+                        <li>Discuss salary and joining date</li>
+                        <li>Clarify job-related expectations</li>
+                    </ul>
+                </div>
+
+                <!-- Preparation Tips Card -->
+                <div class="p-8 bg-slate-800/70 rounded-xl shadow-xl border-l-4 border-blue-600 transition-shadow duration-300 hover:shadow-2xl">
+                    <h2 class="text-3xl font-bold text-white mb-4">✅ Preparation Tips</h2>
+                    <ul class="list-disc list-inside space-y-2 text-slate-300">
+                        <li>Know your strengths, goals, and achievements</li>
+                        <li>Research the company</li>
+                        <li>Practice common questions (use STAR method)</li>
+                        <li>Understand industry salary standards</li>
+                        <li>Maintain professional body language</li>
+                        <li>Prepare questions to ask the interviewer</li>
+                        <li>Be honest, positive, and punctual</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Common Questions Section -->
+            <h2 class="text-center text-4xl font-bold text-white mb-8">🤝 Common Questions</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Question Boxes -->
+                <div class="question-box p-6 bg-slate-800/70 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer" onclick="toggleAnswer(this)">
+                    <div class="font-bold text-lg text-blue-400">Tell me about yourself</div>
+                    <div class="answer-box mt-4 p-4 bg-slate-700 rounded-lg text-slate-300 hidden">I'm a computer science graduate with a strong foundation in software development. During my internship at XYZ, I focused on developing and optimizing web applications, which gave me hands-on experience with modern front-end and back-end technologies. I'm passionate about building scalable and user-friendly solutions, and I am actively seeking a role where I can apply my skills and contribute to a team's success.</div>
+                </div>
+                <div class="question-box p-6 bg-slate-800/70 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer" onclick="toggleAnswer(this)">
+                    <div class="font-bold text-lg text-blue-400">Why our company?</div>
+                    <div class="answer-box mt-4 p-4 bg-slate-700 rounded-lg text-slate-300 hidden">I've been following [Company Name]'s work for some time, particularly your innovative approach in [mention a specific area or product]. Your company's commitment to [mention a core value like 'customer satisfaction' or 'employee growth'] and the collaborative culture you've built are things I deeply admire. I'm excited about the opportunity to contribute my skills to a team that is making a real impact in the industry.</div>
+                </div>
+                <div class="question-box p-6 bg-slate-800/70 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer" onclick="toggleAnswer(this)">
+                    <div class="font-bold text-lg text-blue-400">Strengths and weaknesses</div>
+                    <div class="answer-box mt-4 p-4 bg-slate-700 rounded-lg text-slate-300 hidden">One of my greatest strengths is my ability to quickly learn new technologies and adapt to new challenges. For example, in a previous role, I taught myself a new programming language to complete a project ahead of schedule. As for a weakness, I sometimes find it challenging to delegate tasks. I've been working on this by using project management tools to better organize and distribute work among my team, which has significantly improved our workflow.</div>
+                </div>
+                <div class="question-box p-6 bg-slate-800/70 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer" onclick="toggleAnswer(this)">
+                    <div class="font-bold text-lg text-blue-400">How do you handle stress?</div>
+                    <div class="answer-box mt-4 p-4 bg-slate-700 rounded-lg text-slate-300 hidden">I handle stress by first identifying the source of the pressure and then creating a clear plan to address it. I break down large tasks into smaller, manageable steps and prioritize them. I also make it a point to take short, mindful breaks to clear my head. This approach helps me maintain focus, stay productive, and ensure the quality of my work remains high.</div>
+                </div>
+                <div class="question-box p-6 bg-slate-800/70 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer" onclick="toggleAnswer(this)">
+                    <div class="font-bold text-lg text-blue-400">Career goals</div>
+                    <div class="answer-box mt-4 p-4 bg-slate-700 rounded-lg text-slate-300 hidden">In the short term, my goal is to become a highly proficient developer and master the skills required for this role. Long term, I aspire to grow into a leadership position, perhaps as a tech lead or project manager, where I can mentor others and help guide a team toward innovative solutions. I'm looking for a company where I can develop these skills and build a long-term career.</div>
+                </div>
+                <div class="question-box p-6 bg-slate-800/70 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer" onclick="toggleAnswer(this)">
+                    <div class="font-bold text-lg text-blue-400">Why should we hire you?</div>
+                    <div class="answer-box mt-4 p-4 bg-slate-700 rounded-lg text-slate-300 hidden">You should hire me because I am a highly motivated and dedicated individual who is eager to contribute to your team. My skills in [mention 2-3 specific skills, e.g., 'JavaScript and React'] align perfectly with the requirements of this role, and I have a proven track record of [mention a key achievement, e.g., 'successfully completing projects on time']. I am confident that my passion for [mention industry or role] and my strong work ethic will make me a valuable asset to your company.</div>
+                </div>
+                <div class="question-box p-6 bg-slate-800/70 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer" onclick="toggleAnswer(this)">
+                    <div class="font-bold text-lg text-blue-400">Salary expectation and notice period</div>
+                    <div class="answer-box mt-4 p-4 bg-slate-700 rounded-lg text-slate-300 hidden">Based on my research of the market rate for a role with my experience and skills, my salary expectation is in the range of [State a reasonable range, e.g., $X to $Y]. However, I am open to discussing this further based on the entire compensation package. Regarding my notice period, it is [State the notice period, e.g., 'two weeks'], and I am available to start on [mention a specific date or timeframe].</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Added navigation buttons at the end of the container -->
+        <div class="navigation-buttons flex justify-between mt-8 max-w-7xl mx-auto px-4">
+          <!-- Links to the previous Technical Interview page -->
+          <button onclick="window.location.href = '../technical/technical.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Previous</button>
+          <!-- Links to a placeholder for a future page -->
+          <button onclick="window.location.href = '../mmi/mmi.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleAnswer(element) {
+            const answer = element.querySelector(".answer-box");
+            answer.classList.toggle("hidden");
+        }
+    </script>
+</body>
+</html>

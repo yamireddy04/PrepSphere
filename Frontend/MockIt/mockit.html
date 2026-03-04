@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MockIt|PrepSphere | Ultimate Prep Guide</title>
+  <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+  <style>
+    body {
+      font-family: 'Bookman Old Style', sans-serif;
+      /* Set the background image and make it responsive */
+      background-image: url('../images/mockit copy.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      /* Keeps the background static on scroll */
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      /* Make the container slightly transparent to show the background */
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(5px);
+      /* Add a blur effect for better readability */
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      animation: fadeIn 1s ease forwards;
+    }
+
+    h1 {
+      font-size: 50px;
+      text-align: center;
+      color: #2d72b8;
+      margin-bottom: 20px;
+    }
+
+    .box {
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      color: #2d3436;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: slideIn 0.8s ease forwards;
+    }
+
+    .box:nth-of-type(1) {
+      background-color: #dfefff;
+      /* Light Blue for Aptitude */
+      animation-delay: 0.2s;
+    }
+
+    .box:nth-of-type(2) {
+      background-color: #fff3d9;
+      /* Light Yellow for GD */
+      animation-delay: 0.4s;
+    }
+
+    .box:nth-of-type(3) {
+      background-color: #e0f7ec;
+      /* Light Green for Technical */
+      animation-delay: 0.6s;
+    }
+
+    .box:nth-of-type(4) {
+      background-color: #fce4ec;
+      /* Light Pink for HR */
+      animation-delay: 0.8s;
+    }
+
+    h2 {
+      font-size: 20px;
+      /* All h2 headings are left-aligned by default */
+      text-align: left;
+      margin-bottom: 10px;
+    }
+
+    /* New class to specifically center the subheading */
+    .text-center {
+      text-align: center;
+    }
+
+    p {
+      font-size: 15.5px;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+      font-size: 15.5px;
+      line-height: 1.6;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Added new styles for the navigation buttons */
+    .navigation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .navigation-buttons button {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      color: white;
+      background-color: #409fe8;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .navigation-buttons button:hover {
+      background-color: #2e86d2;
+      transform: translateY(-2px);
+    }
+
+    .navigation-buttons button:active {
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>MockIt </h1>
+    <!-- The subheading now has the text-center class -->
+    <h2 class="text-center"><i>Exhaustive Repository of Mock Assessments</i></h2>
+
+    <div class="box">
+      <h2>Aptitude / MCQ Round</h2>
+      <p>Assess your logical reasoning, quantitative aptitude, and verbal ability.</p>
+      <ul>
+        <li>Practice MCQs with detailed solutions</li>
+        <li>Timed tests and difficulty-level filters</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h2>Group Discussion (GD)</h2>
+      <p>Develop your ability to speak confidently and logically in a group setting.</p>
+      <ul>
+        <li>Sample GD topics with model answers</li>
+        <li>Dos and Don'ts of group discussions</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h2>Technical Round</h2>
+      <p>Sharpen your coding and domain knowledge for technical interviews.</p>
+      <ul>
+        <li>DSA problems, puzzles, and system design questions</li>
+        <li>Core CS topics: DBMS, OS, CN, OOP</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <h2>HR Round</h2>
+      <p>Prepare for personal interview questions and situational responses.</p>
+      <ul>
+        <li>Mock HR interviews and recorded feedback</li>
+        <li>Checklist for confident and clear answers</li>
+      </ul>
+    </div>
+
+    <!-- Added navigation buttons at the end of the container -->
+    <div class="navigation-buttons">
+      <!-- Add the link for the previous page here -->
+      <button onclick="window.location.href = '../prepmaster/prepmaster.html'">Previous</button>
+      <!-- Add the link for the next page here -->
+      <button onclick="window.location.href = '../gd/gd.html'">Next</button>
+    </div>
+  </div>
+</body>
+
+</html>
