@@ -9,9 +9,16 @@ const { extractBuzzwords, generateQuiz, generateMockInterview } = require('./aiS
 const app = express();
 
 // Advanced CORS Configuration
+// This setup allows your local development AND your future Vercel deployment to communicate with Render
 app.use(cors({
-    origin: ["http://127.0.0.1:5500", "http://localhost:5500"], // Specific for Live Server
-    credentials: true
+    origin: [
+        "http://127.0.0.1:5500",
+        "http://localhost:5500",
+        /\.vercel\.app$/ // This regex allows ANY vercel.app domain to connect safely
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use(express.json());
@@ -59,11 +66,15 @@ app.post('/api/mock-interview', async (req, res) => {
     }
 });
 
+// MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.log(err));
+    .then(() => console.log("MongoDB Connected Successfully"))
+    .catch(err => console.log("MongoDB Connection Error:", err));
 
+// CRITICAL FOR RENDER DEPLOYMENT
+// Render assigns a dynamic port via process.env.PORT. 
+// We must also listen on "0.0.0.0" to allow external traffic.
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server is live and running on port ${PORT}`);
 });

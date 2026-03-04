@@ -8,7 +8,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://prepsphere-qgzo.onrender.com/api/auth/google/callback",
+      // UPDATED TO MATCH YOUR LIVE RENDER LINK
+      callbackURL: "https://prepsphere-o7wh.onrender.com/api/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
