@@ -1,249 +1,289 @@
-# 🚀 PrepSphere - Ultimate guide for your Interview Prep
-
-## 🧾 Research Abstract
-
-PrepSphere is an AI-driven interview intelligence platform designed to mitigate the strategic information gap faced by entry-level engineers during technical recruitment. The system transforms unstructured Job Descriptions (JDs) into structured preparation roadmaps and simulated interview modules using Large Language Models (LLMs). By combining NLP-based entity extraction, schema-driven response generation, and modular system architecture, PrepSphere operationalizes role-specific intelligence into actionable mastery clusters and predicted question banks. This project demonstrates the feasibility of automated interview pattern inference and contextual preparation alignment without reliance on manually curated study paths, highlighting the application of LLM orchestration in intelligent pedagogical workflow systems.
+# 🚀 PrepSphere: AI-Powered Interview Intelligence Platform
 
 ---
 
-PrepSphere is an AI-powered career-readiness system that structurally navigates the complete technical interview lifecycle. Unlike static preparation platforms, PrepSphere dynamically converts real-world job descriptions into guided preparation modules, mastery topics, and interactive mock simulations.
+## 🧾 Abstract
+
+PrepSphere is an AI-powered interview intelligence platform that consolidates roadmap generation, JD-based question prediction, and mock simulation into a unified preparation system. Unlike traditional tools that separate resume guidance, question banks, and interview practice, PrepSphere integrates these components into a structured, centralized workflow.
+
+Using Large Language Models (LLMs), NLP-driven entity extraction, and schema-constrained generation pipelines, the platform converts unstructured Job Descriptions into actionable mastery clusters and targeted mock assessments.
+
+The system emphasizes deterministic output structuring over raw generative responses, ensuring frontend-renderable and evaluation-safe AI outputs within an adaptive preparation environment.
 
 ---
 
 ## 1. 🧩 Problem Statement
 
-Entry-level engineers frequently encounter a **Strategic Information Gap**.
+Interview preparation can be unclear and unstructured. While candidates may have studied relevant topics, it is often difficult to determine:
 
-While candidates often possess theoretical knowledge, they lack clarity on:
+* How a Job Description maps to specific interview stages
+* Which topics are most important for a given role
+* How to structure preparation efficiently
 
-* How Job Descriptions translate into interview rounds
-* Which technical topics are core versus peripheral
-* How companies structure multi-stage evaluation pipelines
+This misalignment can lead to scattered effort and inefficient preparation strategies.
 
-This misalignment leads to inefficient preparation and poor strategic targeting.
-
-PrepSphere addresses this by programmatically extracting role-specific intelligence from dense JDs and transforming it into structured, actionable preparation workflows.
+PrepSphere addresses this by extracting role-specific signals from Job Descriptions and converting them into organized roadmaps, structured question sets, and simulated mock workflows.
 
 ---
 
-## 2. 🎯 Why It Matters
+## 2. 📊 Dataset & Validation
 
-## Structural Navigation
-
-Provides a modular and guided preparation pathway for candidates entering competitive technical hiring ecosystems.
-
-### Contextual Alignment
-
-Directly bridges the gap between general study resources and role-specific industry expectations.
-
-### Automated Roadmap Generation
-
-Eliminates manual topic sorting by predicting:
-
-* Core mastery domains
-* Interview round structures
-* Likely question distributions
-
-The system shifts preparation from reactive studying to strategic, data-driven targeting.
-
----
-
-## 3. 📊 Dataset
-
-The system was validated using a curated corpus consisting of:
+The system was validated using a curated corpus consisting of structured technical Job Descriptions and concept blocks.
 
 ### Role-Specific Job Descriptions
 
-* Machine Learning Engineer
-* AI Engineer
-* Prompt Engineer
-* Data Analytics Engineer
-* Software Engineer (AI/ML Focus)
+The dataset included JDs across domains such as:
 
-Each JD ranged from 800–1500+ words and included real-world technical expectations, tooling requirements, and applied system responsibilities.
+* Machine Learning
+* AI-focused roles
+* Prompt Engineering
+* Data Analytics
+* Full-Stack / Software Development
 
-### Technical Knowledge Blocks for Validation
+Each JD ranged from 800–1500+ words and included technical stacks, system expectations, and domain responsibilities.
 
-The AI-driven MCQ generator and roadmap predictor were evaluated against structured knowledge clusters including:
+### Technical Knowledge Clusters
 
-* Java architecture (JVM internals, OOP principles, Spring Boot scalability)
-* Python ecosystem (Pandas, NumPy, rapid prototyping workflows)
-* Data Science fundamentals (EDA, statistical modeling, feature engineering)
-* LLM systems (Transformer architectures, RAG pipelines, fine-tuning concepts)
+The roadmap and MCQ engine were evaluated against structured concept blocks including:
 
-This ensured domain coverage consistency and topic relevance fidelity across generated outputs.
+* Java architecture (JVM internals, OOP principles)
+* Python ecosystem (Pandas, NumPy, applied workflows)
+* LLM systems (Transformer architectures, RAG pipelines)
+* Data engineering concepts (ETL / ELT workflows)
+
+This ensured topic alignment, semantic consistency, and structured coverage across generated outputs.
+
+---
+
+## 3. 🧠 Technical Stack & System Architecture
+
+PrepSphere follows a **decoupled architecture**, separating the intelligence layer from the client interface to support modularity and scalable deployment.
+
+---
+
+### 🏗 Architecture Overview
+
+Client (Vercel) → Express API (Render) → Llama 3 via Groq API → MongoDB Atlas
+
+The frontend communicates with a decoupled backend that orchestrates structured LLM prompts and enforces schema-constrained JSON responses before rendering interactive preparation modules.
+
+---
+
+### Core Intelligence & Backend
+
+#### LLM Orchestration
+
+* Llama 3 via Groq Cloud API
+* Low-latency inference pipeline
+* Structured prompt templates for roadmap and MCQ generation
+
+#### Backend Environment
+
+* Node.js
+* Express.js
+
+#### Database & Authentication
+
+* MongoDB Atlas
+* JWT-based authentication
+* Session persistence and user progress tracking
+
+#### Hosting
+
+* Render (auto-deployed via GitHub integration)
+
+---
+
+### Frontend System
+
+#### Framework
+
+* Vanilla JavaScript
+* HTML5
+* CSS3
+
+#### Routing
+
+* Custom `vercel.json` rewrite configuration for clean URL navigation
+
+#### UI & Experience
+
+* Studio-themed dark interface
+* Responsive component architecture
+* Focus-oriented layout optimized for structured preparation sessions
+
+#### Hosting
+
+* Vercel (Edge Network Distribution)
 
 ---
 
 ## 4. ⚙️ Methodology
 
-PrepSphere follows a **Modular Monolith architecture** to ensure low-latency communication between the UI and intelligence layer.
+#### Data Ingestion
 
-### Data Ingestion
-
-Accepts multi-format raw text including:
+Accepts raw text from:
 
 * Job Descriptions
 * Academic notes
-* Structured topic outlines
+* Custom preparation outlines
 
-### Contextual Tokenization
+---
 
-NLP-based parsing extracts domain-specific technical entities such as:
+#### Contextual Tokenization
 
-* RAG pipelines
-* JVM
-* ETL / ELT workflows
+NLP-based parsing extracts domain-specific entities such as:
+
+* ETL workflows
 * Transformer architectures
+* JVM components
+* RAG pipelines
 
-These entities define semantic boundaries for downstream assessment generation.
+These extracted entities define the semantic scope for roadmap and question generation.
 
-### Schema-Driven Output Generation
+---
 
-The backend enforces strict JSON schema validation to:
+#### Schema-Constrained Generation
 
-* Maintain deterministic formatting
-* Enable structured MCQ rendering
-* Support reveal-answer mock cards
-* Preserve frontend compatibility
+The backend enforces strict JSON schema validation to ensure:
 
-### State Persistence
+* Structured MCQ formatting
+* Consistent roadmap outputs
+* Deterministic frontend rendering
+* Controlled and evaluation-safe responses
+
+---
+
+#### State Persistence
 
 Session management tracks:
 
 * User accuracy
-* Progress indicators
-* Client-side state synchronization
+* Topic mastery progression
+* Preparation continuity
 
 ---
 
-## 5. 🧠 Model Architecture
+## 5. 📈 Results
 
-### Core Intelligence Layer
+### JD Compression
 
-Powered by advanced Large Language Models optimized for:
-
-* Technical reasoning
-* Concept abstraction
-* Structured question generation
-* Code-aware responses
-
-### API Layer
-
-Custom RESTful backend built using:
-
-* Node.js
-* Express
-
-Responsibilities include:
-
-* Input sanitization
-* Asynchronous LLM orchestration
-* Output schema validation
-
-## Frontend System
-
-Built with:
-
-* Tailwind CSS
-* Component-driven UI architecture
-* Studio-themed dark interface
-* CSS variable-based visual consistency
-
-The interface is optimized for focus-intensive preparation sessions.
-
----
-
-## 6. 📈 Results
-
-### JD Compression Performance
-
-Successfully transforms 1000+ word Job Descriptions into:
+Transforms 1000+ word Job Descriptions into:
 
 * 5–8 Core Mastery Topics
 * Structured Predicted Question Banks
 
-### Interview Pattern Inference
+---
 
-Demonstrates high thematic alignment across diverse technical domains.
+### Pattern Alignment
 
-### UX Optimization
-
-* Perceived near-zero latency
-* Non-blocking AI generation flows
-* Seamless round simulation experience
+Demonstrates consistent thematic mapping across diverse technical domains.
 
 ---
 
-## 7. ⚠️ Limitations
+### Performance Optimization
 
-### API Rate Constraints
-
-System performance is dependent on throughput limitations of the underlying LLM provider.
-
-### Probabilistic Output Variability
-
-Minor variations may occur across identical prompts due to non-deterministic model generation.
-
-### Local Development Dependency
-
-Backend service (default Port 5000) must remain active during local testing.
+* Near-zero latency via Groq inference engine
+* Non-blocking AI orchestration
+* Smooth interactive mock simulation flow
 
 ---
 
-## 8. 🔮 Future Work
+## 6. Limitations
 
-* Domain-specific fine-tuned model for improved deterministic topic extraction
-* Vector database integration for persistent semantic memory
-* Adaptive difficulty scaling in mock interviews
-* Interview performance analytics dashboard
-* Migration to distributed microservices architecture
-* Reinforcement-based feedback loop for enhanced topic prediction accuracy
+#### API Rate Constraints
 
----
+Performance depends on the throughput limits of the underlying LLM provider.
 
-## 9. 🌐 Live Deployment
+#### Probabilistic Variability
 
-Live Application:
-[Insert Deployment Link]
+Minor variations may occur due to the non-deterministic nature of generative models.
 
-Documentation:
-[Insert Wiki / API Docs Link]
+#### Cold Start Delay
+
+Backend hosted on Render’s free tier may experience initial latency due to server wake-up time.
 
 ---
 
-## 10. 🛠 How to Run Locally
+## 7. 🌐 Live Deployment
 
-### Clone Repository
+**Live Application**
+https://prepsphere000146.vercel.app/
+
+**Backend API**
+[https://prepsphere-o7wh.onrender.com](https://prepsphere-o7wh.onrender.com)
+
+---
+
+## 8. 🛠 How to Run Locally
+
+### 1. Clone Repository
 
 ```bash
 git clone https://github.com/your-username/PrepSphere.git
+cd PrepSphere
 ```
 
-### Backend Setup
+---
+
+### 2. Backend Setup
 
 ```bash
-cd server
+cd backend
 npm install
+```
+
+Create a `.env` file:
+
+```
+MONGO_URI=your_mongodb_uri
+GROQ_API_KEY=your_groq_key
+JWT_SECRET=your_secret
+```
+
+Start the backend:
+
+```bash
 node server.js
 ```
 
-### Frontend Access
+---
 
-Open:
+### 3. Frontend Setup
+
+Since the project is decoupled:
+
+* Serve the `Frontend` folder using a local server (e.g., VS Code Live Server)
+* Entry point:
 
 ```
 Frontend/login.html
 ```
 
-Using a local development server or access the deployed application.
-
-### Configuration
-
-Ensure the following file exists:
+For local testing, update:
 
 ```
-Frontend/images/logo.jpeg
+Frontend/js/config.js
 ```
 
-For correct Favicon and header rendering.
+Set API base URL to:
+
+```
+http://localhost:10000
+```
+
+---
+
+## 9. 🔮 Future Work
+
+* Integration of vector databases for persistent semantic memory
+* Adaptive difficulty scaling based on user performance
+* Topic mastery analytics dashboard
+* Migration toward a microservices architecture for scalable assessment modules
+* Domain-specific fine-tuned model for improved response determinism
+
+---
+
+## 10. 📌 Summary
+
+PrepSphere demonstrates how structured LLM orchestration, schema-constrained generation, and modular web architecture can be combined to build an intelligent, centralized interview preparation system. The project emphasizes controlled AI integration, deterministic rendering pipelines, and scalable deployment design.
