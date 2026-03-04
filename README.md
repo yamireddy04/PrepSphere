@@ -4,9 +4,9 @@
 
 ## 🧾 Abstract
 
-PrepSphere is an AI-powered interview intelligence platform that consolidates roadmap generation, JD-based question prediction, and mock simulation into a unified preparation system. Unlike traditional tools that separate resume guidance, question banks, and interview practice, PrepSphere integrates these components into a structured, centralized workflow.
+PrepSphere is an AI-powered end-to-end interview preparation platform that supports the complete interview lifecycle — from roadmap selection and structured learning to job application support, mock simulation, and post-interview reflection. Unlike traditional tools that isolate resume guidance, question banks, or interview practice, PrepSphere integrates these components into a unified, structured workflow.
 
-Using Large Language Models (LLMs), NLP-driven entity extraction, and schema-constrained generation pipelines, the platform converts unstructured Job Descriptions into actionable mastery clusters and targeted mock assessments.
+Using Large Language Models (LLMs), NLP-driven entity extraction, and schema-constrained generation pipelines, the platform converts unstructured inputs into actionable mastery clusters, targeted mock assessments, and guided preparation modules.
 
 The system emphasizes deterministic output structuring over raw generative responses, ensuring frontend-renderable and evaluation-safe AI outputs within an adaptive preparation environment.
 
