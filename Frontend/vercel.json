@@ -3,6 +3,13 @@
     "public": true,
     "cleanUrls": true,
     "rewrites": [
-      { "source": "/", "destination": "/login.html" }
+        {
+            "source": "/",
+            "destination": "/login.html"
+        },
+        {
+            "source": "/jam",
+            "destination": "/Jam/jam.html"
+        }
     ]
-  }
+}
