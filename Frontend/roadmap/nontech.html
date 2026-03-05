@@ -2,237 +2,249 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Non-Technical Career Roadmaps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Non-Technical Career Roadmaps | PrepSphere</title>
   <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
+    :root {
+      --bg-deep: #050a14;
+      --card-bg: #0d1525;
+      --accent-blue: #3b82f6;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-blue: rgba(59, 130, 246, 0.2);
+    }
+
     body {
-      font-family: 'Bookman Old Style', sans-serif;
-      line-height: 1.6;
+      font-family: 'Bookman Old Style', serif;
       margin: 0;
-      padding: 40px 0; /* Add top/bottom padding for content */
-      background-color: #0d1a26; /* Very dark blue background */
-      color: #e0f2f7; /* Light blue-grey text */
+      padding: 0;
+      background-color: var(--bg-deep);
+      color: var(--text-main);
       display: flex;
-      flex-direction: column; /* Allow content and footer to stack */
-      justify-content: flex-start;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Styles for Bottom Navigation Buttons */
-    .bottom-nav-container {
-      text-align: center;
-      margin-top: 50px; /* Space above the button container */
-      padding: 20px 0;
-      width: 100%; /* Ensure it spans the width */
-      /* background-color: rgba(0, 0, 0, 0.1); Optional: subtle background for the button area */
+    /* Modern Container */
+    .container {
+      width: 95%;
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
     }
 
-    .bottom-nav-button {
-      display: inline-block;
-      margin: 0 15px; /* Space between buttons */
-      padding: 12px 25px;
-      background-color: rgb(0, 191, 255); /* Electric Blue */
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1.1em;
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3); /* Electric blue shadow */
-      border: none; /* Ensure no default button border */
-    }
-
-    .bottom-nav-button:hover {
-      background-color: rgb(0, 160, 255); /* Slightly darker electric blue on hover */
-      transform: translateY(-2px); /* Lift effect */
-      box-shadow: 0 6px 15px rgba(0, 191, 255, 0.5); /* Stronger shadow on hover */
-    }
-
-    .roadmap-container {
-      width: 90%;
-      max-width: 900px; /* Constrain width for readability */
-      background-color: #1a2a3a; /* Slightly lighter dark blue for the container */
-      border-radius: 15px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Stronger, diffused shadow */
-      padding: 30px;
-      box-sizing: border-box;
-      flex-grow: 1; /* Allow container to grow and push footer down */
-    }
-
+    /* Classy Header */
     h1 {
-      font-family: Georgia, sans-serif; /* Futuristic font for the main title */
-      color: #33e0ff; /* Bright aqua blue for main title */
+      font-size: 3rem;
+      font-weight: 700;
       text-align: center;
-      font-size: 2.8em;
-      margin-bottom: 50px;
-      text-shadow: 0 0 15px rgba(51, 224, 255, 0.7), 0 0 30px rgba(51, 224, 255, 0.4); /* Glowing effect */
-      animation: glowPulse 2s infinite alternate; /* Subtle pulse animation */
+      margin-bottom: 1rem;
+      color: #fff;
+      letter-spacing: -1px;
     }
 
-    @keyframes glowPulse {
-      from { text-shadow: 0 0 10px rgba(51, 224, 255, 0.7), 0 0 20px rgba(51, 224, 255, 0.4); }
-      to { text-shadow: 0 0 20px rgba(51, 224, 255, 0.9), 0 0 40px rgba(51, 224, 255, 0.6); }
+    .subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 60px;
+      font-size: 1.1rem;
+      font-weight: 300;
     }
 
-    /* Individual Roadmap Item */
+    /* Roadmap Item Styling */
     .roadmap-item {
-      margin-bottom: 25px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-blue);
       border-radius: 12px;
-      overflow: hidden; /* Contains content overflow and border-radius */
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(50, 100, 150, 0.4); /* Subtle blue border */
+      margin-bottom: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
     }
 
-    /* Roadmap Header (Clickable Part) */
+    .roadmap-item:hover {
+      border-color: var(--accent-blue);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Header/Clickable area */
     .roadmap-header {
-      background: linear-gradient(135deg, #2b4560, #3c5a75); /* Gradient of darker blues */
-      padding: 20px 30px;
-      font-size: 1.4em;
-      font-weight: 600;
-      color: #b0d8ea; /* Lighter blue text color */
+      padding: 24px 32px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: all 0.3s ease;
+      user-select: none;
+    }
+
+    .header-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      background: rgba(59, 130, 246, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .roadmap-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* Plus/Minus Icon */
+    .icon-box {
+      width: 24px;
+      height: 24px;
       position: relative;
-      border-bottom: 2px solid rgba(51, 224, 255, 0.3); /* Aqua accent line */
+      transition: transform 0.4s;
     }
 
-    .roadmap-header:hover {
-      background: linear-gradient(135deg, #3c5a75, #4d7090); /* Slightly brighter blue gradient on hover */
-      color: #ffffff; /* White text on hover */
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .roadmap-header.active {
-      background: linear-gradient(135deg, #33e0ff, #0099e0); /* Vibrant aqua to deep blue gradient when active */
-      color: #ffffff;
-      box-shadow: 0 5px 20px rgba(51, 224, 255, 0.6); /* Glowing blue shadow when active */
-      border-bottom: 2px solid #fff; /* White line for active state */
-    }
-
-    .roadmap-header .header-number {
-      font-family: 'Orbitron', sans-serif; /* Use Orbitron for numbers */
-      color: #00e0ff; /* Bright cyan accent for numbers */
-      font-size: 1.2em;
-      margin-right: 15px;
-      text-shadow: 0 0 5px rgba(0, 224, 255, 0.9);
-    }
-
-    /* Toggle Icon (Plus/Minus or Arrow) */
-    .roadmap-header .toggle-icon {
-      width: 20px;
-      height: 20px;
-      position: relative;
-      transition: transform 0.3s ease;
-    }
-
-    .roadmap-header .toggle-icon::before,
-    .roadmap-header .toggle-icon::after {
+    .icon-box::before, .icon-box::after {
       content: '';
       position: absolute;
-      background-color: #33e0ff; /* Bright aqua color */
-      border-radius: 2px;
+      background: var(--accent-blue);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      border-radius: 2px;
     }
 
-    .roadmap-header .toggle-icon::before {
-      width: 100%;
-      height: 3px;
+    .icon-box::before { width: 14px; height: 2px; }
+    .icon-box::after { width: 2px; height: 14px; transition: transform 0.3s; }
+
+    .roadmap-item.active .icon-box::after {
+      transform: translate(-50%, -50%) rotate(90deg) scaleY(0);
     }
 
-    .roadmap-header .toggle-icon::after {
-      width: 3px;
-      height: 100%;
-    }
-
-    .roadmap-header.active .toggle-icon::after {
-      transform: translate(-50%, -50%) rotate(90deg) scaleX(0); /* Hide vertical bar for minus sign */
-      background-color: #fff; /* White when active */
-    }
-    .roadmap-header.active .toggle-icon::before {
-      background-color: #fff; /* White when active */
-    }
-
-
-    /* Roadmap Content (Hidden by default) */
+    /* Content Area */
     .roadmap-content {
-      background-color: #14212e; /* Slightly darker blue than container, lighter than body */
-      padding: 0 30px;
-      max-height: 0; /* Hidden by default */
+      max-height: 0;
+      opacity: 0;
       overflow: hidden;
-      transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth slide down */
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0 32px 0 84px;
     }
 
-    .roadmap-content.open {
-      max-height: 1000px; /* A large enough value to accommodate content */
-      padding-top: 20px;
-      padding-bottom: 30px;
+    .roadmap-item.active .roadmap-content {
+      max-height: 1200px;
+      opacity: 1;
+      padding-bottom: 40px;
     }
 
     .roadmap-content h3 {
-      font-family: 'Montserrat', sans-serif;
-      color: #00c0ff; /* Medium blue for h3 */
-      font-size: 1.2em;
-      margin-top: 0;
-      margin-bottom: 15px;
-      text-shadow: 0 0 5px rgba(0, 192, 255, 0.5);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+      font-weight: 600;
     }
 
-    .roadmap-content ul {
-      list-style: none; /* Remove default bullets */
-      padding-left: 0;
-      margin-bottom: 15px;
+    /* List Styling */
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
 
-    .roadmap-content ul li {
+    li {
       position: relative;
-      padding-left: 25px;
-      margin-bottom: 10px;
-      color: #cce9f2; /* Light blue for list items */
-    }
-
-    .roadmap-content ul li::before {
-      content: '⚡'; /* Cute lightning bolt bullet */
-      position: absolute;
-      left: 0;
-      color: #33e0ff; /* Bright aqua blue bullet */
-      font-size: 0.9em;
+      padding-left: 24px;
+      margin-bottom: 12px;
+      color: var(--text-muted);
+      font-size: 1rem;
       line-height: 1.6;
     }
 
-    .roadmap-content ul.nested-list {
-      padding-left: 20px; /* Indent nested lists */
-      margin-top: 5px;
-      margin-bottom: 5px;
+    li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      opacity: 0.6;
     }
 
-    .roadmap-content ul.nested-list li::before {
-      content: '•'; /* Simple dot for nested lists */
-      color: #00aaff; /* A distinct blue dot */
-      font-size: 1.5em; /* Make dot more visible */
-      top: -2px; /* Adjust vertical alignment */
+    .nested-list {
+      margin-top: 10px;
+      padding-left: 10px;
+      border-left: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nested-list li {
+      font-size: 0.95rem;
+    }
+
+    .nested-list li::before {
+      background: #64748b;
+    }
+
+    /* Navigation */
+    .bottom-nav {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      width: 100%;
+      text-align: center;
+      padding-bottom: 80px;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: transparent;
+      border: 1px solid var(--accent-blue);
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .btn-back:hover {
+      background: var(--accent-blue);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .roadmap-header { padding: 20px; }
+      .roadmap-content { padding: 0 20px 0 60px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="roadmap-container">
+  <div class="container">
     <h1>Non-Technical Career Roadmaps</h1>
+    <p class="subtitle">Structured blueprints for professional business and creative roles</p>
   
     <div class="roadmap-item">
       <div class="roadmap-header">
-        <span class="header-number">1.</span> 📈 Marketing & Communications Roadmap
-        <span class="toggle-icon"></span>
+        <div class="header-info">
+          <span class="header-number">01</span>
+          <span class="roadmap-title">📈 Marketing & Communications Roadmap</span>
+        </div>
+        <div class="icon-box"></div>
       </div>
       <div class="roadmap-content">
         <h3>Goal: Develop and execute marketing strategies, manage brand image.</h3>
@@ -251,8 +263,11 @@
   
     <div class="roadmap-item">
       <div class="roadmap-header">
-        <span class="header-number">2.</span> 🧑‍🤝‍ Human Resources (HR) Roadmap
-        <span class="toggle-icon"></span>
+        <div class="header-info">
+          <span class="header-number">02</span>
+          <span class="roadmap-title">🧑‍🤝‍ Human Resources (HR) Roadmap</span>
+        </div>
+        <div class="icon-box"></div>
       </div>
       <div class="roadmap-content">
         <h3>Goal: Manage employee relations, talent acquisition, and organizational development.</h3>
@@ -270,8 +285,11 @@
   
     <div class="roadmap-item">
       <div class="roadmap-header">
-        <span class="header-number">3.</span> 💰 Finance & Accounting Roadmap
-        <span class="toggle-icon"></span>
+        <div class="header-info">
+          <span class="header-number">03</span>
+          <span class="roadmap-title">💰 Finance & Accounting Roadmap</span>
+        </div>
+        <div class="icon-box"></div>
       </div>
       <div class="roadmap-content">
         <h3>Goal: Manage financial records, investments, or provide financial advice.</h3>
@@ -290,8 +308,11 @@
   
     <div class="roadmap-item">
       <div class="roadmap-header">
-        <span class="header-number">4.</span> 🤝 Sales & Business Development Roadmap
-        <span class="toggle-icon"></span>
+        <div class="header-info">
+          <span class="header-number">04</span>
+          <span class="roadmap-title">🤝 Sales & Business Development Roadmap</span>
+        </div>
+        <div class="icon-box"></div>
       </div>
       <div class="roadmap-content">
         <h3>Goal: Drive revenue by acquiring new clients and growing existing accounts.</h3>
@@ -310,8 +331,11 @@
   
     <div class="roadmap-item">
       <div class="roadmap-header">
-        <span class="header-number">5.</span> 🗓️ General Project Management Roadmap
-        <span class="toggle-icon"></span>
+        <div class="header-info">
+          <span class="header-number">05</span>
+          <span class="roadmap-title">🗓️ General Project Management Roadmap</span>
+        </div>
+        <div class="icon-box"></div>
       </div>
       <div class="roadmap-content">
         <h3>Goal: Lead and execute projects efficiently across various industries.</h3>
@@ -330,8 +354,11 @@
   
     <div class="roadmap-item">
       <div class="roadmap-header">
-        <span class="header-number">6.</span> 🧑‍🏫 Education & Teaching Roadmap
-        <span class="toggle-icon"></span>
+        <div class="header-info">
+          <span class="header-number">06</span>
+          <span class="roadmap-title">🧑‍🏫 Education & Teaching Roadmap</span>
+        </div>
+        <div class="icon-box"></div>
       </div>
       <div class="roadmap-content">
         <h3>Goal: Educate and inspire students in various subjects and settings.</h3>
@@ -350,8 +377,11 @@
   
     <div class="roadmap-item">
       <div class="roadmap-header">
-        <span class="header-number">7.</span> 🏥 Healthcare Administration Roadmap
-        <span class="toggle-icon"></span>
+        <div class="header-info">
+          <span class="header-number">07</span>
+          <span class="roadmap-title">🏥 Healthcare Administration Roadmap</span>
+        </div>
+        <div class="icon-box"></div>
       </div>
       <div class="roadmap-content">
         <h3>Goal: Manage operations in hospitals, clinics, or public health organizations.</h3>
@@ -370,8 +400,11 @@
   
     <div class="roadmap-item">
       <div class="roadmap-header">
-        <span class="header-number">8.</span> ✍️ Journalism & Content Writing Roadmap
-        <span class="toggle-icon"></span>
+        <div class="header-info">
+          <span class="header-number">08</span>
+          <span class="roadmap-title">✍️ Journalism & Content Writing Roadmap</span>
+        </div>
+        <div class="icon-box"></div>
       </div>
       <div class="roadmap-content">
         <h3>Goal: Research, write, and report news or create engaging content for various platforms.</h3>
@@ -391,8 +424,11 @@
   
     <div class="roadmap-item">
       <div class="roadmap-header">
-        <span class="header-number">9.</span> 🧑‍⚖️ Legal Professions Roadmap
-        <span class="toggle-icon"></span>
+        <div class="header-info">
+          <span class="header-number">09</span>
+          <span class="roadmap-title">🧑‍⚖️ Legal Professions Roadmap</span>
+        </div>
+        <div class="icon-box"></div>
       </div>
       <div class="roadmap-content">
         <h3>Goal: Provide legal advice, represent clients, or conduct legal research.</h3>
@@ -411,8 +447,11 @@
   
     <div class="roadmap-item">
       <div class="roadmap-header">
-        <span class="header-number">10.</span> 🎭 Creative Arts & Design Roadmap (Non-Digital)
-        <span class="toggle-icon"></span>
+        <div class="header-info">
+          <span class="header-number">10</span>
+          <span class="roadmap-title">🎭 Creative Arts & Design Roadmap (Non-Digital)</span>
+        </div>
+        <div class="icon-box"></div>
       </div>
       <div class="roadmap-content">
         <h3>Goal: Express creativity through various artistic mediums or design spaces.</h3>
@@ -428,28 +467,25 @@
         </ul>
       </div>
     </div>
+
+    <div class="bottom-nav">
+      <a href="conventional.html" class="btn-back">
+        <span>←</span> Back to Conventional Roadmaps
+      </a>
+    </div>
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const roadmapHeaders = document.querySelectorAll('.roadmap-header');
-
-      roadmapHeaders.forEach(header => {
+      const headers = document.querySelectorAll('.roadmap-header');
+      headers.forEach(header => {
         header.addEventListener('click', function() {
-          const content = this.nextElementSibling; // The .roadmap-content div
-          
-          // Toggle the 'active' class on the header
-          this.classList.toggle('active');
-          
-          // Toggle the 'open' class on the content
-          content.classList.toggle('open');
+          const item = this.parentElement;
+          item.classList.toggle('active');
         });
       });
     });
   </script>
 
-  <div class="bottom-nav-container">
-    <a href="conventional.html" class="bottom-nav-button">Back to Conventional Roadmaps</a>
-  </div>
 </body>
 </html>

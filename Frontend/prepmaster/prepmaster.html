@@ -3,194 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PrepMaster|PrepSphere | Ultimate Prep Guide</title>
+  <title>PrepMaster | PrepSphere</title>
   <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Bookman Old Style', sans-serif;
-      background-color: #f4f6fa;
-      margin: 0;
-      /* Increased bottom padding to prevent fixed buttons from overlapping content */
-      padding: 2rem 2rem 5rem 2rem;
-      color: #333;
+      font-family: 'Inter', sans-serif;
     }
-
-    h1 {
-      text-align: center;
-      color: #2671bc;
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
-
-    .section {
-      margin-top: 2rem;
+    .company-tag {
+      transition: all 0.3s ease;
     }
-
-    .company-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1rem 0;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .company-table th,
-    .company-table td {
-      padding: 1rem;
-      text-align: left;
-    }
-
-    .company-table th {
-      background-color: #34495e;
-      color: #fff;
-    }
-
-    .company-table tr:nth-child(even) {
-      background-color: #ecf0f1;
-    }
-
-    .company-table tr:nth-child(odd) {
-      background-color: #ffffff;
-    }
-
-    .focus-dsa {
-      color: #2980b9;
-      font-weight: bold;
-    }
-
-    .focus-aptitude {
-      color: #2771ae;
-      font-weight: bold;
-    }
-
-    .focus-both {
-      color: #337cad;
-      font-weight: bold;
-    }
-
-    .intro-box {
-      background-color: #ffffff;
-      border-left: 6px solid #297bb3;
-      padding: 1rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .intro-box h2 {
-      margin-top: 0;
-      color: #2c3e50;
-    }
-
-    /* CSS for the navigation buttons */
-    .navigation-buttons {
-      display: flex;
-      justify-content: space-between;
-      width: 95%;
-      position: fixed;
-      bottom: 20px;
-      left: 0;
-      padding: 0 20px;
-    }
-
-    .nav-button {
-      padding: 10px 20px;
-      background-color: #297bb3;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-decoration: none; /* Add this to remove underline from links */
-    }
-
-    .nav-button:hover {
-      background-color: #265a88;
+    .company-tag:hover {
+      transform: scale(1.05);
+      background: rgba(59, 130, 246, 0.2);
+      border-color: #3b82f6;
     }
   </style>
 </head>
-<body>
-  <h1>PrepMaster</h1>
-  <p>This Module is an integrated learning and assessment tool that helps with the above mentioned rounds</p>
+<body class="bg-slate-900 text-slate-200 min-h-screen pb-24">
 
-  <div class="intro-box">
-    <p><strong>PrepMaster</strong> equips candidates with targeted preparation strategies based on specific company expectations. It helps identify the core focus areas of different organizations, enabling users to tailor their preparation accordingly.</p>
-    <ul>
-      <li><strong>Domain-Specific Insights:</strong> Understand whether a company emphasizes aptitude, data structures & algorithms (DSA), core technical knowledge, or a combination of these.</li>
-      <li><strong>Company Trends Analysis:</strong> Insights derived from past recruitment patterns and interview experiences.</li>
-    </ul>
+  <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
+    <header class="text-center mb-12">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">
+        PrepMaster
+      </h1>
+      <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
+        Integrated learning and assessment tool designed for targeted company preparation.
+      </p>
+    </header>
+
+    <div class="glass-card p-8 rounded-2xl mb-12 border-l-4 border-blue-500 shadow-2xl">
+      <p class="text-lg text-slate-300 leading-relaxed mb-6">
+        <strong>PrepMaster</strong> equips candidates with targeted preparation strategies based on specific company expectations. It helps identify the core focus areas of different organizations, enabling users to tailor their preparation accordingly.
+      </p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="flex items-start gap-3">
+          <div class="bg-blue-600 p-2 rounded-lg mt-1">🚀</div>
+          <div>
+            <h3 class="font-bold text-white">Domain-Specific Insights</h3>
+            <p class="text-sm text-slate-400">Understand emphasis on Aptitude, DSA, or Core Technical knowledge.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="bg-blue-600 p-2 rounded-lg mt-1">📊</div>
+          <div>
+            <h3 class="font-bold text-white">Company Trends</h3>
+            <p class="text-sm text-slate-400">Insights derived from past recruitment patterns and interview experiences.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="mb-12">
+      <div class="flex items-center gap-4 mb-6">
+        <h2 class="text-2xl font-bold text-white">DSA + Aptitude Companies</h2>
+        <div class="h-px flex-grow bg-slate-700"></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">TCS</p>
+          <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Both</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Wipro</p>
+          <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Both</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Cognizant</p>
+          <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Both</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Accenture</p>
+          <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Both</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Deloitte</p>
+          <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Both</span>
+        </div>
+        </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="flex items-center gap-4 mb-6">
+        <h2 class="text-2xl font-bold text-white">DSA-Focused Companies</h2>
+        <div class="h-px flex-grow bg-slate-700"></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Google</p>
+          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">DSA Only</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Amazon</p>
+          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">DSA Only</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Microsoft</p>
+          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">DSA Only</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Meta</p>
+          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">DSA Only</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Flipkart</p>
+          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">DSA Only</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="flex items-center gap-4 mb-6">
+        <h2 class="text-2xl font-bold text-white">Aptitude-Focused Companies</h2>
+        <div class="h-px flex-grow bg-slate-700"></div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Tech Mahindra</p>
+          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Aptitude</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">HCL Tech</p>
+          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Aptitude</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">Mindtree</p>
+          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Aptitude</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">EY India</p>
+          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Aptitude</span>
+        </div>
+        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
+          <p class="font-semibold text-white">KPMG</p>
+          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Aptitude</span>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <div class="section">
-    <h2>DSA + Aptitude Companies</h2>
-    <table class="company-table">
-      <tr><th>Company</th><th>Core Focus Area</th></tr>
-      <tr><td>TCS</td><td class="focus-both">DSA + Aptitude</td></tr>
-      <tr><td>Wipro</td><td class="focus-both">DSA + Aptitude</td></tr>
-      <tr><td>Cognizant</td><td class="focus-both">DSA + Aptitude</td></tr>
-      <tr><td>Hexaware Technologies</td><td class="focus-both">DSA + Aptitude</td></tr>
-      <tr><td>Deloitte</td><td class="focus-both">DSA + Aptitude</td></tr>
-      <tr><td>Infosys</td><td class="focus-both">DSA + Aptitude</td></tr>
-      <tr><td>Capgemini</td><td class="focus-both">DSA + Aptitude</td></tr>
-      <tr><td>Accenture</td><td class="focus-both">DSA + Aptitude</td></tr>
-      <tr><td>LTIMindtree</td><td class="focus-both">DSA + Aptitude</td></tr>
-      <tr><td>Ericsson</td><td class="focus-both">DSA + Aptitude</td></tr>
-    </table>
-  </div>
+  <nav class="fixed bottom-0 left-0 w-full bg-slate-800/80 backdrop-blur-md border-t border-slate-700 p-4">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+      <button onclick="window.location.href='../phase2/phase2.html'" class="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-lg transition-all active:scale-95">
+        ← Previous
+      </button>
+      <div class="text-slate-500 text-sm font-medium hidden md:block">PrepMaster Module</div>
+      <button onclick="window.location.href='../MockIt/mockit.html'" class="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg shadow-lg shadow-blue-900/20 transition-all active:scale-95">
+        Next →
+      </button>
+    </div>
+  </nav>
 
-  <div class="section">
-    <h2>DSA-Focused Companies</h2>
-    <table class="company-table">
-      <tr><th>Company</th><th>Core Focus Area</th></tr>
-      <tr><td>Google</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Amazon</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Microsoft</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Facebook (Meta)</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Adobe</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Flipkart</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Paytm</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Swiggy</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>InMobi</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Razorpay</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Postman</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Cure.fit</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>MakeMyTrip</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Zerodha</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>BookMyShow</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Naukri.com</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Juspay</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Hike</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>CarWale</td><td class="focus-dsa">DSA</td></tr>
-      <tr><td>Yellow Messenger</td><td class="focus-dsa">DSA</td></tr>
-    </table>
-  </div>
-
-  <div class="section">
-    <h2>Aptitude-Focused Companies</h2>
-    <table class="company-table">
-      <tr><th>Company</th><th>Core Focus Area</th></tr>
-      <tr><td>Tech Mahindra</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>HCL Technologies</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>L&T Infotech</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>Persistent Systems</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>Mindtree</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>Mphasis</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>Zensar Technologies</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>Birlasoft</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>Sonata Software</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>Syntel</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>UST Global</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>NIIT Technologies</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>Mastek</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>KPIT Technologies</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>KPMG India</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>EY India</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>CureMetrix</td><td class="focus-aptitude">Aptitude</td></tr>
-      <tr><td>iMarque Solutions</td><td class="focus-aptitude">Aptitude</td></tr>
-    </table>
-  </div>
-
-  <div class="navigation-buttons">
-    <a href="../phase2/phase2.html" class="nav-button">Prev</a>
-    
-    <a href="../MockIt/mockit.html" class="nav-button">Next</a>
-  </div>
 </body>
 </html>

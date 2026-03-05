@@ -5,235 +5,240 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Phase 2: Preparation | Intervyu Module</title>
   <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary-color: #1f55ad; 
-      --secondary-color: #60a5fa;
-      --background-color: #f8fafc; 
-      --text-color: #1f2937; 
-      --light-gray: #e5e7eb;
-      --section-bg: #ffffff;
-      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
-      --border-radius: 16px;
-    }
+    /* Import elegant fonts from Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap');
 
+    /* General body styles matching Phase 3 */
     body {
-      font-family: 'Bookman Old Style', serif;
-      background-color: var(--background-color);
-      color: var(--text-color);
+      font-family: 'Bookman Old Style', sans-serif;
+      background-image: url('../images/job-application-background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: #35597d; /* Fallback */
       margin: 0;
-      padding: 2.5rem 1rem;
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #34495e;
     }
 
-    h1, h2 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      color: var(--primary-color);
+    /* Main content container */
+    .container {
+      max-width: 1200px;
+      width: 95%;
+      margin: 40px 20px;
+      background-color: rgba(255, 255, 255, 0.98);
+      padding: 50px;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      text-align: left;
     }
 
+    /* Main heading with animation */
     h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      font-weight: 700;
+      color: #2c3e50;
       text-align: center;
-      margin-bottom: 2.5rem;
-      padding-bottom: 1rem;
-      position: relative;
-      font-size: 2.5rem;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      border-bottom: 3px solid #f39c12;
+      padding-bottom: 15px;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInSlideDown 1s forwards;
     }
 
-    h1::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--primary-color);
-      border-radius: 9999px;
+    @keyframes fadeInSlideDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-
+    
     h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: #f39c12;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      border-left: 5px solid #bdc3c7;
+      padding-left: 15px;
+    }
+
+    .highlight-intro {
+      font-size: 20px;
+      color: #2c3e50;
+      line-height: 1.9;
+      margin-bottom: 30px;
+      background: #fdf2e9;
+      padding: 25px;
+      border-radius: 10px;
+      border-right: 4px solid #f39c12;
     }
 
     p {
-      margin-top: 0.5rem;
-      margin-bottom: 1rem;
+      font-size: 18px;
+      color: #34495e;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* Grid layout for the Intervyu components */
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 30px;
     }
     
-    ul {
-      list-style-type: none;
-      padding-left: 0;
-      display: grid;
-      gap: 1rem;
-    }
-
-    li {
-      margin-bottom: 0;
-      padding: 1.5rem 1.5rem 1.5rem 4rem;
-      background-color: #f3f4f6;
-      border-radius: 12px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .list-grid li {
       position: relative;
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: center;
+      background-color: #f8f8f8;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border-top: 3px solid transparent;
     }
 
-    li::before {
-      content: '✔';
+    .list-grid li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      background-color: #fffaf0;
+      border-top: 3px solid #f39c12;
+    }
+
+    .list-grid li strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #2c3e50;
+      font-size: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .nested-list {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+
+    .nested-list li {
+      padding: 5px 0 5px 20px !important;
+      background: none !important;
+      box-shadow: none !important;
+      border: none !important;
+      transform: none !important;
+      font-size: 16px;
+      color: #34495e;
+      position: relative;
+    }
+
+    .nested-list li::before {
+      content: '—';
       position: absolute;
-      left: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--primary-color);
-      font-size: 1.25rem;
+      left: 0;
+      color: #f39c12;
       font-weight: bold;
     }
 
-    li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .section {
-      margin: 0 auto 3rem auto;
-      background-color: var(--section-bg);
-      padding: 2.5rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-lg);
-      max-width: 900px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.1), 0 6px 8px -4px rgba(0, 0, 0, 0.05);
-    }
-
-    .highlight {
-      background: var(--primary-color);
-      color: white;
-      padding: 1.5rem 2rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      font-weight: 400;
-      box-shadow: var(--shadow-sm);
-      position: relative;
-      overflow: hidden;
-      animation: fadeIn 1s ease-out;
-    }
-
-    .section h2 {
+    /* Navigation buttons */
+    .navigation-buttons {
       display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .section h2::before {
-      content: '🚀';
-      font-size: 2rem;
-      animation: float 2s infinite ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-      100% { transform: translateY(0); }
-    }
-
-    .navigation-container {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 2rem;
-        max-width: 900px;
-        margin-left: auto;
-        margin-right: auto;
-        padding-bottom: 3rem;
+      justify-content: space-between;
+      margin-top: 50px;
     }
 
     .nav-button {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.75rem 1.5rem;
-        border: 1px solid transparent;
-        font-family: 'Poppins', sans-serif;
-        font-size: 1rem;
-        font-weight: 500;
-        border-radius: 0.375rem;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        color: #ffffff;
-        background-color: #3b82f6;
-        transition: background-color 300ms ease, box-shadow 300ms ease;
-        text-decoration: none;
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      text-decoration: none;
     }
 
     .nav-button:hover {
-        background-color: #2563eb;
+      background-color: #e67e22;
+      transform: translateY(-3px);
     }
 
+    /* Responsive adjustments */
     @media (max-width: 768px) {
-      h1 { font-size: 2rem; }
-      .section { padding: 1.5rem; }
+      .container { padding: 30px; }
+      h1 { font-size: 40px; }
+      .list-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+<div class="container">
   <h1>Phase 2: Preparation</h1>
 
-  <div class="section">
-    <p class="highlight">This phase focuses on converting your foundational assets into real-world interview performance. Through our specialized <strong>Intervyu</strong> module, we provide the tactical intelligence and simulated environments needed to clear every hiring round.</p>
+  <div class="highlight-intro">
+    This phase focuses on converting your foundational assets into real-world interview performance. Through our specialized <strong>Intervyu</strong> module, we provide the tactical intelligence and simulated environments needed to clear every hiring round.
   </div>
 
-  <div class="section">
-    <h2>1. PrepMaster</h2>
-    <p>Strategic intelligence is the key to bypassing generic preparation. PrepMaster helps you understand the DNA of your target company.</p>
-    <ul>
-      <li><strong>Company Intel:</strong>  Access deep insights into specific interview patterns, frequently tested concepts, and the typical selection criteria for major industry leaders.</li>
-      <li><strong>Round Breakdown:</strong>  Understand exactly how many rounds to expect and the weightage given to technical versus cultural assessments.</li>
-    </ul>
-  </div>
+  <h2>1. PrepMaster</h2>
+  <p>Strategic intelligence is the key to bypassing generic preparation. PrepMaster helps you understand the DNA of your target company.</p>
+  <ul class="list-grid">
+    <li>
+      <strong>Company Intel</strong>
+      <p>Access deep insights into specific interview patterns, frequently tested concepts, and the typical selection criteria for major industry leaders.</p>
+    </li>
+    <li>
+      <strong>Round Breakdown</strong>
+      <p>Understand exactly how many rounds to expect and the weightage given to technical versus cultural assessments.</p>
+    </li>
+  </ul>
 
-  <div class="section">
-    <h2>2. MockIT</h2>
-    <p>A comprehensive library of resources and guides designed to help you ace the "gauntlet" of standard recruitment rounds.</p>
-    <ul>
-      <li><strong>Core Rounds:</strong>  Master the art of Group Discussions (GD), Spontaneous Speaking (JAM), and Aptitude tests with curated tips.</li>
-      <li><strong>Technical & HR:</strong>  Specialized survival guides for deep-dive Technical rounds and behavioral HR interviews.</li>
-      <li><strong>AI MCQ Generator:</strong>  Practice with standard and AI-generated MCQs to sharpen your speed and accuracy.</li>
-    </ul>
-  </div>
+  <h2>2. MockIT</h2>
+  <p>A comprehensive library of resources and guides designed to help you ace the "gauntlet" of standard recruitment rounds.</p>
+  <ul class="list-grid">
+    <li>
+      <strong>Core Rounds</strong>
+      <p>Master the art of Group Discussions (GD), Spontaneous Speaking (JAM), and Aptitude tests with curated tips.</p>
+    </li>
+    <li>
+      <strong>Technical & HR</strong>
+      <p>Specialized survival guides for deep-dive Technical rounds and behavioral HR interviews.</p>
+    </li>
+    <li>
+      <strong>AI MCQ Generator</strong>
+      <p>Practice with standard and AI-generated MCQs to sharpen your speed and accuracy.</p>
+    </li>
+  </ul>
 
-  <div class="section">
-    <h2>3. MockMyInterview</h2>
-    <p>Our flagship AI-driven simulator that provides a personalized practice environment based on real-world requirements.</p>
-    <ul>
-      <li><strong>JD Analysis:</strong>  Drop any Job Description into the engine to receive a customized preparation topics and QA.</li>
-    </ul>
-  </div>
+  <h2>3. MockMyInterview</h2>
+  <p>Our flagship AI-driven simulator that provides a personalized practice environment based on real-world requirements.</p>
+  <ul class="list-grid">
+    <li>
+      <strong>JD Analysis</strong>
+      <p>Drop any Job Description into the engine to receive a customized preparation topics and QA.</p>
+    </li>
+  </ul>
 
-  <div class="navigation-container">
-    <a href="../phase1_transition/phase1_transition.html" class="nav-button">
-        &leftarrow; Previous 
-    </a>
-
-    <a href="../prepmaster/prepmaster.html" class="nav-button">
-        next &rightarrow;
-    </a>
+  <div class="navigation-buttons">
+    <a href="../phase1_transition/phase1_transition.html" class="nav-button">Previous</a>
+    <a href="../prepmaster/prepmaster.html" class="nav-button">Next</a>
   </div>
+</div>
 
 </body>
 </html>
