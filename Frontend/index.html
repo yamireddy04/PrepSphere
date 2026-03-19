@@ -4,393 +4,268 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PrepSphere | Ultimate Prep Guide</title>
-  
-  <!-- Fonts & Icons -->
   <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   
   <script>
-    // Original Authentication Logic
-    if(!localStorage.getItem("token")){
-      window.location.href="login.html";
-    }
+    if(!localStorage.getItem("token")){ window.location.href="login.html"; }
   </script>
 
   <style>
     :root {
-      --primary: #2563eb;
-      --primary-light: #60a5fa;
-      --primary-dark: #1e3a8a;
-      --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-      --glass: rgba(255, 255, 255, 0.7);
-      --glass-border: rgba(255, 255, 255, 0.3);
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      --accent-font: 'Bodoni 72 Smallcaps', serif; /* Matching Header Branding */
+      --cobalt: #0047AB;
+      --electric: #00D4FF;
+      --deep-space: #050B18;
+      --glass-white: rgba(255, 255, 255, 0.05);
+      --border-style: 2px solid var(--electric);
+      --font-main: 'Bodoni 72 Smallcaps', serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: var(--accent-font), sans-serif; /* Consistent Branding Across Site */
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: var(--bg-gradient);
-      background-attachment: fixed;
-      color: var(--text-main);
-      line-height: 1.6;
+      background-color: var(--deep-space);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(0, 71, 171, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(0, 212, 255, 0.1) 0px, transparent 50%);
+      color: #fff;
+      font-family: var(--font-main), serif;
       overflow-x: hidden;
+      line-height: 1.4;
     }
 
-    /* --- Navigation --- */
+    /* --- NAVIGATION: Floating "Bridge" Style --- */
     header {
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.8);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 1rem 5%;
+      margin: 20px auto;
+      width: 95%;
+      max-width: 1200px;
+      padding: 15px 30px;
+      background: rgba(10, 20, 40, 0.8);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
-      top: 0;
+      top: 20px;
       z-index: 1000;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
     }
 
-    .bodoni-heading {
-      font-size: 2.2rem;
+    .logo {
+      font-size: 1.8rem;
       font-variant: small-caps;
-      background: linear-gradient(to right, var(--primary-dark), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 1px;
+      color: var(--electric);
+      text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
     }
 
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
+    nav { display: flex; gap: 25px; align-items: center; }
     nav a {
-      color: var(--text-main);
+      color: #cbd5e1;
       text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-      position: relative;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: 0.3s;
+      text-transform: uppercase;
     }
+    nav a:hover { color: var(--electric); }
 
-    nav a:hover {
-      color: var(--primary);
-    }
-
-    /* Dropdown Logic */
-    .dropdown {
-      position: relative;
-    }
-
+    .dropdown { position: relative; }
     .dropdown-content {
       display: none;
       position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%) translateY(10px);
-      background: white;
-      min-width: 200px;
-      border-radius: 12px;
-      box-shadow: var(--card-shadow);
-      padding: 0.5rem;
-      border: 1px solid #edf2f7;
-      animation: fadeIn 0.3s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-      to { opacity: 1; transform: translateX(-50%) translateY(10px); }
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    .dropdown-content a {
-      padding: 0.8rem 1rem;
-      display: block;
+      top: 40px;
+      left: 0;
+      background: #0a1428;
+      border: 1px solid var(--electric);
+      min-width: 180px;
       border-radius: 8px;
+      padding: 10px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content a {
+      padding: 10px 20px;
+      display: block;
+      text-transform: none;
     }
 
-    .dropdown-content a:hover {
-      background: #eff6ff;
-    }
-
-    /* --- Hero Section --- */
+    /* --- HERO: Kinetic Depth --- */
     .hero {
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 8rem 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -10%; left: -10%;
-      width: 40%; height: 60%;
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-      z-index: -1;
+      padding: 0 20px;
     }
 
     .hero .bradley {
-      font-size: 3.5rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 2rem;
+      font-size: clamp(2rem, 6vw, 4.5rem);
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-bottom: 40px;
+      color: #fff;
       line-height: 1.1;
-      animation: fadeInUp 0.8s ease;
+      font-weight: 300;
     }
 
-    .hero button {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 1.2rem 3rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border-radius: 50px;
+    .cta-btn {
+      background: transparent;
+      border: var(--border-style);
+      color: var(--electric);
+      padding: 15px 45px;
+      font-size: 1.2rem;
+      font-family: var(--font-main);
       cursor: pointer;
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      transition: 0.4s;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
-    .hero button:hover {
-      transform: translateY(-3px) scale(1.05);
-      background: var(--primary-dark);
-      box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
+    .cta-btn:hover {
+      background: var(--electric);
+      color: var(--deep-space);
+      box-shadow: 0 0 30px var(--electric);
+      transform: scale(1.05);
     }
 
-    /* --- Features Section --- */
+    /* --- FEATURES: Layered Offset Cards --- */
     .section {
-      padding: 6rem 5%;
-      max-width: 1300px;
-      margin: auto;
+      max-width: 1200px;
+      margin: 100px auto;
+      padding: 0 20px;
     }
 
     .section h3 {
-      font-size: 2.8rem;
-      text-align: center;
-      margin-bottom: 4rem;
-      color: var(--primary-dark);
-      position: relative;
-    }
-
-    .section h3::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: var(--primary);
-      margin: 15px auto 0;
-      border-radius: 2px;
+      font-size: 3rem;
+      margin-bottom: 60px;
+      text-align: left;
+      border-left: 5px solid var(--electric);
+      padding-left: 20px;
     }
 
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
     }
 
     .feature-box {
-      background: var(--glass);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 3rem 2rem;
-      text-align: left;
-      transition: all 0.4s ease;
+      background: var(--glass-white);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 40px;
       position: relative;
-      overflow: hidden;
+      transition: 0.5s;
     }
 
-    .feature-box::before {
-      content: '';
+    .feature-box::after {
+      content: "";
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--primary-light));
-      opacity: 0;
-      transition: opacity 0.3s;
+      top: 10px; left: 10px;
+      width: 100%; height: 100%;
+      border: 1px solid var(--electric);
+      z-index: -1;
+      transition: 0.5s;
     }
 
     .feature-box:hover {
-      transform: translateY(-15px);
-      background: white;
-      box-shadow: var(--card-shadow);
+      transform: translate(-10px, -10px);
+      background: rgba(255,255,255,0.08);
     }
 
-    .feature-box:hover::before {
-      opacity: 1;
+    .feature-box:hover::after {
+      transform: translate(15px, 15px);
+      opacity: 0.5;
     }
 
     .feature-box h4 {
+      color: var(--electric);
+      margin-bottom: 15px;
       font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
-    .feature-box p {
-      color: var(--text-muted);
-      font-size: 1rem;
-    }
-
-    /* --- Footer --- */
+    /* --- FOOTER --- */
     footer {
-      background: #0f172a;
-      color: #94a3b8;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 60px 20px;
       text-align: center;
-      padding: 4rem 2rem;
-      margin-top: 6rem;
+      background: #03070e;
     }
 
-    footer p {
-      margin-bottom: 1rem;
-    }
+    footer a { color: var(--electric); text-decoration: none; margin: 0 15px; font-size: 0.8rem; opacity: 0.7; }
+    footer a:hover { opacity: 1; text-decoration: underline; }
 
-    footer a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      transition: color 0.3s;
-      font-size: 0.9rem;
-    }
-
-    footer a:hover {
-      color: var(--primary-light);
-    }
-
-    /* --- Modals --- */
+    /* --- MODALS --- */
     .modal {
       display: none;
       position: fixed;
+      inset: 0;
+      background: rgba(5, 11, 24, 0.95);
       z-index: 2000;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(15, 23, 42, 0.8);
-      backdrop-filter: blur(8px);
       align-items: center;
       justify-content: center;
-      padding: 20px;
     }
 
     .modal-content {
-      background: white;
-      padding: 3rem;
-      width: 100%;
-      max-width: 650px;
-      border-radius: 24px;
+      background: #0a1428;
+      border: 2px solid var(--electric);
+      padding: 50px;
+      max-width: 600px;
+      width: 90%;
       position: relative;
-      max-height: 85vh;
-      overflow-y: auto;
-      animation: modalSlideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    @keyframes modalSlideUp {
-      from { transform: translateY(50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
     }
 
     .close-btn {
       position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--text-muted);
-      transition: color 0.3s;
-    }
-
-    .close-btn:hover { color: var(--primary-dark); }
-
-    .modal-content h3 {
+      top: 20px; right: 20px;
+      color: var(--electric);
       font-size: 2rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary-dark);
+      cursor: pointer;
     }
 
     .privacy-buttons {
+      margin-top: 30px;
       display: flex;
-      gap: 1rem;
-      margin-top: 2.5rem;
+      gap: 20px;
     }
 
     .privacy-buttons button {
       flex: 1;
-      padding: 1rem;
-      border: none;
-      border-radius: 12px;
-      font-weight: 700;
+      padding: 12px;
       cursor: pointer;
-      transition: all 0.3s;
+      font-family: var(--font-main);
+      font-weight: bold;
+      border: 1px solid var(--electric);
     }
 
-    .accept-btn { background: var(--primary); color: white; }
-    .accept-btn:hover { background: #166534; box-shadow: 0 10px 15px rgba(22, 101, 52, 0.2); }
-    .decline-btn { background: #f1f5f9; color: #64748b; }
-    .decline-btn:hover { background: #e2e8f0; }
+    .accept-btn { background: var(--electric); color: #000; }
+    .decline-btn { background: transparent; color: var(--electric); }
 
-    /* --- Animations --- */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav { display: none; } /* Mobile nav should ideally use a burger menu, but kept original structure */
-      .hero .bradley { font-size: 2.2rem; }
-    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1 class="bodoni-heading">PrepSphere</h1>
+    <div class="logo">PrepSphere</div>
     <nav>
       <a href="./index.html">Home</a>
-
       <div class="dropdown">
-        <a href="#">Phase 1 <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+        <a href="#">Phase 1 ▾</a>
         <div class="dropdown-content">
           <a href="roadmap/roadmap.html">Roadmap</a>
           <a href="resume/resume.html">Resume</a>
           <a href="coverletter/coverletter.html">Cover Letter</a>
         </div>
       </div>
-
       <div class="dropdown">
-        <a href="#">Phase 2 <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
+        <a href="#">Phase 2 ▾</a>
         <div class="dropdown-content">
-          <a href="intervyu/intervyu.html">Intervyu :</a>
+          <a href="intervyu/intervyu.html">Intervyu</a>
           <a href="prepmaster/prepmaster.html">PrepMaster</a>
           <a href="MockIt/mockit.html">MockIt</a>
           <a href="mmi/mmi.html">MockMyInterview</a>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <a href="#">Phase 3 <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem;"></i></a>
-        <div class="dropdown-content">
-          <a href="hirehub/hirehub.html">HireHub</a>
         </div>
       </div>
       <a href="login.html">Login</a>
@@ -399,109 +274,66 @@
   </header>
 
   <section class="hero">
-    <div class="bradley">The Ultimate Interview Prep Guide: Prepare, Practice, Succeed.</div>
-    <button onclick="window.location.href='exp/exp.html'">
-      Get Started <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i>
-    </button>
+    <h2 class="bradley">The Ultimate Interview Prep Guide: Prepare, Practice, Succeed.</h2>
+    <button class="cta-btn" onclick="window.location.href='exp/exp.html'">Initialize Journey</button>
   </section>
 
   <section class="section">
     <h3>Why PrepSphere .... ?</h3>
     <div class="features">
       <div class="feature-box">
-        <h4><i class="fa-solid fa-house-laptop"></i> One-Stop Guide</h4>
+        <h4>01 / Unified Ecosystem</h4>
         <p>PrepSphere brings everything under one roof — from resume preparation to post-interview reflection.</p>
       </div>
       <div class="feature-box">
-        <h4><i class="fa-solid fa-magnifying-glass-chart"></i> Comprehensive Insights</h4>
-        <p>We provide in-depth guidance on the entire interview process — covering the what, why, and how of every interview round.</p>
+        <h4>02 / Deep Insights</h4>
+        <p>We provide in-depth guidance on the entire interview process — covering the what, why, and how of every round.</p>
       </div>
       <div class="feature-box">
-        <h4><i class="fa-solid fa-brain"></i> Mock Questions</h4>
-        <p>Master your next interview with an extensive library of mock questions, aptitude challenges, and coding tasks. Dive into structured resources and topic-wise quizzes.</p>
+        <h4>03 / Practice Lab</h4>
+        <p>Master your next interview with an extensive library of mock questions, aptitude challenges, and coding tasks.</p>
       </div>
       <div class="feature-box">
-        <h4><i class="fa-solid fa-microchip"></i> AI-Powered Modules</h4>
-        <p>An AI-driven preparation ecosystem that transforms job descriptions and raw data into targeted mock interviews and optimized resume content.</p>
+        <h4>04 / AI Engine</h4>
+        <p>A preparation ecosystem that transforms job descriptions into targeted mock interviews and custom assessments.</p>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2024 PrepSphere. All rights reserved.</p>
-    <p>
-      <a href="#" onclick="openModal('contactModal')">Contact Us</a> 
-      <span style="color: #475569">|</span>
-      <a href="#" onclick="openModal('privacyModal')">Privacy Policy</a>
-    </p>
+    <p style="margin-bottom: 20px; opacity: 0.5;">&copy; 2024 PrepSphere. Neural Network Architecture.</p>
+    <div class="footer-links">
+      <a href="#" onclick="openModal('contactModal')">SYSTEM CONTACT</a>
+      <a href="#" onclick="openModal('privacyModal')">PRIVACY PROTOCOL</a>
+    </div>
   </footer>
 
-  <!-- Contact Us Modal -->
   <div id="contactModal" class="modal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeModal('contactModal')">&times;</span>
-      <h3>Contact Us</h3>
-      <p>Have a question or need support? You can reach us by email at:</p>
-      <div style="margin-top: 2rem; padding: 1.5rem; background: #eff6ff; border-radius: 12px; text-align: center;">
-        <a href="mailto:prepsphere146@gmail.com" style="color: var(--primary); font-weight: 700; text-decoration: none; font-size: 1.2rem;">
-          <i class="fa-solid fa-envelope"></i> prepsphere146@gmail.com
-        </a>
-      </div>
+      <h3 style="border: none; margin-bottom: 20px;">Contact System</h3>
+      <p>Technical support and inquiries:</p>
+      <p style="margin-top: 20px; font-size: 1.5rem; color: var(--electric);">prepsphere146@gmail.com</p>
     </div>
   </div>
 
-  <!-- Privacy Policy Modal -->
   <div id="privacyModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content" style="max-height: 80vh; overflow-y: auto;">
       <span class="close-btn" onclick="closeModal('privacyModal')">&times;</span>
-      <h3>Privacy Policy</h3>
-      <div class="privacy-policy-content" style="color: var(--text-muted); font-size: 0.95rem;">
-        <p>Your privacy is important to us. This policy outlines how we collect, use, and protect your information when you use our services.</p>
-
-        <h4 style="color: var(--primary-dark); margin-top: 1.5rem;">Information We Collect</h4>
-        <p>We collect personal information that you provide to us, such as your name and email address, when you register for an account, subscribe to our newsletter, or contact us.</p>
-
-        <h4 style="color: var(--primary-dark); margin-top: 1.5rem;">How We Use Your Information</h4>
-        <p>We use your information to provide, maintain, and improve our services, to communicate with you about your account, and to send you updates.</p>
-
-        <h4 style="color: var(--primary-dark); margin-top: 1.5rem;">Data Protection</h4>
-        <p>We implement a variety of security measures to maintain the safety of your personal information. We do not sell or trade your data.</p>
-      </div>
+      <h3 style="border: none;">Privacy Protocol</h3>
+      <p>Your data is encrypted and handled according to modern security standards. By using this terminal, you consent to our data processing cycles.</p>
       <div class="privacy-buttons">
-        <button class="accept-btn" onclick="handlePrivacyPolicy('accept')">Accept Policy</button>
-        <button class="decline-btn" onclick="handlePrivacyPolicy('decline')">Decline</button>
+        <button class="accept-btn" onclick="handlePrivacyPolicy('accept')">ACCEPT</button>
+        <button class="decline-btn" onclick="handlePrivacyPolicy('decline')">DECLINE</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Preserved Functional Logic
-    const contactModal = document.getElementById('contactModal');
-    const privacyModal = document.getElementById('privacyModal');
-
-    function openModal(modalId) {
-      document.getElementById(modalId).style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Prevent scroll
-    }
-
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.display = 'none';
-      document.body.style.overflow = 'auto'; // Restore scroll
-    }
-
-    function handlePrivacyPolicy(action) {
-      if (action === 'accept') {
-        alert('You have accepted the privacy policy.');
-      } else {
-        alert('You have declined the privacy policy.');
-      }
-      closeModal('privacyModal');
-    }
-
-    window.onclick = function(event) {
-      if (event.target == contactModal) closeModal('contactModal');
-      if (event.target == privacyModal) closeModal('privacyModal');
-    }
+    function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+    function handlePrivacyPolicy(a) { alert(a === 'accept' ? 'Protocol Accepted' : 'Protocol Declined'); closeModal('privacyModal'); }
+    window.onclick = function(e) { if(e.target.className === 'modal') e.target.style.display = 'none'; }
   </script>
 </body>
 </html>
