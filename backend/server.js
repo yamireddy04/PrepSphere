@@ -11,11 +11,23 @@ const app = express();
 // Advanced CORS Configuration
 // This setup allows your local development AND your future Vercel deployment to communicate with Render
 app.use(cors({
-    origin: [
-        "http://127.0.0.1:5500",
-        "http://localhost:5500",
-        /\.vercel\.app$/ // This regex allows ANY vercel.app domain to connect safely
-    ],
+    origin: function(origin, callback) {
+        // Allow requests with no origin (mobile apps, curl, etc.)
+        if (!origin) return callback(null, true);
+        // Allow all localhost/127.0.0.1 ports
+        if (origin.match(/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/)) {
+            return callback(null, true);
+        }
+        // Allow Vercel deployments
+        if (origin.match(/\.vercel\.app$/)) {
+            return callback(null, true);
+        }
+        // Allow GitHub Pages
+        if (origin.match(/\.github\.io$/)) {
+            return callback(null, true);
+        }
+        callback(new Error("Not allowed by CORS"));
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]

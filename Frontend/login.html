@@ -105,8 +105,9 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
             alert(data.message || "Login failed");
         }
     } catch (err) {
-        alert("Server connection failed. Is your Backend running on Port 5000?");
-    }
+    console.error("Login error:", err);
+    alert("Connection failed. The server may be waking up (Render free tier). Please wait 30 seconds and try again.");
+}
 });
 
 // Initialize animation

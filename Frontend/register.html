@@ -112,8 +112,9 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
             alert(data.message || "Registration failed");
         }
     } catch (err) {
-        alert("Server error. Registration failed.");
-    }
+    console.error("Register error:", err);
+    alert("Connection failed. The server may be waking up (Render free tier). Please wait 30 seconds and try again.");
+}
 });
 </script>
 </body>
