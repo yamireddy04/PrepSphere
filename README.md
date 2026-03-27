@@ -10,7 +10,8 @@ A full-stack AI-powered interview preparation platform that supports the complet
 
 Built with **Node.js / Express** for the backend and **Vanilla JavaScript** for the frontend.
 
-**Live Application:** https://prepsphere000146.vercel.app/
+**Live Application:** https://prepsphere000146.vercel.app/ 
+
 **Backend API:** https://prepsphere-o7wh.onrender.com
 
 ---
