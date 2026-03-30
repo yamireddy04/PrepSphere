@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PrepSphere | Register</title>
 <link rel="icon" type="image/jpeg" href="./images/logo.jpeg">
+<link rel="stylesheet" href="shared/mobile.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
@@ -25,6 +26,20 @@ button.enabled{opacity:1;}
 button:hover.enabled{background:#1d4ed8;}
 .link{margin-top:20px;font-size:14px;}
 .link a{color:#2563eb;text-decoration:none;font-weight:500;}
+@media (max-width: 768px) {
+  .container {
+    width: 95vw !important;
+    height: auto !important;
+    flex-direction: column !important;
+  }
+  .left {
+    width: 100% !important;
+    padding: 32px 24px !important;
+  }
+  .right {
+    display: none !important;
+  }
+}
 </style>
 </head>
 <body>

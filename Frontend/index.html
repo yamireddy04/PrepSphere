@@ -1,4 +1,5 @@
 <link rel="icon" type="image/jpeg" href="images/logo.jpeg">
+<link rel="stylesheet" href="shared/mobile.css">
 <script>
   if(!localStorage.getItem("token")){
     window.location.href="login.html";
@@ -280,6 +281,20 @@
       background-color: #f93b3b;
       color: white;
     }
+    @media (max-width: 768px) {
+  .container {
+    width: 95vw !important;
+    height: auto !important;
+    flex-direction: column !important;
+  }
+  .left {
+    width: 100% !important;
+    padding: 32px 24px !important;
+  }
+  .right {
+    display: none !important;
+  }
+}
   </style>
 </head>
 <body>
