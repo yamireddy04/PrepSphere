@@ -58,7 +58,6 @@ button:hover.enabled{background:#1d4ed8;}
 </div>
 
 <script type="module">
-// We use a relative path here to ensure the browser finds it inside your Frontend folder
 import { API_BASE_URL } from './js/config.js';
 
 const text = "PrepSphere";
@@ -85,7 +84,6 @@ function type() {
     }
 }
 
-// Validation logic
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const loginBtn = document.getElementById("loginBtn");
@@ -103,7 +101,6 @@ function validate() {
 emailInput.addEventListener("input", validate);
 passwordInput.addEventListener("input", validate);
 
-// Login Logic
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     try {
@@ -125,7 +122,6 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
 }
 });
 
-// Initialize animation
 type();
 </script>
 </body>

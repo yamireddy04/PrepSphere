@@ -29,15 +29,14 @@
       display: inline-block;
       width: 100%;
       box-sizing: border-box;
-      opacity: 0; /* Start with 0 opacity for the animation */
-      animation: fadeIn 1.5s ease-in-out forwards; /* Apply the fade-in animation */
+      opacity: 0; 
+      animation: fadeIn 1.5s ease-in-out forwards; 
     }
 
-    /* Keyframes for the fadeIn animation */
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(-20px); /* Optional: make it slide down slightly */
+        transform: translateY(-20px); 
       }
       to {
         opacity: 1;
@@ -142,33 +141,32 @@
       font-size: 1.4em;
     }
 
-    /* Styles for Bottom Navigation Buttons */
     .bottom-nav-container {
       text-align: center;
-      margin-top: 50px; /* Space above the button container */
+      margin-top: 50px; 
       padding: 20px 0;
-      border-top: 1px solid rgba(0, 0, 0, 0.1); /* Subtle separator */
+      border-top: 1px solid rgba(0, 0, 0, 0.1); 
     }
 
     .bottom-nav-button {
       display: inline-block;
-      margin: 0 20%; /* Space between buttons */
+      margin: 0 20%; 
       padding: 12px 25px;
-      background-color: rgb(60, 118, 255); /* Electric Blue */
+      background-color: rgb(60, 118, 255); 
       color: white;
       text-decoration: none;
       border-radius: 8px;
       font-weight: 600;
       font-size: 1.1em;
       transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3); /* Electric blue shadow */
-      border: none; /* Ensure no default button border */
+      box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3); 
+      border: none; 
     }
 
     .bottom-nav-button:hover {
-      background-color: rgb(3, 124, 195); /* Slightly darker electric blue on hover */
-      transform: translateY(-2px); /* Lift effect */
-      box-shadow: 0 6px 15px rgba(0, 191, 255, 0.5); /* Stronger shadow on hover */
+      background-color: rgb(3, 124, 195); 
+      transform: translateY(-2px); 
+      box-shadow: 0 6px 15px rgba(0, 191, 255, 0.5); 
     }
   </style>
 </head>

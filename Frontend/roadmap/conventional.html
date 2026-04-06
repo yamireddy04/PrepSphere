@@ -12,8 +12,8 @@
         
         body {
             font-family: 'Bookman Old Style', serif;
-            background-color: #0f172a; /* Slate-900 */
-            color: #e2e8f0; /* Slate-200 */
+            background-color: #0f172a; 
+            color: #e2e8f0; 
         }
 
         .glass-card {
@@ -22,7 +22,6 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Custom Accordion Logic */
         .roadmap-content {
             max-height: 0;
             overflow: hidden;
@@ -41,7 +40,6 @@
             transform: rotate(180deg);
         }
 
-        /* Aptitude Button Style */
         .nav-btn {
             transition: all 0.3s ease-in-out;
             border: none;
@@ -137,7 +135,6 @@
             const item = button.parentElement;
             const isActive = item.classList.contains('active');
             
-            // Optional: Close other items
             document.querySelectorAll('.roadmap-item').forEach(el => el.classList.remove('active'));
             
             if (!isActive) {

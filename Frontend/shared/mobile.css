@@ -8,13 +8,11 @@
     display: block;
   }
   
-  /* ── Viewport overflow fix ── */
   html, body {
     overflow-x: hidden;
     max-width: 100%;
   }
   
-  /* ── Containers ── */
   .container,
   .card,
   .wrapper,
@@ -28,7 +26,6 @@
     box-sizing: border-box !important;
   }
   
-  /* ── Tables → scroll on mobile ── */
   table {
     width: 100%;
     overflow-x: auto;
@@ -42,10 +39,8 @@
     }
   }
   
-  /* =============== MOBILE BREAKPOINT =============== */
   @media (max-width: 768px) {
   
-    /* Typography scale-down */
     h1 { font-size: 26px !important; line-height: 1.3; }
     h2 { font-size: 22px !important; line-height: 1.3; }
     h3 { font-size: 18px !important; }
@@ -54,7 +49,6 @@
       font-size: 14px !important;
     }
   
-    /* Padding / margin reset for containers */
     .container,
     .wrapper,
     .main-content,
@@ -64,14 +58,12 @@
       margin: 0 auto !important;
     }
   
-    /* Cards stack full width */
     .card {
       width: 100% !important;
       margin: 10px 0 !important;
       padding: 16px !important;
     }
   
-    /* Flex rows → columns */
     .flex, .flex-row,
     [class*="flex-"],
     [class*="d-flex"],
@@ -80,7 +72,6 @@
       flex-direction: column !important;
     }
   
-    /* Grid → single column */
     .grid,
     [class*="grid-"],
     [class*="col-"],
@@ -90,7 +81,6 @@
       width: 100% !important;
     }
   
-    /* Tailwind grid overrides */
     .grid-cols-2,
     .grid-cols-3,
     .grid-cols-4,
@@ -102,7 +92,6 @@
       grid-template-columns: 1fr !important;
     }
   
-    /* Inputs and buttons full width */
     input[type="text"],
     input[type="email"],
     input[type="password"],
@@ -127,33 +116,28 @@
       margin-bottom: 8px !important;
     }
   
-    /* Navigation */
     nav, .navbar, .nav-bar, .top-bar, header {
       padding: 12px 16px !important;
       flex-wrap: wrap !important;
     }
   
-    /* Images */
     img {
       max-width: 100% !important;
       height: auto !important;
     }
   
-    /* Sidebar → full width on mobile */
     .sidebar, .side-panel, aside {
       width: 100% !important;
       position: static !important;
       height: auto !important;
     }
   
-    /* Hide horizontal scroll */
     .overflow-x-auto,
     .scroll-x {
       overflow-x: scroll;
       -webkit-overflow-scrolling: touch;
     }
   
-    /* Modal / popup sizing */
     .modal, .popup, .dialog,
     [class*="modal-"],
     [class*="-modal"] {
@@ -163,7 +147,6 @@
       padding: 16px !important;
     }
   
-    /* Roadmap / timeline cards */
     .roadmap-card,
     .phase-card,
     .step-card,
@@ -172,7 +155,6 @@
       margin: 8px 0 !important;
     }
   
-    /* Fixed pixel widths — catch-all override */
     [style*="width: 900px"],
     [style*="width: 800px"],
     [style*="width: 700px"],
@@ -188,7 +170,6 @@
     }
   }
   
-  /* =============== SMALL PHONES =============== */
   @media (max-width: 380px) {
     h1 { font-size: 22px !important; }
     h2 { font-size: 18px !important; }

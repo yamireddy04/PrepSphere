@@ -18,7 +18,6 @@
         .module-card.completed { border-left: 4px solid #10b981; opacity: 1; }
         .module-card.pending { border-left: 4px solid #3b82f6; opacity: 0.7; }
         
-        /* Hover effect for interactive feel */
         .module-card:hover { transform: translateX(5px); background: rgba(51, 65, 85, 0.8); }
     </style>
 </head>
@@ -96,7 +95,6 @@
     </div>
 
     <script>
-        // Updated to include 4 modules
         const modules = [
             { id: 'resume', key: 'resume_completed' },
             { id: 'coverletter', key: 'coverletter_completed' },
@@ -122,17 +120,14 @@
                 }
             });
 
-            // Calculate Percentage based on 4 modules
             const percent = Math.round((completedCount / modules.length) * 100);
             document.getElementById('percent-text').innerText = `${percent}%`;
 
-            // Update Progress Circle (SVG Logic)
             const circle = document.getElementById('progress-circle');
             const circumference = 80 * 2 * Math.PI; // Approx 502.6
             const offset = circumference - (percent / 100 * circumference);
             circle.style.strokeDashoffset = offset;
 
-            // Optional: Glow effect when 100% complete
             if(percent === 100) {
                 document.getElementById('progress-circle').classList.replace('text-blue-500', 'text-green-400');
             }

@@ -11,11 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <style>
-        /* General Styles - Copied from Resume Guide */
         body {
             font-family: 'Bookman Old Style', sans-serif;
             background-color: #eef2ff;
-            /* Lighter blue background */
             color: #1f2937;
         }
 
@@ -29,7 +27,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             padding: 2rem;
             border-left: 4px solid #3b82f6;
-            /* Accent blue border */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -40,12 +37,10 @@
 
         h1 {
             color: #1e3a8a;
-            /* Darker blue heading */
         }
 
         h2 {
             color: #1e40af;
-            /* Blue heading */
         }
 
         h3 {
@@ -79,7 +74,6 @@
             transform: translateY(-2px);
         }
 
-        /* Buzzword Generator styles */
         .buzzword-container {
             padding: 2rem;
             border-radius: 1rem;
@@ -194,7 +188,6 @@
             }
         }
 
-        /* Cover Letter Template Page Styles */
         .cover-letter-container-full {
             max-width: 8.5in;
             min-height: 11in;
@@ -549,7 +542,6 @@
     <script type="module">
         import { API_BASE_URL } from '../js/config.js';
 
-        // --- NAVIGATION ---
         window.showPage = function(pageId) {
             const pages = ['guide-page', 'students-template', 'pivots-template'];
             pages.forEach(id => {
@@ -571,7 +563,6 @@
             showPage('guide-page');
         };
 
-        // --- PDF EXPORT ---
         window.downloadAsPdf = function(pageId) {
             const container = document.getElementById(pageId);
             const button = document.querySelector(`#${pageId.replace('cover-letter-page-', '')}-template .action-button`) || document.querySelector('.action-button');
@@ -599,7 +590,6 @@
             });
         }
 
-        // --- REAL AI BUZZWORD LOGIC ---
         window.generateBuzzwords = async function() {
             const jobDescription = document.getElementById('job-description').value;
             const loadingIndicator = document.getElementById('loading-indicator');
@@ -618,7 +608,6 @@
             btn.disabled = true;
 
             try {
-                // Corrected to match your server.js route
                 const response = await fetch(`${API_BASE_URL}/api/generate-buzzwords`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },

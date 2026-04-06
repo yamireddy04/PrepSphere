@@ -13,7 +13,7 @@
         :root {
             --bg-studio: #0a0c10;
             --surface: #161a22;
-            --accent: #94a3b8; /* Sophisticated Slate */
+            --accent: #94a3b8; 
             --accent-glow: rgba(148, 163, 184, 0.1);
             --correct: #10b981;
             --wrong: #991b1b;
@@ -45,7 +45,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        /* Elegant Option Styling */
         .option-btn {
             width: 100%;
             text-align: left;
@@ -78,7 +77,6 @@
             color: #fca5a5 !important;
         }
 
-        /* Minimalist Buttons */
         .btn-elegant {
             background: var(--text-main);
             color: var(--bg-studio);
@@ -91,7 +89,6 @@
             transform: translateY(-2px);
         }
 
-        /* Navigation Styles */
         .nav-footer {
             display: flex;
             justify-content: space-between;
@@ -213,7 +210,6 @@
     </div>
 
     <script type="module">
-        // Fixed: Use standard relative pathing to ensure the config is found
         import { API_BASE_URL } from '../js/config.js';
 
         let questions = [];
@@ -312,7 +308,6 @@
             localStorage.setItem('quiz_completed', 'true');
         }
 
-        // REQUIRED: Expose functions to the global window scope so HTML onclick works
         window.generateQuiz = generateQuiz;
         window.nextQuestion = nextQuestion;
         window.selectOption = selectOption;

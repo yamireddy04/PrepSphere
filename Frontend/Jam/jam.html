@@ -13,19 +13,18 @@
             font-family: 'Bookman Old Style', sans-serif;
         }
 
-        /* Styles for the new navigation buttons */
         .navigation-buttons button {
           transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
           border: none;
           cursor: pointer;
-          background: linear-gradient(to right, #2563eb, #3b82f6); /* Initial gradient */
+          background: linear-gradient(to right, #2563eb, #3b82f6);
           color: white;
         }
 
         .navigation-buttons button:hover {
           transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); /* Enhanced shadow on hover */
-          background: linear-gradient(to right, #3b82f6, #60a5fa); /* Lighter gradient on hover */
+          box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); 
+          background: linear-gradient(to right, #3b82f6, #60a5fa); 
         }
         
         .navigation-buttons button:active {
@@ -33,7 +32,6 @@
           box-shadow: none;
         }
 
-        /* Additional styles from the original document */
         .container {
             max-width: 1200px;
         }
@@ -44,7 +42,6 @@
 
     <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
 
-        <!-- Header Section -->
         <header class="text-center mb-16">
             <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-md">
                 The JAM (Just a Minute) Interview Guide
@@ -54,7 +51,6 @@
             </p>
         </header>
 
-        <!-- What is a JAM Round? -->
         <section class="mb-16 p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
             <div class="md:flex md:items-center md:space-x-8">
                 <div class="flex-1 md:w-1/2">
@@ -72,7 +68,6 @@
             </div>
         </section>
 
-        <!-- Why Companies Use It -->
         <section class="mb-16 p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
             <div class="md:flex flex-row-reverse md:items-center md:space-x-8">
                 <div class="flex-1 md:w-1/2 md:pl-8">
@@ -101,7 +96,6 @@
             </div>
         </section>
         
-        <!-- How to Ace the JAM Round -->
         <section class="mb-16 p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
             <div class="md:flex md:items-center md:space-x-8">
                 <div class="flex-1 md:w-1/2">
@@ -127,7 +121,6 @@
             </div>
         </section>
 
-        <!-- Tips for Success -->
         <section class="mb-16 p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
             <div class="md:flex flex-row-reverse md:items-center md:space-x-8">
                 <div class="flex-1 md:w-1/2 md:pl-8">
@@ -153,39 +146,32 @@
             </div>
         </section>
 
-        <!-- Example Topics -->
         <section class="p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
             <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 text-center">Example JAM Topics</h2>
             <p class="text-center text-slate-300 mb-8 max-w-2xl mx-auto">
                 Use these topics to practice your "Just a Minute" skills.
             </p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Topic 1 -->
                 <div class="bg-slate-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <h3 class="text-xl font-bold text-blue-300 mb-2">Technology</h3>
                     <p class="text-slate-400 mb-4">Talk about the role of social media in our lives.</p>
                 </div>
-                <!-- Topic 2 -->
                 <div class="bg-slate-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <h3 class="text-xl font-bold text-blue-300 mb-2">Personal Growth</h3>
                     <p class="text-slate-400 mb-4">Describe a moment that changed your perspective.</p>
                 </div>
-                <!-- Topic 3 -->
                 <div class="bg-slate-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <h3 class="text-xl font-bold text-blue-300 mb-2">Ethics</h3>
                     <p class="text-slate-400 mb-4">Discuss the importance of work-life balance.</p>
                 </div>
-                 <!-- Topic 4 -->
                 <div class="bg-slate-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <h3 class="text-xl font-bold text-blue-300 mb-2">Current Events</h3>
                     <p class="text-slate-400 mb-4">Talk about a recent news story that you found interesting.</p>
                 </div>
-                 <!-- Topic 5 -->
                 <div class="bg-slate-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <h3 class="text-xl font-bold text-blue-300 mb-2">Problem Solving</h3>
                     <p class="text-slate-400 mb-4">Explain how you would handle a difficult customer.</p>
                 </div>
-                 <!-- Topic 6 -->
                 <div class="bg-slate-700 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                     <h3 class="text-xl font-bold text-blue-300 mb-2">Creativity</h3>
                     <p class="text-slate-400 mb-4">Describe a hobby you are passionate about.</p>
@@ -195,11 +181,8 @@
         
     </div>
 
-    <!-- Added navigation buttons at the end of the container -->
     <div class="navigation-buttons flex justify-between mt-8 max-w-7xl mx-auto px-4">
-      <!-- Links to the previous MCQ page -->
       <button onclick="window.location.href = '../quiz/quiz.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Previous</button>
-      <!-- Links to a placeholder for a future GD page -->
       <button onclick="window.location.href = '../technical/technical.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
     </div>
 

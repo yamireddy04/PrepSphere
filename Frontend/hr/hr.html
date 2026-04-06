@@ -26,7 +26,6 @@
             display: none;
         }
 
-        /* Styles for the navigation buttons */
         .navigation-buttons button {
           transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
           border: none;
@@ -46,7 +45,6 @@
           box-shadow: none;
         }
 
-        /* Additional styling for the main container */
         .container {
             max-width: 1200px;
         }
@@ -55,7 +53,6 @@
 <body class="text-slate-200">
     <div class="overlay">
         <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
-            <!-- Header Section with Dark Container -->
             <div class="bg-slate-900 rounded-xl p-8 mb-16 shadow-xl">
                 <header class="text-center">
                     <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-md">
@@ -67,9 +64,7 @@
                 </header>
             </div>
 
-            <!-- Purpose and Tips Grid Section -->
             <section class="mb-16 grid lg:grid-cols-2 gap-8">
-                <!-- Purpose Card -->
                 <div class="p-8 bg-slate-800/70 rounded-xl shadow-xl border-l-4 border-blue-600 transition-shadow duration-300 hover:shadow-2xl">
                     <h2 class="text-3xl font-bold text-white mb-4">🎯 Purpose</h2>
                     <ul class="list-disc list-inside space-y-2 text-slate-300">
@@ -80,7 +75,6 @@
                     </ul>
                 </div>
 
-                <!-- Preparation Tips Card -->
                 <div class="p-8 bg-slate-800/70 rounded-xl shadow-xl border-l-4 border-blue-600 transition-shadow duration-300 hover:shadow-2xl">
                     <h2 class="text-3xl font-bold text-white mb-4">✅ Preparation Tips</h2>
                     <ul class="list-disc list-inside space-y-2 text-slate-300">
@@ -95,10 +89,8 @@
                 </div>
             </section>
 
-            <!-- Common Questions Section -->
             <h2 class="text-center text-4xl font-bold text-white mb-8">🤝 Common Questions</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Question Boxes -->
                 <div class="question-box p-6 bg-slate-800/70 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg cursor-pointer" onclick="toggleAnswer(this)">
                     <div class="font-bold text-lg text-blue-400">Tell me about yourself</div>
                     <div class="answer-box mt-4 p-4 bg-slate-700 rounded-lg text-slate-300 hidden">I'm a computer science graduate with a strong foundation in software development. During my internship at XYZ, I focused on developing and optimizing web applications, which gave me hands-on experience with modern front-end and back-end technologies. I'm passionate about building scalable and user-friendly solutions, and I am actively seeking a role where I can apply my skills and contribute to a team's success.</div>
@@ -130,11 +122,8 @@
             </div>
         </div>
         
-        <!-- Added navigation buttons at the end of the container -->
         <div class="navigation-buttons flex justify-between mt-8 max-w-7xl mx-auto px-4">
-          <!-- Links to the previous Technical Interview page -->
           <button onclick="window.location.href = '../technical/technical.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Previous</button>
-          <!-- Links to a placeholder for a future page -->
           <button onclick="window.location.href = '../mmi/mmi.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
         </div>
     </div>

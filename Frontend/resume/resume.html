@@ -14,7 +14,6 @@
         body {
             font-family: 'Bookman Old Style', sans-serif;
             background-color: #eef2ff;
-            /* Lighter blue background */
             color: #1f2937;
         }
 
@@ -28,7 +27,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             padding: 2rem;
             border-left: 4px solid #3b82f6;
-            /* Accent blue border */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -39,12 +37,10 @@
 
         h1 {
             color: #1e3a8a;
-            /* Darker blue heading */
         }
 
         h2 {
             color: #1e40af;
-            /* Blue heading */
         }
 
         h3 {
@@ -84,7 +80,6 @@
             opacity: 0.9;
         }
 
-        /* Buzzword Generator styles */
         .buzzword-container {
             padding: 2rem;
             border-radius: 1rem;
@@ -199,7 +194,6 @@
             }
         }
 
-        /* Resume Template Page styles from user-provided code */
         .launcher-container {
             display: flex;
             justify-content: center;
@@ -237,7 +231,6 @@
             color: #1f2937;
         }
 
-        /* UPDATED: Added persistent border-bottom for end-to-end lines */
         .resume-container-full h2 {
             color: #374151;
             border-bottom: 2px solid #e5e7eb !important;
@@ -875,10 +868,7 @@
     </div>
 
     <script type="module">
-        // 1. IMPORT CONFIGURATION
         import { API_BASE_URL } from '../js/config.js';
-
-        // 2. PAGE NAVIGATION LOGIC
         window.showPage = function(pageId) {
             document.getElementById('guide-page').style.display = 'none';
             document.getElementById('students-template').style.display = 'none';
@@ -894,12 +884,10 @@
             window.scrollTo(0, 0);
         }
 
-        // Initialize view
         window.onload = () => {
             showPage('guide-page');
         };
 
-        // 3. PDF DOWNLOAD LOGIC
         window.downloadAsPdf = function(templateType) {
             const element = document.getElementById(templateType + '-content');
             if (element) {
@@ -917,7 +905,6 @@
             }
         }
 
-        // 4. AI BUZZWORD GENERATOR LOGIC
         window.generateBuzzwords = async function() {
             const jobDescription = document.getElementById('job-description').value;
             const loadingIndicator = document.getElementById('loading-indicator');
@@ -934,7 +921,6 @@
             buzzwordList.innerHTML = '';
 
             try {
-                // Pointing to your specific backend route
                 const response = await fetch(`${API_BASE_URL}/api/generate-buzzwords`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -945,7 +931,6 @@
 
                 const data = await response.json();
                 
-                // Assuming backend returns { buzzwords: ["word1", "word2"] }
                 if (data.buzzwords && Array.isArray(data.buzzwords)) {
                     data.buzzwords.forEach(word => {
                         const tag = document.createElement('span');

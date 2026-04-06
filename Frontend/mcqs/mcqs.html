@@ -14,7 +14,7 @@
     :root {
       --primary-color: #ebe9e9;
       --secondary-color: #e2e8f0;
-      --background-color: #1e293b; /* Changed background color for dark theme */
+      --background-color: #1e293b; 
       --card-bg-color: #2d3748;
       --text-color: #e2e8f0;
       --subtle-text-color: #a0aec0;
@@ -28,13 +28,13 @@
       background-color: var(--background-color);
       margin: 0;
       padding: 2rem 1rem;
-      color: var(--text-color); /* Updated text color for new background */
+      color: var(--text-color); 
       line-height: 1.6;
     }
 
     .highlight-section {
       max-width: 1000px;
-      color: var(--text-color); /* Updated text color */
+      color: var(--text-color); 
       margin: 2rem auto;
       padding: 0;
     }
@@ -42,7 +42,7 @@
     .highlight-section h2 {
       font-size: 2.2rem;
       font-weight: 600;
-      color: var(--primary-color); /* Updated text color */
+      color: var(--primary-color); 
       text-align: center;
       border-bottom: 2px solid var(--primary-color);
       padding-bottom: 0.5rem;
@@ -57,21 +57,20 @@
       font-style: italic;
       text-align: center;
       margin-top: 0;
-      color: var(--subtle-text-color); /* Updated text color */
+      color: var(--subtle-text-color); 
       margin-bottom: 2rem;
     }
     
-    /* New container for the adjacent images */
     .image-row {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap; /* Allows images to stack on small screens */
+      flex-wrap: wrap; 
       gap: 1.5rem;
       margin-bottom: 3rem;
     }
 
     .image-container {
-      max-width: 45%; /* Allows two images to sit side-by-side */
+      max-width: 45%;
       text-align: center;
       margin: 0;
     }
@@ -103,8 +102,8 @@
     .flip-box-inner {
       position: relative;
       width: 100%;
-      min-height: 200px; /* Use a minimum height so it's not tiny */
-      height: auto; /* Let the content determine the height */
+      min-height: 200px; 
+      height: auto; 
       text-align: center;
       transition: transform 0.6s ease;
       transform-style: preserve-3d;
@@ -129,8 +128,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 200px; /* Ensure content can push the height */
-      box-sizing: border-box; /* Include padding in the element's total width and height */
+      min-height: 200px; 
+      box-sizing: border-box; 
     }
     
     .flip-box-front {
@@ -223,19 +222,18 @@
       text-decoration: underline;
     }
 
-    /* Styles for the new navigation buttons */
     .navigation-buttons button {
       transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
       border: none;
       cursor: pointer;
-      background: linear-gradient(to right, #2563eb, #3b82f6); /* Initial gradient */
+      background: linear-gradient(to right, #2563eb, #3b82f6); 
       color: white;
     }
 
     .navigation-buttons button:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); /* Enhanced shadow on hover */
-      background: linear-gradient(to right, #3b82f6, #60a5fa); /* Lighter gradient on hover */
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); 
+      background: linear-gradient(to right, #3b82f6, #60a5fa); 
     }
     
     .navigation-buttons button:active {
@@ -367,7 +365,6 @@
     </div>
   </div>
 
-  <!-- MCQ Resource Table -->
   <table class="resource-table">
     <thead>
       <tr>
@@ -441,11 +438,8 @@
     </tbody>
   </table>
 
-  <!-- Added navigation buttons at the end of the container -->
   <div class="navigation-buttons flex justify-between mt-8 max-w-6xl mx-auto">
-    <!-- Links to the previous aptitude page -->
     <button onclick="window.location.href = '../aptitude/aptitude.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Previous</button>
-    <!-- Links to a placeholder for a future coding page -->
     <button onclick="window.location.href = '../quiz/quiz.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
   </div>
   

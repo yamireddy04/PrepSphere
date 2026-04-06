@@ -61,7 +61,6 @@ button:hover.enabled{background:#1d4ed8;}
 <script type="module">
 import { API_BASE_URL } from './js/config.js';
 
-// --- TYPING ANIMATION ---
 const text = "PrepSphere";
 const el = document.getElementById("brandText");
 let index = 0;
@@ -87,7 +86,6 @@ function type() {
 }
 type();
 
-// --- FORM VALIDATION ---
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
@@ -106,7 +104,6 @@ nameInput.addEventListener("input", validate);
 emailInput.addEventListener("input", validate);
 passwordInput.addEventListener("input", validate);
 
-// --- REGISTER LOGIC ---
 document.getElementById("registerForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     try {

@@ -36,7 +36,6 @@
             overflow: hidden;
         }
 
-        /* Subtle mesh background - Not "gamey", just premium */
         .mesh-gradient {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -89,7 +88,6 @@
             margin-right: auto;
         }
 
-        /* Modern Progress Steps */
         .stepper {
             display: flex;
             align-items: center;
@@ -123,7 +121,6 @@
 
         .active .step-label { color: var(--accent-blue); }
 
-        /* The Card */
         .focus-card {
             background: var(--glass);
             border: 1px solid var(--border);
@@ -148,7 +145,6 @@
             line-height: 1.6;
         }
 
-        /* Actions */
         .actions {
             display: flex;
             gap: 1rem;
@@ -220,7 +216,6 @@
     </div>
 
     <script>
-        // Subtle hover interaction for the card
         const card = document.querySelector('.focus-card');
         document.addEventListener('mousemove', (e) => {
             const xAxis = (window.innerWidth / 2 - e.pageX) / 50;

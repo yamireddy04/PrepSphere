@@ -7,22 +7,15 @@ const authRoutes = require("./routes/auth");
 const { extractBuzzwords, generateQuiz, generateMockInterview } = require('./aiService');
 
 const app = express();
-
-// Advanced CORS Configuration
-// This setup allows your local development AND your future Vercel deployment to communicate with Render
 app.use(cors({
     origin: function(origin, callback) {
-        // Allow requests with no origin (mobile apps, curl, etc.)
         if (!origin) return callback(null, true);
-        // Allow all localhost/127.0.0.1 ports
         if (origin.match(/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/)) {
             return callback(null, true);
         }
-        // Allow Vercel deployments
         if (origin.match(/\.vercel\.app$/)) {
             return callback(null, true);
         }
-        // Allow GitHub Pages
         if (origin.match(/\.github\.io$/)) {
             return callback(null, true);
         }
@@ -35,10 +28,8 @@ app.use(cors({
 
 app.use(express.json());
 
-// Routes
 app.use("/api/auth", authRoutes);
 
-// Route 1: Buzzword Generator
 app.post('/api/generate-buzzwords', async (req, res) => {
     try {
         const { jobDescription } = req.body;
@@ -50,7 +41,6 @@ app.post('/api/generate-buzzwords', async (req, res) => {
     }
 });
 
-// Route 2: MCQ Quiz Generator
 app.post('/api/generate-quiz', async (req, res) => {
     try {
         const { content } = req.body;
@@ -63,7 +53,6 @@ app.post('/api/generate-quiz', async (req, res) => {
     }
 });
 
-// Route 3: Mock My Interview Module
 app.post('/api/mock-interview', async (req, res) => {
     try {
         const { jobDescription } = req.body;
@@ -78,14 +67,10 @@ app.post('/api/mock-interview', async (req, res) => {
     }
 });
 
-// MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB Connected Successfully"))
     .catch(err => console.log("MongoDB Connection Error:", err));
 
-// CRITICAL FOR RENDER DEPLOYMENT
-// Render assigns a dynamic port via process.env.PORT. 
-// We must also listen on "0.0.0.0" to allow external traffic.
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server is live and running on port ${PORT}`);

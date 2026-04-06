@@ -2,8 +2,6 @@ const Groq = require("groq-sdk");
 require("dotenv").config();
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-
-// --- 1. BUZZWORD LOGIC (For Resume & Cover Letter) ---
 async function extractBuzzwords(jobDescription) {
     try {
         const chatCompletion = await groq.chat.completions.create({
@@ -31,7 +29,6 @@ async function extractBuzzwords(jobDescription) {
     }
 }
 
-// --- 2. QUIZ LOGIC (For MCQ Generator) ---
 async function generateQuiz(content) {
     try {
         const chatCompletion = await groq.chat.completions.create({
@@ -61,7 +58,6 @@ async function generateQuiz(content) {
     }
 }
 
-// --- 3. MOCK INTERVIEW LOGIC (For Mock My Interview) ---
 async function generateMockInterview(jobDescription) {
     try {
         const chatCompletion = await groq.chat.completions.create({
