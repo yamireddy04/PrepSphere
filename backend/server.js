@@ -67,6 +67,20 @@ app.post('/api/mock-interview', async (req, res) => {
     }
 });
 
+app.post('/api/roadmap', async (req, res) => {
+    try {
+        const { role } = req.body;
+        if (!role) return res.status(400).json({ error: "No job role provided" });
+        
+        const roadmapData = await generateRoadmap(role);
+        if (!roadmapData) throw new Error("AI failed to generate roadmap");
+        
+        res.json(roadmapData);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB Connected Successfully"))
     .catch(err => console.log("MongoDB Connection Error:", err));
