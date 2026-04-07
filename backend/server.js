@@ -2,10 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
 const authRoutes = require("./routes/auth");
-const { extractBuzzwords, generateQuiz, generateMockInterview } = require('./aiService');
-
+const { extractBuzzwords, generateQuiz, generateMockInterview, generateRoadmap } = require('./aiService');
 const app = express();
 app.use(cors({
     origin: function(origin, callback) {
