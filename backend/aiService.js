@@ -92,4 +92,56 @@ async function generateMockInterview(jobDescription) {
     }
 }
 
-module.exports = { extractBuzzwords, generateQuiz, generateMockInterview };
+async function generateRoadmap(jobRole) {
+    try {
+        const chatCompletion = await groq.chat.completions.create({
+            messages: [
+                {
+                    role: "system",
+                    content: `You are a Career Architect specializing in both technology roles and non technology roles. 
+                    Create a hyper-detailed, structured, ordered learning roadmap for the specified job role.
+                    The roadmap must expand on every tool/language/concept. 
+                    Structure the response as a valid JSON object ONLY, with this exact shape:
+
+                    {
+                      "role": "Role Name",
+                      "roadmapSteps": [
+                        {
+                          "title": "Module Title (e.g., Python for ML Data Science)",
+                          "subtitle": "Brief (5-10 word) description of purpose",
+                          "topics": ["Array manipulation with NumPy", "Pandas DataFrames", "Scikit-Learn modeling"],
+                          "resources": [
+                            {"type": "Free/Paid", "name": "Exact Resource Name", "context": "E.g., YouTube series by Sentdex - Watch all videos"}
+                          ],
+                          "practice": ["Build a small tool to...", "Clean a messy dataset and..."]
+                        }
+                      ],
+                      "projectIdeas": [
+                        {
+                          "title": "Example Project Name",
+                          "description": "What is the project and what problem does it solve?",
+                          "stack": ["Python", "Groq API", "Streamlit"]
+                        }
+                      ]
+                    }`
+                },
+                {
+                    role: "user",
+                    content: jobRole
+                }
+            ],
+            model: "llama-3.3-70b-versatile",
+            temperature: 0.6,
+            response_format: { type: "json_object" }
+        });
+
+        return JSON.parse(chatCompletion.choices[0].message.content);
+        
+    } catch (error) {
+        console.error("Groq Roadmap Error:", error.message);
+        return { error: "AI is busy. Please try again." };
+    }
+}
+
+module.exports = { extractBuzzwords, generateQuiz, generateMockInterview, generateRoadmap };
+
