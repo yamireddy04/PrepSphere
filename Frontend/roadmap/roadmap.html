@@ -1,263 +1,145 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Roadmap to Job Success</title>
-  <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
-  <link rel="stylesheet" href="../shared/mobile.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  
-  <style>
-    body {
-      font-family: 'Bookman Old Style', sans-serif;
-      line-height: 1.6;
-      margin: 20px;
-      padding: 0;
-      background-color: #f4f7f6;
-      color: #000000;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap to Job Success | PrepSphere</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+    <link rel="stylesheet" href="../shared/mobile.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Bookman Old Style', sans-serif;
+        }
 
-    h1 {
-      color: #0a4177;
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 2.8em;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      border-bottom: 4px solid #094f7e;
-      padding-bottom: 10px;
-      display: inline-block;
-      width: 100%;
-      box-sizing: border-box;
-      opacity: 0; 
-      animation: fadeIn 1.5s ease-in-out forwards; 
-    }
+        .navigation-buttons button {
+          transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+          border: none;
+          cursor: pointer;
+          background: linear-gradient(to right, #2563eb, #3b82f6);
+          color: white;
+        }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px); 
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+        .navigation-buttons button:hover {
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); 
+          background: linear-gradient(to right, #3b82f6, #60a5fa); 
+        }
+        
+        .navigation-buttons button:active {
+          transform: translateY(0) scale(1);
+          box-shadow: none;
+        }
 
-    h2 {
-      color: #0f60b0;
-      margin-top: 40px;
-      margin-bottom: 20px;
-      font-size: 2em;
-      border-left: 5px solid #3236ac;
-      padding-left: 15px;
-    }
-
-    p {
-      margin-bottom: 15px;
-      font-size: 1.1em;
-      color: #555;
-    }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin-bottom: 30px;
-    }
-
-    ul li {
-      background-color: #ecf0f1;
-      margin-bottom: 10px;
-      padding: 15px 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s ease-in-out;
-    }
-
-    ul li:hover {
-      transform: translateY(-3px);
-    }
-
-    ul li strong {
-      color: #006796c3;
-      font-size: 1.1em;
-    }
-
-    section {
-      background-color: #ffffff;
-      padding: 25px;
-      margin-bottom: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-      border-left: 8px solid #9b59b6;
-    }
-
-    section p strong {
-      color: #8e44ad;
-      font-size: 1.3em;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    section em {
-      color: #3498db;
-      font-style: italic;
-      display: block;
-      margin-top: 10px;
-      border-top: 1px dashed #bdddf6;
-      padding-top: 10px;
-    }
-
-    section:nth-of-type(even) {
-      border-left: 8px solid #0fa9f1;
-    }
-
-    section:nth-of-type(even) p strong {
-      color: #32639e;
-    }
-
-    section:nth-of-type(odd) {
-      border-left: 8px solid #0fa9f1;
-    }
-
-    section:nth-of-type(odd) p strong {
-      color: #1e7cbf;
-    }
-
-    section:last-of-type {
-      text-align: left;
-      border-left: 8px solid #3467c5;
-      margin-top: 50px;
-      padding: 30px;
-    }
-
-    section:last-of-type p {
-      font-size: 1.1em;
-      color: #47545f;
-    }
-
-    section:last-of-type strong {
-      color: #0d9bee;
-      font-size: 1.4em;
-    }
-
-    .bottom-nav-container {
-      text-align: center;
-      margin-top: 50px; 
-      padding: 20px 0;
-      border-top: 1px solid rgba(0, 0, 0, 0.1); 
-    }
-
-    .bottom-nav-button {
-      display: inline-block;
-      margin: 0 20%; 
-      padding: 12px 25px;
-      background-color: rgb(60, 118, 255); 
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 1.1em;
-      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3); 
-      border: none; 
-    }
-
-    .bottom-nav-button:hover {
-      background-color: rgb(3, 124, 195); 
-      transform: translateY(-2px); 
-      box-shadow: 0 6px 15px rgba(0, 191, 255, 0.5); 
-    }
-  </style>
+        .container {
+            max-width: 1200px;
+        }
+    </style>
 </head>
-<body>
-  <h1>Roadmap</h1>
-  <p>
-    A roadmap is a visual plan that outlines the steps necessary to achieve a specific goal.
-    It acts as a guide, showing the path from a starting point to a desired destination.
-  </p>
+<body class="bg-slate-900 text-slate-200">
 
-  <h2>Why Use a Roadmap?</h2>
-  <ul>
-    <li><strong>Clarity and Focus:</strong> A roadmap helps you focus on your goals and avoid distractions.</li>
-    <li><strong>Organisation:</strong> It provides a structured plan for your actions, ensuring you're working efficiently.</li>
-    <li><strong>Problem-Solving:</strong> By anticipating potential challenges, you can develop strategies to overcome them.</li>
-    <li><strong>Accountability:</strong> A roadmap helps you track your progress and stay accountable to your goals.</li>
-  </ul>
-  <div style="text-align: left;">
-    <img src="../images/roadmap.jpeg" alt="Roadmap" style="width: 38%; margin: 1%; display: inline-block;">
-    <img src="../images/roadmap copy.jpeg" alt="Interview" style="width: 55%; margin: 1%; display: inline-block;">
-  </div>
-  <h2>How Does a Roadmap Help?</h2>
+    <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
 
-  <section>
-    <p><strong>1. Provides Clarity and Direction</strong></p>
-    <p>
-      A roadmap helps break down a complex goal into smaller, manageable steps.
-      This gives a clear sense of what needs to be done and in what order, helping avoid confusion or distractions.
-    </p>
-    <p><em>Example: If you're learning web development, a roadmap will show whether you should learn HTML before moving to JavaScript or React.</em></p>
-  </section>
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-md">
+                Roadmap to Success
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
+                A visual plan that outlines the steps necessary to achieve a specific goal. It acts as a guide, showing the path from your starting point to your desired career destination.
+            </p>
+        </header>
 
-  <section>
-    <p><strong>2. Improves Focus and Motivation</strong></p>
-    <p>
-      Having a roadmap keeps you focused on your goals. As you progress through each milestone,
-      you experience a sense of accomplishment, which can boost motivation and confidence.
-    </p>
-  </section>
+        <section class="mb-16 p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
+            <div class="md:flex md:items-center md:space-x-8">
+                <div class="flex-1 md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Why Use a Roadmap?</h2>
+                    <ul class="space-y-4 text-slate-300">
+                        <li>
+                            <strong class="text-blue-400">Clarity and Focus:</strong> Helps you focus on your goals and avoid distractions.
+                        </li>
+                        <li>
+                            <strong class="text-blue-400">Organisation:</strong> Provides a structured plan for your actions, ensuring efficiency.
+                        </li>
+                        <li>
+                            <strong class="text-blue-400">Problem-Solving:</strong> Anticipates potential challenges to develop early strategies.
+                        </li>
+                        <li>
+                            <strong class="text-blue-400">Accountability:</strong> Tracks your progress and keeps you committed to the finish line.
+                        </li>
+                    </ul>
+                </div>
+                <div class="mt-8 md:mt-0 md:w-1/2 flex space-x-2">
+                    <img src="../images/roadmap.jpeg" alt="Roadmap Visualization" class="w-1/2 h-auto rounded-lg shadow-lg">
+                    <img src="../images/roadmap copy.jpeg" alt="Strategic Planning" class="w-1/2 h-auto rounded-lg shadow-lg">
+                </div>
+            </div>
+        </section>
 
-  <section>
-    <p><strong>3. Helps Track Progress</strong></p>
-    <p>
-      With defined stages or checkpoints, a roadmap allows you to measure how far you’ve come
-      and what still needs to be done. This helps in adjusting timelines or strategies if necessary.
-    </p>
-  </section>
+        <section class="mb-16 p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">How Does a Roadmap Help?</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">1. Provides Clarity and Direction</h3>
+                    <p class="text-slate-300 mb-2">Breaks down complex goals into smaller, manageable steps to avoid confusion.</p>
+                    <p class="text-sm text-slate-400 italic border-l-2 border-blue-500 pl-3">Example: Deciding whether to learn HTML before moving to JavaScript or React.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">2. Improves Focus and Motivation</h3>
+                    <p class="text-slate-300">Each milestone reached provides a sense of accomplishment, boosting confidence.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">3. Helps Track Progress</h3>
+                    <p class="text-slate-300">Defined checkpoints allow you to measure how far you've come and adjust timelines.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">4. Resource Allocation</h3>
+                    <p class="text-slate-300 mb-2">Helps in estimating time, effort, and tools needed at each stage.</p>
+                    <p class="text-sm text-slate-400 italic border-l-2 border-blue-500 pl-3">Example: Knowing when to hire developers or start product testing.</p>
+                </div>
+            </div>
+        </section>
 
-  <section>
-    <p><strong>4. Supports Better Planning and Resource Allocation</strong></p>
-    <p>
-      A roadmap helps in estimating time, effort, tools, and resources needed at each stage.
-      This leads to better decision-making and time management.
-    </p>
-    <p><em>Example: In a software project, a roadmap may show when to hire additional developers or start testing.</em></p>
-  </section>
+        <section class="mb-16 p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
+            <div class="md:flex md:items-center md:space-x-8">
+                <div class="flex-1">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Strategic Advantages</h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-300">Enhances Collaboration</h3>
+                            <p class="text-slate-400">Serves as a shared reference for teams, reducing misunderstandings.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-300">Identifies Risks Early</h3>
+                            <p class="text-slate-400">Allows for proactive problem-solving instead of reacting to issues too late.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-300">Long-Term Alignment</h3>
+                            <p class="text-slate-400">Ensures that daily efforts contribute toward a bigger, long-term vision.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <section>
-    <p><strong>5. Enhances Communication and Collaboration</strong></p>
-    <p>
-      In a team setting, a roadmap serves as a shared reference. Everyone understands the timeline,
-      goals, and responsibilities, which reduces misunderstandings and improves coordination.
-    </p>
-  </section>
-
-  <section>
-    <p><strong>6. Identifies Risks and Dependencies Early</strong></p>
-    <p>
-      By mapping out each step, a roadmap helps you foresee potential roadblocks or dependencies.
-      This allows for proactive problem-solving instead of reacting to issues too late.
-    </p>
-  </section>
-
-  <section>
-    <p><strong>7. Aligns Goals with Long-Term Vision</strong></p>
-    <p>
-      Whether for a personal project or an organization, a roadmap keeps short-term actions aligned
-      with long-term objectives. It ensures that daily efforts contribute toward a bigger picture.
-    </p>
-  </section>
-
-    <h2><strong>Conclusion</strong></h2>
-    <p>
-      In summary, a roadmap is a powerful tool for strategic planning. It acts as both a
-      "GUIDE" and a "MEASURING STICK" helping you stay organized,
-      make informed decisions, and successfully reach your goals.
-    </p>
-
-    <div class="bottom-nav-container">
-      <a href="../Phase1/Phase1.html" class="bottom-nav-button">previous</a>
-      <a href="conventional.html" class="bottom-nav-button">next</a>
+        <footer class="p-8 bg-blue-900/30 border border-blue-500/30 rounded-xl shadow-xl text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Conclusion</h2>
+            <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+                A roadmap is a powerful tool for strategic planning. It acts as both a 
+                <span class="text-blue-400 font-bold">"GUIDE"</span> and a 
+                <span class="text-blue-400 font-bold">"MEASURING STICK"</span>, 
+                helping you stay organized and reach your goals.
+            </p>
+        </footer>
+        
     </div>
+
+    <div class="navigation-buttons flex justify-between mt-8 max-w-7xl mx-auto px-4 pb-12">
+      <button onclick="window.location.href = '../Phase1/Phase1.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Previous</button>
+      <button onclick="window.location.href = 'conventional.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
+    </div>
+
 </body>
 </html>
+```
