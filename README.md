@@ -6,194 +6,114 @@
 ![Auth](https://img.shields.io/badge/Auth-JWT-f5a623?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Active-7ecb84?style=flat-square)
 
-A full-stack AI-powered interview preparation platform that supports the complete interview lifecycle — from roadmap selection and structured learning to job application support, mock simulation, and post-interview reflection.
+An end-to-end AI-powered placement preparation platform that takes candidates from zero to job-ready — covering skill building, resume preparation, structured interview practice, mock simulation, and job application strategy in one place.
 
-Built with **Node.js / Express** for the backend and **Vanilla JavaScript** for the frontend.
+Built with **Node.js / Express** on the backend and **Vanilla JavaScript** on the frontend.
 
-🌐 **Live Application:** https://prepsphere000146.vercel.app/ 
-
-**Backend API:** https://prepsphere-o7wh.onrender.com
+🌐 **Live Application:** https://prepsphere000146.vercel.app/
 
 ---
 
 ## 1️⃣ Problem Statement
 
-Interview preparation is often unstructured and inefficient. While candidates may have studied relevant topics, it is difficult to determine:
+Placement preparation is fragmented. Roadmaps live on one site, resume advice on another, aptitude practice somewhere else, and job portals across ten tabs. There is no unified workflow and no clear sense of what to do first.
 
-- How a Job Description maps to specific interview stages
-- Which topics are most important for a given role
-- How to structure preparation in a time-efficient manner
-
-This misalignment leads to scattered effort and poor preparation coverage. PrepSphere addresses this by extracting role-specific signals from Job Descriptions and converting them into organized roadmaps, structured question sets, and simulated mock workflows.
+PrepSphere consolidates the entire placement journey into a single platform structured as three sequential phases, so candidates can go from no preparation to submitting polished applications without switching tools.
 
 ---
 
 ## 2️⃣ Why It Matters
 
-Structured interview preparation directly impacts hiring outcomes. Traditional tools isolate resume guidance, question banks, or mock practice — but offer no unified workflow. PrepSphere bridges this gap by:
-
-- Compressing lengthy Job Descriptions into targeted mastery topics
-- Generating role-aligned question banks automatically
-- Enabling mock simulation with session-tracked performance
-- Supporting candidates across ML, AI, Full-Stack, Data Analytics, and Prompt Engineering roles
-
-For candidates applying to competitive roles, the difference between scattered study and structured preparation is measurable.
-
----
-
-## 3️⃣ Dataset
-
-The system was validated using a curated corpus of structured technical Job Descriptions and concept blocks.
-
-**Role-Specific Job Descriptions**
-
-The dataset included JDs across the following domains:
-
-| Domain | Approximate Length |
+| Use Case | Value |
 |---|---|
-| Machine Learning | 800–1500+ words |
-| AI / LLM Roles | 800–1500+ words |
-| Prompt Engineering | 800–1500+ words |
-| Data Analytics | 800–1500+ words |
-| Full-Stack / Software Development | 800–1500+ words |
-
-**Technical Knowledge Clusters**
-
-The roadmap and MCQ engine were evaluated against structured concept blocks including:
-
-- Java architecture (JVM internals, OOP principles)
-- Python ecosystem (Pandas, NumPy, applied workflows)
-- LLM systems (Transformer architectures, RAG pipelines)
-- Data engineering concepts (ETL / ELT workflows)
-
-This ensured topic alignment, semantic consistency, and structured coverage across all generated outputs.
+| **Students** | End-to-end placement guidance with no prior knowledge of the process required |
+| **Job Seekers** | Single platform replacing a dozen disconnected tools |
+| **Career Switchers** | Role-specific roadmaps and JD-aligned question banks for new domains |
+| **Early Professionals** | Structured post-application strategy including outreach templates |
 
 ---
 
-## 4️⃣ Methodology
+## 3️⃣ Platform — Three Phases
 
-The system follows a structured pipeline:
+### 📘 Phase 1 — Foundation Building
 
-1. User inputs a raw Job Description, academic notes, or custom preparation outline.
-2. NLP-based contextual tokenization extracts domain-specific entities (e.g., ETL workflows, Transformer architectures, JVM components, RAG pipelines).
-3. Extracted entities define the semantic scope for roadmap and question generation.
-4. Structured prompts are sent to the LLM via the Groq inference API.
-5. The backend enforces strict JSON schema validation on all LLM responses.
-6. Schema-constrained outputs are rendered as roadmaps, MCQ sets, and mock sessions.
-7. Session state tracks user accuracy and topic mastery progression.
+Everything a candidate needs before active preparation begins.
 
-```
-User Input (JD / Notes)
-        │
-        ▼
-  [NLP Entity Extraction]
-  - Domain-specific tokenization
-  - Semantic scope definition
-        │
-        ▼
-  [LLM Prompt Orchestration]
-  - Llama 3 via Groq Cloud API
-  - Structured prompt templates
-        │
-        ▼
-  [Schema-Constrained JSON Validation]
-  - MCQ formatting
-  - Roadmap structuring
-        │
-        ▼
-  [Frontend Rendering]
-  - Interactive mock simulation
-  - Session-tracked progress
-```
+| Module | What It Does |
+|---|---|
+| **Roadmap** | Curated technical and non-technical learning paths by role. Includes **Pathfinder** — an AI tool that generates a personalised roadmap (what to learn, what to build, where to learn) from a target role description |
+| **Resume Builder** | Explains ATS, what recruiters look for, and includes a **Buzzword Generator** (paste a JD → get ATS keywords) and an in-platform resume editor with download |
+| **Cover Letter** | Guidance on structure and tone, plus an AI generator that drafts a tailored cover letter from the user's background and target JD |
 
 ---
 
-## 5️⃣ Model Architecture
+### 📗 Phase 2 — Preparation
 
-**System Architecture**
+Full-coverage practice across every round type in a typical placement process.
+
+| Module | What It Does |
+|---|---|
+| **PrepMaster** | Company-specific insights — whether a company is aptitude-heavy, DSA-heavy, or both, with round-by-round breakdowns |
+| **MockIt** | Covers every round: Group Discussion, Aptitude (topic table with resources), JAM, HR Interview, MCQs (subject table + **AI MCQ Generator** with gamified quiz and scoring), and Technical Interview (platforms, resources) |
+| **Mock My Interview (MMI)** | Paste a Job Description → AI extracts core mastery topics and generates a predicted question bank with strategic model answers |
+
+---
+
+### 📙 Phase 3 — HireHub
+
+Guides candidates through the job application lifecycle from start to finish.
+
+| Module | What It Does |
+|---|---|
+| **Job Portals** | Curated, categorised directory of global, Indian, startup, internship, and remote job platforms with guidance on how to use them effectively |
+| **Proactive Outreach** | Cold email, LinkedIn DM, and follow-up strategies with ready-to-use templates — including how to respond professionally after rejection |
+
+---
+
+## 4️⃣ System Architecture
 
 ```
 Client (Vercel) → Express API (Render) → Llama 3 via Groq API → MongoDB Atlas
 ```
 
-| Component | Technology |
-|---|---|
-| LLM | Llama 3 via Groq Cloud API |
-| Backend | Node.js, Express.js |
-| Database | MongoDB Atlas |
-| Authentication | JWT-based |
-| Frontend | Vanilla JavaScript, HTML5, CSS3 |
-| Frontend Hosting | Vercel (Edge Network) |
-| Backend Hosting | Render (auto-deployed via GitHub) |
+**Pipeline**
+1. User inputs a Job Description, notes, or topic
+2. NLP-based entity extraction defines the semantic scope
+3. Structured prompts sent to Llama 3 via Groq API
+4. JSON schema validation enforced on all LLM responses
+5. Schema-constrained outputs rendered as roadmaps, MCQ quizzes, or question banks
 
 **Key Design Principles**
-
-- Decoupled architecture separating the intelligence layer from the client interface
-- Schema-constrained generation enforcing deterministic, frontend-renderable outputs
+- Schema-constrained generation for deterministic, frontend-renderable outputs
 - Non-blocking AI orchestration for near-zero perceived latency
-- Low-latency inference via Groq's acceleration pipeline
+- Modular phase structure for independent extension of each stage
 
 ---
 
-## 6️⃣ Results
+## 5️⃣ Tech Stack
 
-**JD Compression**
-
-Transforms 1000+ word Job Descriptions into:
-- 5–8 Core Mastery Topics
-- Structured Predicted Question Banks
-- Stage-mapped preparation roadmaps
-
-**Pattern Alignment**
-
-Demonstrates consistent thematic mapping across diverse technical domains including ML, LLM systems, data engineering, and full-stack development.
-
-**Performance**
-
-- Near-zero latency via Groq inference engine
-- Non-blocking AI orchestration
-- Smooth interactive mock simulation flow
-- Deterministic frontend rendering via JSON schema enforcement
+| Layer | Technology |
+|---|---|
+| Frontend | Vanilla JavaScript, HTML5, CSS3 |
+| Backend | Node.js, Express.js |
+| LLM Inference | Llama 3 via Groq Cloud API |
+| Database | MongoDB Atlas |
+| Authentication | JWT |
+| Frontend Hosting | Vercel |
+| Backend Hosting | Render |
 
 ---
 
-## 7️⃣ Limitations
+## 6️⃣ How to Run
 
-- **API Rate Constraints:** System throughput depends on the underlying Groq LLM provider limits.
-- **Probabilistic Variability:** Minor output variations may occur due to the non-deterministic nature of generative models.
-- **Cold Start Delay:** Backend hosted on Render's free tier may experience initial latency due to server wake-up time.
-- **Domain Coverage:** Validation was conducted on technical roles; non-technical JD formats have not been evaluated.
-
----
-
-## 8️⃣ Future Work
-
-- Integration of vector databases for persistent semantic memory across sessions
-- Adaptive difficulty scaling based on real-time user performance
-- Topic mastery analytics dashboard with longitudinal tracking
-- Migration toward a microservices architecture for scalable assessment modules
-- Domain-specific fine-tuned model for improved response determinism
-- Resume parsing integration for end-to-end application workflow support
-
----
-
-## 9️⃣ How to Run
-
-**1. Clone Repository**
-
-```bash
-git clone https://github.com/your-username/PrepSphere.git
-cd PrepSphere
-```
-
-**2. Backend Setup**
+**Backend**
 
 ```bash
 cd backend
 npm install
 ```
 
-Create a `.env` file:
+Create `.env`:
 
 ```
 MONGO_URI=your_mongodb_uri
@@ -201,42 +121,59 @@ GROQ_API_KEY=your_groq_key
 JWT_SECRET=your_secret
 ```
 
-Start the backend:
-
 ```bash
 node server.js
 ```
 
-Backend runs on: `http://localhost:10000`
+Runs on `http://localhost:10000`
 
-**3. Frontend Setup**
+**Frontend**
 
-Serve the `Frontend/` folder using a local server (e.g., VS Code Live Server).
-
+Serve the `Frontend/` folder with VS Code Live Server or any static server.
 Entry point: `Frontend/login.html`
-
-Update the API base URL in `Frontend/js/config.js`:
-
-```
-http://localhost:10000
-```
+Update API base URL in `Frontend/js/config.js` to `http://localhost:10000`
 
 ---
 
-## 🔟 Conclusion
+## 7️⃣ Limitations
 
-PrepSphere demonstrates how structured LLM orchestration, schema-constrained generation pipelines, and modular web architecture can be combined to build an intelligent, centralized interview preparation system. By converting unstructured Job Descriptions into actionable mastery roadmaps and targeted mock assessments, the platform addresses a clear gap in existing preparation tools. The emphasis on deterministic output structuring and evaluation-safe AI responses reflects a production-conscious design philosophy, with a clear path toward adaptive, personalized preparation at scale.
+- API throughput depends on Groq rate limits
+- Non-deterministic outputs may vary slightly across identical inputs
+- Render free tier cold start may cause initial latency
+- Preparation progress is not persisted across browser sessions
+- Resume upload and PDF parsing not yet supported
 
 ---
 
-## 🛠 Tech Stack
+## 8️⃣ Future Work
 
-| Layer | Technology |
-|---|---|
-| Frontend | Vanilla JavaScript, HTML5, CSS3 |
-| Backend | Node.js, Express.js |
-| LLM Inference | Llama 3 via Groq API |
-| Database | MongoDB Atlas |
-| Authentication | JWT |
-| Frontend Hosting | Vercel |
-| Backend Hosting | Render |
+- [ ] Resume PDF parsing with gap analysis against a target JD
+- [ ] Adaptive MCQ difficulty based on real-time quiz performance
+- [ ] Application tracker — Kanban board for logging and following up on submissions
+- [ ] Vector memory for cross-session continuity and non-repetitive recommendations
+- [ ] Cross-session analytics dashboard with subject-level accuracy trends
+- [ ] Voice-based mock interview module with LLM evaluation and post-session report
+- [ ] Interview experience database crowd-sourced from real hiring cycles
+- [ ] Domain-specific fine-tuned model for improved response determinism
+
+---
+
+## 9️⃣ Conclusion
+
+PrepSphere addresses a clear gap: placement preparation is scattered and overwhelming for most candidates. By consolidating roadmaps, resume tools, interview practice, mock simulation, and job application strategy into one structured platform, it removes the need to juggle disconnected tools. The focus on schema-constrained AI generation, gamified practice, and actionable templates reflects a design philosophy centred on practical outcomes.
+
+---
+
+<div align="center">
+
+*Built by [Yamini G](https://github.com/yamireddy04)*
+
+<div align="center">
+
+**© 2024 Yamini G. All rights reserved.**
+
+This project is for educational and portfolio purposes. You are welcome to reference or draw inspiration from this work, but please do not copy, reproduce, or redistribute the code, content, or design without explicit credit to the original author.
+
+If you use any part of this project, add a visible credit: **"Inspired by / Based on work by Yamini G — github.com/yamireddy04"**
+
+</div>
