@@ -19,11 +19,8 @@
             --border: #e2e8f0;
             --border-dark: #cbd5e1;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
         html { scroll-behavior: smooth; }
-
         body {
             background-color: var(--white);
             color: var(--slate-900);
@@ -32,7 +29,6 @@
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
-
         nav {
             display: flex;
             justify-content: space-between;
@@ -41,48 +37,174 @@
             border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            background: rgba(255,255,255,0.92);
+            background: rgba(255,255,255,0.95);
             backdrop-filter: blur(16px);
             z-index: 1000;
         }
-
         .logo {
             font-weight: 800;
             letter-spacing: -0.5px;
             font-size: 1.15rem;
             color: var(--slate-900);
             text-decoration: none;
+            flex-shrink: 0;
         }
-
-        .nav-links { display: flex; align-items: center; gap: 0; }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--slate-500);
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.15rem;
+        }
+        .nav-item { position: relative; }
+        .nav-phase-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
             font-size: 0.82rem;
             font-weight: 500;
-            margin-left: 2.2rem;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--slate-900); }
-
-        .btn-nav {
-            background: var(--slate-900) !important;
-            color: var(--white) !important;
-            padding: 0.55rem 1.35rem !important;
+            color: var(--slate-500);
+            padding: 0.48rem 0.85rem;
             border-radius: 6px;
-            font-size: 0.78rem !important;
-            font-weight: 600 !important;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: color 0.2s, background 0.2s;
+            white-space: nowrap;
+        }
+        .nav-phase-btn:hover { color: var(--slate-900); background: var(--slate-50); }
+        .nav-phase-btn svg { transition: transform 0.2s; flex-shrink: 0; }
+        .nav-item:hover .nav-phase-btn { color: var(--slate-900); background: var(--slate-50); }
+        .nav-item:hover .nav-phase-btn svg { transform: rotate(180deg); }
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-6px);
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.5rem;
+            min-width: 185px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.06);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s, transform 0.2s;
+            z-index: 100;
+        }
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown-phase-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--blue-600);
+            padding: 0.4rem 0.75rem 0.6rem;
+            display: block;
+        }
+        .dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.55rem 0.75rem;
+            text-decoration: none;
+            font-size: 0.83rem;
+            font-weight: 500;
+            color: var(--slate-500);
+            border-radius: 6px;
+            transition: background 0.15s, color 0.15s;
+        }
+        .dropdown a:hover { background: var(--slate-50); color: var(--slate-900); }
+        .dropdown-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--border-dark);
+            flex-shrink: 0;
+            transition: background 0.15s;
+        }
+        .dropdown a:hover .dropdown-dot { background: var(--blue-600); }
+        .btn-nav {
+            background: var(--slate-900);
+            color: var(--white);
+            padding: 0.55rem 1.3rem;
+            border-radius: 7px;
+            font-size: 0.8rem;
+            font-weight: 600;
             letter-spacing: 0.3px;
-            transition: all 0.25s !important;
+            text-decoration: none;
+            transition: all 0.25s;
             box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+            margin-left: 0.6rem;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
         }
         .btn-nav:hover {
-            background: #111827 !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+            background: #111827;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transform: translateY(-1px);
         }
-
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.4rem;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--slate-900);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 65px; left: 0; right: 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 6%;
+            z-index: 999;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .mobile-menu.open { display: block; }
+        .mobile-phase-group { margin-bottom: 1.25rem; }
+        .mobile-phase-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--blue-600);
+            margin-bottom: 0.6rem;
+            display: block;
+        }
+        .mobile-phase-links { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .mobile-phase-links a {
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--slate-500);
+            padding: 0.4rem 0.85rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .mobile-phase-links a:hover { color: var(--slate-900); border-color: var(--slate-900); }
+        .mobile-menu-footer { border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 0.5rem; }
         .hero {
             padding: 130px 8% 90px;
             text-align: center;
@@ -90,7 +212,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .hero::before {
             content: '';
             position: absolute;
@@ -99,86 +220,76 @@
             background-size: 40px 40px;
             pointer-events: none;
         }
-
         .hero-main-name {
             font-family: 'Inter', sans-serif;
             font-weight: 800;
-            font-size: clamp(3.5rem, 12vw, 9rem);
+            font-size: clamp(3rem, 11vw, 9rem);
             letter-spacing: -0.04em;
             line-height: 0.85;
             color: var(--slate-900);
             margin-bottom: 2.2rem;
             display: block;
-            position: relative;
             animation: fadeUp 0.8s ease both;
         }
-
         .hero-tagline {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.3rem, 3.5vw, 2.5rem);
+            font-size: clamp(1.2rem, 3vw, 2.5rem);
             font-weight: 700;
             color: var(--slate-500);
             margin-bottom: 1.5rem;
             font-style: italic;
             animation: fadeUp 0.8s 0.1s ease both;
         }
-
         .hero-pipeline-line {
-            max-width: 620px;
+            max-width: 600px;
             margin: 0 auto 1.2rem;
-            font-size: 1.05rem;
+            font-size: clamp(0.92rem, 2vw, 1.05rem);
             color: var(--slate-500);
             font-weight: 400;
             animation: fadeUp 0.8s 0.2s ease both;
         }
-
         .hero-sdcline {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0;
+            flex-wrap: wrap;
             margin: 0 auto 3rem;
             animation: fadeUp 0.8s 0.3s ease both;
         }
-
         .sdc-word {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
+            font-size: clamp(0.58rem, 1.5vw, 0.72rem);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 3px;
             color: var(--slate-900);
-            padding: 0.45rem 1.1rem;
+            padding: 0.45rem 1rem;
             border: 1px solid var(--border-dark);
             border-right: none;
             background: var(--slate-50);
-            position: relative;
         }
         .sdc-word:first-child { border-radius: 5px 0 0 5px; }
         .sdc-word:last-child { border-right: 1px solid var(--border-dark); border-radius: 0 5px 5px 0; }
-
         .sdc-dot {
-            font-family: 'JetBrains Mono', monospace;
             font-size: 0.72rem;
             color: var(--blue-600);
-            padding: 0.45rem 0.3rem;
+            padding: 0.45rem 0.28rem;
             border-top: 1px solid var(--border-dark);
             border-bottom: 1px solid var(--border-dark);
             background: var(--slate-50);
             font-weight: 700;
         }
-
         .cta-group {
             display: flex;
-            gap: 1rem;
+            gap: 0.85rem;
             justify-content: center;
+            flex-wrap: wrap;
             animation: fadeUp 0.8s 0.4s ease both;
         }
-
         .btn-main {
             background: var(--blue-600);
             color: white;
-            padding: 0.9rem 2.4rem;
+            padding: 0.85rem 2.2rem;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.875rem;
@@ -188,20 +299,17 @@
             box-shadow: 0 4px 14px rgba(37,99,235,0.3);
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.45rem;
         }
         .btn-main:hover {
             background: var(--blue-700);
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(37,99,235,0.35);
         }
-        .btn-main .arrow { transition: transform 0.2s; }
-        .btn-main:hover .arrow { transform: translateX(3px); }
-
         .btn-ghost {
             background: transparent;
             color: var(--slate-900);
-            padding: 0.9rem 2.4rem;
+            padding: 0.85rem 2.2rem;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.875rem;
@@ -211,57 +319,43 @@
             letter-spacing: 0.2px;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.45rem;
         }
         .btn-ghost:hover {
             border-color: var(--slate-900);
             background: var(--slate-50);
             transform: translateY(-1px);
         }
-
         .phases-wrapper {
-            padding: 0 8% 0;
+            padding: 0 8%;
             border-top: 1px solid var(--border);
         }
-
         .phases-label {
             padding: 60px 0 40px;
             display: flex;
             align-items: center;
             gap: 1.5rem;
         }
-
         .phases-label h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
             letter-spacing: -0.02em;
+            white-space: nowrap;
         }
-
-        .phases-label-line {
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
+        .phases-label-line { flex: 1; height: 1px; background: var(--border); }
         .phases-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             border-top: 2px solid var(--slate-900);
-            margin: 0 -8%;
-            padding: 0 8%;
-            background: var(--white);
         }
-
         .phase-box {
-            padding: 70px 8% 60px 0;
+            padding: 60px 40px;
             border-right: 1px solid var(--border);
             transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
             position: relative;
             cursor: default;
         }
-        .phase-box:last-child { border-right: none; padding-right: 0; }
-        .phase-box:not(:first-child) { padding-left: 8%; }
-
+        .phase-box:last-child { border-right: none; }
         .phase-box::after {
             content: '';
             position: absolute;
@@ -273,15 +367,10 @@
             transform-origin: left;
         }
         .phase-box:hover::after { transform: scaleX(1); }
-
-        .phase-box:hover {
-            background: var(--slate-900);
-            color: var(--white);
-        }
+        .phase-box:hover { background: var(--slate-900); color: var(--white); }
         .phase-box:hover .phase-desc { opacity: 0.65; }
         .phase-box:hover .phase-tags { color: #60a5fa; }
-        .phase-box:hover .phase-num { color: rgba(255,255,255,0.15); }
-
+        .phase-box:hover .phase-num { color: rgba(255,255,255,0.12); }
         .phase-num {
             font-family: 'Playfair Display', serif;
             font-size: 4.5rem;
@@ -291,38 +380,33 @@
             color: var(--border-dark);
             transition: color 0.5s;
         }
-
         .phase-title {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 0.9rem;
+            margin-bottom: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-
         .phase-desc {
             font-size: 0.875rem;
             opacity: 0.6;
             margin-bottom: 2rem;
             line-height: 1.7;
         }
-
         .phase-tags {
-            font-size: 0.7rem;
+            font-size: 0.67rem;
             font-weight: 700;
             letter-spacing: 1.5px;
             color: var(--blue-600);
             font-family: 'JetBrains Mono', monospace;
             transition: color 0.5s;
         }
-
         .method-section {
             padding: 110px 8%;
             background: var(--slate-900);
             position: relative;
             overflow: hidden;
         }
-
         .method-section::before {
             content: '';
             position: absolute;
@@ -332,41 +416,35 @@
             background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
             pointer-events: none;
         }
-
         .method-top {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6rem;
+            gap: 5rem;
             align-items: start;
-            margin-bottom: 5rem;
+            margin-bottom: 4.5rem;
         }
-
         .method-heading {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
             font-weight: 700;
             color: var(--white);
             line-height: 1.15;
         }
-
         .method-subtext {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: rgba(255,255,255,0.55);
-            line-height: 1.75;
+            line-height: 1.8;
             padding-top: 0.5rem;
         }
-
         .method-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0;
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 12px;
             overflow: hidden;
         }
-
         .method-card {
-            padding: 2.5rem 2rem;
+            padding: 2.4rem 1.9rem;
             border-right: 1px solid rgba(255,255,255,0.08);
             position: relative;
             transition: background 0.3s;
@@ -374,41 +452,35 @@
         }
         .method-card:last-child { border-right: none; }
         .method-card:hover { background: rgba(255,255,255,0.04); }
-
         .method-card-num {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
+            font-size: 0.62rem;
             color: var(--blue-600);
             font-weight: 600;
             letter-spacing: 2px;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.1rem;
             display: block;
         }
-
         .method-card-icon {
-            width: 40px;
-            height: 40px;
+            width: 36px; height: 36px;
             border-radius: 8px;
             background: rgba(37,99,235,0.15);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.1rem;
         }
-
         .method-card h4 {
-            font-size: 1rem;
+            font-size: 0.93rem;
             font-weight: 700;
             color: var(--white);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.7rem;
         }
-
         .method-card p {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: rgba(255,255,255,0.5);
             line-height: 1.7;
         }
-
         .method-card-hover-line {
             position: absolute;
             bottom: 0; left: 0; right: 0;
@@ -418,128 +490,6 @@
             transition: transform 0.3s;
         }
         .method-card:hover .method-card-hover-line { transform: scaleX(1); }
-
-        .why-section {
-            padding: 110px 8%;
-            background: var(--white);
-            border-top: 1px solid var(--border);
-            position: relative;
-        }
-
-        .why-pre {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--blue-600);
-            margin-bottom: 1.2rem;
-            display: block;
-        }
-
-        .why-heading {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            font-weight: 700;
-            max-width: 700px;
-            margin-bottom: 4.5rem;
-            line-height: 1.15;
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2px;
-            background: var(--border);
-        }
-
-        .why-item {
-            background: var(--white);
-            padding: 2.8rem 3rem;
-            position: relative;
-            overflow: hidden;
-            transition: background 0.3s;
-        }
-        .why-item:hover { background: var(--slate-50); }
-
-        .why-item-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 6px;
-            background: rgba(37,99,235,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.2rem;
-        }
-
-        .why-item h3 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--slate-900);
-        }
-
-        .why-item p {
-            font-size: 0.875rem;
-            color: var(--slate-500);
-            line-height: 1.75;
-        }
-
-        .why-item-accent {
-            position: absolute;
-            top: 0; left: 0;
-            width: 3px;
-            height: 0;
-            background: var(--blue-600);
-            transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
-        }
-        .why-item:hover .why-item-accent { height: 100%; }
-
-        .vs-table {
-            margin-top: 5rem;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .vs-table-header {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            background: var(--slate-900);
-            padding: 1.2rem 2rem;
-        }
-
-        .vs-table-header span {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .vs-table-header span:nth-child(2) { color: #60a5fa; }
-
-        .vs-row {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            padding: 1.1rem 2rem;
-            border-top: 1px solid var(--border);
-            align-items: center;
-            transition: background 0.2s;
-        }
-        .vs-row:hover { background: var(--slate-50); }
-
-        .vs-row span:first-child {
-            font-size: 0.9rem;
-            color: var(--slate-500);
-            font-weight: 500;
-        }
-
-        .vs-check {
-            font-size: 1rem;
-        }
-
         .stats-strip {
             padding: 60px 8%;
             background: var(--slate-50);
@@ -550,47 +500,31 @@
             gap: 2rem;
             text-align: center;
         }
-
-        .stat-item {}
-
         .stat-num {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 900;
             color: var(--slate-900);
             letter-spacing: -0.03em;
             line-height: 1;
             margin-bottom: 0.4rem;
         }
-
         .stat-num span { color: var(--blue-600); }
-
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.72rem;
             color: var(--slate-500);
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
-        .contact-section {
+        .why-section {
             padding: 110px 8%;
             background: var(--white);
             border-top: 1px solid var(--border);
         }
-
-        .contact-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8rem;
-            align-items: start;
-        }
-
-        .contact-left {}
-
-        .contact-pre {
+        .why-pre {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
+            font-size: 0.63rem;
             font-weight: 600;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -598,50 +532,130 @@
             margin-bottom: 1.2rem;
             display: block;
         }
-
+        .why-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 3.2rem);
+            font-weight: 700;
+            max-width: 700px;
+            margin-bottom: 4rem;
+            line-height: 1.15;
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: var(--border);
+        }
+        .why-item {
+            background: var(--white);
+            padding: 2.5rem 2.8rem;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+        .why-item:hover { background: var(--slate-50); }
+        .why-item-accent {
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 0;
+            background: var(--blue-600);
+            transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .why-item:hover .why-item-accent { height: 100%; }
+        .why-item-icon {
+            width: 34px; height: 34px;
+            border-radius: 6px;
+            background: rgba(37,99,235,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.1rem;
+        }
+        .why-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--slate-900); }
+        .why-item p { font-size: 0.855rem; color: var(--slate-500); line-height: 1.75; }
+        .vs-table {
+            margin-top: 4.5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .vs-table-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            background: var(--slate-900);
+            padding: 1.1rem 2rem;
+        }
+        .vs-table-header span {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.45);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .vs-table-header span:nth-child(2) { color: #60a5fa; }
+        .vs-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            padding: 1rem 2rem;
+            border-top: 1px solid var(--border);
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .vs-row:hover { background: var(--slate-50); }
+        .vs-row span:first-child { font-size: 0.875rem; color: var(--slate-500); font-weight: 500; }
+        .vs-check-yes { color: var(--blue-600); font-weight: 700; font-size: 1rem; }
+        .vs-check-no { color: var(--slate-400); font-size: 0.82rem; font-weight: 500; }
+        .contact-section {
+            padding: 110px 8%;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 7rem;
+            align-items: start;
+        }
+        .contact-pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.63rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blue-600);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
         .contact-heading {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-size: clamp(1.7rem, 3vw, 2.8rem);
             font-weight: 700;
             line-height: 1.15;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.4rem;
         }
-
-        .contact-desc {
-            font-size: 1rem;
-            color: var(--slate-500);
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-        }
-
-        .contact-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
+        .contact-desc { font-size: 0.95rem; color: var(--slate-500); line-height: 1.8; margin-bottom: 2.5rem; }
+        .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
         .contact-link-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem 1.2rem;
+            gap: 0.9rem;
+            padding: 0.9rem 1.1rem;
             border: 1px solid var(--border);
             border-radius: 8px;
             text-decoration: none;
             color: var(--slate-900);
             transition: all 0.25s;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
         }
         .contact-link-item:hover {
             border-color: var(--blue-600);
             background: rgba(37,99,235,0.03);
             transform: translateX(4px);
         }
-
         .contact-link-icon {
-            width: 32px;
-            height: 32px;
+            width: 30px; height: 30px;
             border-radius: 6px;
             background: var(--slate-100);
             display: flex;
@@ -649,34 +663,30 @@
             justify-content: center;
             flex-shrink: 0;
         }
-
         .contact-form { display: flex; flex-direction: column; gap: 1rem; }
-
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
         .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-
         .form-group label {
-            font-size: 0.78rem;
+            font-size: 0.7rem;
             font-weight: 600;
             color: var(--slate-900);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
         .form-group input,
         .form-group textarea,
         .form-group select {
-            padding: 0.8rem 1rem;
+            padding: 0.78rem 1rem;
             border: 1.5px solid var(--border);
             border-radius: 7px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             color: var(--slate-900);
             outline: none;
             transition: border-color 0.2s, box-shadow 0.2s;
             background: var(--white);
             width: 100%;
+            -webkit-appearance: none;
         }
         .form-group input:focus,
         .form-group textarea:focus,
@@ -684,20 +694,14 @@
             border-color: var(--blue-600);
             box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
         }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
+        .form-group textarea { resize: vertical; min-height: 110px; }
         .form-group select { cursor: pointer; }
-
         .btn-submit {
             background: var(--blue-600);
             color: white;
-            padding: 0.95rem 2.2rem;
+            padding: 0.88rem 2.2rem;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             border-radius: 8px;
             border: none;
             cursor: pointer;
@@ -707,14 +711,34 @@
             align-self: flex-start;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.45rem;
         }
         .btn-submit:hover {
             background: var(--blue-700);
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(37,99,235,0.35);
         }
-
+        .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        .form-success {
+            display: none;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 2rem 1.8rem;
+            text-align: center;
+        }
+        .form-success.visible { display: block; }
+        .form-success-icon {
+            width: 48px; height: 48px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.1rem;
+        }
+        .form-success h4 { font-size: 1.05rem; font-weight: 700; color: #15803d; margin-bottom: 0.5rem; }
+        .form-success p { font-size: 0.875rem; color: #16a34a; line-height: 1.6; }
         .cta-band {
             padding: 100px 8%;
             background: var(--slate-900);
@@ -722,7 +746,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .cta-band::before {
             content: '';
             position: absolute;
@@ -730,34 +753,35 @@
             background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
             background-size: 32px 32px;
         }
-
         .cta-band h2 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 700;
             color: var(--white);
             margin-bottom: 1.2rem;
             position: relative;
         }
-
-        .cta-band p {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-
-        .cta-band .btn-main {
+        .cta-band p { font-size: 1.05rem; color: rgba(255,255,255,0.5); margin-bottom: 2.5rem; position: relative; }
+        .btn-cta-white {
             background: var(--white);
             color: var(--slate-900);
+            padding: 0.9rem 2.4rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            transition: all 0.3s;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
             position: relative;
         }
-        .cta-band .btn-main:hover {
+        .btn-cta-white:hover {
             background: var(--slate-100);
             box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+            transform: translateY(-2px);
         }
-
         footer {
             padding: 50px 8%;
             border-top: 1px solid var(--border);
@@ -766,50 +790,80 @@
             align-items: center;
             color: var(--slate-400);
             font-size: 0.78rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
-
-        .footer-links { display: flex; gap: 2rem; align-items: center; }
-        .footer-links a {
-            text-decoration: none;
-            color: var(--slate-400);
-            transition: color 0.2s;
-        }
+        .footer-links { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+        .footer-links a { text-decoration: none; color: var(--slate-400); transition: color 0.2s; }
         .footer-links a:hover { color: var(--slate-900); }
-
-        .footer-repo {
-            text-decoration: none;
-            color: var(--blue-600);
-            font-weight: 600;
-            font-size: 0.78rem;
-        }
-
+        .footer-repo { text-decoration: none; color: var(--blue-600); font-weight: 600; }
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .scroll-reveal {
             opacity: 0;
             transform: translateY(24px);
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: none;
+        .scroll-reveal.revealed { opacity: 1; transform: none; }
+        @media (max-width: 1024px) {
+            nav { padding: 1.25rem 6%; }
+            .hero { padding: 100px 6% 70px; }
+            .phases-wrapper { padding: 0 6%; }
+            .phase-box { padding: 50px 32px; }
+            .method-section { padding: 80px 6%; }
+            .method-top { gap: 3rem; }
+            .stats-strip { padding: 50px 6%; }
+            .why-section { padding: 80px 6%; }
+            .contact-section { padding: 80px 6%; }
+            footer { padding: 40px 6%; }
+            .cta-band { padding: 80px 6%; }
         }
-
-        @media (max-width: 900px) {
-            .hero-main-name { font-size: 4rem; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero { padding: 90px 6% 60px; }
+            .phases-wrapper { padding: 0 6%; }
             .phases-grid { grid-template-columns: 1fr; }
-            .phase-box { border-right: none; padding: 50px 0; }
-            .method-top { grid-template-columns: 1fr; gap: 2rem; }
+            .phase-box {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 45px 6%;
+            }
+            .phase-box:last-child { border-bottom: none; }
+            .method-section { padding: 70px 6%; }
+            .method-top { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; }
             .method-cards { grid-template-columns: 1fr; }
             .method-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+            .method-card:last-child { border-bottom: none; }
+            .stats-strip { padding: 50px 6%; grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
+            .why-section { padding: 70px 6%; }
             .why-grid { grid-template-columns: 1fr; }
-            .stats-strip { grid-template-columns: repeat(2, 1fr); }
-            .contact-inner { grid-template-columns: 1fr; gap: 4rem; }
-            .form-row { grid-template-columns: 1fr; }
+            .why-item { padding: 2rem 1.8rem; }
             .vs-table { display: none; }
+            .contact-section { padding: 70px 6%; }
+            .contact-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .cta-band { padding: 70px 6%; }
+            footer { padding: 35px 6%; flex-direction: column; align-items: flex-start; gap: 1.2rem; }
+            .footer-links { gap: 1.2rem; }
+        }
+        @media (max-width: 480px) {
+            .hero { padding: 80px 5% 50px; }
+            .cta-group { flex-direction: column; align-items: center; }
+            .btn-main, .btn-ghost { width: 100%; justify-content: center; }
+            .phases-wrapper { padding: 0 5%; }
+            .phase-box { padding: 40px 5%; }
+            .method-section { padding: 60px 5%; }
+            .stats-strip { padding: 40px 5%; }
+            .why-section { padding: 60px 5%; }
+            .why-item { padding: 1.8rem 1.5rem; }
+            .contact-section { padding: 60px 5%; }
+            .cta-band { padding: 60px 5%; }
+            footer { padding: 30px 5%; }
+            .phases-label { padding: 40px 0 28px; }
+            .phases-label h2 { font-size: 1.7rem; }
         }
     </style>
 </head>
@@ -818,11 +872,76 @@
     <nav>
         <a href="#" class="logo">PrepSphere</a>
         <div class="nav-links">
-            <a href="#about">System</a>
-            <a href="#why">Why PrepSphere</a>
-            <a href="#contact">Contact</a>
+            <div class="nav-item">
+                <button class="nav-phase-btn">
+                    Phase 1
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="dropdown">
+                    <span class="dropdown-phase-label">Foundation</span>
+                    <a href="#"><span class="dropdown-dot"></span>Roadmap</a>
+                    <a href="#"><span class="dropdown-dot"></span>Pathfinder</a>
+                    <a href="#"><span class="dropdown-dot"></span>Resume</a>
+                    <a href="#"><span class="dropdown-dot"></span>Cover Letter</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <button class="nav-phase-btn">
+                    Phase 2
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="dropdown">
+                    <span class="dropdown-phase-label">Mastery</span>
+                    <a href="#"><span class="dropdown-dot"></span>Intervyu</a>
+                    <a href="#"><span class="dropdown-dot"></span>MockIt</a>
+                    <a href="#"><span class="dropdown-dot"></span>MockMyInterview</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <button class="nav-phase-btn">
+                    Phase 3
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="dropdown">
+                    <span class="dropdown-phase-label">Outreach</span>
+                    <a href="#"><span class="dropdown-dot"></span>HireHub</a>
+                </div>
+            </div>
+            <a href="https://prepsphere000146.vercel.app/" class="btn-nav">Launch App →</a>
         </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-phase-group">
+            <span class="mobile-phase-title">Phase 1 — Foundation</span>
+            <div class="mobile-phase-links">
+                <a href="#">Roadmap</a>
+                <a href="#">Pathfinder</a>
+                <a href="#">Resume</a>
+                <a href="#">Cover Letter</a>
+            </div>
+        </div>
+        <div class="mobile-phase-group">
+            <span class="mobile-phase-title">Phase 2 — Mastery</span>
+            <div class="mobile-phase-links">
+                <a href="#">Intervyu</a>
+                <a href="#">MockIt</a>
+                <a href="#">MockMyInterview</a>
+            </div>
+        </div>
+        <div class="mobile-phase-group">
+            <span class="mobile-phase-title">Phase 3 — Outreach</span>
+            <div class="mobile-phase-links">
+                <a href="#">HireHub</a>
+            </div>
+        </div>
+        <div class="mobile-menu-footer">
+            <a href="https://prepsphere000146.vercel.app/" class="btn-main" style="justify-content:center;width:100%;">Launch App →</a>
+        </div>
+    </div>
 
     <header class="hero">
         <span class="hero-main-name">PREPSPHERE</span>
@@ -836,7 +955,7 @@
             <span class="sdc-word">Complete</span>
         </div>
         <div class="cta-group">
-            <a href="exp/exp.html" class="btn-main">Begin Journey <span class="arrow">→</span></a>
+            <a href="https://prepsphere000146.vercel.app/" class="btn-main">Begin Journey →</a>
             <a href="#about" class="btn-ghost">Explore System</a>
         </div>
     </header>
@@ -878,12 +997,11 @@
                 <p class="method-subtext">We've replaced the dozen tabs of chaos with a structured workflow. PrepSphere is built for those who value time and clarity — a single pipeline from zero to offer.</p>
             </div>
         </div>
-
         <div class="method-cards scroll-reveal">
             <div class="method-card">
                 <span class="method-card-num">01 / ASSETS</span>
                 <div class="method-card-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
                 </div>
                 <h4>Resume Engineering</h4>
                 <p>Move beyond templates. Generate JD-aligned roadmaps and ATS-engineered resumes in minutes.</p>
@@ -892,7 +1010,7 @@
             <div class="method-card">
                 <span class="method-card-num">02 / MASTERY</span>
                 <div class="method-card-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <h4>Interview Simulation</h4>
                 <p>High-fidelity mock sessions and predicted Q&A banks that bridge the gap between knowledge and delivery.</p>
@@ -901,7 +1019,7 @@
             <div class="method-card">
                 <span class="method-card-num">03 / CLOSURE</span>
                 <div class="method-card-icon">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.7h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.7h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
                 <h4>Professional Outreach</h4>
                 <p>Close the loop with professional outreach engines and follow-up logic used by industry veterans.</p>
@@ -932,12 +1050,11 @@
     <section class="why-section" id="why">
         <span class="why-pre scroll-reveal">Why PrepSphere</span>
         <h2 class="why-heading scroll-reveal">Built different.<br>Because the market demanded it.</h2>
-
         <div class="why-grid scroll-reveal">
             <div class="why-item">
                 <div class="why-item-accent"></div>
                 <div class="why-item-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
                 </div>
                 <h3>Sequential, Not Scattered</h3>
                 <p>Most tools give you features. PrepSphere gives you a workflow. Every module is ordered by dependency — foundation first, closure last. No guessing what to do next.</p>
@@ -945,7 +1062,7 @@
             <div class="why-item">
                 <div class="why-item-accent"></div>
                 <div class="why-item-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
                 </div>
                 <h3>JD-Specific Intelligence</h3>
                 <p>Generic prep is dead weight. PrepSphere tailors every output — roadmaps, resume bullets, mock questions — to the exact job description you're targeting.</p>
@@ -953,7 +1070,7 @@
             <div class="why-item">
                 <div class="why-item-accent"></div>
                 <div class="why-item-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="3"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="3"/></svg>
                 </div>
                 <h3>End-to-End Coverage</h3>
                 <p>From crafting your first resume to sending the perfect follow-up email post-interview — PrepSphere covers the entire career transition arc without gaps.</p>
@@ -961,14 +1078,13 @@
             <div class="why-item">
                 <div class="why-item-accent"></div>
                 <div class="why-item-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                 </div>
                 <h3>ATS-First Philosophy</h3>
-                <p>Every resume output is engineered to pass automated screening systems before it ever reaches a human. Format, keyword density, and section hierarchy are all optimized.</p>
+                <p>Every resume output is engineered to pass automated screening before it reaches a human. Format, keyword density, and section hierarchy are all optimized.</p>
             </div>
         </div>
-
-        <div class="vs-table scroll-reveal" style="margin-top: 4rem;">
+        <div class="vs-table scroll-reveal">
             <div class="vs-table-header">
                 <span>CAPABILITY</span>
                 <span>PREPSPHERE</span>
@@ -976,85 +1092,93 @@
             </div>
             <div class="vs-row">
                 <span>Structured phase-based workflow</span>
-                <span class="vs-check" style="color: #2563eb; font-weight: 700;">✓</span>
-                <span class="vs-check" style="color: #94a3b8;">✗</span>
+                <span class="vs-check-yes">✓</span>
+                <span class="vs-check-no">✗</span>
             </div>
             <div class="vs-row">
                 <span>JD-aligned resume generation</span>
-                <span class="vs-check" style="color: #2563eb; font-weight: 700;">✓</span>
-                <span class="vs-check" style="color: #94a3b8;">Partial</span>
+                <span class="vs-check-yes">✓</span>
+                <span class="vs-check-no">Partial</span>
             </div>
             <div class="vs-row">
                 <span>Predicted interview Q&A banks</span>
-                <span class="vs-check" style="color: #2563eb; font-weight: 700;">✓</span>
-                <span class="vs-check" style="color: #94a3b8;">✗</span>
+                <span class="vs-check-yes">✓</span>
+                <span class="vs-check-no">✗</span>
             </div>
             <div class="vs-row">
                 <span>Professional outreach templates</span>
-                <span class="vs-check" style="color: #2563eb; font-weight: 700;">✓</span>
-                <span class="vs-check" style="color: #94a3b8;">✗</span>
+                <span class="vs-check-yes">✓</span>
+                <span class="vs-check-no">✗</span>
             </div>
             <div class="vs-row">
                 <span>ATS-engineered formatting</span>
-                <span class="vs-check" style="color: #2563eb; font-weight: 700;">✓</span>
-                <span class="vs-check" style="color: #94a3b8;">Partial</span>
+                <span class="vs-check-yes">✓</span>
+                <span class="vs-check-no">Partial</span>
             </div>
         </div>
     </section>
 
     <section class="contact-section" id="contact">
         <div class="contact-inner">
-            <div class="contact-left scroll-reveal">
+            <div class="scroll-reveal">
                 <span class="contact-pre">Reach Out</span>
                 <h2 class="contact-heading">Got questions?<br>We're here.</h2>
                 <p class="contact-desc">Whether you're figuring out if PrepSphere fits your timeline, need help navigating the platform, or want to share feedback — reach out directly.</p>
                 <div class="contact-links">
                     <a href="https://github.com/yamireddy04" class="contact-link-item" target="_blank">
                         <div class="contact-link-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                         </div>
                         View System Repository
                     </a>
                     <a href="https://prepsphere000146.vercel.app/" class="contact-link-item" target="_blank">
                         <div class="contact-link-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                         </div>
                         Launch PrepSphere App
                     </a>
                 </div>
             </div>
-
-            <div class="contact-form scroll-reveal" style="transition-delay:0.15s">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" placeholder="Arjun">
+            <div class="scroll-reveal" style="transition-delay:0.15s">
+                <div id="contactForm" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="firstName" placeholder="Arjun">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="lastName" placeholder="Reddy">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" placeholder="Reddy">
+                        <label>Email Address</label>
+                        <input type="email" id="emailField" placeholder="you@college.edu">
                     </div>
+                    <div class="form-group">
+                        <label>Topic</label>
+                        <select id="topicField">
+                            <option value="">Select a topic...</option>
+                            <option>Platform Guidance</option>
+                            <option>Feature Request</option>
+                            <option>Bug Report</option>
+                            <option>Collaboration</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="messageField" placeholder="Tell us what's on your mind..."></textarea>
+                    </div>
+                    <button class="btn-submit" id="submitBtn" type="button" onclick="submitForm()">Send Message →</button>
                 </div>
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" placeholder="you@college.edu">
+                <div class="form-success" id="formSuccess">
+                    <div class="form-success-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <h4>Message Received!</h4>
+                    <p>Thanks for reaching out. We'll get back to you at <strong id="confirmedEmail"></strong> within 24–48 hours.</p>
                 </div>
-                <div class="form-group">
-                    <label>Topic</label>
-                    <select>
-                        <option value="">Select a topic...</option>
-                        <option>Platform Guidance</option>
-                        <option>Feature Request</option>
-                        <option>Bug Report</option>
-                        <option>Collaboration</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Message</label>
-                    <textarea placeholder="Tell us what's on your mind..."></textarea>
-                </div>
-                <button class="btn-submit" type="button">Send Message <span>→</span></button>
             </div>
         </div>
     </section>
@@ -1062,7 +1186,7 @@
     <section class="cta-band">
         <h2>Your next offer starts here.</h2>
         <p>Stop preparing in fragments. Start with a system.</p>
-        <a href="exp/exp.html" class="btn-main">Begin Journey <span class="arrow">→</span></a>
+        <a href="https://prepsphere000146.vercel.app/" class="btn-cta-white">Begin Journey →</a>
     </section>
 
     <footer>
@@ -1078,13 +1202,64 @@
     <script>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('revealed');
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('open');
+                mobileMenu.classList.remove('open');
+            }
+        });
+
+        function submitForm() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('emailField').value.trim();
+            const topic = document.getElementById('topicField').value;
+            const message = document.getElementById('messageField').value.trim();
+
+            if (!firstName || !email || !message) {
+                const missing = [];
+                if (!firstName) missing.push('First Name');
+                if (!email) missing.push('Email Address');
+                if (!message) missing.push('Message');
+                alert('Please fill in: ' + missing.join(', '));
+                return;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
+            const subject = encodeURIComponent('PrepSphere Contact: ' + (topic || 'General Inquiry') + ' — ' + firstName + ' ' + lastName);
+            const body = encodeURIComponent(
+                'Name: ' + firstName + ' ' + lastName + '\n' +
+                'Email: ' + email + '\n' +
+                'Topic: ' + (topic || 'Not specified') + '\n\n' +
+                'Message:\n' + message
+            );
+
+            window.location.href = 'mailto:prepsphere146@gmail.com?subject=' + subject + '&body=' + body;
+
+            setTimeout(() => {
+                document.getElementById('confirmedEmail').textContent = email;
+                document.getElementById('contactForm').style.display = 'none';
+                document.getElementById('formSuccess').classList.add('visible');
+            }, 800);
+        }
     </script>
 
 </body>
