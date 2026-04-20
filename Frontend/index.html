@@ -1,445 +1,1092 @@
-<link rel="icon" type="image/jpeg" href="images/logo.jpeg">
-<link rel="stylesheet" href="shared/mobile.css">
-<script>
-  if(!localStorage.getItem("token")){
-    window.location.href="login.html";
-  }
-</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PrepSphere | Ultimate Prep Guide</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepSphere | Intelligence in Placement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --slate-900: #020617;
+            --blue-600: #2563eb;
+            --blue-700: #1d4ed8;
+            --slate-500: #64748b;
+            --slate-400: #94a3b8;
+            --slate-100: #f1f5f9;
+            --slate-50: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --border-dark: #cbd5e1;
+        }
 
-    body {
-      font-family: 'Bookman Old Style', sans-serif;
-      background-color: #f4f6fa;
-      color: #1f2937;
-      line-height: 1.6;
-    }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    header {
-      background-color: #111827;
-      color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        html { scroll-behavior: smooth; }
 
-    .bodoni-heading {
-      font-family: 'Bodoni 72 Smallcaps', serif;
-      font-size: 2.5rem;
-      font-variant: small-caps;
-      color: #60a5fa;
-    }
+        body {
+            background-color: var(--white);
+            color: var(--slate-900);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
 
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 8%;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px);
+            z-index: 1000;
+        }
 
-    nav a {
-      color: #e5e7eb;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem;
-    }
+        .logo {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            font-size: 1.15rem;
+            color: var(--slate-900);
+            text-decoration: none;
+        }
 
-    nav a:hover {
-      color: #3b82f6;
-    }
+        .nav-links { display: flex; align-items: center; gap: 0; }
 
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--slate-500);
+            font-size: 0.82rem;
+            font-weight: 500;
+            margin-left: 2.2rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--slate-900); }
 
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #1f2937;
-      min-width: 180px;
-      z-index: 1;
-      border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
+        .btn-nav {
+            background: var(--slate-900) !important;
+            color: var(--white) !important;
+            padding: 0.55rem 1.35rem !important;
+            border-radius: 6px;
+            font-size: 0.78rem !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.3px;
+            transition: all 0.25s !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+        .btn-nav:hover {
+            background: #111827 !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+            transform: translateY(-1px);
+        }
 
-    .dropdown-content a {
-      color: #e5e7eb;
-      padding: 0.75rem 1rem;
-      display: block;
-      text-decoration: none;
-    }
+        .hero {
+            padding: 130px 8% 90px;
+            text-align: center;
+            background: radial-gradient(50% 50% at 50% -10%, rgba(37,99,235,0.06) 0%, rgba(255,255,255,0) 100%);
+            position: relative;
+            overflow: hidden;
+        }
 
-    .dropdown-content a:hover {
-      background-color: #374151;
-      color: #60a5fa;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(circle, rgba(37,99,235,0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
 
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
+        .hero-main-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: clamp(3.5rem, 12vw, 9rem);
+            letter-spacing: -0.04em;
+            line-height: 0.85;
+            color: var(--slate-900);
+            margin-bottom: 2.2rem;
+            display: block;
+            position: relative;
+            animation: fadeUp 0.8s ease both;
+        }
 
-    .hero {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: linear-gradient(to right, #3b82f6, #6366f1);
-      color: white;
-    }
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.3rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--slate-500);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            animation: fadeUp 0.8s 0.1s ease both;
+        }
 
-    .hero img {
-      max-width: 320px;
-      margin-bottom: 2rem;
-      border-radius: 12px;
-    }
+        .hero-pipeline-line {
+            max-width: 620px;
+            margin: 0 auto 1.2rem;
+            font-size: 1.05rem;
+            color: var(--slate-500);
+            font-weight: 400;
+            animation: fadeUp 0.8s 0.2s ease both;
+        }
 
-    .hero .bradley {
-      font-family: 'Bradley Hand', cursive;
-      font-size: 1.8rem;
-      margin-top: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
+        .hero-sdcline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            margin: 0 auto 3rem;
+            animation: fadeUp 0.8s 0.3s ease both;
+        }
 
-    .hero button {
-      background-color: white;
-      color: #3b82f6;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+        .sdc-word {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--slate-900);
+            padding: 0.45rem 1.1rem;
+            border: 1px solid var(--border-dark);
+            border-right: none;
+            background: var(--slate-50);
+            position: relative;
+        }
+        .sdc-word:first-child { border-radius: 5px 0 0 5px; }
+        .sdc-word:last-child { border-right: 1px solid var(--border-dark); border-radius: 0 5px 5px 0; }
 
-    .hero button:hover {
-      background-color: #e0e7ff;
-    }
+        .sdc-dot {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            color: var(--blue-600);
+            padding: 0.45rem 0.3rem;
+            border-top: 1px solid var(--border-dark);
+            border-bottom: 1px solid var(--border-dark);
+            background: var(--slate-50);
+            font-weight: 700;
+        }
 
-    .section {
-      padding: 3rem 2rem;
-      max-width: 1200px;
-      margin: auto;
-    }
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            animation: fadeUp 0.8s 0.4s ease both;
+        }
 
-    .section h3 {
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #1e3a8a;
-    }
+        .btn-main {
+            background: var(--blue-600);
+            color: white;
+            padding: 0.9rem 2.4rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+            letter-spacing: 0.2px;
+            box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-main:hover {
+            background: var(--blue-700);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37,99,235,0.35);
+        }
+        .btn-main .arrow { transition: transform 0.2s; }
+        .btn-main:hover .arrow { transform: translateX(3px); }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-    }
+        .btn-ghost {
+            background: transparent;
+            color: var(--slate-900);
+            padding: 0.9rem 2.4rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            border: 1.5px solid var(--border-dark);
+            transition: all 0.3s;
+            letter-spacing: 0.2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-ghost:hover {
+            border-color: var(--slate-900);
+            background: var(--slate-50);
+            transform: translateY(-1px);
+        }
 
-    .feature-box {
-      background-color: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-      transition: transform 0.3s;
-    }
+        .phases-wrapper {
+            padding: 0 8% 0;
+            border-top: 1px solid var(--border);
+        }
 
-    .feature-box:hover {
-      transform: translateY(-5px);
-    }
+        .phases-label {
+            padding: 60px 0 40px;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
 
-    .feature-box h4 {
-      margin-bottom: 0.8rem;
-      color: #2563eb;
-    }
+        .phases-label h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            letter-spacing: -0.02em;
+        }
 
-    .illustrations {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
+        .phases-label-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
 
-    .illustrations img {
-      max-width: 300px;
-      height: auto;
-      border-radius: 12px;
-    }
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 2px solid var(--slate-900);
+            margin: 0 -8%;
+            padding: 0 8%;
+            background: var(--white);
+        }
 
-    footer {
-      background-color: #111827;
-      color: #d1d5db;
-      text-align: center;
-      padding: 1.5rem 1rem;
-      margin-top: 3rem;
-    }
+        .phase-box {
+            padding: 70px 8% 60px 0;
+            border-right: 1px solid var(--border);
+            transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
+            position: relative;
+            cursor: default;
+        }
+        .phase-box:last-child { border-right: none; padding-right: 0; }
+        .phase-box:not(:first-child) { padding-left: 8%; }
 
-    footer a {
-      color: #93c5fd;
-      text-decoration: none;
-      margin: 0 0.5rem;
-    }
+        .phase-box::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--blue-600);
+            transform: scaleX(0);
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+            transform-origin: left;
+        }
+        .phase-box:hover::after { transform: scaleX(1); }
 
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.4);
-      align-items: center;
-      justify-content: center;
-    }
+        .phase-box:hover {
+            background: var(--slate-900);
+            color: var(--white);
+        }
+        .phase-box:hover .phase-desc { opacity: 0.65; }
+        .phase-box:hover .phase-tags { color: #60a5fa; }
+        .phase-box:hover .phase-num { color: rgba(255,255,255,0.15); }
 
-    .modal-content {
-      background-color: #fefefe;
-      padding: 2rem;
-      border: 1px solid #888;
-      width: 90%;
-      max-width: 600px;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-      position: relative;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
+        .phase-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.8rem;
+            color: var(--border-dark);
+            transition: color 0.5s;
+        }
 
-    .close-btn {
-      color: #aaa;
-      float: right;
-      font-size: 2rem;
-      font-weight: bold;
-      position: absolute;
-      top: 10px;
-      right: 20px;
-    }
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
 
-    .close-btn:hover,
-    .close-btn:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
+        .phase-desc {
+            font-size: 0.875rem;
+            opacity: 0.6;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
 
-    .modal-content h3 {
-      text-align: center;
-      color: #1e3a8a;
-      margin-bottom: 1.5rem;
-    }
+        .phase-tags {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--blue-600);
+            font-family: 'JetBrains Mono', monospace;
+            transition: color 0.5s;
+        }
 
-    .contact-info {
-      text-align: center;
-      margin-top: 1rem;
-    }
+        .method-section {
+            padding: 110px 8%;
+            background: var(--slate-900);
+            position: relative;
+            overflow: hidden;
+        }
 
-    .contact-info a {
-      color: #3b82f6;
-      text-decoration: underline;
-    }
+        .method-section::before {
+            content: '';
+            position: absolute;
+            top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
 
-    .privacy-policy-content h4 {
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #2563eb;
-    }
+        .method-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+            margin-bottom: 5rem;
+        }
 
-    .privacy-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
+        .method-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--white);
+            line-height: 1.15;
+        }
 
-    .privacy-buttons button {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        .method-subtext {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.75;
+            padding-top: 0.5rem;
+        }
 
-    .accept-btn {
-      background-color: #459648;
-      color: white;
-    }
+        .method-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
 
-    .decline-btn {
-      background-color: #f93b3b;
-      color: white;
-    }
-    @media (max-width: 768px) {
-  .container {
-    width: 95vw !important;
-    height: auto !important;
-    flex-direction: column !important;
-  }
-  .left {
-    width: 100% !important;
-    padding: 32px 24px !important;
-  }
-  .right {
-    display: none !important;
-  }
-}
-  </style>
+        .method-card {
+            padding: 2.5rem 2rem;
+            border-right: 1px solid rgba(255,255,255,0.08);
+            position: relative;
+            transition: background 0.3s;
+            cursor: default;
+        }
+        .method-card:last-child { border-right: none; }
+        .method-card:hover { background: rgba(255,255,255,0.04); }
+
+        .method-card-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--blue-600);
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .method-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(37,99,235,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .method-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+
+        .method-card p {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+        }
+
+        .method-card-hover-line {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--blue-600);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        .method-card:hover .method-card-hover-line { transform: scaleX(1); }
+
+        .why-section {
+            padding: 110px 8%;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            position: relative;
+        }
+
+        .why-pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blue-600);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .why-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            max-width: 700px;
+            margin-bottom: 4.5rem;
+            line-height: 1.15;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px;
+            background: var(--border);
+        }
+
+        .why-item {
+            background: var(--white);
+            padding: 2.8rem 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+        .why-item:hover { background: var(--slate-50); }
+
+        .why-item-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            background: rgba(37,99,235,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .why-item h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--slate-900);
+        }
+
+        .why-item p {
+            font-size: 0.875rem;
+            color: var(--slate-500);
+            line-height: 1.75;
+        }
+
+        .why-item-accent {
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--blue-600);
+            transition: height 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .why-item:hover .why-item-accent { height: 100%; }
+
+        .vs-table {
+            margin-top: 5rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .vs-table-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            background: var(--slate-900);
+            padding: 1.2rem 2rem;
+        }
+
+        .vs-table-header span {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .vs-table-header span:nth-child(2) { color: #60a5fa; }
+
+        .vs-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            padding: 1.1rem 2rem;
+            border-top: 1px solid var(--border);
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .vs-row:hover { background: var(--slate-50); }
+
+        .vs-row span:first-child {
+            font-size: 0.9rem;
+            color: var(--slate-500);
+            font-weight: 500;
+        }
+
+        .vs-check {
+            font-size: 1rem;
+        }
+
+        .stats-strip {
+            padding: 60px 8%;
+            background: var(--slate-50);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {}
+
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--slate-900);
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .stat-num span { color: var(--blue-600); }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--slate-500);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-section {
+            padding: 110px 8%;
+            background: var(--white);
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            align-items: start;
+        }
+
+        .contact-left {}
+
+        .contact-pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blue-600);
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .contact-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-desc {
+            font-size: 1rem;
+            color: var(--slate-500);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-link-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--slate-900);
+            transition: all 0.25s;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .contact-link-item:hover {
+            border-color: var(--blue-600);
+            background: rgba(37,99,235,0.03);
+            transform: translateX(4px);
+        }
+
+        .contact-link-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: var(--slate-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+        .form-group label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--slate-900);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.8rem 1rem;
+            border: 1.5px solid var(--border);
+            border-radius: 7px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--slate-900);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            background: var(--white);
+            width: 100%;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--blue-600);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group select { cursor: pointer; }
+
+        .btn-submit {
+            background: var(--blue-600);
+            color: white;
+            padding: 0.95rem 2.2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.2px;
+            box-shadow: 0 4px 14px rgba(37,99,235,0.25);
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-submit:hover {
+            background: var(--blue-700);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37,99,235,0.35);
+        }
+
+        .cta-band {
+            padding: 100px 8%;
+            background: var(--slate-900);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .cta-band h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
+
+        .cta-band p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .cta-band .btn-main {
+            background: var(--white);
+            color: var(--slate-900);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .cta-band .btn-main:hover {
+            background: var(--slate-100);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+        }
+
+        footer {
+            padding: 50px 8%;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--slate-400);
+            font-size: 0.78rem;
+        }
+
+        .footer-links { display: flex; gap: 2rem; align-items: center; }
+        .footer-links a {
+            text-decoration: none;
+            color: var(--slate-400);
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--slate-900); }
+
+        .footer-repo {
+            text-decoration: none;
+            color: var(--blue-600);
+            font-weight: 600;
+            font-size: 0.78rem;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (max-width: 900px) {
+            .hero-main-name { font-size: 4rem; }
+            .phases-grid { grid-template-columns: 1fr; }
+            .phase-box { border-right: none; padding: 50px 0; }
+            .method-top { grid-template-columns: 1fr; gap: 2rem; }
+            .method-cards { grid-template-columns: 1fr; }
+            .method-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+            .why-grid { grid-template-columns: 1fr; }
+            .stats-strip { grid-template-columns: repeat(2, 1fr); }
+            .contact-inner { grid-template-columns: 1fr; gap: 4rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .vs-table { display: none; }
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <h1 class="bodoni-heading">PrepSphere</h1>
     <nav>
-      <a href="./index.html">Home</a>
-
-      <div class="dropdown">
-        <a href="#">Phase 1</a>
-        <div class="dropdown-content">
-          <a href="roadmap/roadmap.html">Roadmap</a>
-          <a href="resume/resume.html">Resume</a>
-          <a href="coverletter/coverletter.html">Cover Letter</a>
+        <a href="#" class="logo">PrepSphere</a>
+        <div class="nav-links">
+            <a href="#about">System</a>
+            <a href="#why">Why PrepSphere</a>
+            <a href="#contact">Contact</a>
+            <a href="https://prepsphere000146.vercel.app/" class="btn-nav">Launch App →</a>
         </div>
-      </div>
-
-      <div class="dropdown">
-        <a href="#">Phase 2</a>
-        <div class="dropdown-content">
-          <a href="intervyu/intervyu.html">Intervyu :</a>
-          <a href="prepmaster/prepmaster.html">PrepMaster</a>
-          <a href="MockIt/mockit.html">MockIt</a>
-          <a href="mmi/mmi.html">MockMyInterview</a>
-        </div>
-      </div>
-
-      <div class="dropdown">
-        <a href="#">Phase 3</a>
-        <div class="dropdown-content">
-          <a href="hirehub/hirehub.html">HireHub</a>
-        </div>
-      </div>
-      <a href="login.html">Login</a>
-      <a href="register.html">Register</a>
     </nav>
-  </header>
 
-  <section class="hero">
-    <div class="bradley">The Ultimate Interview Prep Guide: Prepare, Practice, Succeed.</div>
-    <button onclick="window.location.href='exp/exp.html'">Get Started</button>
-  </section>
+    <header class="hero">
+        <span class="hero-main-name">PREPSPHERE</span>
+        <h1 class="hero-tagline">The Intelligence Standard in Placement Preparation.</h1>
+        <p class="hero-pipeline-line">A unified, sequential pipeline engineered to eliminate the fragmentation of career transitions.</p>
+        <div class="hero-sdcline">
+            <span class="sdc-word">Structured</span>
+            <span class="sdc-dot">·</span>
+            <span class="sdc-word">Deterministic</span>
+            <span class="sdc-dot">·</span>
+            <span class="sdc-word">Complete</span>
+        </div>
+        <div class="cta-group">
+            <a href="https://prepsphere000146.vercel.app/" class="btn-main">Begin Journey <span class="arrow">→</span></a>
+            <a href="#about" class="btn-ghost">Explore System</a>
+        </div>
+    </header>
 
-  <section class="section">
-    <h3>Why PrepSphere .... ?</h3>
-    <div class="features">
-      <div class="feature-box">
-        <h4>Your One-Stop Interview Prep Guide</h4>
-        <p>PrepSphere brings everything under one roof — from resume preparation to post-interview reflection.</p>
-      </div>
-      <div class="feature-box">
-        <h4>Comprehensive Interview Insights</h4>
-        <p>We provide in-depth guidance on the entire interview process — covering the what, why, and how of every interview round.</p>
-      </div>
-      <div class="feature-box">
-        <h4>Mock Questions & Practice Resources</h4>
-        <p>Master your next interview with an extensive library of mock questions, aptitude challenges, and coding tasks. Dive into structured resources and topic-wise quizzes designed to sharpen your skills and build your confidence through focused practice.</p>
-      </div>
-      <div class="feature-box">
-        <h4>AI-Powered Modules</h4>
-        <p>Prepsphere is an AI-driven preparation ecosystem that transforms job descriptions and raw data into targeted mock interviews, custom assessments, and optimized resume content to ensure comprehensive candidate readiness.</p>
-      </div>
+    <div class="phases-wrapper" id="phases">
+        <div class="phases-label">
+            <h2>The Phases</h2>
+            <div class="phases-label-line"></div>
+        </div>
     </div>
-  </section>
 
-  <footer>
-    <p>&copy; 2024 PrepSphere. All rights reserved.</p>
-    <p>
-      <a href="#" onclick="openModal('contactModal')">Contact Us</a> |
-      <a href="#" onclick="openModal('privacyModal')">Privacy Policy</a>
-    </p>
-  </footer>
+    <section class="phases-grid">
+        <div class="phase-box scroll-reveal">
+            <div class="phase-num">01</div>
+            <div class="phase-title">Foundation</div>
+            <p class="phase-desc">Building core professional identity through JD-aligned roadmaps and resume engineering.</p>
+            <p class="phase-tags">PATHFINDER AI • ATS INTEL</p>
+        </div>
+        <div class="phase-box scroll-reveal" style="transition-delay:0.1s">
+            <div class="phase-num">02</div>
+            <div class="phase-title">Mastery</div>
+            <p class="phase-desc">High-fidelity interview simulations designed to bridge the gap between knowledge and delivery.</p>
+            <p class="phase-tags">PREDICTED Q&A • MCQ DRILLS</p>
+        </div>
+        <div class="phase-box scroll-reveal" style="transition-delay:0.2s">
+            <div class="phase-num">03</div>
+            <div class="phase-title">Outreach</div>
+            <p class="phase-desc">Strategically closing the loop with professional outreach engines and offer-capture templates.</p>
+            <p class="phase-tags">COLD OUTREACH • FOLLOW-UP LOGIC</p>
+        </div>
+    </section>
 
-  <div id="contactModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('contactModal')">&times;</span>
-      <h3>Contact Us</h3>
-      <p>Have a question or need support? You can reach us by email at:</p>
-      <div class="contact-info">
-        <p><a href="mailto:prepsphere146@gmail.com">prepsphere146@gmail.com</a></p>
-      </div>
+    <section class="method-section" id="about">
+        <div class="method-top scroll-reveal">
+            <div>
+                <h2 class="method-heading">High-fidelity preparation.<br>Unified in one system.</h2>
+            </div>
+            <div>
+                <p class="method-subtext">We've replaced the dozen tabs of chaos with a structured workflow. PrepSphere is built for those who value time and clarity — a single pipeline from zero to offer.</p>
+            </div>
+        </div>
+
+        <div class="method-cards scroll-reveal">
+            <div class="method-card">
+                <span class="method-card-num">01 / ASSETS</span>
+                <div class="method-card-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <h4>Resume Engineering</h4>
+                <p>Move beyond templates. Generate JD-aligned roadmaps and ATS-engineered resumes in minutes.</p>
+                <div class="method-card-hover-line"></div>
+            </div>
+            <div class="method-card">
+                <span class="method-card-num">02 / MASTERY</span>
+                <div class="method-card-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <h4>Interview Simulation</h4>
+                <p>High-fidelity mock sessions and predicted Q&A banks that bridge the gap between knowledge and delivery.</p>
+                <div class="method-card-hover-line"></div>
+            </div>
+            <div class="method-card">
+                <span class="method-card-num">03 / CLOSURE</span>
+                <div class="method-card-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.7h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <h4>Professional Outreach</h4>
+                <p>Close the loop with professional outreach engines and follow-up logic used by industry veterans.</p>
+                <div class="method-card-hover-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-strip scroll-reveal">
+        <div class="stat-item">
+            <div class="stat-num">3<span>×</span></div>
+            <div class="stat-label">Faster Prep Cycle</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num"><span>~</span>0</div>
+            <div class="stat-label">Tab Chaos</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">100<span>%</span></div>
+            <div class="stat-label">Structured Workflow</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-num">1</div>
+            <div class="stat-label">Unified Pipeline</div>
+        </div>
     </div>
-  </div>
 
-  <div id="privacyModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeModal('privacyModal')">&times;</span>
-      <h3>Privacy Policy</h3>
-      <div class="privacy-policy-content">
-        <p>Your privacy is important to us. This policy outlines how we collect, use, and protect your information when you use our services.</p>
+    <section class="why-section" id="why">
+        <span class="why-pre scroll-reveal">Why PrepSphere</span>
+        <h2 class="why-heading scroll-reveal">Built different.<br>Because the market demanded it.</h2>
 
-        <h4>Information We Collect</h4>
-        <p>We collect personal information that you provide to us, such as your name and email address, when you register for an account, subscribe to our newsletter, or contact us. We also collect usage data, such as IP addresses and browsing behavior, to improve our services.</p>
+        <div class="why-grid scroll-reveal">
+            <div class="why-item">
+                <div class="why-item-accent"></div>
+                <div class="why-item-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h3>Sequential, Not Scattered</h3>
+                <p>Most tools give you features. PrepSphere gives you a workflow. Every module is ordered by dependency — foundation first, closure last. No guessing what to do next.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-item-accent"></div>
+                <div class="why-item-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+                </div>
+                <h3>JD-Specific Intelligence</h3>
+                <p>Generic prep is dead weight. PrepSphere tailors every output — roadmaps, resume bullets, mock questions — to the exact job description you're targeting.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-item-accent"></div>
+                <div class="why-item-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="3"/></svg>
+                </div>
+                <h3>End-to-End Coverage</h3>
+                <p>From crafting your first resume to sending the perfect follow-up email post-interview — PrepSphere covers the entire career transition arc without gaps.</p>
+            </div>
+            <div class="why-item">
+                <div class="why-item-accent"></div>
+                <div class="why-item-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>ATS-First Philosophy</h3>
+                <p>Every resume output is engineered to pass automated screening systems before it ever reaches a human. Format, keyword density, and section hierarchy are all optimized.</p>
+            </div>
+        </div>
 
-        <h4>How We Use Your Information</h4>
-        <p>We use your information to provide, maintain, and improve our services, to communicate with you about your account, and to send you updates and promotional materials. We may also use data for research and analytics to enhance user experience.</p>
+        <div class="vs-table scroll-reveal" style="margin-top: 4rem;">
+            <div class="vs-table-header">
+                <span>CAPABILITY</span>
+                <span>PREPSPHERE</span>
+                <span>OTHERS</span>
+            </div>
+            <div class="vs-row">
+                <span>Structured phase-based workflow</span>
+                <span class="vs-check" style="color: #2563eb; font-weight: 700;">✓</span>
+                <span class="vs-check" style="color: #94a3b8;">✗</span>
+            </div>
+            <div class="vs-row">
+                <span>JD-aligned resume generation</span>
+                <span class="vs-check" style="color: #2563eb; font-weight: 700;">✓</span>
+                <span class="vs-check" style="color: #94a3b8;">Partial</span>
+            </div>
+            <div class="vs-row">
+                <span>Predicted interview Q&A banks</span>
+                <span class="vs-check" style="color: #2563eb; font-weight: 700;">✓</span>
+                <span class="vs-check" style="color: #94a3b8;">✗</span>
+            </div>
+            <div class="vs-row">
+                <span>Professional outreach templates</span>
+                <span class="vs-check" style="color: #2563eb; font-weight: 700;">✓</span>
+                <span class="vs-check" style="color: #94a3b8;">✗</span>
+            </div>
+            <div class="vs-row">
+                <span>ATS-engineered formatting</span>
+                <span class="vs-check" style="color: #2563eb; font-weight: 700;">✓</span>
+                <span class="vs-check" style="color: #94a3b8;">Partial</span>
+            </div>
+        </div>
+    </section>
 
-        <h4>Data Protection</h4>
-        <p>We implement a variety of security measures to maintain the safety of your personal information. We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties without your consent.</p>
+    <section class="contact-section" id="contact">
+        <div class="contact-inner">
+            <div class="contact-left scroll-reveal">
+                <span class="contact-pre">Reach Out</span>
+                <h2 class="contact-heading">Got questions?<br>We're here.</h2>
+                <p class="contact-desc">Whether you're figuring out if PrepSphere fits your timeline, need help navigating the platform, or want to share feedback — reach out directly.</p>
+                <div class="contact-links">
+                    <a href="https://github.com/yamireddy04" class="contact-link-item" target="_blank">
+                        <div class="contact-link-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        </div>
+                        View System Repository
+                    </a>
+                    <a href="https://prepsphere000146.vercel.app/" class="contact-link-item" target="_blank">
+                        <div class="contact-link-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </div>
+                        Launch PrepSphere App
+                    </a>
+                </div>
+            </div>
 
-        <h4>Third-Party Links</h4>
-        <p>Our website may contain links to third-party sites. We are not responsible for the privacy practices or the content of these external sites.</p>
+            <div class="contact-form scroll-reveal" style="transition-delay:0.15s">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" placeholder="Arjun">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" placeholder="Reddy">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="you@college.edu">
+                </div>
+                <div class="form-group">
+                    <label>Topic</label>
+                    <select>
+                        <option value="">Select a topic...</option>
+                        <option>Platform Guidance</option>
+                        <option>Feature Request</option>
+                        <option>Bug Report</option>
+                        <option>Collaboration</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea placeholder="Tell us what's on your mind..."></textarea>
+                </div>
+                <button class="btn-submit" type="button">Send Message <span>→</span></button>
+            </div>
+        </div>
+    </section>
 
-        <h4>Your Consent</h4>
-        <p>By using our site, you consent to our privacy policy.</p>
+    <section class="cta-band">
+        <h2>Your next offer starts here.</h2>
+        <p>Stop preparing in fragments. Start with a system.</p>
+        <a href="https://prepsphere000146.vercel.app/" class="btn-main">Begin Journey <span class="arrow">→</span></a>
+    </section>
 
-        <h4>Changes to This Policy</h4>
-        <p>We reserve the right to update this privacy policy at any time. We will notify you of any changes by posting the new policy on this page.</p>
-      </div>
-      <div class="privacy-buttons">
-        <button class="accept-btn" onclick="handlePrivacyPolicy('accept')">Accept</button>
-        <button class="decline-btn" onclick="handlePrivacyPolicy('decline')">Decline</button>
-      </div>
-    </div>
-  </div>
+    <footer>
+        <p>© 2024 PREPSPHERE. ALL RIGHTS RESERVED.</p>
+        <div class="footer-links">
+            <a href="#about">System</a>
+            <a href="#why">Why PrepSphere</a>
+            <a href="#contact">Contact</a>
+            <a href="https://github.com/yamireddy04" class="footer-repo">GitHub ↗</a>
+        </div>
+    </footer>
 
-  <script>
-    const contactModal = document.getElementById('contactModal');
-    const privacyModal = document.getElementById('privacyModal');
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    function openModal(modalId) {
-      document.getElementById(modalId).style.display = 'flex';
-    }
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
 
-    function closeModal(modalId) {
-      document.getElementById(modalId).style.display = 'none';
-    }
-
-    function handlePrivacyPolicy(action) {
-      if (action === 'accept') {
-        alert('You have accepted the privacy policy.');
-      } else {
-        alert('You have declined the privacy policy.');
-      }
-      closeModal('privacyModal');
-    }
-
-    window.onclick = function(event) {
-      if (event.target == contactModal) {
-        contactModal.style.display = 'none';
-      }
-      if (event.target == privacyModal) {
-        privacyModal.style.display = 'none';
-      }
-    }
-  </script>
 </body>
 </html>
