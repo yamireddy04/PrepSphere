@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MCQ|PrepSphere | Ultimate Prep Guide</title>
+  <title>MCQ | PrepSphere-Ultimate Prep Guide</title>
   <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
   <link rel="stylesheet" href="../shared/mobile.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,7 @@
     }
     
     body {
-      font-family: 'Bookman Old Style', sans-serif;
+      font-family: 'Inter', sans-serif; /* Updated to Inter for consistency, fallback to sans-serif */
       background-color: var(--background-color);
       margin: 0;
       padding: 2rem 1rem;
@@ -174,6 +174,7 @@
       margin-bottom: 0.3rem;
     }
 
+    /* --- FIX FOR TABLE ALIGNMENT --- */
     .resource-table {
       width: 100%;
       max-width: 1000px;
@@ -184,23 +185,38 @@
       background-color: var(--card-bg-color);
       border-radius: var(--border-radius);
       overflow: hidden;
+      table-layout: fixed; /* Ensures columns respect widths */
     }
 
     .resource-table th,
     .resource-table td {
-      padding: 1rem 1.5rem;
-      text-align: left;
+      padding: 1.25rem 1rem;
       border-bottom: 1px solid #2d3748;
+      vertical-align: middle;
     }
+
+    /* Align text to center for better visual balance */
+    .resource-table th:nth-child(1), .resource-table td:nth-child(1),
+    .resource-table th:nth-child(3), .resource-table td:nth-child(3),
+    .resource-table th:nth-child(4), .resource-table td:nth-child(4) {
+      text-align: center;
+    }
+
+    /* Subject Name remains left-aligned for readability */
+    .resource-table th:nth-child(2), .resource-table td:nth-child(2) {
+      text-align: left;
+      padding-left: 2rem;
+    }
+
+    /* Define column widths */
+    .resource-table th:nth-child(1) { width: 10%; }
+    .resource-table th:nth-child(2) { width: 45%; }
+    .resource-table th:nth-child(3) { width: 20%; }
+    .resource-table th:nth-child(4) { width: 25%; }
 
     .resource-table thead tr {
       background-color: #222935;
       color: #fff;
-    }
-
-    .resource-table th:first-child,
-    .resource-table td:first-child {
-      border-left: none;
     }
 
     .resource-table tr:last-child td {
@@ -213,13 +229,18 @@
     }
 
     .resource-table a {
-      color: var(--primary-color);
+      color: #60a5fa; /* Brighter blue for links in dark mode */
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background: rgba(37, 99, 235, 0.1);
+      transition: all 0.2s;
     }
 
     .resource-table a:hover {
-      text-decoration: underline;
+      background: rgba(37, 99, 235, 0.25);
+      color: #93c5fd;
     }
 
     .navigation-buttons button {
@@ -246,38 +267,26 @@
       body {
         padding: 1rem;
       }
-      h1 {
-        font-size: 2.5rem;
-      }
-      .tagline {
-        font-size: 1rem;
-      }
       .highlight-section h2 {
         font-size: 1.5rem;
-        width: auto;
       }
-      .flip-box-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .flip-box {
-        max-width: 90%;
-      }
-      .resource-table, .resource-table tbody, .resource-table tr, .resource-table td {
-        display: block;
-        width: 100%;
+      .resource-table {
+        table-layout: auto;
       }
       .resource-table thead {
         display: none;
+      }
+      .resource-table tbody, .resource-table tr, .resource-table td {
+        display: block;
+        width: 100%;
       }
       .resource-table tr {
         margin-bottom: 1rem;
         border: 1px solid var(--card-bg-color);
         border-radius: var(--border-radius);
-        box-shadow: var(--shadow-light);
       }
       .resource-table td {
-        text-align: right;
+        text-align: right !important;
         padding: 0.75rem 1rem;
         border-bottom: 1px solid #2d3748;
       }
@@ -286,10 +295,11 @@
         float: left;
         font-weight: 600;
         text-transform: uppercase;
-        color: var(--primary-color);
+        color: var(--subtle-text-color);
       }
-      .resource-table td:last-child {
-        border-bottom: 0;
+      .resource-table a {
+          background: none;
+          padding: 0;
       }
     }
   </style>
@@ -379,61 +389,61 @@
         <td data-label="S.No">1</td>
         <td data-label="Subject Name">C</td>
         <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=irqbmMNs2Bo" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1mLZ_5AXFQ-Gz1kUNAfH8ZfuV03DNefdv/view?usp=sharing">Practice</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1mLZ_5AXFQ-Gz1kUNAfH8ZfuV03DNefdv/view?usp=sharing" target="_blank">Practice</a></td>
       </tr>
       <tr>
         <td data-label="S.No">2</td>
         <td data-label="Subject Name">C++</td>
         <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1-vR0ECJTnKtqjRuafvn6AoNPoAdVglYu/view?usp=sharing">Practice</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1-vR0ECJTnKtqjRuafvn6AoNPoAdVglYu/view?usp=sharing" target="_blank">Practice</a></td>
       </tr>
       <tr>
         <td data-label="S.No">3</td>
         <td data-label="Subject Name">Java</td>
         <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=UmnCZ7-9yDY" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/13rY8Gh0WtNj9ZNm0Pasq7rWC43Ngkrf6/view?usp=sharing">Practice</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/13rY8Gh0WtNj9ZNm0Pasq7rWC43Ngkrf6/view?usp=sharing" target="_blank">Practice</a></td>
       </tr>
       <tr>
         <td data-label="S.No">4</td>
         <td data-label="Subject Name">Python</td>
         <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=vLqTf2b6GZw" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1FjUGmPLAg7KUQpDc5f1pqUQbq3Im4gCo/view?usp=sharing">Practice</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1FjUGmPLAg7KUQpDc5f1pqUQbq3Im4gCo/view?usp=sharing" target="_blank">Practice</a></td>
       </tr>
       <tr>
         <td data-label="S.No">5</td>
         <td data-label="Subject Name">DBMS</td>
         <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=xHJ8Gtm0ILg" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1jJijLzPXmK0tIWEnUG-yXsey8k_L4ZGY/view?usp=sharing">Practice</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1jJijLzPXmK0tIWEnUG-yXsey8k_L4ZGY/view?usp=sharing" target="_blank">Practice</a></td>
       </tr>
       <tr>
         <td data-label="S.No">6</td>
         <td data-label="Subject Name">OS</td>
         <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=8XBtAjKwCm4" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1-ZegyQ-2tihNFnaj2sO2XQOYJTASfuzc/view?usp=sharing">Practice</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1-ZegyQ-2tihNFnaj2sO2XQOYJTASfuzc/view?usp=sharing" target="_blank">Practice</a></td>
       </tr>
       <tr>
         <td data-label="S.No">7</td>
         <td data-label="Subject Name">CN</td>
         <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=qUBHLZEtS0M" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1Dv21Gkz0xBWG9DzzVcJ4chpSVEAF6qM2/view?usp=sharing">Practice</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1Dv21Gkz0xBWG9DzzVcJ4chpSVEAF6qM2/view?usp=sharing" target="_blank">Practice</a></td>
       </tr>
       <tr>
         <td data-label="S.No">8</td>
         <td data-label="Subject Name">SQL</td>
         <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=hlGoQC332VM" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1mfMff6cDu629H7TWCnzaqnhedIJ088tr/view?usp=sharing">Practice</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1mfMff6cDu629H7TWCnzaqnhedIJ088tr/view?usp=sharing" target="_blank">Practice</a></td>
       </tr>
       <tr>
         <td data-label="S.No">9</td>
         <td data-label="Subject Name">Front End(HTML,CSS,Js)</td>
         <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=hddqkYK5eMQ" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1r7G9iFNVDBHEn25GgADsLoSJUwKdjg-Q/view?usp=sharing">Practice</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1r7G9iFNVDBHEn25GgADsLoSJUwKdjg-Q/view?usp=sharing" target="_blank">Practice</a></td>
       </tr>
       <tr>
         <td data-label="S.No">10</td>
         <td data-label="Subject Name">Back End</td>
         <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=1lqRA_8ArqU" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1MYCAkJkl8OWoltnwd7JTkkADL2KAQeYb/view?usp=sharing">Practice</a></td>
+        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1MYCAkJkl8OWoltnwd7JTkkADL2KAQeYb/view?usp=sharing" target="_blank">Practice</a></td>
       </tr>
     </tbody>
   </table>
@@ -443,7 +453,5 @@
     <button onclick="window.location.href = '../quiz/quiz.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
   </div>
   
-  <script>
-  </script>
 </body>
 </html>
