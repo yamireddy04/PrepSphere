@@ -3,140 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roadmap | PrepSphere</title>
+    <title>Roadmap to Job Success | PrepSphere</title>
     <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
-    <link rel="stylesheet" href="../shared/mobile.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
         body {
-            font-family: 'Bookman Old Style', sans-serif;
+            font-family: 'Inter', 'Bookman Old Style', sans-serif;
+            background-color: #0f172a;
         }
 
-        .navigation-buttons button {
-          transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-          border: none;
-          cursor: pointer;
-          background: linear-gradient(to right, #2563eb, #3b82f6);
-          color: white;
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
-        .navigation-buttons button:hover {
-          transform: translateY(-3px) scale(1.02);
-          box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); 
-          background: linear-gradient(to right, #3b82f6, #60a5fa); 
-        }
-        
-        .navigation-buttons button:active {
-          transform: translateY(0) scale(1);
-          box-shadow: none;
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
         }
 
-        .container {
-            max-width: 1200px;
+        .nav-btn {
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+            transition: all 0.3s transform;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-200">
+<body class="text-slate-200 leading-relaxed">
 
-    <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
-
-        <header class="text-center mb-16">
-            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-md">
-                Roadmap 
+    <div class="max-w-6xl mx-auto px-6 py-16">
+        <header class="text-center mb-20">
+            <span class="text-blue-400 font-semibold tracking-widest uppercase text-sm">Strategic Planning</span>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mt-4 mb-6">
+                Roadmap to Success
             </h1>
-            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
-                A visual plan that outlines the steps necessary to achieve a specific goal. It acts as a guide, showing the path from your starting point to your desired career destination.
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto">
+                A roadmap isn't just a list; it's your strategic visual guide from where you are to where you want to be in your career.
             </p>
         </header>
 
-        <section class="mb-16 p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
-            <div class="md:flex md:items-center md:space-x-8">
-                <div class="flex-1 md:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Why Use a Roadmap?</h2>
-                    <ul class="space-y-4 text-slate-300">
-                        <li>
-                            <strong class="text-blue-400">Clarity and Focus:</strong> Helps you focus on your goals and avoid distractions.
-                        </li>
-                        <li>
-                            <strong class="text-blue-400">Organisation:</strong> Provides a structured plan for your actions, ensuring efficiency.
-                        </li>
-                        <li>
-                            <strong class="text-blue-400">Problem-Solving:</strong> Anticipates potential challenges to develop early strategies.
-                        </li>
-                        <li>
-                            <strong class="text-blue-400">Accountability:</strong> Tracks your progress and keeps you committed to the finish line.
-                        </li>
-                    </ul>
-                </div>
-                <div class="mt-8 md:mt-0 md:w-1/2 flex space-x-2">
-                    <img src="../images/roadmap.jpeg" alt="Roadmap Visualization" class="w-1/2 h-auto rounded-lg shadow-lg">
-                    <img src="../images/roadmap copy.jpeg" alt="Strategic Planning" class="w-1/2 h-auto rounded-lg shadow-lg">
-                </div>
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="glass-card p-8 rounded-2xl flex flex-col justify-center">
+                <h2 class="text-3xl font-bold text-white mb-4">What is a Roadmap?</h2>
+                <p class="text-slate-300">
+                    It acts as a guide, showing the path from a starting point to a desired destination. By breaking down complex goals, it transforms an overwhelming journey into a series of achievable milestones.
+                </p>
             </div>
-        </section>
-
-        <section class="mb-16 p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">How Does a Roadmap Help?</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">1. Provides Clarity and Direction</h3>
-                    <p class="text-slate-300 mb-2">Breaks down complex goals into smaller, manageable steps to avoid confusion.</p>
-                    <p class="text-sm text-slate-400 italic border-l-2 border-blue-500 pl-3">Example: Deciding whether to learn HTML before moving to JavaScript or React.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">2. Improves Focus and Motivation</h3>
-                    <p class="text-slate-300">Each milestone reached provides a sense of accomplishment, boosting confidence.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">3. Helps Track Progress</h3>
-                    <p class="text-slate-300">Defined checkpoints allow you to measure how far you've come and adjust timelines.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">4. Resource Allocation</h3>
-                    <p class="text-slate-300 mb-2">Helps in estimating time, effort, and tools needed at each stage.</p>
-                    <p class="text-sm text-slate-400 italic border-l-2 border-blue-500 pl-3">Example: Knowing when to hire developers or start product testing.</p>
-                </div>
+            <div class="grid grid-cols-2 gap-4">
+                <img src="../images/roadmap.jpeg" alt="Roadmap" class="rounded-xl object-cover h-full w-full shadow-2xl border border-slate-700">
+                <img src="../images/roadmap copy.jpeg" alt="Interview" class="rounded-xl object-cover h-full w-full shadow-2xl border border-slate-700">
             </div>
-        </section>
+        </div>
 
-        <section class="mb-16 p-8 bg-slate-800 rounded-xl shadow-xl transform transition-transform hover:scale-105 duration-300">
-            <div class="md:flex md:items-center md:space-x-8">
-                <div class="flex-1">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Strategic Advantages</h2>
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="text-xl font-semibold text-blue-300">Enhances Collaboration</h3>
-                            <p class="text-slate-400">Serves as a shared reference for teams, reducing misunderstandings.</p>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-blue-300">Identifies Risks Early</h3>
-                            <p class="text-slate-400">Allows for proactive problem-solving instead of reacting to issues too late.</p>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-semibold text-blue-300">Long-Term Alignment</h3>
-                            <p class="text-slate-400">Ensures that daily efforts contribute toward a bigger, long-term vision.</p>
-                        </div>
+        <div class="glass-card p-10 rounded-3xl mb-12">
+            <h2 class="text-3xl font-bold text-white mb-10 text-center">How Does a Roadmap Help?</h2>
+            <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                <div class="flex gap-4">
+                    <div class="text-blue-500 text-2xl font-bold">01</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Clarity and Direction</h3>
+                        <p class="text-slate-400 text-sm">Breaks down complex goals into manageable steps. Avoids confusion by showing exactly what to do next.</p>
+                        <p class="mt-2 text-xs italic text-blue-400">e.g., Learning HTML before JavaScript.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-blue-500 text-2xl font-bold">02</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Focus and Motivation</h3>
+                        <p class="text-slate-400 text-sm">Keeps you locked on your target. Every checkbox ticked provides a dopamine hit of accomplishment.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-blue-500 text-2xl font-bold">03</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Track Progress</h3>
+                        <p class="text-slate-400 text-sm">Visual checkpoints allow you to measure how far you’ve come and pivot your strategy if needed.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-blue-500 text-2xl font-bold">04</div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Resource Management</h3>
+                        <p class="text-slate-400 text-sm">Helps estimate the time, effort, and tools required at each specific stage of your growth.</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <footer class="p-8 bg-blue-900/30 border border-blue-500/30 rounded-xl shadow-xl text-center">
-            <h2 class="text-3xl font-bold text-white mb-4">Conclusion</h2>
-            <p class="text-lg text-slate-300 max-w-2xl mx-auto">
-                A roadmap is a powerful tool for strategic planning. It acts as both a 
-                <span class="text-blue-400 font-bold">"GUIDE"</span> and a 
-                <span class="text-blue-400 font-bold">"MEASURING STICK"</span>, 
-                helping you stay organized and reach your goals.
+        <div class="glass-card p-10 rounded-3xl mb-12">
+            <h2 class="text-2xl font-bold text-white mb-8 border-l-4 border-blue-600 pl-4">Strategic Advantages</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800/50 p-6 rounded-xl">
+                    <h4 class="text-blue-400 font-bold mb-2">Collaboration</h4>
+                    <p class="text-sm text-slate-300">Shared reference for teams to align on timelines and responsibilities.</p>
+                </div>
+                <div class="bg-slate-800/50 p-6 rounded-xl">
+                    <h4 class="text-blue-400 font-bold mb-2">Risk Mitigation</h4>
+                    <p class="text-sm text-slate-300">Foresee potential roadblocks early and solve them proactively.</p>
+                </div>
+                <div class="bg-slate-800/50 p-6 rounded-xl">
+                    <h4 class="text-blue-400 font-bold mb-2">Vision Alignment</h4>
+                    <p class="text-sm text-slate-300">Ensures short-term daily tasks contribute to your massive long-term goals.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="glass-card p-12 rounded-3xl text-center border-t-4 border-t-blue-600">
+            <h2 class="text-3xl font-bold text-white mb-4">The Verdict</h2>
+            <p class="text-slate-300 max-w-2xl mx-auto leading-relaxed italic">
+                "A roadmap acts as both your <span class="text-blue-400 font-bold">GUIDE</span> and your <span class="text-blue-400 font-bold">MEASURING STICK</span>, ensuring you stay organized while successfully reaching your goals."
             </p>
         </footer>
-        
-    </div>
 
-    <div class="navigation-buttons flex justify-between mt-8 max-w-7xl mx-auto px-4 pb-12">
-      <button onclick="window.location.href = '../Phase1/Phase1.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Previous</button>
-      <button onclick="window.location.href = 'conventional.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
+        <div class="flex justify-between mt-12">
+            <a href="../Phase1/Phase1.html" class="nav-btn px-8 py-3 rounded-full font-bold text-white uppercase tracking-wider text-sm">← Previous</a>
+            <a href="conventional.html" class="nav-btn px-8 py-3 rounded-full font-bold text-white uppercase tracking-wider text-sm">Next Round →</a>
+        </div>
     </div>
 
 </body>
