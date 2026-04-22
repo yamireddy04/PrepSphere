@@ -6,222 +6,445 @@
   <title>Phase 1: Foundation Building</title>
   <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
   <link rel="stylesheet" href="../shared/mobile.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2d3f;
+      --navy-mid: #243c54;
+      --navy-light: #35597d;
+      --gold: #f39c12;
+      --gold-dim: #d4870a;
+      --gold-pale: rgba(243,156,18,0.10);
+      --cream: #fdf6ed;
+      --text-dark: #1a2d3f;
+      --text-mid: #3d5a73;
+      --text-light: #6b8a9f;
+      --white: #ffffff;
+    }
 
     body {
-      font-family: 'Bookman Old Style', sans-serif;
-      background-color: #35597d; 
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--navy);
       background-image: url('../images/job-application-background.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      margin: 0;
-      padding: 0;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26,45,63,0.92) 0%, rgba(53,89,125,0.85) 100%);
+      z-index: 0;
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .phase-badge {
+      display: inline-flex;
       align-items: center;
-      min-height: 100vh;
-      color: #34495e;
-    }
-
-    .container {
-      max-width: 1200px;
-      width: 95%;
-      margin: 40px 20px;
-      background-color: rgba(255, 255, 255, 0.98);
-      padding: 50px;
-      border-radius: 16px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-      text-align: left;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 56px;
-      font-weight: 700;
-      color: #2c3e50;
-      text-align: center;
-      margin-bottom: 25px;
-      text-transform: uppercase;
+      gap: 10px;
+      background: var(--gold-pale);
+      border: 1px solid rgba(243,156,18,0.3);
+      color: var(--gold);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 13px;
       letter-spacing: 3px;
-      border-bottom: 3px solid #f39c12;
-      padding-bottom: 15px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      border-radius: 40px;
+      margin-bottom: 24px;
       opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeInSlideDown 1s forwards;
+      animation: fadeUp 0.6s 0.1s forwards;
     }
 
-    @keyframes fadeInSlideDown {
-      to { opacity: 1; transform: translateY(0); }
+    .phase-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
     }
-    
-    h2 {
+
+    .hero {
+      margin-bottom: 56px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+
+    .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      font-weight: 600;
-      color: #f39c12;
-      margin-top: 40px;
-      margin-bottom: 20px;
-      border-left: 5px solid #bdc3c7;
-      padding-left: 15px;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
     }
 
-    .highlight-intro {
-      font-size: 20px;
-      color: #2c3e50;
-      line-height: 1.9;
-      margin-bottom: 30px;
-      background: #fdf2e9;
-      padding: 20px;
-      border-radius: 10px;
-      border-right: 4px solid #f39c12;
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
     }
 
-    p {
-      font-size: 18px;
-      color: #34495e;
+    .hero-divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 24px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.8;
+      max-width: 640px;
+      font-weight: 300;
+    }
+
+    .section {
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp 0.7s forwards;
+    }
+
+    .section:nth-child(1) { animation-delay: 0.35s; }
+    .section:nth-child(2) { animation-delay: 0.5s; }
+    .section:nth-child(3) { animation-delay: 0.65s; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .section-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 900;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(243,156,18,0.4);
+      line-height: 1;
+      min-width: 52px;
+    }
+
+    .section-title-wrap {}
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .section-intro {
+      font-size: 15px;
+      color: rgba(255,255,255,0.55);
       line-height: 1.7;
+      margin-bottom: 20px;
+      padding-left: 68px;
+      font-weight: 300;
     }
 
-    .list-grid {
+    .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      list-style-type: none;
-      padding: 0;
-      margin-bottom: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      padding-left: 0;
+      list-style: none;
     }
-    
-    .list-grid li {
-      background-color: #f8f8f8;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 14px;
+      padding: 28px 26px;
       transition: all 0.3s ease;
-      border-top: 3px solid transparent;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
     }
 
-    .list-grid li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      background-color: #fffaf0;
-      border-top: 3px solid #f39c12;
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    .list-grid li strong {
+    .card:hover {
+      background: rgba(243,156,18,0.07);
+      border-color: rgba(243,156,18,0.25);
+      transform: translateY(-4px);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--gold-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .card-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.8;
+    }
+
+    .card strong {
       display: block;
-      margin-bottom: 10px;
-      color: #2c3e50;
-      font-size: 19px;
       font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
     }
 
-    .navigation-buttons {
+    .card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .nav-bar {
       display: flex;
       justify-content: space-between;
-      margin-top: 50px;
+      align-items: center;
+      margin-top: 60px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0;
+      animation: fadeUp 0.6s 0.8s forwards;
+    }
+
+    .nav-hint {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
     }
 
     .nav-button {
-      background-color: #f39c12;
-      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--navy);
       border: none;
-      padding: 14px 35px;
-      border-radius: 10px;
-      font-size: 17px;
-      font-weight: bold;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
       cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
       text-decoration: none;
+      transition: all 0.25s ease;
+      font-family: 'DM Sans', sans-serif;
     }
 
     .nav-button:hover {
-      background-color: #e67e22;
-      transform: translateY(-3px);
+      background: var(--gold-dim);
+      transform: translateX(4px);
+    }
+
+    .nav-button.prev {
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .nav-button.prev:hover {
+      border-color: rgba(255,255,255,0.4);
+      color: var(--white);
+      transform: translateX(-4px);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 768px) {
-      .container { padding: 25px; }
-      h1 { font-size: 36px; }
-      .list-grid { grid-template-columns: 1fr; }
+      body { padding: 24px 16px; }
+      .hero h1 { font-size: 38px; }
+      .section-intro { padding-left: 0; }
+      .cards { grid-template-columns: 1fr; }
+      .section-number { font-size: 48px; }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>Phase 1: Foundation Building</h1>
-  
-  <div class="highlight-intro">
-    Foundation building refers to the initial steps in the interview preparation process. It is about establishing a strong and comprehensive understanding of the basics and fundamentals related to the job you're applying for.
+<div class="page-wrap">
+
+  <div class="phase-badge">Phase 01 &mdash; Foundation Building</div>
+
+  <div class="hero">
+    <h1>Before you apply,<br><em>build your base.</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">Foundation building is the first act of interview preparation — establishing a clear, comprehensive understanding of what you offer and where you're headed.</p>
   </div>
 
-  <h2>1. Pick a Roadmap</h2>
-  <p>The first crucial step is to define your career direction. This involves understanding various industry paths and choosing one that aligns with your interests.</p>
-  <ul class="list-grid">
-    <li>
-      <strong>Define Your Destination</strong>
-      <p>What kind of role or industry are you aiming for? (e.g., Software Development, Marketing, Data Science, Healthcare Administration).</p>
-    </li>
-    <li>
-      <strong>Explore Options</strong>
-      <p>Research different career roadmaps (Technical, Non-Technical, or Conventional) to understand progression and required skills.</p>
-    </li>
-    <li>
-      <strong>Self-Reflection</strong>
-      <p>Consider your existing strengths and what you enjoy doing. Aligning your roadmap with your personal profile increases motivation.</p>
-    </li>
-  </ul>
-
-  <h2>2. Build Your Resume</h2>
-  <p>Your resume is a dynamic document that should be meticulously crafted to reflect your chosen career path and specific roles.</p>
-  <ul class="list-grid">
-    <li>
-      <strong>Tailor for Specificity</strong>
-      <p>Avoid a generic resume. Customize it to highlight skills and achievements most relevant to the role within your roadmap.</p>
-    </li>
-    <li>
-      <strong>Quantify Achievements</strong>
-      <p>Use numbers to demonstrate impact (e.g., "Increased website traffic by 20%" or "Reduced project delivery time by 10 days").</p>
-    </li>
-    <li>
-      <strong>Strategic Keywords</strong>
-      <p>Incorporate keywords from job descriptions to help your resume pass through Applicant Tracking Systems (ATS).</p>
-    </li>
-    <li>
-      <strong>Clear Structure</strong>
-      <p>Organize logically with sections like Summary, Work Experience, Education, Skills, and relevant Projects.</p>
-    </li>
-  </ul>
-
-  <h2>3. Build a Compelling Cover Letter</h2>
-  <p>A cover letter acts as a personalized introduction, connecting your experiences directly to the company's needs and values.</p>
-  <ul class="list-grid">
-    <li>
-      <strong>Personalize Your Approach</strong>
-      <p>Always address the letter to a specific hiring manager. Generic greetings are less impactful.</p>
-    </li>
-    <li>
-      <strong>Demonstrate Alignment</strong>
-      <p>Explain clearly how your skills align with the company's mission using examples that aren't just repetitions from your resume.</p>
-    </li>
-    <li>
-      <strong>Show Genuine Enthusiasm</strong>
-      <p>Research recent company achievements and reference them to show you've done your homework and have passion.</p>
-    </li>
-    <li>
-      <strong>Be Concise and Focused</strong>
-      <p>Keep your cover letter to a single page. Every paragraph should build a strong case for why you are the ideal candidate.</p>
-    </li>
-  </ul>
-
-  <div class="navigation-buttons">
-    <a href="../exp/exp.html" class="nav-button">Previous</a>
-    <a href="../roadmap/roadmap.html" class="nav-button">Next</a>
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <div class="section-title-wrap">
+        <div class="section-label">Step One</div>
+        <div class="section-title">Pick a Roadmap</div>
+      </div>
+    </div>
+    <p class="section-intro">The first crucial step is to define your career direction — understanding various industry paths and choosing one that aligns with your interests and strengths.</p>
+    <ul class="cards">
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </div>
+        <strong>Define Your Destination</strong>
+        <p>What kind of role or industry are you aiming for? Software Development, Marketing, Data Science, Healthcare Administration — commit to a direction.</p>
+      </li>
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <strong>Explore Options</strong>
+        <p>Research different career roadmaps — Technical, Non-Technical, or Conventional — to understand progression and required skills for each path.</p>
+      </li>
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <strong>Self-Reflection</strong>
+        <p>Consider your existing strengths and what you enjoy doing. Aligning your roadmap with your personal profile increases long-term motivation.</p>
+      </li>
+    </ul>
   </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <div class="section-title-wrap">
+        <div class="section-label">Step Two</div>
+        <div class="section-title">Build Your Resume</div>
+      </div>
+    </div>
+    <p class="section-intro">Your resume is a dynamic document — meticulously crafted to reflect your chosen career path and the specific roles you're targeting.</p>
+    <ul class="cards">
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <strong>Tailor for Specificity</strong>
+        <p>Avoid a generic resume. Customize it to highlight skills and achievements most relevant to the role within your chosen roadmap.</p>
+      </li>
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+        </div>
+        <strong>Quantify Achievements</strong>
+        <p>Use numbers to demonstrate impact — "Increased website traffic by 20%" or "Reduced project delivery time by 10 days."</p>
+      </li>
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <strong>Strategic Keywords</strong>
+        <p>Incorporate keywords from job descriptions to help your resume pass through Applicant Tracking Systems (ATS) successfully.</p>
+      </li>
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </div>
+        <strong>Clear Structure</strong>
+        <p>Organize logically with sections like Summary, Work Experience, Education, Skills, and relevant Projects.</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <div class="section-title-wrap">
+        <div class="section-label">Step Three</div>
+        <div class="section-title">Build a Compelling Cover Letter</div>
+      </div>
+    </div>
+    <p class="section-intro">A cover letter acts as a personalized introduction, connecting your experiences directly to the company's needs and values.</p>
+    <ul class="cards">
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <strong>Personalize Your Approach</strong>
+        <p>Always address the letter to a specific hiring manager. Generic greetings are consistently less impactful than targeted ones.</p>
+      </li>
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <strong>Demonstrate Alignment</strong>
+        <p>Explain how your skills align with the company's mission using examples that aren't repetitions from your resume.</p>
+      </li>
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <strong>Show Genuine Enthusiasm</strong>
+        <p>Reference recent company achievements to show you've done your homework. Authentic interest stands out.</p>
+      </li>
+      <li class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </div>
+        <strong>Be Concise and Focused</strong>
+        <p>Keep it to a single page. Every paragraph should build a strong, clear case for why you are the ideal candidate.</p>
+      </li>
+    </ul>
+  </div>
+
+  <nav class="nav-bar">
+    <a href="../exp/exp.html" class="nav-button prev">&#8592; Previous</a>
+    <span class="nav-hint">Up Next: Choose Your Roadmap</span>
+    <a href="../roadmap/roadmap.html" class="nav-button">Next &#8594;</a>
+  </nav>
+
 </div>
 
 </body>

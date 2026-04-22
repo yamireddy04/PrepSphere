@@ -6,325 +6,614 @@
   <title>Phase 3: Apply for Jobs</title>
   <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
   <link rel="stylesheet" href="../shared/mobile.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap');
+    :root {
+      --navy: #1a2d3f;
+      --navy-mid: #243c54;
+      --navy-light: #35597d;
+      --gold: #f39c12;
+      --gold-dim: #d4870a;
+      --gold-pale: rgba(243,156,18,0.10);
+      --white: #ffffff;
+    }
 
     body {
-      font-family: 'Bookman Old Style', sans-serif;
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--navy);
       background-image: url('images/job-application-background.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      background-color: #35597d; 
-      margin: 0;
-      padding: 0;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      color: #34495e;
+      align-items: flex-start;
+      padding: 40px 20px;
     }
 
-    .container {
-      max-width: 1200px; 
-      width: 95%;
-      margin: 20px;
-      background-color: rgba(255, 255, 255, 0.98);
-      padding: 50px;
-      border-radius: 16px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-      text-align: left;
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(26,45,63,0.95) 0%, rgba(53,89,125,0.88) 60%, rgba(26,45,63,0.95) 100%);
+      z-index: 0;
     }
 
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 56px;
-      font-weight: 700;
-      color: #2c3e50;
-      text-align: center;
-      margin-bottom: 25px;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      border-bottom: 3px solid #f39c12;
-      padding-bottom: 15px;
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeInSlideDown 1s forwards;
-    }
-
-    @keyframes fadeInSlideDown {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 32px;
-      font-weight: 600;
-      color: #f39c12;
-      margin-top: 40px;
-      margin-bottom: 20px;
-      border-left: 5px solid #bdc3c7;
-      padding-left: 15px;
-    }
-
-    p {
-      font-size: 18px;
-      color: #34495e;
-      line-height: 1.9;
-      margin-bottom: 30px;
-    }
-
-    .section-image {
-      width: 80%;
-      height: auto;
-      border-radius: 12px;
-      margin: 40px auto;
-      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-      display: block; 
-    }
-
-    .section-image:hover {
-      transform: scale(1.02);
-    }
-    
-    .list-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
-      list-style-type: none;
-      padding: 0;
-      margin-bottom: 30px;
-    }
-    
-    .list-grid li {
+    .page-wrap {
       position: relative;
-      background-color: #f8f8f8;
-      padding: 20px;
+      z-index: 1;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .phase-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold-pale);
+      border: 1px solid rgba(243,156,18,0.3);
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 8px 20px;
+      border-radius: 40px;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s forwards;
+    }
+
+    .phase-badge::before {
+      content: '✦';
+      font-size: 10px;
+      color: var(--gold);
+    }
+
+    .hero {
+      margin-bottom: 64px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.05;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 24px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.8;
+      max-width: 640px;
+      font-weight: 300;
+    }
+
+    .two-col-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s forwards;
+    }
+
+    .col-block {}
+
+    .col-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .col-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.25;
+    }
+
+    .col-intro {
+      font-size: 14.5px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .stacked-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .stacked-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 18px 20px;
       transition: all 0.3s ease;
     }
 
-    .list-grid li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      background-color: #fffaf0; 
+    .stacked-card:hover {
+      background: rgba(243,156,18,0.06);
+      border-color: rgba(243,156,18,0.2);
+      transform: translateX(6px);
     }
 
-    .list-grid li strong {
-      display: block;
-      margin-bottom: 5px;
-      color: #2c3e50;
-      font-size: 18px;
-    }
-    
-    .list-grid li::before {
-      display: none;
-    }
-
-    .list-grid .nested-list {
-      list-style-type: none;
-      padding: 0;
-      margin-top: 15px;
-    }
-
-    .list-grid .nested-list li {
-      padding: 0;
-      background: none;
-      box-shadow: none;
-      transition: none;
-      font-size: 16px;
-    }
-
-    .list-grid .nested-list li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: #f39c12;
-      font-weight: bold;
-    }
-
-    .tips-card {
-      background-color: #2c3e50;
-      color: #ecf0f1;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      margin-top: 40px;
-    }
-
-    .tips-card h2 {
-      color: #f39c12;
-      border-left-color: #f39c12;
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
-
-    .tips-card ul {
-      margin: 0;
-    }
-
-    .tips-card li {
-      color: #ecf0f1;
-    }
-
-    .tips-card li::before {
-      color: #f39c12;
-    }
-
-    .navigation-buttons {
+    .stacked-card-icon {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 6px;
+      background: var(--gold-pale);
       display: flex;
-      justify-content: space-between;
-      margin-top: 50px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
     }
 
-    .nav-button {
-      background-color: #f39c12;
-      color: white;
-      border: none;
-      padding: 14px 30px;
-      border-radius: 10px;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-      text-decoration: none; 
+    .stacked-card-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.8;
     }
 
-    .nav-button:hover {
-      background-color: #e67e22;
+    .stacked-card-text strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .stacked-card-text p {
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .full-section {
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+
+    .full-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .full-section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .full-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .detail-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 24px 22px;
+      transition: all 0.3s ease;
+    }
+
+    .detail-card:hover {
+      background: rgba(243,156,18,0.06);
+      border-color: rgba(243,156,18,0.2);
       transform: translateY(-3px);
     }
 
+    .detail-card strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .sub-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sub-list li {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      padding: 4px 0 4px 14px;
+      position: relative;
+      line-height: 1.5;
+      background: none;
+      border: none;
+      box-shadow: none;
+    }
+
+    .sub-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .tips-strip {
+      background: rgba(243,156,18,0.07);
+      border: 1px solid rgba(243,156,18,0.18);
+      border-radius: 16px;
+      padding: 36px 40px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.65s forwards;
+    }
+
+    .tips-strip-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .tips-strip-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--gold);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tips-strip-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--navy);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .tips-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .tips-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .tips-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .tip-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .tip-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-style: italic;
+      font-weight: 700;
+      color: rgba(243,156,18,0.4);
+      line-height: 1;
+      min-width: 28px;
+    }
+
+    .tip-item strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .tip-item p {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    .closing-line {
+      font-size: 16px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.8;
+      text-align: center;
+      margin-bottom: 48px;
+      font-style: italic;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.75s forwards;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      opacity: 0;
+      animation: fadeUp 0.6s 0.85s forwards;
+    }
+
+    .nav-hint {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .nav-button:hover {
+      background: var(--gold-dim);
+      transform: translateX(4px);
+    }
+
+    .nav-button.prev {
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .nav-button.prev:hover {
+      border-color: rgba(255,255,255,0.4);
+      color: var(--white);
+      transform: translateX(-4px);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     @media (max-width: 768px) {
-      .container {
-        padding: 30px;
-      }
-      h1 {
-        font-size: 40px;
-        letter-spacing: 2px;
-      }
-      h2 {
-        font-size: 24px;
-      }
-      p {
-        font-size: 16px;
-      }
-      .list-grid {
-        grid-template-columns: 1fr; 
-      }
-      .nav-button {
-        font-size: 15px;
-        padding: 12px 24px;
-      }
+      body { padding: 24px 16px; }
+      .hero h1 { font-size: 38px; }
+      .two-col-section { grid-template-columns: 1fr; gap: 32px; }
+      .detail-grid { grid-template-columns: 1fr; }
+      .tips-row { grid-template-columns: 1fr; }
+      .tips-strip { padding: 24px; }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h1>Phase 3: Apply for Jobs</h1>
-  <p>
-    Job applications are the practical step toward realizing your career goals. By actively seeking and applying for jobs that align with your skills and interests, you significantly improve your chances of securing a fulfilling and rewarding career.
-  </p>
+<div class="page-wrap">
 
-  <h2>Job Search Strategies</h2>
-  <ul class="list-grid">
-    <li>
-      <strong>Leverage Online Job Boards:</strong>
-      <p>Use platforms like LinkedIn, Indeed, and Glassdoor to discover job openings that match your profile.</p>
-    </li>
-    <li>
-      <strong>Directly Visit Company Websites:</strong>
-      <p>Regularly check the careers pages of companies you admire and apply directly.</p>
-    </li>
-    <li>
-      <strong>Network Strategically:</strong>
-      <p>Build relationships with professionals in your field to learn about job opportunities and gain referrals.</p>
-    </li>
-    <li>
-      <strong>Attend Industry Events:</strong>
-      <p>Participate in job fairs, hackathons, and career expos to connect with recruiters and hiring managers.</p>
-    </li>
-  </ul>
-  
-  <img class="section-image" src="../images/p31.jpeg" alt="An illustration of a person with a bright idea in a crowd of people.">
+  <div class="phase-badge">Phase 03 &mdash; Apply for Jobs</div>
 
-  <h2>How to Apply Effectively</h2>
-  <ul class="list-grid">
-    <li>
-      <strong>Tailor Your Resume and Cover Letter:</strong>
-      <ul class="nested-list">
-        <li>Customize your documents for each job by highlighting the most relevant skills and accomplishments.</li>
-        <li>Use strong action verbs and quantify your achievements to stand out.</li>
-        <li>Write a compelling cover letter that clearly shows your interest in the role and how you meet the requirements.</li>
-      </ul>
-    </li>
-    <li>
-      <strong>Thorough Research:</strong>
-      <ul class="nested-list">
-        <li>Study the company's mission, culture, and recent updates.</li>
-        <li>Understand the job description and key responsibilities.</li>
-        <li>Identify the specific skills and experiences the company is looking for.</li>
-      </ul>
-    </li>
-    <li>
-      <strong>Effective Online Presence:</strong>
-      <ul class="nested-list">
-        <li>Maintain a professional LinkedIn profile with updated achievements and projects.</li>
-        <li>Use industry-relevant keywords to improve visibility in recruiter searches.</li>
-        <li>Engage with posts, connect with peers, and participate in discussions.</li>
-      </ul>
-    </li>
-    <li>
-      <strong>Follow-Up:</strong>
-      <ul class="nested-list">
-        <li>Send a thank-you email after interviews to express appreciation and reiterate interest.</li>
-        <li>Politely follow up with the recruiter if you have not heard back within the expected time frame.</li>
-      </ul>
-    </li>
-  </ul>
-  
-  <img class="section-image" src="/images/p3.jpeg" alt="An illustration of a person with a bright idea in a crowd of people.">
+  <div class="hero">
+    <h1>You're ready.<br><em>Now go get it.</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">Job applications are the practical step toward realizing your career goals. By actively seeking roles that align with your skills and interests, you significantly improve your chances of landing something you'll love.</p>
+  </div>
 
-  <div class="tips-card">
-    <h2>Additional Tips</h2>
-    <ul class="list-grid">
-      <li>
-        <strong>Practice Interview Questions:</strong>
-        <p>Familiarize yourself with common technical and HR questions.</p>
+  <div class="two-col-section">
+    <div class="col-block">
+      <div class="col-label">Where to Look</div>
+      <div class="col-title">Job Search Strategies</div>
+      <p class="col-intro">Cast your net wide but smart — know where the best opportunities live and go there first.</p>
+      <ul class="stacked-cards">
+        <li class="stacked-card">
+          <div class="stacked-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          </div>
+          <div class="stacked-card-text">
+            <strong>Leverage Online Job Boards</strong>
+            <p>LinkedIn, Indeed, Glassdoor — search and filter for roles that match your profile and roadmap.</p>
+          </div>
+        </li>
+        <li class="stacked-card">
+          <div class="stacked-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="stacked-card-text">
+            <strong>Visit Company Websites Directly</strong>
+            <p>Regularly check the careers pages of companies you admire and apply before the crowd arrives.</p>
+          </div>
+        </li>
+        <li class="stacked-card">
+          <div class="stacked-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="stacked-card-text">
+            <strong>Network Strategically</strong>
+            <p>Build genuine relationships with professionals in your field to uncover referrals and hidden opportunities.</p>
+          </div>
+        </li>
+        <li class="stacked-card">
+          <div class="stacked-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+          <div class="stacked-card-text">
+            <strong>Attend Industry Events</strong>
+            <p>Job fairs, hackathons, and career expos connect you with recruiters and hiring managers face-to-face.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-block">
+      <div class="col-label">How to Stand Out</div>
+      <div class="col-title">Apply Effectively</div>
+      <p class="col-intro">It's not just about sending applications — it's about making each one count.</p>
+      <ul class="stacked-cards">
+        <li class="stacked-card">
+          <div class="stacked-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+          <div class="stacked-card-text">
+            <strong>Tailor Every Application</strong>
+            <p>Customize your resume and cover letter per role. Highlight the most relevant skills and quantify your wins.</p>
+          </div>
+        </li>
+        <li class="stacked-card">
+          <div class="stacked-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="stacked-card-text">
+            <strong>Research Thoroughly</strong>
+            <p>Study the company's mission, culture, and recent updates. Know the role inside-out before applying.</p>
+          </div>
+        </li>
+        <li class="stacked-card">
+          <div class="stacked-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div class="stacked-card-text">
+            <strong>Maintain Your Online Presence</strong>
+            <p>Keep your LinkedIn updated with keywords recruiters search. Engage with industry discussions regularly.</p>
+          </div>
+        </li>
+        <li class="stacked-card">
+          <div class="stacked-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="stacked-card-text">
+            <strong>Follow Up Thoughtfully</strong>
+            <p>Send a thank-you after interviews. Politely follow up with the recruiter if you haven't heard back within the expected window.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tips-strip">
+    <div class="tips-strip-header">
+      <div class="tips-strip-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div>
+        <div class="tips-label">Pro Tips</div>
+        <div class="tips-title">Stay Sharp Through the Process</div>
+      </div>
+    </div>
+    <ul class="tips-row">
+      <li class="tip-item">
+        <span class="tip-num">1</span>
+        <div>
+          <strong>Practice Interview Questions</strong>
+          <p>Familiarize yourself with common technical and HR questions before each round.</p>
+        </div>
       </li>
-      <li>
-        <strong>Conduct Mock Interviews:</strong>
-        <p>Practice with friends or mentors to improve confidence and performance.</p>
+      <li class="tip-item">
+        <span class="tip-num">2</span>
+        <div>
+          <strong>Conduct Mock Interviews</strong>
+          <p>Practice with friends or mentors to build confidence and sharpen your delivery.</p>
+        </div>
       </li>
-      <li>
-        <strong>Stay Positive and Persistent:</strong>
-        <p>Rejections are part of the journey—keep applying and improving.</p>
+      <li class="tip-item">
+        <span class="tip-num">3</span>
+        <div>
+          <strong>Stay Persistent</strong>
+          <p>Rejections are part of the process — every "no" is data. Keep applying and improving.</p>
+        </div>
       </li>
-      <li>
-        <strong>Continuous Learning:</strong>
-        <p>Keep upgrading your skills with certifications, courses, or side projects.</p>
+      <li class="tip-item">
+        <span class="tip-num">4</span>
+        <div>
+          <strong>Keep Learning</strong>
+          <p>Upgrade your skills continuously with certifications, courses, or side projects.</p>
+        </div>
       </li>
     </ul>
   </div>
 
-  <p>
-    By following these strategies and remaining proactive and resilient, you will significantly boost your chances of landing your dream job.
-  </p>
+  <p class="closing-line">"By staying proactive and resilient, you will significantly boost your chances of landing exactly where you're meant to be."</p>
 
-  <div class="navigation-buttons">
-    <a href="../phase2_transition/phase2_transition.html" class="nav-button">Previous</a>
-    <a href="../hirehub/hirehub.html" class="nav-button">Next</a>
-  </div>
+  <nav class="nav-bar">
+    <a href="../phase2_transition/phase2_transition.html" class="nav-button prev">&#8592; Previous</a>
+    <span class="nav-hint">Up Next: HireHub</span>
+    <a href="../hirehub/hirehub.html" class="nav-button">Next &#8594;</a>
+  </nav>
+
 </div>
 
 </body>
