@@ -1,484 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HireHub AI | PrepSphere</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg:#0d0f1a; --bg-2:#131626; --bg-3:#1a1d30; --bg-card:#181b2e; --bg-input:#1e2235;
-      --border:rgba(255,255,255,0.07); --border-2:rgba(255,255,255,0.12);
-      --accent:#3b6ef6; --accent-2:#5b8af8; --accent-glow:rgba(59,110,246,0.18);
-      --green:#10b981; --green-bg:rgba(16,185,129,0.12);
-      --amber:#f59e0b; --amber-bg:rgba(245,158,11,0.1);
-      --rose:#f87171;  --rose-bg:rgba(248,113,113,0.1);
-      --text-1:#e8eaf6; --text-2:#8891b4; --text-3:#4a5280;
-      --r:10px; --r-lg:14px;
-    }
-    html,body { height:100%; }
-    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text-1); font-size:15px; line-height:1.6; min-height:100vh; }
-    @keyframes fadeUp  { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
-    @keyframes spin    { to{transform:rotate(360deg)} }
-    @keyframes pulse   { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.75)} }
-    @keyframes shimmer { 0%{background-position:-600px 0} 100%{background-position:600px 0} }
-    @keyframes progbar { 0%{width:0%} 100%{width:90%} }
-    @keyframes glow    { 0%,100%{box-shadow:0 0 18px rgba(59,110,246,0.25)} 50%{box-shadow:0 0 36px rgba(59,110,246,0.5)} }
-    .fade-up { animation:fadeUp 0.5s cubic-bezier(0.22,1,0.36,1) both; }
-    ::-webkit-scrollbar{width:5px} ::-webkit-scrollbar-track{background:var(--bg)} ::-webkit-scrollbar-thumb{background:var(--bg-3);border-radius:3px}
-    ::selection{background:var(--accent);color:white}
-
-    /* buttons */
-    .btn-primary { display:inline-flex;align-items:center;justify-content:center;gap:8px; background:var(--accent);color:white;border:none;border-radius:8px; padding:12px 28px;font-size:15px;font-weight:700;cursor:pointer; font-family:'Inter',sans-serif;transition:all 0.15s; box-shadow:0 4px 20px rgba(59,110,246,0.35); }
-    .btn-primary:hover { background:#2b5ee8;transform:translateY(-1px);box-shadow:0 6px 28px rgba(59,110,246,0.5); }
-    .btn-primary:disabled { opacity:0.4;cursor:not-allowed;transform:none; }
-    .btn-ghost { display:inline-flex;align-items:center;gap:7px; background:var(--bg-3);color:var(--text-2);border:1px solid var(--border-2); border-radius:8px;padding:9px 18px;font-size:13px;font-weight:500; cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s;text-decoration:none; }
-    .btn-ghost:hover { background:var(--bg-2);color:var(--text-1); }
-
-    /* nav */
-    nav { position:sticky;top:0;z-index:200;height:58px;display:flex;align-items:center;padding:0 32px; background:rgba(13,15,26,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border); }
-    .nav-inner { max-width:1240px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between; }
-    .nav-logo { display:flex;align-items:center;gap:9px;text-decoration:none; }
-    .nav-logo-icon { width:30px;height:30px;border-radius:7px;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(59,110,246,0.4); }
-    .nav-wordmark { font-size:17px;font-weight:800;color:var(--text-1);letter-spacing:-0.4px; }
-    .nav-badge { font-size:10px;font-weight:700;letter-spacing:0.1em;padding:2px 9px;border-radius:20px;background:var(--green-bg);color:var(--green);border:1px solid rgba(16,185,129,0.2); }
-
-    /* ── UPLOAD ── */
-    #upload-screen { display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 58px - 64px);padding:40px 24px; }
-    .upload-inner { width:100%;max-width:720px; }
-    .page-title { font-size:52px;font-weight:800;text-align:center;color:var(--text-1);letter-spacing:-2px;line-height:1.05;margin-bottom:14px; }
-    .page-sub { font-size:16px;color:var(--text-2);text-align:center;line-height:1.65;max-width:540px;margin:0 auto 40px; }
-    .input-card { background:var(--bg-2);border:1px solid var(--border-2);border-radius:16px;padding:28px;box-shadow:0 8px 40px rgba(0,0,0,0.35); }
-    .mode-toggle { display:flex;background:var(--bg-3);border-radius:8px;padding:3px;margin-bottom:20px;border:1px solid var(--border);width:fit-content; }
-    .mode-btn { padding:7px 18px;border-radius:6px;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:'Inter',sans-serif;transition:all 0.15s;background:transparent;color:var(--text-3); }
-    .mode-btn.active { background:var(--accent);color:white;box-shadow:0 2px 10px rgba(59,110,246,0.4); }
-    .search-row { display:flex;background:var(--bg-input);border:1px solid var(--border-2);border-radius:10px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.3); }
-    .search-row textarea { flex:1;background:transparent;border:none;outline:none;color:var(--text-1);font-size:14px;font-family:'Inter',sans-serif;padding:18px 20px;resize:none;line-height:1.6;min-height:80px; }
-    .search-row textarea::placeholder { color:var(--text-3); }
-    .search-row .btn-primary { border-radius:0 9px 9px 0;padding:0 28px;font-size:14px;box-shadow:none;flex-shrink:0;align-self:stretch; }
-    .drop-zone { border:2px dashed var(--border-2);border-radius:var(--r-lg);padding:56px 32px;text-align:center;cursor:pointer;transition:all 0.2s;background:var(--bg-input); }
-    .drop-zone:hover,.drop-zone.drag { border-color:var(--accent);background:rgba(59,110,246,0.04); }
-
-    /* ── ANALYZING ── */
-    #analyzing-screen { display:none;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 58px);padding:40px 24px;text-align:center; }
-    .spinner { width:60px;height:60px;border-radius:50%;border:3px solid var(--bg-3);border-top-color:var(--accent);animation:spin 0.85s linear infinite;margin:0 auto 28px; }
-    .progress-box { background:var(--bg-2);border:1px solid var(--border-2);border-radius:14px;padding:22px 24px;max-width:480px;width:100%;text-align:left; }
-    .prog-dot { width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 1.1s ease infinite;flex-shrink:0; }
-    .prog-bar-wrap { height:4px;border-radius:2px;background:var(--bg-3);overflow:hidden; }
-    .prog-bar-fill { height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));animation:progbar 18s ease forwards; }
-    .step-row { display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:18px; }
-    .step-it { background:var(--bg-3);border-radius:7px;padding:10px;font-size:11.5px;color:var(--text-3);text-align:center;transition:all 0.4s; }
-    .step-it.done { background:var(--green-bg);color:var(--green);border:1px solid rgba(16,185,129,0.2); }
-
-    /* ── ERROR ── */
-    #error-screen { display:none;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 58px);padding:40px 24px; }
-    .err-box { background:var(--bg-2);border:1px solid var(--border-2);border-radius:16px;padding:36px;max-width:480px;width:100%;text-align:center; }
-
-    /* ── RESULTS ── */
-    #results-screen { display:none;max-width:1240px;margin:0 auto;padding:28px 24px 100px; }
-    .cand-hero { background:linear-gradient(135deg,var(--bg-2) 0%,var(--bg-3) 100%);border:1px solid var(--border-2);border-radius:18px;padding:30px 34px;margin-bottom:22px;position:relative;overflow:hidden; }
-    .cand-hero::before { content:'';position:absolute;top:-70px;right:-70px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(59,110,246,0.1) 0%,transparent 70%);pointer-events:none; }
-    .score-circle { width:88px;height:88px;border-radius:50%;border:3px solid var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;animation:glow 3s ease infinite;flex-shrink:0; }
-    .stats-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px; }
-    .stat-card { background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px; }
-    .main-grid { display:grid;grid-template-columns:1fr 330px;gap:22px;align-items:start; }
-    .filter-bar { background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap; }
-    .fsearch { flex:1;min-width:160px;background:var(--bg-3);border:1px solid var(--border);border-radius:7px;padding:8px 12px;color:var(--text-1);font-size:13px;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s; }
-    .fsearch:focus { border-color:var(--accent); } .fsearch::placeholder { color:var(--text-3); }
-    .fp { padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text-3);transition:all 0.15s;font-family:'Inter',sans-serif; }
-    .fp:hover { border-color:var(--border-2);color:var(--text-1); }
-    .fp.on { background:var(--accent);color:white;border-color:var(--accent);box-shadow:0 2px 10px rgba(59,110,246,0.3); }
-    .tabs { display:flex;gap:3px;background:var(--bg-2);border-radius:9px;padding:3px;width:fit-content;margin-bottom:16px;border:1px solid var(--border); }
-    .tab { padding:7px 15px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--text-3);font-family:'Inter',sans-serif;transition:all 0.15s; }
-    .tab.on { background:var(--accent);color:white;box-shadow:0 2px 10px rgba(59,110,246,0.35); }
-    .job-card { background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 22px;margin-bottom:12px;transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;animation:fadeUp 0.4s cubic-bezier(0.22,1,0.36,1) both;position:relative;overflow:hidden; }
-    .job-card:hover { border-color:var(--border-2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.35); }
-    .new-badge { position:absolute;top:0;right:0;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:white;font-size:9px;font-weight:800;letter-spacing:0.06em;padding:4px 13px 4px 9px;border-bottom-left-radius:10px; }
-    .job-logo { width:44px;height:44px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:white;box-shadow:0 3px 12px rgba(0,0,0,0.3);overflow:hidden; }
-    .chip { display:inline-flex;align-items:center;padding:3px 8px;border-radius:5px;font-size:11px;font-weight:600;border:1px solid; }
-    .c-blue{background:var(--accent-glow);color:var(--accent-2);border-color:rgba(59,110,246,0.3)}
-    .c-green{background:var(--green-bg);color:var(--green);border-color:rgba(16,185,129,0.3)}
-    .c-amber{background:var(--amber-bg);color:var(--amber);border-color:rgba(245,158,11,0.3)}
-    .c-rose{background:var(--rose-bg);color:var(--rose);border-color:rgba(248,113,113,0.3)}
-    .c-gray{background:rgba(255,255,255,0.04);color:var(--text-3);border-color:var(--border)}
-    .sr { width:50px;height:50px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600; }
-    .sr-h{background:var(--green-bg);color:var(--green);border:2px solid rgba(16,185,129,0.3)}
-    .sr-m{background:var(--amber-bg);color:var(--amber);border:2px solid rgba(245,158,11,0.3)}
-    .sr-l{background:var(--rose-bg);color:var(--rose);border:2px solid rgba(248,113,113,0.3)}
-    .apply-btn { display:inline-flex;align-items:center;gap:5px;background:var(--accent);color:white;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;transition:all 0.15s;white-space:nowrap;box-shadow:0 3px 12px rgba(59,110,246,0.3); }
-    .apply-btn:hover { background:#2b5ee8;transform:scale(1.04); }
-    .stag { font-size:10.5px;padding:2px 7px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-weight:500;background:rgba(255,255,255,0.04);color:var(--text-2);border:1px solid var(--border); }
-    .insight-panel { position:sticky;top:68px;display:flex;flex-direction:column;gap:14px; }
-    .ic { background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px; }
-    .ic-label { font-size:10.5px;font-weight:700;letter-spacing:0.1em;color:var(--text-3);text-transform:uppercase;margin-bottom:12px; }
-    .skel { background:linear-gradient(90deg,var(--bg-3) 25%,var(--bg-2) 50%,var(--bg-3) 75%);background-size:600px 100%;animation:shimmer 1.5s infinite;border-radius:6px; }
-    .empty { text-align:center;padding:56px 24px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r); }
-    .footer-nav { position:fixed;bottom:0;left:0;right:0;height:64px;background:rgba(13,15,26,0.95);backdrop-filter:blur(16px);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:100; }
-    @media(max-width:920px){.main-grid{grid-template-columns:1fr}.insight-panel{position:static}.stats-grid{grid-template-columns:repeat(2,1fr)}.page-title{font-size:36px}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireHub | PrepSphere | Complete Job Companion</title>
+    <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
+    <link rel="stylesheet" href="../shared/mobile.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body {
+            font-family: 'Bookman Old Style', sans-serif;
+        }
+        .navigation-buttons button, .nav-btn {
+          transition: all 0.3s ease-in-out;
+          border: none;
+          cursor: pointer;
+        }
+        .navigation-buttons button:hover, .nav-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-900 text-slate-200 min-h-screen">
 
-<nav>
-  <div class="nav-inner">
-    <a href="../dashboard/dashboard.html" class="nav-logo">
-      <div class="nav-logo-icon">
-        <svg width="14" height="14" fill="none" stroke="white" stroke-width="2.2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      </div>
-      <span class="nav-wordmark">HireHub <span style="color:var(--accent-2)">AI</span></span>
-    </a>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <span class="nav-badge">INDIA · FRESHERS</span>
-      <button class="btn-ghost" id="nav-back" style="display:none" onclick="goBack()">← Back</button>
-    </div>
-  </div>
-</nav>
+    <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-md">
+                HireHub
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto italic border-b-2 border-blue-600 pb-2 inline-block mb-8">
+                Your Complete Job Application Companion
+            </p>
+            
+            <div class="bg-slate-800 p-8 rounded-xl shadow-xl border-l-4 border-blue-600 w-full text-left">
+                <p class="text-slate-300 leading-relaxed">
+                    HireHub is a dedicated module designed to guide job seekers through every critical phase of the job application lifecycle before, during, and after applying. It serves as a centralized hub that consolidates essential tools, platforms, and strategies to help candidates secure the right opportunities efficiently and professionally.
+                </p>
+            </div>
+        </header>
 
-<!-- ══ SCREEN 1: UPLOAD ══ -->
-<div id="upload-screen">
-  <div class="upload-inner fade-up">
-    <div class="page-title">HireHub AI</div>
-    <p class="page-sub">Paste your resume and get a real-time, AI-scored job dashboard built around your exact profile. 🎯</p>
+        <section class="mb-16 grid lg:grid-cols-2 gap-8 items-center">
+            <div class="order-2 lg:order-1">
+                <h2 class="text-3xl font-bold text-white mb-6 flex items-center gap-2">
+                    <span class="text-blue-500">›</span> How Job Portals Help
+                </h2>
+                <ul class="space-y-4 text-slate-300">
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span> <span><strong>Centralized Access:</strong> Aggregate thousands of listings in one place.</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span> <span><strong>Easy Resume Submission:</strong> One-click applications to save time.</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span> <span><strong>Personalized Recommendations:</strong> Tailored job suggestions.</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span> <span><strong>Targeted Search:</strong> Filters for location, salary, and role.</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span> <span><strong>Company Insights:</strong> Salary reports and employee reviews.</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span> <span><strong>Profile Scoring:</strong> Optimization tools for better visibility.</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span> <span><strong>Instant Alerts:</strong> Notifications for new matching roles.</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span> <span><strong>Application Tracking:</strong> Monitor your status in real-time.</span></li>
+                </ul>
+            </div>
+            <div class="order-1 lg:order-2">
+                <img src="../images/jobportal.jpeg" alt="Job search portal" class="w-full h-auto rounded-xl shadow-2xl border border-slate-700">
+            </div>
+        </section>
 
-    <div class="input-card">
-      <div class="mode-toggle">
-        <button class="mode-btn active" id="m-paste" onclick="setMode('paste')">Paste Resume</button>
-        <button class="mode-btn"        id="m-file"  onclick="setMode('file')">Upload File</button>
-      </div>
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-white mb-6 text-center">Job Portals: Your Medium to Apply</h2>
+            <div class="flex flex-col md:flex-row gap-8 items-center mb-12">
+                <img src="../images/jb2.jpeg" alt="Searching jobs" class="w-48 h-auto rounded-lg shadow-lg">
+                <p class="text-slate-400 text-lg">
+                    Job portals act as a vital medium for job seekers to explore and apply to various opportunities across sectors, locations, and experience levels. Below is a categorized list of global, Indian, startup-focused, internship-specific, and remote work job platforms to guide your job search effectively.
+                </p>
+            </div>
 
-      <div id="paste-area">
-        <div class="search-row">
-          <textarea id="resume-ta" rows="4" placeholder="Paste your full resume here — education, skills, projects, experience…&#10;&#10;The more detail you include, the better the job matches."></textarea>
-          <button class="btn-primary" onclick="runAnalysis()">Find My Jobs →</button>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-slate-800 p-6 rounded-xl border-t-2 border-blue-500">
+                    <h3 class="text-blue-400 font-bold text-xl mb-4">Global Job Portals</h3>
+                    <ul class="text-sm space-y-3">
+                        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/jobs" target="_blank" class="text-blue-400 hover:underline">linkedin.com/jobs</a></li>
+                        <li><strong>Indeed:</strong> <a href="https://www.indeed.com" target="_blank" class="text-blue-400 hover:underline">indeed.com</a></li>
+                        <li><strong>Glassdoor:</strong> <a href="https://www.glassdoor.com" target="_blank" class="text-blue-400 hover:underline">glassdoor.com</a></li>
+                        <li><strong>Monster:</strong> <a href="https://www.monster.com" target="_blank" class="text-blue-400 hover:underline">monster.com</a></li>
+                        <li><strong>CareerBuilder:</strong> <a href="https://www.careerbuilder.com" target="_blank" class="text-blue-400 hover:underline">careerbuilder.com</a></li>
+                        <li><strong>SimplyHired:</strong> <a href="https://www.simplyhired.com" target="_blank" class="text-blue-400 hover:underline">simplyhired.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl border-t-2 border-blue-500">
+                    <h3 class="text-blue-400 font-bold text-xl mb-4">Top Indian Job Portals</h3>
+                    <ul class="text-sm space-y-3">
+                        <li><strong>Naukri.com:</strong> <a href="https://www.naukri.com" target="_blank" class="text-blue-400 hover:underline">naukri.com</a></li>
+                        <li><strong>Shine.com:</strong> <a href="https://www.shine.com" target="_blank" class="text-blue-400 hover:underline">shine.com</a></li>
+                        <li><strong>TimesJobs:</strong> <a href="https://www.timesjobs.com" target="_blank" class="text-blue-400 hover:underline">timesjobs.com</a></li>
+                        <li><strong>Freshersworld:</strong> <a href="https://www.freshersworld.com" target="_blank" class="text-blue-400 hover:underline">freshersworld.com</a></li>
+                        <li><strong>PlacementIndia:</strong> <a href="https://www.placementindia.com" target="_blank" class="text-blue-400 hover:underline">placementindia.com</a></li>
+                        <li><strong>WisdomJobs:</strong> <a href="https://www.wisdomjobs.com" target="_blank" class="text-blue-400 hover:underline">wisdomjobs.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl border-t-2 border-blue-500">
+                    <h3 class="text-blue-400 font-bold text-xl mb-4">Startup & Tech</h3>
+                    <ul class="text-sm space-y-3">
+                        <li><strong>Wellfound:</strong> <a href="https://www.wellfound.com/jobs" target="_blank" class="text-blue-400 hover:underline">wellfound.com</a></li>
+                        <li><strong>HackerRank:</strong> <a href="https://www.hackerrank.com/jobs" target="_blank" class="text-blue-400 hover:underline">hackerrank.com</a></li>
+                        <li><strong>CutShort:</strong> <a href="https://cutshort.io" target="_blank" class="text-blue-400 hover:underline">cutshort.io</a></li>
+                        <li><strong>Instahyre:</strong> <a href="https://www.instahyre.com" target="_blank" class="text-blue-400 hover:underline">instahyre.com</a></li>
+                        <li><strong>GeekTrust:</strong> <a href="https://www.geektrust.in" target="_blank" class="text-blue-400 hover:underline">geektrust.in</a></li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl border-t-2 border-blue-500">
+                    <h3 class="text-blue-400 font-bold text-xl mb-4">Internship Portals</h3>
+                    <ul class="text-sm space-y-3">
+                        <li><strong>Internshala:</strong> <a href="https://internshala.com" target="_blank" class="text-blue-400 hover:underline">internshala.com</a></li>
+                        <li><strong>LetsIntern:</strong> <a href="https://www.letsintern.com" target="_blank" class="text-blue-400 hover:underline">letsintern.com</a></li>
+                        <li><strong>Twenty19:</strong> <a href="https://www.twenty19.com" target="_blank" class="text-blue-400 hover:underline">twenty19.com</a></li>
+                        <li><strong>HelloIntern:</strong> <a href="https://www.hellointern.com" target="_blank" class="text-blue-400 hover:underline">hellointern.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl border-t-2 border-blue-500 lg:col-span-2">
+                    <h3 class="text-blue-400 font-bold text-xl mb-4">Remote & Freelance</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <ul class="text-sm space-y-3">
+                            <li><strong>Remote OK:</strong> <a href="https://remoteok.io" target="_blank" class="text-blue-400 hover:underline">remoteok.io</a></li>
+                            <li><strong>We Work Remotely:</strong> <a href="https://weworkremotely.com" target="_blank" class="text-blue-400 hover:underline">weworkremotely.com</a></li>
+                            <li><strong>Toptal:</strong> <a href="https://www.toptal.com" target="_blank" class="text-blue-400 hover:underline">toptal.com</a></li>
+                        </ul>
+                        <ul class="text-sm space-y-3">
+                            <li><strong>Upwork:</strong> <a href="https://www.upwork.com" target="_blank" class="text-blue-400 hover:underline">upwork.com</a></li>
+                            <li><strong>Fiverr:</strong> <a href="https://www.fiverr.com" target="_blank" class="text-blue-400 hover:underline">fiverr.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-16 bg-slate-800 p-8 rounded-xl border border-blue-500/30">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Proactive Outreach Strategies</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <img src="../images/dm.jpeg" alt="Outreach" class="w-full h-auto rounded-xl">
+                <div class="space-y-6">
+                    <p class="text-slate-400 mb-4">In cases where there is no response after applying for jobs, proactive outreach becomes essential. This includes strategies such as:</p>
+                    <div class="p-4 bg-slate-700/50 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-white mb-1">Cold Emailing</h4>
+                        <p class="text-sm text-slate-400">Reach out to HR professionals or hiring managers directly via email, expressing interest and how your skills align with their needs.</p>
+                    </div>
+                    <div class="p-4 bg-slate-700/50 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-white mb-1">LinkedIn Messaging</h4>
+                        <p class="text-sm text-slate-400">Connect with employees or recruiters on LinkedIn and send a concise, polite message showing initiative and enthusiasm.</p>
+                    </div>
+                    <div class="p-4 bg-slate-700/50 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-white mb-1">Follow-Ups</h4>
+                        <p class="text-sm text-slate-400">If you have already applied and have not heard back, send a follow-up email after 1 to 2 weeks to express continued interest.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex flex-col gap-6 mt-12 max-w-6xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="window.location.href='./coldmail.html'" class="nav-btn px-6 py-3 font-bold text-white bg-slate-700 rounded-lg min-w-[180px]">Cold Mailing</button>
+                <button onclick="window.location.href='./dm.html'" class="nav-btn px-6 py-3 font-bold text-white bg-slate-700 rounded-lg min-w-[180px]">Direct Message</button>
+                <button onclick="window.location.href='./afterrej.html'" class="nav-btn px-6 py-3 font-bold text-white bg-slate-700 rounded-lg min-w-[180px]">After Rejection</button>
+            </div>
+            
+            <div class="navigation-buttons flex justify-between pt-6 border-t border-slate-700">
+                <button onclick="window.location.href='../phase3/phase3.html'" class="px-8 py-3 font-bold text-white bg-blue-600 rounded-lg shadow-md">Previous</button>
+                <button onclick="window.location.href='coldmail.html'" class="px-8 py-3 font-bold text-white bg-blue-600 rounded-lg shadow-md">Next</button>
+            </div>
         </div>
-        <p style="font-size:12px;color:var(--text-3);margin-top:10px;text-align:center;">Paste your complete resume for best accuracy · Your data stays on your device</p>
-      </div>
-
-      <div id="file-area" style="display:none;">
-        <div class="drop-zone" id="drop-zone" onclick="document.getElementById('fi').click()" ondragover="dov(event)" ondragleave="dol()" ondrop="ddr(event)">
-          <input type="file" id="fi" accept=".txt,.pdf,.doc,.docx" style="display:none" onchange="loadFile(event.target.files[0])" />
-          <div style="font-size:44px;margin-bottom:14px">📄</div>
-          <div style="font-size:15px;font-weight:700;color:var(--text-1);margin-bottom:5px" id="drop-title">Drop your resume here</div>
-          <div style="font-size:13px;color:var(--text-3)">.txt recommended · PDF/DOC: use Paste mode for best accuracy</div>
-          <div id="file-ok" style="display:none;margin-top:12px;font-size:13px;color:var(--green);font-weight:600">✓ File loaded</div>
-        </div>
-        <button class="btn-primary" onclick="runAnalysis()" style="width:100%;margin-top:16px;justify-content:center;">Analyze &amp; Find My Jobs →</button>
-      </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:32px;">
-      <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;">
-        <div style="font-size:26px;margin-bottom:8px">🎯</div>
-        <div style="font-size:12.5px;font-weight:700;color:var(--text-1);margin-bottom:4px">AI Fit Scoring</div>
-        <div style="font-size:11.5px;color:var(--text-3);line-height:1.5">Every job scored 0–100 based on your exact profile</div>
-      </div>
-      <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;">
-        <div style="font-size:26px;margin-bottom:8px">🏢</div>
-        <div style="font-size:12.5px;font-weight:700;color:var(--text-1);margin-bottom:4px">Official Links</div>
-        <div style="font-size:11.5px;color:var(--text-3);line-height:1.5">Apply buttons go to official company career pages</div>
-      </div>
-      <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center;">
-        <div style="font-size:26px;margin-bottom:8px">🇮🇳</div>
-        <div style="font-size:12.5px;font-weight:700;color:var(--text-1);margin-bottom:4px">India Focused</div>
-        <div style="font-size:11.5px;color:var(--text-3);line-height:1.5">Fresher roles at top MNCs &amp; Indian startups</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ SCREEN 2: ANALYZING ══ -->
-<div id="analyzing-screen">
-  <div class="spinner"></div>
-  <h2 style="font-size:30px;font-weight:800;letter-spacing:-0.8px;color:var(--text-1);margin-bottom:10px">Analyzing your profile…</h2>
-  <p style="font-size:14.5px;color:var(--text-2);margin-bottom:32px;line-height:1.65;max-width:440px">Fetching live job listings, matching your skills, and building your personalized dashboard.</p>
-  <div class="progress-box">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-      <div class="prog-dot"></div>
-      <span style="font-size:13.5px;color:var(--text-1);font-family:'JetBrains Mono',monospace" id="prog-text">Parsing resume &amp; extracting skills…</span>
-    </div>
-    <div class="prog-bar-wrap"><div class="prog-bar-fill" id="prog-bar"></div></div>
-    <div class="step-row">
-      <div class="step-it" id="s1">Resume parsed</div>
-      <div class="step-it" id="s2">Jobs fetched</div>
-      <div class="step-it" id="s3">Scores ready</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ SCREEN 3: ERROR ══ -->
-<div id="error-screen">
-  <div class="err-box">
-    <div style="font-size:44px;margin-bottom:18px">⚠️</div>
-    <div style="font-size:22px;font-weight:800;color:var(--rose);margin-bottom:8px">Analysis Failed</div>
-    <div style="font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:16px" id="err-msg">Something went wrong. Please try again.</div>
-    <div style="background:var(--bg-3);border-radius:8px;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-3);text-align:left;margin-bottom:20px" id="err-hint">Check: backend is running · Resume has enough text</div>
-    <button class="btn-primary" onclick="goBack()" style="width:100%;justify-content:center">← Try Again</button>
-  </div>
-</div>
-
-<!-- ══ SCREEN 4: RESULTS ══ -->
-<div id="results-screen">
-
-  <!-- Candidate hero -->
-  <div class="cand-hero fade-up">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:24px;position:relative;z-index:1">
-      <div style="flex:1">
-        <div style="font-size:10.5px;font-weight:700;letter-spacing:0.12em;color:var(--accent-2);text-transform:uppercase;margin-bottom:8px">YOUR PROFILE · HIREHUB AI</div>
-        <div style="font-size:28px;font-weight:800;letter-spacing:-0.8px;color:var(--text-1);margin-bottom:6px" id="cname">Candidate</div>
-        <div style="font-size:13.5px;color:var(--text-2);line-height:1.7;max-width:560px;margin-bottom:16px" id="csummary"></div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px" id="croles"></div>
-      </div>
-      <div style="text-align:center;flex-shrink:0">
-        <div class="score-circle">
-          <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:500;color:var(--accent-2);line-height:1" id="cpscore">—</div>
-          <div style="font-size:9px;color:var(--text-3);letter-spacing:0.07em;margin-top:3px">PROFILE</div>
-        </div>
-        <div style="font-size:11px;color:var(--text-3);margin-top:6px">out of 100</div>
-      </div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:5px;padding-top:16px;border-top:1px solid var(--border);align-items:center" id="cskills"></div>
-  </div>
-
-  <div id="src-badge" style="margin-bottom:16px"></div>
-
-  <div class="stats-grid fade-up">
-    <div class="stat-card"><div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:500;line-height:1;margin-bottom:5px;color:var(--accent-2)" id="st-total">0</div><div style="font-size:12px;color:var(--text-3)">Total Jobs Found</div></div>
-    <div class="stat-card"><div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:500;line-height:1;margin-bottom:5px;color:var(--green)" id="st-high">0</div><div style="font-size:12px;color:var(--text-3)">High Match (80+)</div></div>
-    <div class="stat-card"><div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:500;line-height:1;margin-bottom:5px;color:var(--amber)" id="st-mid">0</div><div style="font-size:12px;color:var(--text-3)">Medium Match</div></div>
-    <div class="stat-card"><div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:500;line-height:1;margin-bottom:5px;color:var(--rose)" id="st-low">0</div><div style="font-size:12px;color:var(--text-3)">Stretch Roles</div></div>
-  </div>
-
-  <div class="main-grid">
-    <div>
-      <div class="filter-bar">
-        <input class="fsearch" id="fsearch" placeholder="Search jobs, companies, skills…" oninput="render()" />
-        <div style="display:flex;gap:5px" id="type-pills">
-          <button class="fp on" onclick="setType(this,'all')">All Types</button>
-          <button class="fp" onclick="setType(this,'internship')">Internship</button>
-          <button class="fp" onclick="setType(this,'full-time')">Full-time</button>
-        </div>
-        <div style="display:flex;gap:5px" id="prob-pills">
-          <button class="fp on" onclick="setProb(this,'all')">All</button>
-          <button class="fp" onclick="setProb(this,'high')">🟢 High</button>
-          <button class="fp" onclick="setProb(this,'mid')">🟡 Mid</button>
-          <button class="fp" onclick="setProb(this,'low')">🔴 Stretch</button>
-        </div>
-      </div>
-      <div class="tabs" id="tabs">
-        <button class="tab on" data-t="all"  onclick="setTab(this,'all')">All</button>
-        <button class="tab"    data-t="high" onclick="setTab(this,'high')">High Match</button>
-        <button class="tab"    data-t="mid"  onclick="setTab(this,'mid')">Medium</button>
-        <button class="tab"    data-t="low"  onclick="setTab(this,'low')">Stretch</button>
-      </div>
-      <div id="jobs-list"></div>
-      <div id="warn-box" style="display:none;margin-top:12px;padding:12px 16px;background:var(--amber-bg);border:1px solid rgba(245,158,11,0.2);border-radius:9px;font-size:13px;color:var(--amber)"></div>
-    </div>
-
-    <div class="insight-panel">
-      <div class="ic"><div class="ic-label">🎯 Recommended Roles</div><div id="rec-roles"></div></div>
-      <div class="ic"><div class="ic-label">🧠 Your Strengths</div><div id="strengths"></div></div>
-      <div class="ic"><div class="ic-label">⚠️ Skill Gaps</div><div id="gaps"></div></div>
-      <div class="ic"><div class="ic-label">🚀 4-Week Action Plan</div><div id="actions"></div></div>
-      <div style="padding:11px 14px;background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.12);border-radius:9px;font-size:11.5px;color:var(--text-3);line-height:1.6">
-        <strong style="color:var(--text-2)">Note:</strong> Apply links go to official company career pages. Job availability changes daily — verify before applying.
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Footer -->
-<div class="footer-nav">
-  <a href="../dashboard/dashboard.html" class="btn-ghost">← Previous</a>
-  <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;color:var(--text-3);text-transform:uppercase">HIREHUB MODULE</span>
-  <a href="../dashboard/dashboard.html" class="btn-primary" style="font-size:14px;padding:10px 22px">Next →</a>
-</div>
-
-<script>
-let JOBS=[], activeTab='all', typeF='all', probF='all';
-
-function show(id) {
-  ['upload-screen','analyzing-screen','error-screen','results-screen'].forEach(s=>{
-    const el=document.getElementById(s);
-    el.style.display='none'; el.style.flexDirection='';
-  });
-  const t=document.getElementById(id);
-  if(id==='analyzing-screen'||id==='error-screen'){t.style.display='flex';t.style.flexDirection='column';}
-  else t.style.display='block';
-  document.getElementById('nav-back').style.display=id!=='upload-screen'?'inline-flex':'none';
-}
-function goBack(){JOBS=[];show('upload-screen');}
-function setMode(m){
-  document.getElementById('paste-area').style.display=m==='paste'?'block':'none';
-  document.getElementById('file-area').style.display=m==='file'?'block':'none';
-  document.getElementById('m-paste').classList.toggle('active',m==='paste');
-  document.getElementById('m-file').classList.toggle('active',m==='file');
-}
-function dov(e){e.preventDefault();document.getElementById('drop-zone').classList.add('drag');}
-function dol(){document.getElementById('drop-zone').classList.remove('drag');}
-function ddr(e){e.preventDefault();dol();loadFile(e.dataTransfer.files[0]);}
-async function loadFile(f){
-  if(!f)return;
-  document.getElementById('drop-title').textContent=f.name;
-  try{const t=await f.text();document.getElementById('resume-ta').value=t;document.getElementById('file-ok').style.display='block';}
-  catch{document.getElementById('drop-title').textContent='Could not read — try Paste mode';}
-}
-
-const PSTEPS=['Parsing resume & extracting skills…','Fetching live job listings from India…','Matching jobs against your profile…','Running AI fit scoring…','Generating career insights…','Building your dashboard…'];
-let stepTimer;
-function startProgress(){
-  let i=0,t=0;
-  ['s1','s2','s3'].forEach(id=>document.getElementById(id).classList.remove('done'));
-  const pb=document.getElementById('prog-bar');
-  pb.style.animation='none'; void pb.offsetWidth; pb.style.animation='';
-  stepTimer=setInterval(()=>{
-    i=(i+1)%PSTEPS.length; t++;
-    document.getElementById('prog-text').textContent=PSTEPS[i];
-    if(t>=2)document.getElementById('s1').classList.add('done');
-    if(t>=5)document.getElementById('s2').classList.add('done');
-  },2800);
-}
-function stopProgress(){clearInterval(stepTimer);document.getElementById('s3').classList.add('done');}
-
-async function runAnalysis(){
-  const resume=document.getElementById('resume-ta').value.trim();
-  if(resume.length<80){alert('Please paste more of your resume (at least skills, education, or experience).');return;}
-  show('analyzing-screen');startProgress();
-  try{
-    const res=await fetch('/api/hirehub/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({resumeText:resume})});
-    stopProgress();
-    if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error||`Server error ${res.status}`);}
-    const data=await res.json();
-    renderResults(data);
-  }catch(err){
-    stopProgress();
-    document.getElementById('err-msg').textContent=err.message||'Something went wrong.';
-    document.getElementById('err-hint').textContent=err.message?.includes('fetch')?'Could not reach PrepSphere server. Make sure it is running (node server.js).':'Check that GROQ_API_KEY is in your .env file and the server was restarted.';
-    show('error-screen');
-  }
-}
-
-function renderResults(data){
-  JOBS=data.jobs||[];
-  const c=data.candidate||{}, ins=data.insights||{};
-  document.getElementById('cname').textContent=c.name||'Candidate';
-  document.getElementById('csummary').textContent=c.strengthSummary||'';
-  document.getElementById('cpscore').textContent=c.profileScore??'—';
-  document.getElementById('croles').innerHTML=(c.topRoles||[]).map(r=>`<span style="font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;background:var(--accent-glow);color:var(--accent-2);border:1px solid rgba(59,110,246,0.25)">${esc(r)}</span>`).join('');
-  document.getElementById('cskills').innerHTML=
-    '<span style="font-size:10.5px;color:var(--text-3);font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-right:6px">KEY SKILLS</span>'+
-    (c.skills||[]).slice(0,14).map(s=>`<span style="font-size:11px;font-family:JetBrains Mono,monospace;padding:3px 8px;border-radius:4px;background:rgba(255,255,255,0.04);color:var(--text-2);border:1px solid var(--border)">${esc(s)}</span>`).join('');
-
-  const srcBadge=document.getElementById('src-badge');
-  srcBadge.innerHTML=data.source==='live'
-    ?`<span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;padding:4px 12px;border-radius:20px;background:var(--green-bg);color:var(--green);border:1px solid rgba(16,185,129,0.25)"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block"></span>Live jobs · Real-time from JSearch API</span>`
-    :`<span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;padding:4px 12px;border-radius:20px;background:var(--accent-glow);color:var(--accent-2);border:1px solid rgba(59,110,246,0.25)">⚡ AI-curated listings · Add JSEARCH_API_KEY in .env for live data</span>`;
-
-  const h=JOBS.filter(j=>j.fitScore>=80).length,m=JOBS.filter(j=>j.fitScore>=60&&j.fitScore<80).length,l=JOBS.filter(j=>j.fitScore<60).length;
-  document.getElementById('st-total').textContent=JOBS.length;
-  document.getElementById('st-high').textContent=h;
-  document.getElementById('st-mid').textContent=m;
-  document.getElementById('st-low').textContent=l;
-  document.querySelectorAll('#tabs .tab').forEach(t=>{
-    const map={all:JOBS.length,high:h,mid:m,low:l},labels={all:'All',high:'High Match',mid:'Medium',low:'Stretch'};
-    t.textContent=`${labels[t.dataset.t]} (${map[t.dataset.t]})`;
-  });
-
-  document.getElementById('rec-roles').innerHTML=(ins.recommendedRoles||[]).map((r,i)=>`
-    <div style="display:flex;align-items:center;gap:9px;padding:8px 11px;border-radius:7px;margin-bottom:5px;font-size:13px;font-weight:600;background:${i===0?'var(--accent)':'var(--bg-3)'}">
-      <div style="width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-family:JetBrains Mono,monospace;font-weight:700;flex-shrink:0;background:${i===0?'rgba(255,255,255,0.15)':'var(--bg-2)'};color:${i===0?'rgba(255,255,255,0.7)':'var(--text-3)'}">${i+1}</div>
-      <span style="color:${i===0?'white':'var(--text-1)'}">${esc(r)}</span>
-    </div>`).join('');
-  document.getElementById('strengths').innerHTML=(ins.strengths||[]).map(s=>`
-    <div style="display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--text-2);line-height:1.55;margin-bottom:7px">
-      <div style="width:15px;height:15px;border-radius:50%;background:var(--green-bg);border:1px solid rgba(16,185,129,0.3);flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:1px">
-        <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>${esc(s)}</div>`).join('');
-  document.getElementById('gaps').innerHTML=(ins.skillGaps||[]).map(s=>`<span style="display:inline-block;font-size:11.5px;padding:3px 9px;border-radius:5px;font-family:JetBrains Mono,monospace;background:var(--rose-bg);color:var(--rose);border:1px solid rgba(248,113,113,0.2);margin:3px">${esc(s)}</span>`).join('');
-  document.getElementById('actions').innerHTML=(ins.actionPlan||[]).map((s,i)=>`
-    <div style="display:flex;gap:9px;align-items:flex-start;margin-bottom:7px;font-size:12px;color:var(--text-2);line-height:1.55">
-      <div style="width:19px;height:19px;border-radius:4px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-family:JetBrains Mono,monospace;font-weight:700;flex-shrink:0;margin-top:1px">${i+1}</div>
-      ${esc(s)}</div>`).join('');
-
-  if(JOBS.length<20){const wb=document.getElementById('warn-box');wb.style.display='block';wb.textContent=`ℹ️ ${JOBS.length} verified jobs found. Add JSEARCH_API_KEY in .env for live job data from LinkedIn/Indeed/Glassdoor.`;}
-  render();show('results-screen');
-}
-
-function getFiltered(){
-  const q=(document.getElementById('fsearch')?.value||'').toLowerCase();
-  return JOBS.filter(j=>{
-    if(activeTab==='high'&&j.fitScore<80)return false;
-    if(activeTab==='mid'&&(j.fitScore<60||j.fitScore>=80))return false;
-    if(activeTab==='low'&&j.fitScore>=60)return false;
-    if(typeF!=='all'&&j.type.toLowerCase()!==typeF)return false;
-    if(probF==='high'&&j.fitScore<80)return false;
-    if(probF==='mid'&&(j.fitScore<60||j.fitScore>=80))return false;
-    if(probF==='low'&&j.fitScore>=60)return false;
-    if(q&&!j.title.toLowerCase().includes(q)&&!j.company.toLowerCase().includes(q)&&!(j.skills||[]).some(s=>s.toLowerCase().includes(q)))return false;
-    return true;
-  });
-}
-
-function render(){
-  const list=document.getElementById('jobs-list'), jobs=getFiltered();
-  if(!jobs.length){list.innerHTML=`<div class="empty"><div style="font-size:38px;margin-bottom:14px">🔍</div><div style="font-size:15px;font-weight:700;margin-bottom:6px">No jobs match these filters</div><div style="font-size:13px;color:var(--text-3)">Try adjusting the search or filter criteria</div></div>`;return;}
-  list.innerHTML=jobs.map((j,i)=>buildCard(j,i)).join('');
-}
-
-function buildCard(j,i){
-  const p=j.fitScore>=80?'high':j.fitScore>=60?'mid':'low';
-  const sc=p==='high'?'sr-h':p==='mid'?'sr-m':'sr-l';
-  const tc=j.type==='Internship'?'c-amber':'c-green';
-  const pl=p==='high'?'🟢 High Probability':p==='mid'?'🟡 Medium Probability':'🔴 Stretch Role';
-  const recent=/hour|min|today|just/i.test(j.postedTime||'');
-  const logo=j.companyLogo
-    ?`<img src="${escA(j.companyLogo)}" style="width:100%;height:100%;object-fit:contain;padding:5px;background:white;border-radius:9px" onerror="this.parentNode.innerHTML='<span style=font-size:14px;font-weight:800>${esc(j.companyInitial)}</span>'" />`
-    :`<span style="font-size:14px;font-weight:800">${esc(j.companyInitial)}</span>`;
-  return `
-  <div class="job-card" style="animation-delay:${Math.min(i,10)*0.04}s">
-    ${recent?'<div class="new-badge">🔥 JUST POSTED</div>':''}
-    <div style="display:flex;gap:12px;align-items:flex-start">
-      <div class="job-logo" style="background:${j.logoColor||'#3b6ef6'}">${logo}</div>
-      <div style="flex:1;min-width:0">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-          <div>
-            <div style="font-size:14.5px;font-weight:700;color:var(--text-1);line-height:1.3">${esc(j.title)}</div>
-            <div style="font-size:12px;color:var(--text-2);margin-top:2px">${esc(j.company)} · ${esc(j.location)}</div>
-          </div>
-          <div class="sr ${sc}">${j.fitScore}</div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:9px">
-          <span class="chip ${tc}">${esc(j.type)}</span>
-          <span class="chip c-gray">${esc(j.experience)}</span>
-          ${p==='high'?'<span class="chip c-green">High Match</span>':''}
-          ${p==='low'?'<span class="chip c-rose">Stretch</span>':''}
-          ${j.postedTime?`<span class="chip c-gray">${esc(j.postedTime)}</span>`:''}
-          ${j.demand?'<span class="chip c-amber">⚡ High Demand</span>':''}
-        </div>
-        ${j.matchReason?`<div style="font-size:12px;color:var(--text-2);line-height:1.65;margin-top:10px;padding-left:11px;border-left:2px solid var(--accent-glow)">${esc(j.matchReason)}</div>`:''}
-        ${(j.skills||[]).length?`<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:9px">${j.skills.map(s=>`<span class="stag">${esc(s)}</span>`).join('')}</div>`:''}
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:11px;border-top:1px solid var(--border)">
-          <div>
-            ${j.salary?`<div style="font-size:13px;font-weight:700;color:var(--green)">${esc(j.salary)}</div>`:''}
-            <div style="font-size:11px;color:var(--text-3);margin-top:2px">${pl}</div>
-          </div>
-          <a href="${escA(j.applyUrl)}" target="_blank" rel="noopener noreferrer" class="apply-btn">
-            Apply Now <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>`;
-}
-
-function setTab(el,t){document.querySelectorAll('#tabs .tab').forEach(x=>x.classList.remove('on'));el.classList.add('on');activeTab=t;render();}
-function setType(el,v){document.querySelectorAll('#type-pills .fp').forEach(x=>x.classList.remove('on'));el.classList.add('on');typeF=v;render();}
-function setProb(el,v){document.querySelectorAll('#prob-pills .fp').forEach(x=>x.classList.remove('on'));el.classList.add('on');probF=v;render();}
-function esc(s){if(!s)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
-function escA(s){if(!s||!String(s).startsWith('http'))return'#';return String(s).replace(/"/g,'&quot;');}
-</script>
 </body>
 </html>
