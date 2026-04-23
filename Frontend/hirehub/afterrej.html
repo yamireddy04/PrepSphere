@@ -3,187 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrepSphere | Ultimate Prep Guide</title>
+    <title>After Rejection | PrepSphere</title>
     <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
     <link rel="stylesheet" href="../shared/mobile.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: 'Bookman Old Style', sans-serif;
-            background-color: #ffffff;
-            color: #1a517b;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            background-image: url(../images/rej.jpeg);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            padding-bottom: 5rem; 
-        }
-
-        .container {
-            max-width: 48rem;
-            width: 100%;
-            margin: auto;
-            padding: 1.5rem;
-            background-color: #effcff;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        }
-
-        .title {
-            font-size: 1.875rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #3b82f6;
-            padding-bottom: 0.5rem;
-        }
-
-        p {
-            margin-bottom: 1rem;
-            color: #000000;
-        }
-        
-        ul {
-            list-style: disc;
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: #000000;
-        }
-
-        li {
-            margin-bottom: 0.25rem;
-        }
-
-        .details-container {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background-color: #bfdbfe;
-            border-radius: 0.5rem;
-            box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
-            transition: background-color 0.3s ease;
-        }
-
-        .details-container:hover {
-            background-color: #93c5fd;
-        }
-
-        .details-summary {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #1e40af;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        details > summary {
-            list-style: none;
-        }
-        details > summary::-webkit-details-marker {
-            display: none;
-        }
-        details > summary::after {
-            content: "+";
-            font-size: 1.5rem;
-            line-height: 1;
-            float: right;
-            transition: transform 0.3s ease;
-        }
-        details[open] > summary::after {
-            content: "-";
-            transform: rotate(180deg);
-        }
-
-        .pre-code-block {
-            margin-top: 1rem;
-            padding: 1rem;
-            background-color: #1e3a8a;
-            color: #93c5fd;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-            font-size: 0.875rem;
-            line-height: 1.625;
-            white-space: pre-wrap;
-        }
-
-        .navigation-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 48rem;
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 1rem 2rem;
-            background-color: #ffffff;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            border-top-left-radius: 0.75rem;
-            border-top-right-radius: 0.75rem;
-        }
-
-        .button {
-            background-color: #1052a8;
-            color: white;
-            font-weight: 500;
-            padding: 0.5rem 1.5rem;
-            border-radius: 9999px;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            outline: none;
-            cursor: pointer;
-            border: none;
-            text-decoration: none; 
-        }
-
-        .button:hover {
-            background-color: #1e40af;
-            transform: scale(1.05);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+        body { font-family: 'Bookman Old Style', sans-serif; }
+        .nav-btn { transition: all 0.3s ease-in-out; border: none; cursor: pointer; }
+        .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(59,130,246,0.4); }
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details > summary::after { content: "+"; font-size: 1.5rem; line-height: 1; float: right; transition: transform 0.3s ease; }
+        details[open] > summary::after { content: "-"; transform: rotate(180deg); }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h2 class="title">3. Emailing After Rejection</h2>
-        <p>
-            <strong>What It Is:</strong><br>
-            This is a follow-up message sent to a recruiter after being rejected for a role. While it may seem counterintuitive, it demonstrates professionalism and keeps you in consideration for future openings.
-        </p>
-        <p>
-            <strong>When to Use:</strong>
-        </p>
-        <ul>
-            <li>After receiving a rejection mail</li>
-            <li>If you had progressed through multiple interview rounds</li>
-            <li>When you want to express continued interest in the company</li>
-        </ul>
+<body class="bg-slate-900 text-slate-200 min-h-screen">
 
-        <p>
-            <strong>Why It Matters:</strong>
-        </p>
-        <ul>
-            <li>Shows maturity and professionalism</li>
-            <li>Keeps the door open for future roles</li>
-            <li>Sometimes leads to reconsideration or referrals</li>
-        </ul>
+    <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
 
-        <details class="details-container">
-            <summary class="details-summary">
-                Sample Email After Rejection
-            </summary>
-            <pre class="pre-code-block">
-Subject: Thank You , Continued Interest in Opportunities at [Company Name]
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-md">Emailing After Rejection</h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto italic border-b-2 border-blue-600 pb-2 inline-block mb-8">
+                Turn a closed door into a future opportunity
+            </p>
+            <div class="bg-slate-800 p-8 rounded-xl shadow-xl border-l-4 border-blue-600 w-full text-left">
+                <p class="text-slate-300 leading-relaxed">
+                    A follow-up message sent after a rejection may seem counterintuitive, but it demonstrates maturity and professionalism — and keeps you in consideration for future openings. It's one of the most underused strategies in a job seeker's toolkit.
+                </p>
+            </div>
+        </header>
+
+        <section class="mb-16 grid lg:grid-cols-2 gap-8">
+            <div class="bg-slate-800 p-8 rounded-xl shadow-xl border-t-2 border-blue-500">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <span class="text-blue-500">›</span> When to Use
+                </h2>
+                <ul class="space-y-4 text-slate-300">
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span><span>After receiving a rejection email</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span><span>If you had progressed through multiple interview rounds</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span><span>When you want to express continued interest in the company</span></li>
+                </ul>
+            </div>
+            <div class="bg-slate-800 p-8 rounded-xl shadow-xl border-t-2 border-blue-500">
+                <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                    <span class="text-blue-500">›</span> Why It Matters
+                </h2>
+                <ul class="space-y-4 text-slate-300">
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span><span>Shows maturity and professionalism</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span><span>Keeps the door open for future roles</span></li>
+                    <li class="flex gap-3"><span class="text-blue-500 font-bold">✔️</span><span>Sometimes leads to reconsideration or referrals</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">Sample Template</h2>
+            <details class="bg-slate-800 rounded-xl border border-blue-500/30 overflow-hidden">
+                <summary class="text-lg font-bold text-blue-400 cursor-pointer p-6 hover:bg-slate-700/50 transition-colors duration-200">
+                    Sample Email After Rejection
+                </summary>
+                <div class="p-6 pt-0">
+                    <pre class="mt-4 p-6 bg-slate-900 text-blue-300 rounded-xl overflow-x-auto text-sm leading-relaxed whitespace-pre-wrap border border-slate-700">Subject: Thank You — Continued Interest in Opportunities at [Company Name]
 
 Dear [Recruiter Name],
 
@@ -193,16 +74,35 @@ I genuinely enjoyed our conversations and learning more about your team and proj
 
 Thank you once again for your time and feedback.
 
-Warm regards,  
-Name  
-[Email] | [LinkedIn]
-            </pre>
-        </details>
-    </div>
-        
-    <div class="navigation-buttons">
-      <a href="dm.html" class="button">Previous</a>
-      <a href="../tq/tq.html" class="button">Next</a>
+Warm regards,
+Name
+[Email] | [LinkedIn]</pre>
+                </div>
+            </details>
+        </section>
+
+        <section class="mb-20 bg-slate-800 p-8 rounded-xl border border-blue-500/30">
+            <h2 class="text-2xl font-bold text-white mb-6 text-center">The Right Mindset</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-5 bg-slate-700/50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-white mb-2">Send Within 24–48 Hours</h4>
+                    <p class="text-sm text-slate-400">Timing matters. A prompt, gracious reply while you're still fresh in their memory is far more impactful.</p>
+                </div>
+                <div class="p-5 bg-slate-700/50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-white mb-2">Ask for Feedback</h4>
+                    <p class="text-sm text-slate-400">Politely request any pointers on how you could improve. Most recruiters appreciate the growth mindset — some will actually reply.</p>
+                </div>
+                <div class="p-5 bg-slate-700/50 rounded-lg border-l-4 border-blue-500">
+                    <h4 class="font-bold text-white mb-2">No Bitterness, Ever</h4>
+                    <p class="text-sm text-slate-400">Keep the tone warm and forward-looking. Industries are smaller than you think — impressions last beyond a single role.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex justify-between pt-6 border-t border-slate-700 mb-8">
+            <button onclick="window.location.href='dm.html'" class="nav-btn px-8 py-3 font-bold text-white bg-blue-600 rounded-lg shadow-md">Previous</button>
+            <button onclick="window.location.href='../tq/tq.html'" class="nav-btn px-8 py-3 font-bold text-white bg-blue-600 rounded-lg shadow-md">Next</button>
+        </div>
     </div>
 
 </body>
