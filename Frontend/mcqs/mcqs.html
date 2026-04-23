@@ -16,7 +16,7 @@
     }
 
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Bookman Old Style', 'Georgia', serif;
       background-color: #0f172a;
       color: #e2e8f0;
       min-height: 100vh;
@@ -117,7 +117,8 @@
       background: #1e293b;
       border-radius: 1rem;
       box-shadow: 0 4px 24px rgba(0,0,0,0.3);
-      margin-bottom: 2rem;
+      margin: 0 auto 2rem;
+      width: 100%;
       overflow: hidden;
       transition: box-shadow 0.3s;
     }
@@ -161,13 +162,14 @@
 
     .table-wrap {
       overflow-x: auto;
-      padding: 0 1rem 1.5rem;
+      padding: 0 0 1.5rem;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.9rem;
+      table-layout: fixed;
     }
 
     thead tr {
@@ -175,12 +177,17 @@
     }
 
     thead th {
-      padding: 0.9rem 1.2rem;
+      padding: 0.9rem 1.5rem;
       color: #ffffff;
       font-weight: 700;
       text-align: left;
       white-space: nowrap;
     }
+
+    thead th:nth-child(1) { width: 60px; text-align: center; }
+    thead th:nth-child(2) { width: auto; }
+    thead th:nth-child(3) { width: 160px; text-align: center; }
+    thead th:nth-child(4) { width: 160px; text-align: center; }
 
     tbody tr {
       border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -192,7 +199,7 @@
     tbody tr:hover { background: #263350; }
 
     tbody td {
-      padding: 0.85rem 1.2rem;
+      padding: 0.85rem 1.5rem;
       color: #cbd5e1;
       vertical-align: middle;
     }
@@ -201,7 +208,11 @@
       color: #64748b;
       font-size: 0.8rem;
       font-style: italic;
-      width: 48px;
+      text-align: center;
+    }
+
+    tbody td:nth-child(3),
+    tbody td:nth-child(4) {
       text-align: center;
     }
 
