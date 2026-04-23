@@ -4,123 +4,63 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Phase 2: Preparation</title>
+<link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#080b12;
-  --surface:#0d1220;
-  --surface-2:#111828;
-  --accent:#3b6ff5;
-  --accent-glow:rgba(59,111,245,0.18);
-  --white:#eef1f8;
-  --mid:rgba(238,241,248,0.52);
-  --low:rgba(238,241,248,0.22);
-  --border:rgba(238,241,248,0.07);
-  --border-2:rgba(238,241,248,0.13);
+  --bg:#080b12;--surface:#0d1220;--surface-2:#111828;
+  --accent:#3b6ff5;--white:#eef1f8;
+  --mid:rgba(238,241,248,0.52);--low:rgba(238,241,248,0.22);
+  --border:rgba(238,241,248,0.07);--border-2:rgba(238,241,248,0.13);
 }
 html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  display:grid;
-  grid-template-rows:1fr auto;
-  position:relative;overflow:hidden;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 50% 60% at 75% 30%, rgba(59,111,245,0.12) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 35% at 15% 75%, rgba(59,111,245,0.07) 0%, transparent 70%);
-  pointer-events:none;
-}
-.hero-grid-lines{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size:80px 80px;
-  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-  opacity:0.5;pointer-events:none;
-}
-.hero-inner{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-  padding:80px 64px 48px;
-  position:relative;z-index:1;
-}
+.hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 75% 30%,rgba(59,111,245,0.12) 0%,transparent 65%),radial-gradient(ellipse 40% 35% at 15% 75%,rgba(59,111,245,0.07) 0%,transparent 70%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);opacity:.45;pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:80px 64px 48px;position:relative;z-index:1}
 .hero-left{padding-right:48px}
-.phase-eyebrow{
-  display:inline-flex;align-items:center;gap:12px;
-  font-family:'Syne',sans-serif;font-size:10px;font-weight:700;
-  letter-spacing:5px;text-transform:uppercase;color:var(--accent);
-  margin-bottom:32px;
-  opacity:0;animation:fadeUp .8s .1s forwards;
-}
+
+.phase-eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:32px;opacity:0;animation:fadeUp .8s .1s forwards}
 .phase-eyebrow::before,.phase-eyebrow::after{content:'';width:28px;height:1px;background:var(--accent)}
-.hero-title{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(58px,7vw,96px);
-  font-weight:800;line-height:.92;letter-spacing:-3.5px;
-  color:var(--white);margin-bottom:28px;
-  opacity:0;animation:fadeUp .9s .2s forwards;
-}
-.hero-title em{font-style:normal;color:transparent;-webkit-text-stroke:1px rgba(238,241,248,0.28)}
-.hero-desc{
-  font-size:15px;color:var(--mid);line-height:1.9;
-  font-weight:300;max-width:400px;
-  opacity:0;animation:fadeUp .9s .35s forwards;
-}
+
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(52px,7vw,96px);font-weight:800;line-height:.92;letter-spacing:-3px;color:var(--white);margin-bottom:28px;opacity:0;animation:fadeUp .9s .2s forwards}
+.hero-desc{font-size:15px;color:var(--mid);line-height:1.9;font-weight:300;max-width:400px;opacity:0;animation:fadeUp .9s .35s forwards}
+
 .hero-right{opacity:0;animation:fadeIn 1.2s .4s forwards}
-.hero-img-wrap{
-  width:100%;aspect-ratio:4/3;
-  background:var(--surface);border:1px solid var(--border-2);
-  position:relative;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-}
-.hero-img-wrap::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(59,111,245,0.07) 0%,transparent 60%);
-}
-.hero-img-wrap::after{
-  content:'';position:absolute;top:0;left:0;
-  width:24px;height:24px;
-  border-top:1.5px solid var(--accent);border-left:1.5px solid var(--accent);opacity:.6;
-}
+.hero-img-wrap{width:100%;aspect-ratio:4/3;background:var(--surface);border:1px solid var(--border-2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-img-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,111,245,0.07) 0%,transparent 60%)}
+.hero-img-wrap::after{content:'';position:absolute;top:0;left:0;width:24px;height:24px;border-top:1.5px solid var(--accent);border-left:1.5px solid var(--accent);opacity:.6}
 .img-ph{display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;z-index:1}
-.img-ph-ring{width:52px;height:52px;border-radius:50%;border:1px dashed var(--border-2);display:flex;align-items:center;justify-content:center;}
+.img-ph-ring{width:52px;height:52px;border-radius:50%;border:1px dashed var(--border-2);display:flex;align-items:center;justify-content:center}
 .img-ph-ring svg{opacity:.3}
 .img-ph-label{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--low)}
 .hero-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
 
-.hero-footer{
-  padding:24px 64px;border-top:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
-  position:relative;z-index:1;
-  opacity:0;animation:fadeIn 1s .7s forwards;
-}
+.hero-footer{padding:24px 64px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;opacity:0;animation:fadeIn 1s .7s forwards}
 .scroll-hint{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--low);display:flex;align-items:center;gap:10px}
 .scroll-hint::after{content:'';width:40px;height:1px;background:var(--low)}
 .phase-counter{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;color:var(--low);text-transform:uppercase}
 .phase-counter span{color:var(--accent)}
 
-/* ── CONTENT ── */
 .content{padding:0 64px 80px}
-.step{
-  padding:72px 0;border-top:1px solid var(--border);
-  display:grid;grid-template-columns:280px 1fr;gap:80px;align-items:start;
-  opacity:0;transform:translateY(28px);
-  transition:opacity .75s ease,transform .75s ease;
-}
+.step{padding:72px 0;border-top:1px solid var(--border);display:grid;grid-template-columns:280px 1fr;gap:80px;align-items:start;opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
 .step.visible{opacity:1;transform:translateY(0)}
 .step-num-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
 .step-num{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent)}
 .step-num-line{flex:1;height:1px;background:var(--border-2)}
 .step-category{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--low);margin-bottom:12px}
-.step-title{font-family:'Syne',sans-serif;font-size:clamp(26px,2.8vw,36px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;color:var(--white);margin-bottom:16px}
+
+.step-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(22px,2.4vw,32px);
+  font-weight:800;letter-spacing:-1px;line-height:1.1;
+  color:var(--white);margin-bottom:16px;
+  word-break:break-word;overflow-wrap:break-word;
+  hyphens:auto;
+}
 .step-body{font-size:13.5px;color:var(--mid);line-height:1.9;font-weight:300}
 .step-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1px;background:var(--border)}
 .card{background:var(--surface);padding:22px 20px;transition:background .2s}
@@ -132,7 +72,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);mi
 .card-list li{font-size:12px;color:var(--mid);line-height:1.85;padding:2px 0 2px 14px;position:relative;font-weight:300}
 .card-list li::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:10px;top:4px}
 
-/* ── NAV ── */
 .nav{display:flex;justify-content:space-between;align-items:center;padding:26px 64px;border-top:1px solid var(--border)}
 .nav-center{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--low)}
 .nav-btn{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;padding:11px 26px;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
@@ -147,13 +86,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);mi
 @media(max-width:960px){
   .hero-inner{grid-template-columns:1fr;padding:60px 28px 40px}
   .hero-right{display:none}
-  .hero-footer{padding:20px 28px}
+  .hero-footer,.nav{padding-left:28px;padding-right:28px}
   .content{padding:0 28px 60px}
   .step{grid-template-columns:1fr;gap:32px;padding:48px 0}
-  .nav{padding:20px 28px}
 }
 @media(max-width:600px){
-  .hero-title{font-size:52px;letter-spacing:-2.5px}
+  .hero-title{font-size:46px;letter-spacing:-2px}
   .step-cards{grid-template-columns:1fr}
 }
 </style>
@@ -161,19 +99,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);mi
 <body>
 <div class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-grid-lines"></div>
+  <div class="hero-grid"></div>
   <div class="hero-inner">
     <div class="hero-left">
       <div class="phase-eyebrow">Phase 02</div>
-      <h1 class="hero-title">Prep<em>aration</em></h1>
+      <h1 class="hero-title">Preparation</h1>
       <p class="hero-desc">You've built the foundation. Now you convert it into performance. This phase sharpens your instincts, fills your intel gaps, and puts you through real reps before the real thing.</p>
     </div>
     <div class="hero-right">
       <div class="hero-img-wrap">
         <div class="img-ph">
-          <div class="img-ph-ring">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-          </div>
+          <div class="img-ph-ring"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
           <span class="img-ph-label">Cover Image</span>
         </div>
       </div>
@@ -188,87 +124,46 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);mi
 <div class="content">
   <div class="step">
     <div class="step-left">
-      <div class="step-num-row">
-        <span class="step-num">Module 01</span>
-        <div class="step-num-line"></div>
-      </div>
+      <div class="step-num-row"><span class="step-num">Module 01</span><div class="step-num-line"></div></div>
       <div class="step-category">Intelligence</div>
       <h2 class="step-title">PrepMaster</h2>
       <p class="step-body">Strategic intelligence separates prepared candidates from generic ones. PrepMaster decodes the hiring DNA of your target company before you walk through the door.</p>
     </div>
     <div class="step-right">
       <div class="step-cards">
-        <div class="card">
-          <div class="card-tag">Intel</div>
-          <strong>Company Intel</strong>
-          <p>Deep insights into interview patterns, frequently tested concepts, and selection criteria for major industry leaders.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag">Structure</div>
-          <strong>Round Breakdown</strong>
-          <p>Know exactly how many rounds await — and the weight given to technical versus behavioral assessment in each.</p>
-        </div>
+        <div class="card"><div class="card-tag">Intel</div><strong>Company Intel</strong><p>Deep insights into interview patterns, frequently tested concepts, and selection criteria for major industry leaders.</p></div>
+        <div class="card"><div class="card-tag">Structure</div><strong>Round Breakdown</strong><p>Know exactly how many rounds await — and the weight given to technical versus behavioral assessment in each.</p></div>
       </div>
     </div>
   </div>
 
   <div class="step">
     <div class="step-left">
-      <div class="step-num-row">
-        <span class="step-num">Module 02</span>
-        <div class="step-num-line"></div>
-      </div>
+      <div class="step-num-row"><span class="step-num">Module 02</span><div class="step-num-line"></div></div>
       <div class="step-category">Practice</div>
       <h2 class="step-title">MockIT</h2>
       <p class="step-body">A comprehensive library built to get you through every type of hiring round — from GDs to technical deep-dives. Practice with purpose, not repetition for its own sake.</p>
     </div>
     <div class="step-right">
       <div class="step-cards">
-        <div class="card">
-          <div class="card-tag">Core Rounds</div>
-          <strong>Round Practice</strong>
-          <ul class="card-list">
-            <li>Group Discussions (GD)</li>
-            <li>Spontaneous Speaking (JAM)</li>
-            <li>Aptitude test mastery</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="card-tag">Interviews</div>
-          <strong>Technical &amp; HR</strong>
-          <p>Specialized survival guides for deep-dive Technical rounds and behavioral HR interviews.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag">Practice</div>
-          <strong>AI MCQ Generator</strong>
-          <p>Sharpen speed and accuracy under pressure with AI-generated MCQs tuned to your target domain.</p>
-        </div>
+        <div class="card"><div class="card-tag">Core Rounds</div><strong>Round Practice</strong><ul class="card-list"><li>Group Discussions (GD)</li><li>Spontaneous Speaking (JAM)</li><li>Aptitude test mastery</li></ul></div>
+        <div class="card"><div class="card-tag">Interviews</div><strong>Technical &amp; HR</strong><p>Specialized survival guides for deep-dive Technical rounds and behavioral HR interviews.</p></div>
+        <div class="card"><div class="card-tag">Practice</div><strong>AI MCQ Generator</strong><p>Sharpen speed and accuracy under pressure with AI-generated MCQs tuned to your target domain.</p></div>
       </div>
     </div>
   </div>
 
   <div class="step">
     <div class="step-left">
-      <div class="step-num-row">
-        <span class="step-num">Module 03</span>
-        <div class="step-num-line"></div>
-      </div>
+      <div class="step-num-row"><span class="step-num">Module 03</span><div class="step-num-line"></div></div>
       <div class="step-category">Simulation</div>
       <h2 class="step-title">MockMyInterview</h2>
       <p class="step-body">The closest thing to a real interview — without the stakes. An AI-driven simulator that builds its sessions entirely around your target role and the actual job description.</p>
     </div>
     <div class="step-right">
       <div class="step-cards">
-        <div class="card">
-          <div class="card-tag">AI Engine</div>
-          <strong>JD Analysis</strong>
-          <p>Drop any Job Description in. Get a fully customized prep topic list and QA session tailored to that exact role.</p>
-        </div>
-        <div class="card">
-          <div class="card-tag">Personalized</div>
-          <strong>Role-Specific Prep</strong>
-          <p>Every session adapts to your target company, seniority level, and the areas where you need the most work.</p>
-        </div>
+        <div class="card"><div class="card-tag">AI Engine</div><strong>JD Analysis</strong><p>Drop any Job Description in. Get a fully customized prep topic list and QA session tailored to that exact role.</p></div>
+        <div class="card"><div class="card-tag">Personalized</div><strong>Role-Specific Prep</strong><p>Every session adapts to your target company, seniority level, and the areas where you need the most work.</p></div>
       </div>
     </div>
   </div>
@@ -281,13 +176,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);mi
 </nav>
 
 <script>
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
-}, {threshold: 0.08});
-document.querySelectorAll('.step').forEach((el,i) => {
-  el.style.transitionDelay = `${i * 0.06}s`;
-  obs.observe(el);
-});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')})},{threshold:0.08});
+document.querySelectorAll('.step').forEach((el,i)=>{el.style.transitionDelay=`${i*.06}s`;obs.observe(el)});
 </script>
 </body>
 </html>

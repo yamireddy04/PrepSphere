@@ -1,389 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>PrepSphere | Intelligence in Placement</title>
 <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
 :root{
---bg:#0b0f1a;
---surface:#131b2e;
---surface-hover:#1a2540;
---blue:#2563eb;
---blue-hover:#1d4ed8;
---blue-muted:rgba(37,99,235,0.15);
---white:#ffffff;
---text-primary:#ffffff;
---text-secondary:rgba(255,255,255,0.5);
---text-tertiary:rgba(255,255,255,0.3);
---border:rgba(255,255,255,0.08);
---border-strong:rgba(255,255,255,0.14);
---input-bg:#0f1524;
---radius:8px;
+  --bg:#080b12;
+  --surface:#0d1220;
+  --surface-2:#111828;
+  --accent:#3b6ff5;
+  --accent-dim:rgba(59,111,245,0.12);
+  --white:#eef1f8;
+  --mid:rgba(238,241,248,0.52);
+  --low:rgba(238,241,248,0.22);
+  --border:rgba(238,241,248,0.07);
+  --border-2:rgba(238,241,248,0.13);
 }
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-nav{display:flex;justify-content:space-between;align-items:center;padding:0 6%;height:64px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(11,15,26,0.92);backdrop-filter:blur(12px);z-index:1000}
-.logo{font-weight:700;font-size:1rem;color:var(--white);text-decoration:none}
-.nav-links{display:flex;align-items:center;gap:4px}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+nav{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 64px;height:60px;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;
+  background:rgba(8,11,18,0.92);
+  backdrop-filter:blur(14px);
+  z-index:1000;
+}
+.logo{
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:800;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--white);text-decoration:none;
+}
+.nav-right{display:flex;align-items:center;gap:6px}
 .nav-item{position:relative}
-.nav-btn{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:500;color:var(--text-secondary);padding:6px 12px;border-radius:6px;display:flex;align-items:center;gap:5px;transition:color 0.15s,background 0.15s;white-space:nowrap}
-.nav-btn:hover,.nav-item:hover .nav-btn{color:var(--white);background:rgba(255,255,255,0.06)}
-.nav-btn svg{transition:transform 0.2s}
+.nav-btn{
+  background:none;border:none;cursor:pointer;
+  font-family:'Syne',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--mid);padding:6px 12px;
+  display:flex;align-items:center;gap:5px;
+  transition:color .15s;
+}
+.nav-btn:hover,.nav-item:hover .nav-btn{color:var(--white)}
+.nav-btn svg{transition:transform .2s}
 .nav-item:hover .nav-btn svg{transform:rotate(180deg)}
-.dropdown{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(-4px);background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius);padding:6px;min-width:180px;box-shadow:0 16px 40px rgba(0,0,0,0.5);opacity:0;pointer-events:none;transition:opacity 0.15s,transform 0.15s;z-index:100}
+.dropdown{
+  position:absolute;top:calc(100% + 8px);left:50%;
+  transform:translateX(-50%) translateY(-4px);
+  background:var(--surface);
+  border:1px solid var(--border-2);
+  padding:6px;min-width:170px;
+  box-shadow:0 20px 48px rgba(0,0,0,0.6);
+  opacity:0;pointer-events:none;
+  transition:opacity .15s,transform .15s;
+  z-index:200;
+}
 .nav-item:hover .dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}
-.dd-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);padding:6px 10px 8px;display:block}
-.dropdown a{display:flex;align-items:center;gap:8px;padding:7px 10px;text-decoration:none;font-size:0.8rem;font-weight:400;color:var(--text-secondary);border-radius:5px;transition:background 0.1s,color 0.1s}
-.dropdown a:hover{background:rgba(255,255,255,0.06);color:var(--white)}
-.dd-dot{width:4px;height:4px;border-radius:50%;background:var(--text-tertiary);flex-shrink:0;transition:background 0.1s}
-.dropdown a:hover .dd-dot{background:var(--blue)}
-.btn-launch{background:var(--blue);color:var(--white);padding:7px 18px;border-radius:var(--radius);font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;text-decoration:none;transition:background 0.15s;margin-left:8px;white-space:nowrap}
-.btn-launch:hover{background:var(--blue-hover)}
+.dd-label{
+  font-family:'Syne',sans-serif;font-size:8px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;
+  color:var(--accent);padding:6px 10px 8px;display:block;
+}
+.dropdown a{
+  display:flex;align-items:center;gap:8px;padding:7px 10px;
+  text-decoration:none;font-size:12px;font-weight:400;
+  color:var(--mid);transition:background .1s,color .1s;
+}
+.dropdown a:hover{background:rgba(255,255,255,0.05);color:var(--white)}
+.dd-dot{width:3px;height:3px;border-radius:50%;background:var(--low);flex-shrink:0;transition:background .1s}
+.dropdown a:hover .dd-dot{background:var(--accent)}
+.btn-launch{
+  font-family:'Syne',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  background:var(--accent);color:#fff;
+  padding:8px 20px;text-decoration:none;
+  margin-left:10px;transition:opacity .15s;
+  display:inline-flex;align-items:center;gap:7px;
+}
+.btn-launch:hover{opacity:.85}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
-.hamburger span{display:block;width:20px;height:1.5px;background:var(--white);transition:all 0.25s}
+.hamburger span{display:block;width:20px;height:1.5px;background:var(--white);transition:all .25s}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.mob-menu{display:none;position:fixed;top:64px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:20px 6%;z-index:999}
+.mob-menu{display:none;position:fixed;top:60px;left:0;right:0;background:var(--surface);border-bottom:1px solid var(--border);padding:24px 28px;z-index:999}
 .mob-menu.open{display:block}
-.mob-group{margin-bottom:20px}
-.mob-lbl{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;display:block}
+.mob-group{margin-bottom:22px}
+.mob-lbl{font-family:'Syne',sans-serif;font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:block}
 .mob-row{display:flex;flex-wrap:wrap;gap:6px}
-.mob-row a{text-decoration:none;font-size:0.8rem;font-weight:400;color:var(--text-secondary);padding:6px 14px;border:1px solid var(--border);border-radius:var(--radius);transition:all 0.15s}
-.mob-row a:hover{color:var(--white);border-color:var(--border-strong)}
-.mob-foot{border-top:1px solid var(--border);padding-top:14px;margin-top:4px}
-.hero{padding:120px 6% 100px;text-align:center}
-.hero-eyebrow{display:inline-block;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:28px;animation:fadeUp 0.5s 0.05s both}
-.hero h1{font-size:clamp(52px,9vw,100px);font-weight:800;line-height:1;letter-spacing:-2px;color:var(--white);margin-bottom:24px;animation:fadeUp 0.5s 0.1s both}
-.hero-sub{font-size:clamp(15px,2vw,19px);font-weight:400;color:var(--text-secondary);max-width:520px;margin:0 auto 48px;line-height:1.65;animation:fadeUp 0.5s 0.15s both}
-.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.5s 0.2s both}
-.btn-primary{background:var(--blue);color:var(--white);padding:12px 28px;border-radius:var(--radius);font-family:'Inter',sans-serif;font-size:0.875rem;font-weight:600;text-decoration:none;transition:background 0.15s;display:inline-flex;align-items:center;gap:8px}
-.btn-primary:hover{background:var(--blue-hover)}
-.btn-ghost{background:transparent;color:var(--text-secondary);padding:12px 28px;border-radius:var(--radius);border:1px solid var(--border-strong);font-family:'Inter',sans-serif;font-size:0.875rem;font-weight:500;text-decoration:none;transition:all 0.15s;display:inline-flex;align-items:center;gap:8px}
-.btn-ghost:hover{color:var(--white);border-color:rgba(255,255,255,0.28)}
-.divider{height:1px;background:var(--border);margin:0 6%}
-.section{padding:80px 6%}
-.s-label{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:14px;display:block}
-.s-title{font-size:clamp(24px,3.5vw,38px);font-weight:700;color:var(--white);margin-bottom:12px;letter-spacing:-0.5px}
-.s-desc{font-size:14.5px;color:var(--text-secondary);max-width:500px;line-height:1.7;margin-bottom:40px}
-.card-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;transition:border-color 0.2s,background 0.2s;cursor:default}
-.card:hover{border-color:var(--border-strong);background:var(--surface-hover)}
-.card-num{width:34px;height:34px;border-radius:50%;background:var(--blue-muted);border:1px solid rgba(37,99,235,0.3);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--blue);margin-bottom:18px;flex-shrink:0}
-.card h3{font-size:15px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:-0.2px}
-.card h4{font-size:14px;font-weight:700;color:var(--white);margin-bottom:10px;letter-spacing:-0.2px}
-.card p{font-size:13.5px;color:var(--text-secondary);line-height:1.7}
-.card-tag{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);opacity:0.7;margin-top:16px}
-.card-num-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:14px;display:block}
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
-.stat-box{background:var(--bg);padding:40px 24px;text-align:center}
-.stat-num{font-size:clamp(34px,5vw,52px);font-weight:800;color:var(--white);letter-spacing:-1px;line-height:1;margin-bottom:8px}
-.stat-num span{color:var(--blue)}
-.stat-lbl{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-secondary)}
-.vs-table{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:32px}
-.vs-head{display:grid;grid-template-columns:2fr 1fr 1fr;background:rgba(37,99,235,0.1);padding:13px 24px}
-.vs-head span{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-tertiary)}
-.vs-head span:nth-child(2){color:var(--blue)}
-.vs-row{display:grid;grid-template-columns:2fr 1fr 1fr;padding:13px 24px;border-top:1px solid var(--border);align-items:center;transition:background 0.15s}
-.vs-row:hover{background:rgba(255,255,255,0.03)}
-.vs-row span:first-child{font-size:13.5px;color:var(--text-secondary)}
-.vs-y{color:var(--blue);font-weight:700;font-size:15px}
-.vs-n{color:var(--text-tertiary);font-size:12px}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.c-links{display:flex;flex-direction:column;gap:10px;margin-top:28px}
-.c-link{display:flex;align-items:center;gap:14px;padding:13px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);text-decoration:none;color:var(--text-secondary);font-size:13.5px;font-weight:500;transition:all 0.15s}
-.c-link:hover{border-color:var(--border-strong);color:var(--white);background:var(--surface-hover)}
-.c-link-icon{width:30px;height:30px;background:var(--blue-muted);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.form{display:flex;flex-direction:column;gap:14px}
-.form-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.fg{display:flex;flex-direction:column;gap:7px}
-.fg label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-secondary)}
-.fg input,.fg textarea,.fg select{padding:11px 14px;background:var(--input-bg);border:1px solid var(--border);border-radius:var(--radius);font-family:'Inter',sans-serif;font-size:13.5px;color:var(--white);outline:none;transition:border-color 0.15s;width:100%;-webkit-appearance:none}
-.fg input::placeholder,.fg textarea::placeholder{color:var(--text-tertiary)}
-.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--blue)}
-.fg select{cursor:pointer;color:var(--text-secondary)}
-.fg select option{background:var(--surface)}
-.fg textarea{resize:vertical;min-height:96px}
-.btn-sub{background:var(--blue);color:var(--white);padding:12px 28px;border-radius:var(--radius);font-family:'Inter',sans-serif;font-size:0.875rem;font-weight:600;border:none;cursor:pointer;transition:background 0.15s;align-self:flex-start;display:inline-flex;align-items:center;gap:8px}
-.btn-sub:hover{background:var(--blue-hover)}
-.btn-sub:disabled{opacity:0.5;cursor:not-allowed}
-.form-ok{display:none;background:var(--surface);border:1px solid rgba(37,99,235,0.3);border-radius:var(--radius);padding:32px;text-align:center}
-.form-ok.on{display:block}
-.form-ok h4{font-size:17px;font-weight:700;color:var(--white);margin-bottom:8px}
-.form-ok p{font-size:13.5px;color:var(--text-secondary)}
-.cta-band{padding:100px 6%;text-align:center;border-top:1px solid var(--border)}
-.cta-band h2{font-size:clamp(30px,5vw,54px);font-weight:800;color:var(--white);letter-spacing:-1px;margin-bottom:14px}
-.cta-band p{font-size:15px;color:var(--text-secondary);margin-bottom:32px}
-footer{padding:30px 6%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
-.f-copy{font-size:12px;color:var(--text-tertiary)}
-.f-links{display:flex;gap:24px;flex-wrap:wrap}
-.f-links a{text-decoration:none;font-size:12px;color:var(--text-secondary);transition:color 0.15s}
-.f-links a:hover{color:var(--white)}
-.f-blue{color:var(--blue) !important}
-.sr{opacity:0;transform:translateY(14px);transition:opacity 0.55s ease,transform 0.55s ease}
+.mob-row a{text-decoration:none;font-size:11px;font-weight:400;color:var(--mid);padding:6px 14px;border:1px solid var(--border-2);transition:all .15s}
+.mob-row a:hover{color:var(--white);border-color:var(--border-2)}
+.mob-foot{border-top:1px solid var(--border);padding-top:16px;margin-top:4px}
+
+.hero{
+  min-height:100vh;display:grid;
+  grid-template-rows:1fr auto;
+  position:relative;overflow:hidden;
+  text-align:center;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 55% at 50% 30%, rgba(59,111,245,0.13) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 40% at 15% 80%, rgba(59,111,245,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 40% at 85% 75%, rgba(59,111,245,0.05) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 85% 85% at 50% 50%,black 20%,transparent 100%);
+  opacity:.45;pointer-events:none;
+}
+.hero-inner{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:80px 64px 40px;
+  position:relative;z-index:1;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:'Syne',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:5px;text-transform:uppercase;color:var(--accent);
+  margin-bottom:36px;
+  opacity:0;animation:fadeUp .7s .1s forwards;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';width:28px;height:1px;background:var(--accent)}
+.hero-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(64px,12vw,148px);
+  font-weight:800;line-height:.9;letter-spacing:-4px;
+  color:var(--white);
+  margin-bottom:32px;
+  opacity:0;animation:fadeUp .9s .2s forwards;
+}
+.hero-desc{
+  font-size:16px;color:var(--mid);line-height:1.85;
+  font-weight:300;max-width:480px;margin:0 auto 48px;
+  opacity:0;animation:fadeUp .9s .35s forwards;
+}
+.hero-cta{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .9s .5s forwards;
+}
+.btn-primary{
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;
+  background:var(--accent);color:#fff;
+  padding:12px 30px;text-decoration:none;
+  transition:opacity .2s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{opacity:.85}
+.btn-ghost{
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:2.5px;text-transform:uppercase;
+  background:transparent;color:var(--mid);
+  padding:12px 30px;border:1px solid var(--border-2);
+  text-decoration:none;transition:all .2s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-ghost:hover{color:var(--white);border-color:rgba(238,241,248,.25)}
+
+.hero-footer{
+  padding:22px 64px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  position:relative;z-index:1;
+  opacity:0;animation:fadeIn 1s .7s forwards;
+}
+.scroll-hint{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--low);display:flex;align-items:center;gap:10px}
+.scroll-hint::after{content:'';width:40px;height:1px;background:var(--low)}
+.hero-tagline{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--low)}
+
+.section{padding:80px 64px}
+.sr{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
 .sr.in{opacity:1;transform:none}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media(max-width:900px){.card-grid-3{grid-template-columns:repeat(2,1fr)}.stats-row{grid-template-columns:repeat(2,1fr)}.contact-grid{grid-template-columns:1fr;gap:48px}}
-@media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}.hero{padding:80px 5% 72px}.section{padding:64px 5%}.divider{margin:0 5%}.cta-band{padding:80px 5%}footer{padding:26px 5%;flex-direction:column;align-items:flex-start}}
-@media(max-width:560px){.card-grid-3,.card-grid-2,.stats-row{grid-template-columns:1fr}.form-2{grid-template-columns:1fr}.hero h1{letter-spacing:-1px}.hero-cta{flex-direction:column;align-items:center}}
+
+.s-eyebrow{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;display:block}
+.s-title{font-family:'Syne',sans-serif;font-size:clamp(26px,3.5vw,44px);font-weight:800;letter-spacing:-1.5px;color:var(--white);margin-bottom:12px;line-height:1.05}
+.s-desc{font-size:14px;color:var(--mid);max-width:480px;line-height:1.85;font-weight:300;margin-bottom:40px}
+
+.divider{height:1px;background:var(--border);margin:0 64px}
+
+.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.phase-card{
+  background:var(--surface);padding:40px 32px;
+  transition:background .2s;position:relative;overflow:hidden;
+}
+.phase-card:hover{background:var(--surface-2)}
+.phase-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:var(--accent);opacity:0;transition:opacity .2s;
+}
+.phase-card:hover::before{opacity:.5}
+.pc-num{
+  font-family:'Syne',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:4px;text-transform:uppercase;color:var(--accent);
+  margin-bottom:28px;display:flex;align-items:center;gap:10px;
+}
+.pc-num::after{content:'';flex:1;height:1px;background:var(--border-2)}
+.pc-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:-1px;color:var(--white);margin-bottom:12px}
+.pc-desc{font-size:13px;color:var(--mid);line-height:1.85;font-weight:300;margin-bottom:20px}
+.pc-tags{display:flex;flex-wrap:wrap;gap:6px}
+.pc-tag{font-family:'Syne',sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);padding:4px 10px;border:1px solid rgba(59,111,245,0.25)}
+
+/* ── FEATURE GRID ── */
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
+.feat{background:var(--surface);padding:32px 28px;transition:background .2s}
+.feat:hover{background:var(--surface-2)}
+.feat-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;letter-spacing:-.5px;color:var(--white);margin-bottom:10px}
+.feat-body{font-size:13px;color:var(--mid);line-height:1.85;font-weight:300}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.stat{background:var(--surface);padding:44px 24px;text-align:center}
+.stat-n{font-family:'Syne',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-2px;color:var(--white);line-height:1;margin-bottom:10px}
+.stat-n span{color:var(--accent)}
+.stat-l{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--low)}
+
+.vs-table{background:var(--surface);border:1px solid var(--border-2);margin-top:32px;overflow:hidden}
+.vs-head{display:grid;grid-template-columns:2fr 1fr 1fr;background:rgba(59,111,245,0.08);padding:14px 24px}
+.vs-head span{font-family:'Syne',sans-serif;font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--low)}
+.vs-head span:nth-child(2){color:var(--accent)}
+.vs-row{display:grid;grid-template-columns:2fr 1fr 1fr;padding:13px 24px;border-top:1px solid var(--border);align-items:center;transition:background .15s}
+.vs-row:hover{background:rgba(238,241,248,.02)}
+.vs-row span:first-child{font-size:13px;color:var(--mid);font-weight:300}
+.vs-y{color:var(--accent);font-family:'Syne',sans-serif;font-weight:700;font-size:14px}
+.vs-n{color:var(--low);font-size:12px}
+
+.cta-band{
+  padding:96px 64px;text-align:center;
+  border-top:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.cta-band::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(59,111,245,0.09) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cta-band h2{font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,56px);font-weight:800;letter-spacing:-2px;color:var(--white);margin-bottom:14px;position:relative}
+.cta-band p{font-size:15px;color:var(--mid);margin-bottom:36px;font-weight:300;position:relative}
+
+footer{
+  padding:28px 64px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+}
+.f-copy{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--low)}
+.f-links{display:flex;gap:24px;flex-wrap:wrap}
+.f-links a{text-decoration:none;font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--low);transition:color .15s}
+.f-links a:hover{color:var(--white)}
+.f-accent{color:var(--accent) !important}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+@media(max-width:960px){
+  nav{padding:0 28px}
+  .nav-right .nav-item,.nav-right .btn-launch{display:none}
+  .hamburger{display:flex}
+  .hero-inner{padding:60px 28px 36px}
+  .hero-title{font-size:clamp(52px,14vw,100px);letter-spacing:-3px}
+  .hero-footer{padding:18px 28px}
+  .section{padding:60px 28px}
+  .divider{margin:0 28px}
+  .phase-grid{grid-template-columns:1fr}
+  .feat-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .cta-band{padding:72px 28px}
+  footer{padding:24px 28px}
+}
+@media(max-width:560px){
+  .hero-title{letter-spacing:-2px}
+  .stats-row{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
 <nav>
-<a href="#" class="logo">PrepSphere</a>
-<div class="nav-links">
-<div class="nav-item">
-<button class="nav-btn">Phase 1<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-<div class="dropdown">
-<span class="dd-label">Foundation</span>
-<a href="roadmap/roadmap.html"><span class="dd-dot"></span>Roadmap</a>
-<a href="roadmap/pathfinder.html"><span class="dd-dot"></span>Pathfinder</a>
-<a href="resume/resume.html"><span class="dd-dot"></span>Resume</a>
-<a href="coverletter/coverletter.html"><span class="dd-dot"></span>Cover Letter</a>
-</div>
-</div>
-<div class="nav-item">
-<button class="nav-btn">Phase 2<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-<div class="dropdown">
-<span class="dd-label">Mastery</span>
-<a href="prepmaster/prepmaster.html"><span class="dd-dot"></span>PrepMaster</a>
-<a href="MockIt/mockit.html"><span class="dd-dot"></span>MockIt</a>
-<a href="mmi/mmi.html"><span class="dd-dot"></span>MockMyInterview</a>
-</div>
-</div>
-<div class="nav-item">
-<button class="nav-btn">Phase 3<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-<div class="dropdown">
-<span class="dd-label">Outreach</span>
-<a href="hirehub/hirehub.html"><span class="dd-dot"></span>HireHub</a>
-</div>
-</div>
-<a href="exp/exp.html" class="btn-launch">Launch App &#8594;</a>
-</div>
-<button class="hamburger" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a href="#" class="logo">PrepSphere</a>
+  <div class="nav-right">
+    <div class="nav-item">
+      <button class="nav-btn">Phase 1 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <div class="dropdown">
+        <span class="dd-label">Foundation</span>
+        <a href="roadmap/roadmap.html"><span class="dd-dot"></span>Roadmap</a>
+        <a href="roadmap/pathfinder.html"><span class="dd-dot"></span>Pathfinder</a>
+        <a href="resume/resume.html"><span class="dd-dot"></span>Resume</a>
+        <a href="coverletter/coverletter.html"><span class="dd-dot"></span>Cover Letter</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-btn">Phase 2 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <div class="dropdown">
+        <span class="dd-label">Mastery</span>
+        <a href="prepmaster/prepmaster.html"><span class="dd-dot"></span>PrepMaster</a>
+        <a href="MockIt/mockit.html"><span class="dd-dot"></span>MockIt</a>
+        <a href="mmi/mmi.html"><span class="dd-dot"></span>MockMyInterview</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-btn">Phase 3 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <div class="dropdown">
+        <span class="dd-label">Outreach</span>
+        <a href="hirehub/hirehub.html"><span class="dd-dot"></span>HireHub</a>
+      </div>
+    </div>
+    <a href="exp/exp.html" class="btn-launch">Launch App →</a>
+  </div>
+  <button class="hamburger" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="mob-menu" id="mmn">
-<div class="mob-group">
-<span class="mob-lbl">Phase 1 — Foundation</span>
-<div class="mob-row">
-<a href="roadmap/roadmap.html">Roadmap</a>
-<a href="roadmap/pathfinder.html">Pathfinder</a>
-<a href="resume/resume.html">Resume</a>
-<a href="coverletter/coverletter.html">Cover Letter</a>
-</div>
-</div>
-<div class="mob-group">
-<span class="mob-lbl">Phase 2 — Mastery</span>
-<div class="mob-row">
-<a href="prepmaster/prepmaster.html">PrepMaster</a>
-<a href="MockIt/mockit.html">MockIt</a>
-<a href="mmi/mmi.html">MockMyInterview</a>
-</div>
-</div>
-<div class="mob-group">
-<span class="mob-lbl">Phase 3 — Outreach</span>
-<div class="mob-row">
-<a href="hirehub/hirehub.html">HireHub</a>
-</div>
-</div>
-<div class="mob-foot">
-<a href="exp/exp.html" class="btn-primary" style="width:100%;justify-content:center">Launch App &#8594;</a>
-</div>
+  <div class="mob-group">
+    <span class="mob-lbl">Phase 1 — Foundation</span>
+    <div class="mob-row">
+      <a href="roadmap/roadmap.html">Roadmap</a>
+      <a href="roadmap/pathfinder.html">Pathfinder</a>
+      <a href="resume/resume.html">Resume</a>
+      <a href="coverletter/coverletter.html">Cover Letter</a>
+    </div>
+  </div>
+  <div class="mob-group">
+    <span class="mob-lbl">Phase 2 — Mastery</span>
+    <div class="mob-row">
+      <a href="prepmaster/prepmaster.html">PrepMaster</a>
+      <a href="MockIt/mockit.html">MockIt</a>
+      <a href="mmi/mmi.html">MockMyInterview</a>
+    </div>
+  </div>
+  <div class="mob-group">
+    <span class="mob-lbl">Phase 3 — Outreach</span>
+    <div class="mob-row"><a href="hirehub/hirehub.html">HireHub</a></div>
+  </div>
+  <div class="mob-foot">
+    <a href="exp/exp.html" class="btn-primary" style="width:100%;justify-content:center">Launch App →</a>
+  </div>
 </div>
 
-<header class="hero">
-<span class="hero-eyebrow">Intelligence in Placement</span>
-<h1>PrepSphere</h1>
-<p class="hero-sub">A unified, sequential pipeline engineered to eliminate the fragmentation of career transitions.</p>
-<div class="hero-cta">
-<a href="exp/exp.html" class="btn-primary">Begin Journey &#8594;</a>
-<a href="#phases" class="btn-ghost">Explore System</a>
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Intelligence in Placement</div>
+    <h1 class="hero-title">PREPSPHERE</h1>
+    <p class="hero-desc">A unified, sequential pipeline engineered to eliminate the fragmentation of career preparation. Foundation. Mastery. Closure.</p>
+    <div class="hero-cta">
+      <a href="exp/exp.html" class="btn-primary">Begin Journey →</a>
+      <a href="#phases" class="btn-ghost">Explore System</a>
+    </div>
+  </div>
+  <div class="hero-footer">
+    <span class="scroll-hint">Scroll to explore</span>
+    <span class="hero-tagline">Three phases · One system</span>
+  </div>
 </div>
-</header>
-
-<div class="divider"></div>
 
 <section class="section sr" id="phases">
-<span class="s-label">The Pipeline</span>
-<h2 class="s-title">Three phases. One system.</h2>
-<p class="s-desc">Every module is ordered by dependency — foundation first, closure last. No guessing what to do next.</p>
-<div class="card-grid-3">
-<div class="card">
-<div class="card-num">01</div>
-<h3>Foundation</h3>
-<p>Building core professional identity through JD-aligned roadmaps and resume engineering.</p>
-<div class="card-tag">Pathfinder AI &middot; ATS Intel</div>
-</div>
-<div class="card">
-<div class="card-num">02</div>
-<h3>Mastery</h3>
-<p>High-fidelity interview simulations designed to bridge the gap between knowledge and delivery.</p>
-<div class="card-tag">Predicted Q&amp;A &middot; MCQ Drills</div>
-</div>
-<div class="card">
-<div class="card-num">03</div>
-<h3>Outreach</h3>
-<p>Strategically closing the loop with professional outreach engines and offer-capture templates.</p>
-<div class="card-tag">Cold Outreach &middot; Follow-up Logic</div>
-</div>
-</div>
-</section>
-
-<div class="divider"></div>
-
-<section class="section sr">
-<span class="s-label">The System</span>
-<h2 class="s-title">High-fidelity preparation, unified.</h2>
-<p class="s-desc">We've replaced the dozen tabs of chaos with a structured workflow — a single pipeline from zero to offer.</p>
-<div class="card-grid-3">
-<div class="card">
-<span class="card-num-label">01 / Assets</span>
-<h4>Resume Engineering</h4>
-<p>Generate JD-aligned roadmaps and ATS-engineered resumes. Move beyond generic templates.</p>
-</div>
-<div class="card">
-<span class="card-num-label">02 / Mastery</span>
-<h4>Interview Simulation</h4>
-<p>High-fidelity mock sessions and predicted Q&amp;A banks that bridge knowledge and delivery.</p>
-</div>
-<div class="card">
-<span class="card-num-label">03 / Closure</span>
-<h4>Professional Outreach</h4>
-<p>Close the loop with outreach engines and follow-up logic used by industry veterans.</p>
-</div>
-</div>
+  <span class="s-eyebrow">The Pipeline</span>
+  <h2 class="s-title">Three phases. One system.</h2>
+  <p class="s-desc">Every module is ordered by dependency — foundation first, closure last. No guessing what to do next.</p>
+  <div class="phase-grid">
+    <div class="phase-card">
+      <div class="pc-num">Phase 01</div>
+      <div class="pc-title">Foundation</div>
+      <p class="pc-desc">Building core professional identity through JD-aligned roadmaps, resume engineering, and cover letter strategy.</p>
+      <div class="pc-tags">
+        <span class="pc-tag">Pathfinder AI</span>
+        <span class="pc-tag">ATS Intel</span>
+        <span class="pc-tag">Resume</span>
+      </div>
+    </div>
+    <div class="phase-card">
+      <div class="pc-num">Phase 02</div>
+      <div class="pc-title">Mastery</div>
+      <p class="pc-desc">High-fidelity interview simulations designed to bridge the gap between theoretical knowledge and real-world delivery.</p>
+      <div class="pc-tags">
+        <span class="pc-tag">PrepMaster</span>
+        <span class="pc-tag">MockIT</span>
+        <span class="pc-tag">AI Simulator</span>
+      </div>
+    </div>
+    <div class="phase-card">
+      <div class="pc-num">Phase 03</div>
+      <div class="pc-title">Outreach</div>
+      <p class="pc-desc">Strategically closing the loop with professional outreach engines, job strategies, and offer-capture frameworks.</p>
+      <div class="pc-tags">
+        <span class="pc-tag">HireHub</span>
+        <span class="pc-tag">Follow-up Logic</span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <div class="divider"></div>
 
 <div class="stats-row sr">
-<div class="stat-box"><div class="stat-num">3<span>&#215;</span></div><div class="stat-lbl">Faster Prep Cycle</div></div>
-<div class="stat-box"><div class="stat-num"><span>~</span>0</div><div class="stat-lbl">Tab Chaos</div></div>
-<div class="stat-box"><div class="stat-num">100<span>%</span></div><div class="stat-lbl">Structured Workflow</div></div>
-<div class="stat-box"><div class="stat-num">1</div><div class="stat-lbl">Unified Pipeline</div></div>
+  <div class="stat"><div class="stat-n">3<span>×</span></div><div class="stat-l">Faster Prep Cycle</div></div>
+  <div class="stat"><div class="stat-n"><span>~</span>0</div><div class="stat-l">Tab Chaos</div></div>
+  <div class="stat"><div class="stat-n">100<span>%</span></div><div class="stat-l">Structured Workflow</div></div>
+  <div class="stat"><div class="stat-n">1</div><div class="stat-l">Unified Pipeline</div></div>
 </div>
 
 <div class="divider"></div>
 
 <section class="section sr" id="why">
-<span class="s-label">Why PrepSphere</span>
-<h2 class="s-title">Built different.</h2>
-<p class="s-desc">Because the market demanded it.</p>
-<div class="card-grid-2">
-<div class="card">
-<h3>Sequential, Not Scattered</h3>
-<p>Most tools give you features. PrepSphere gives you a workflow. Every module is ordered by dependency — foundation first, closure last.</p>
-</div>
-<div class="card">
-<h3>JD-Specific Intelligence</h3>
-<p>PrepSphere tailors every output — roadmaps, resume bullets, mock questions — to the exact job description you're targeting.</p>
-</div>
-<div class="card">
-<h3>End-to-End Coverage</h3>
-<p>From crafting your first resume to sending the perfect follow-up email post-interview — PrepSphere covers the entire arc without gaps.</p>
-</div>
-<div class="card">
-<h3>ATS-First Philosophy</h3>
-<p>Every resume output is engineered to pass automated screening. Format, keyword density, and section hierarchy are all optimized.</p>
-</div>
-</div>
-<div class="vs-table">
-<div class="vs-head"><span>Capability</span><span>PrepSphere</span><span>Others</span></div>
-<div class="vs-row"><span>Structured phase-based workflow</span><span class="vs-y">&#10003;</span><span class="vs-n">&#10007;</span></div>
-<div class="vs-row"><span>JD-aligned resume generation</span><span class="vs-y">&#10003;</span><span class="vs-n">Partial</span></div>
-<div class="vs-row"><span>Predicted interview Q&amp;A banks</span><span class="vs-y">&#10003;</span><span class="vs-n">&#10007;</span></div>
-<div class="vs-row"><span>Professional outreach templates</span><span class="vs-y">&#10003;</span><span class="vs-n">&#10007;</span></div>
-<div class="vs-row"><span>ATS-engineered formatting</span><span class="vs-y">&#10003;</span><span class="vs-n">Partial</span></div>
-</div>
-</section>
-
-<div class="divider"></div>
-
-<section class="section sr" id="contact">
-<div class="contact-grid">
-<div>
-<span class="s-label">Reach Out</span>
-<h2 class="s-title" style="margin-bottom:12px">Got questions?<br>We're here.</h2>
-<p style="font-size:14px;color:var(--text-secondary);line-height:1.7">Whether you're figuring out if PrepSphere fits your timeline, need help navigating the platform, or want to share feedback — reach out directly.</p>
-<div class="c-links">
-<a href="https://github.com/yamireddy04" class="c-link" target="_blank">
-<div class="c-link-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
-View System Repository
-</a>
-<a href="https://prepsphere000146.vercel.app/" class="c-link" target="_blank">
-<div class="c-link-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
-Launch PrepSphere App
-</a>
-</div>
-</div>
-<div>
-<div id="cf" class="form">
-<div class="form-2">
-<div class="fg"><label>First Name</label><input type="text" id="fn" placeholder="Arjun"></div>
-<div class="fg"><label>Last Name</label><input type="text" id="ln" placeholder="Reddy"></div>
-</div>
-<div class="fg"><label>Email Address</label><input type="email" id="em" placeholder="you@college.edu"></div>
-<div class="fg"><label>Topic</label>
-<select id="tp">
-<option value="">Select a topic...</option>
-<option>Platform Guidance</option>
-<option>Feature Request</option>
-<option>Bug Report</option>
-<option>Collaboration</option>
-<option>Other</option>
-</select>
-</div>
-<div class="fg"><label>Message</label><textarea id="ms" placeholder="Tell us what's on your mind..."></textarea></div>
-<button class="btn-sub" id="sb" type="button" onclick="send()">Send Message &#8594;</button>
-</div>
-<div class="form-ok" id="fo">
-<h4>Message Received</h4>
-<p>We'll get back to you at <strong id="ce"></strong> within 24–48 hours.</p>
-</div>
-</div>
-</div>
+  <span class="s-eyebrow">Why PrepSphere</span>
+  <h2 class="s-title">Built different.</h2>
+  <p class="s-desc">Because the market demanded it.</p>
+  <div class="feat-grid">
+    <div class="feat">
+      <div class="feat-title">Sequential, Not Scattered</div>
+      <p class="feat-body">Most tools give you features. PrepSphere gives you a workflow. Every module is ordered by dependency — foundation first, closure last.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-title">JD-Specific Intelligence</div>
+      <p class="feat-body">PrepSphere tailors every output — roadmaps, resume bullets, mock questions — to the exact job description you're targeting.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-title">End-to-End Coverage</div>
+      <p class="feat-body">From crafting your first resume to sending the perfect follow-up post-interview — PrepSphere covers the entire arc without gaps.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-title">ATS-First Philosophy</div>
+      <p class="feat-body">Every resume output is engineered to pass automated screening. Format, keyword density, and section hierarchy are all optimized.</p>
+    </div>
+  </div>
+  <div class="vs-table">
+    <div class="vs-head"><span>Capability</span><span>PrepSphere</span><span>Others</span></div>
+    <div class="vs-row"><span>Structured phase-based workflow</span><span class="vs-y">✓</span><span class="vs-n">✗</span></div>
+    <div class="vs-row"><span>JD-aligned resume generation</span><span class="vs-y">✓</span><span class="vs-n">Partial</span></div>
+    <div class="vs-row"><span>Predicted interview Q&A banks</span><span class="vs-y">✓</span><span class="vs-n">✗</span></div>
+    <div class="vs-row"><span>Professional outreach templates</span><span class="vs-y">✓</span><span class="vs-n">✗</span></div>
+    <div class="vs-row"><span>ATS-engineered formatting</span><span class="vs-y">✓</span><span class="vs-n">Partial</span></div>
+  </div>
 </section>
 
 <div class="divider"></div>
 
 <section class="cta-band sr">
-<h2>Your next offer starts here.</h2>
-<p>Stop preparing in fragments. Start with a system.</p>
-<a href="exp/exp.html" class="btn-primary" style="font-size:0.9rem;padding:13px 32px">Begin Journey &#8594;</a>
+  <h2>Your next offer starts here.</h2>
+  <p>Stop preparing in fragments. Start with a system.</p>
+  <a href="exp/exp.html" class="btn-primary" style="font-size:10px;padding:13px 36px">Begin Journey →</a>
 </section>
 
 <footer>
-<span class="f-copy">&#169; 2024 PrepSphere. All rights reserved.</span>
-<div class="f-links">
-<a href="#phases">System</a>
-<a href="#why">Why PrepSphere</a>
-<a href="#contact">Contact</a>
-<a href="https://github.com/yamireddy04" class="f-blue">GitHub &#8599;</a>
-</div>
+  <span class="f-copy">© 2024 PrepSphere. All rights reserved.</span>
+  <div class="f-links">
+    <a href="#phases">System</a>
+    <a href="#why">Why PrepSphere</a>
+    <a href="https://github.com/yamireddy04" class="f-accent">GitHub ↗</a>
+  </div>
 </footer>
 
 <script>
-const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:0.06,rootMargin:'0px 0px -28px 0px'});
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:0.06,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
 const hbg=document.getElementById('hbg'),mmn=document.getElementById('mmn');
 hbg.addEventListener('click',()=>{hbg.classList.toggle('open');mmn.classList.toggle('open')});
 document.addEventListener('click',e=>{if(!hbg.contains(e.target)&&!mmn.contains(e.target)){hbg.classList.remove('open');mmn.classList.remove('open')}});
-function send(){
-const fn=document.getElementById('fn').value.trim(),em=document.getElementById('em').value.trim(),ms=document.getElementById('ms').value.trim(),tp=document.getElementById('tp').value,ln=document.getElementById('ln').value.trim();
-if(!fn||!em||!ms){alert('Please fill in all required fields.');return}
-if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){alert('Please enter a valid email.');return}
-const sb=document.getElementById('sb');sb.disabled=true;sb.textContent='Sending...';
-window.location.href='mailto:prepsphere146@gmail.com?subject='+encodeURIComponent('PrepSphere: '+(tp||'General')+' — '+fn+' '+ln)+'&body='+encodeURIComponent('Name: '+fn+' '+ln+'\nEmail: '+em+'\nTopic: '+(tp||'Not specified')+'\n\nMessage:\n'+ms);
-setTimeout(()=>{document.getElementById('ce').textContent=em;document.getElementById('cf').style.display='none';document.getElementById('fo').classList.add('on')},800);
-}
 </script>
 </body>
 </html>
