@@ -5,141 +5,459 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrepSphere | Conventional Roadmap</title>
     <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
-    <link rel="stylesheet" href="../shared/mobile.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        
-        body {
-            font-family: 'Bookman Old Style', serif;
-            background-color: #0f172a; 
-            color: #e2e8f0; 
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        :root {
+            --bg: #0b0e1a;
+            --surface: rgba(255, 255, 255, 0.04);
+            --surface-hover: rgba(255, 255, 255, 0.07);
+            --border: rgba(255, 255, 255, 0.08);
+            --border-active: rgba(255, 255, 255, 0.18);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.45);
+            --text-body: rgba(255, 255, 255, 0.7);
+            --accent: #3b6fff;
+            --accent-glow: rgba(59, 111, 255, 0.25);
+            --accent-subtle: rgba(59, 111, 255, 0.12);
+            --nav-bg: rgba(11, 14, 26, 0.9);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding-bottom: 100px;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 80px 24px 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 64px;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        header h1 {
+            font-size: clamp(2.4rem, 6vw, 3.8rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        header p {
+            font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+            color: var(--text-secondary);
+            font-weight: 300;
+            letter-spacing: 0.01em;
+        }
+
+        .roadmap-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .roadmap-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color 0.3s ease, background 0.3s ease;
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .roadmap-item:nth-child(1) { animation-delay: 0.1s; }
+        .roadmap-item:nth-child(2) { animation-delay: 0.2s; }
+        .roadmap-item:nth-child(3) { animation-delay: 0.3s; }
+
+        .roadmap-item:hover {
+            border-color: var(--border-active);
+            background: var(--surface-hover);
+        }
+
+        .roadmap-item.active {
+            border-color: rgba(59, 111, 255, 0.4);
+            background: var(--accent-subtle);
+        }
+
+        .roadmap-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 22px 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            color: var(--text-primary);
+        }
+
+        .roadmap-btn:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: -2px;
+        }
+
+        .step-num {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            background: var(--accent-subtle);
+            border: 1px solid rgba(59, 111, 255, 0.25);
+            border-radius: 8px;
+            padding: 5px 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            font-weight: 600;
+            flex-grow: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .chevron {
+            width: 18px;
+            height: 18px;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+        }
+
+        .roadmap-item.active .chevron {
+            transform: rotate(180deg);
+            color: var(--accent);
         }
 
         .roadmap-content {
             max-height: 0;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
             opacity: 0;
         }
 
         .roadmap-item.active .roadmap-content {
-            max-height: 500px;
+            max-height: 400px;
             opacity: 1;
-            padding-top: 1rem;
-            padding-bottom: 1rem;
         }
 
-        .roadmap-item.active .arrow-icon {
-            transform: rotate(180deg);
+        .roadmap-inner {
+            padding: 0 24px 24px 24px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
         }
 
-        .nav-btn {
-            transition: all 0.3s ease-in-out;
-            border: none;
+        .roadmap-inner ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .roadmap-inner ul li {
+            display: flex;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-body);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .roadmap-inner ul li::before {
+            content: '→';
+            color: var(--accent);
+            flex-shrink: 0;
+            font-size: 0.85rem;
+            margin-top: 1px;
+        }
+
+        .roadmap-inner p {
+            font-size: 0.9rem;
+            color: var(--text-body);
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .hint-box {
+            background: var(--accent-subtle);
+            border: 1px solid rgba(59, 111, 255, 0.2);
+            border-radius: 10px;
+            padding: 14px 16px;
+        }
+
+        .hint-box .hint-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .hint-box p {
+            font-size: 0.85rem;
+            color: var(--text-body);
+            margin-bottom: 0;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 48px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            line-height: 1.7;
+            padding: 0 16px;
+            animation: fadeUp 0.6s 0.4s ease both;
+        }
+
+        .roadmap-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 48px;
+            animation: fadeUp 0.6s 0.45s ease both;
+        }
+
+        .link-btn {
+            padding: 10px 20px;
+            font-family: 'Sora', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--text-body);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
             cursor: pointer;
+            transition: all 0.25s ease;
         }
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+
+        .link-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--border-active);
+            background: var(--surface-hover);
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            display: none;
+        }
+
+        @media (min-width: 480px) {
+            .nav-label { display: block; }
+        }
+
+        .nav-btn-prev,
+        .nav-btn-next {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            padding: 11px 22px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.01em;
+        }
+
+        .nav-btn-prev {
+            background: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .nav-btn-prev:hover {
+            background: var(--surface-hover);
+            border-color: var(--border-active);
+        }
+
+        .nav-btn-next {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .nav-btn-next:hover {
+            background: #2d5eee;
+            box-shadow: 0 6px 28px rgba(59, 111, 255, 0.4);
+            transform: translateY(-1px);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 60px 16px 40px;
+            }
+            header {
+                margin-bottom: 40px;
+            }
+            .roadmap-btn {
+                padding: 18px 16px;
+                gap: 14px;
+            }
+            .roadmap-inner {
+                padding: 0 16px 20px;
+                padding-top: 16px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 100px 24px 40px;
+            }
         }
     </style>
 </head>
-<body class="min-h-screen pb-12">
+<body>
+    <div class="noise-overlay"></div>
 
-    <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
-        <header class="text-center mb-16">
-            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-md">
-                Conventional Roadmap
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto italic border-b-2 border-blue-600 pb-2 inline-block">
-                Standard Operating Procedure for Interview Preparation
-            </p>
+    <div class="container">
+        <header>
+            <h1>Conventional Roadmap</h1>
+            <p>Standard Operating Procedure for Interview Preparation</p>
         </header>
 
-        <div class="max-w-4xl mx-auto space-y-6">
-            
-            <div class="roadmap-item glass-card rounded-xl overflow-hidden shadow-xl">
-                <button onclick="toggleAccordion(this)" class="w-full flex items-center p-6 text-left hover:bg-slate-800/50 transition-colors">
-                    <span class="text-3xl font-bold text-blue-500 mr-6">01</span>
-                    <span class="text-xl font-bold text-white flex-grow">Foundation Building</span>
-                    <svg class="arrow-icon w-6 h-6 text-blue-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        <div class="roadmap-list">
+            <div class="roadmap-item">
+                <button class="roadmap-btn" onclick="toggleAccordion(this)">
+                    <span class="step-num">01</span>
+                    <span class="step-title">Foundation Building</span>
+                    <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div class="roadmap-content px-16 border-l-4 border-blue-600 ml-6 mb-4">
-                    <ul class="space-y-3 text-slate-300">
-                        <li class="flex gap-2"><span>•</span> Choose a Path you truly want to achieve and are willing to put your blood into.</li>
-                        <li class="flex gap-2"><span>•</span> Prepare your resume (according to chosen field).</li>
-                        <li class="flex gap-2"><span>•</span> Prepare your Cover Letter (according to chosen field).</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="roadmap-item glass-card rounded-xl overflow-hidden shadow-xl">
-                <button onclick="toggleAccordion(this)" class="w-full flex items-center p-6 text-left hover:bg-slate-800/50 transition-colors">
-                    <span class="text-3xl font-bold text-blue-500 mr-6">02</span>
-                    <span class="text-xl font-bold text-white flex-grow">Preparation Phase</span>
-                    <svg class="arrow-icon w-6 h-6 text-blue-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div class="roadmap-content px-16 border-l-4 border-blue-600 ml-6 mb-4">
-                    <p class="text-slate-300 mb-4">Prepare for assessments and technical interviews.</p>
-                    <div class="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
-                        <p class="text-sm font-semibold text-blue-400 mb-2 underline">Mock Interviews:</p>
-                        <p class="text-slate-300 text-sm">Practice mock questions for all rounds using tools like PrepMaster, MockIt, and MockMyInterview.</p>
+                <div class="roadmap-content">
+                    <div class="roadmap-inner">
+                        <ul>
+                            <li>Choose a Path you truly want to achieve and are willing to put your blood into.</li>
+                            <li>Prepare your resume according to your chosen field.</li>
+                            <li>Prepare your Cover Letter according to your chosen field.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="roadmap-item glass-card rounded-xl overflow-hidden shadow-xl">
-                <button onclick="toggleAccordion(this)" class="w-full flex items-center p-6 text-left hover:bg-slate-800/50 transition-colors">
-                    <span class="text-3xl font-bold text-blue-500 mr-6">03</span>
-                    <span class="text-xl font-bold text-white flex-grow">Job Application</span>
-                    <svg class="arrow-icon w-6 h-6 text-blue-500 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            <div class="roadmap-item">
+                <button class="roadmap-btn" onclick="toggleAccordion(this)">
+                    <span class="step-num">02</span>
+                    <span class="step-title">Preparation Phase</span>
+                    <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-                <div class="roadmap-content px-16 border-l-4 border-blue-600 ml-6 mb-4">
-                    <p class="text-slate-300 mb-4">Use HireHub to find job registrations with verified details.</p>
-                    <div class="bg-blue-900/20 p-4 rounded-lg border border-blue-500/30">
-                        <p class="text-sm font-semibold text-blue-400 mb-2 underline">Post-Interview Reflection:</p>
-                        <p class="text-slate-300 text-sm">Reflect on the process and identify specific areas for technical or behavioral improvement.</p>
+                <div class="roadmap-content">
+                    <div class="roadmap-inner">
+                        <p>Prepare for assessments and technical interviews.</p>
+                        <div class="hint-box">
+                            <div class="hint-label">Mock Interviews</div>
+                            <p>Practice mock questions for all rounds using tools like PrepMaster, MockIt, and MockMyInterview.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="text-center mt-12 px-6">
-                <p class="text-slate-400 italic">
-                    Dive into our curated technical and non-technical roadmaps, designed to provide a structured blueprint for every career path.
-                </p>
+            <div class="roadmap-item">
+                <button class="roadmap-btn" onclick="toggleAccordion(this)">
+                    <span class="step-num">03</span>
+                    <span class="step-title">Job Application</span>
+                    <svg class="chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+                <div class="roadmap-content">
+                    <div class="roadmap-inner">
+                        <p>Use HireHub to find job registrations with verified details.</p>
+                        <div class="hint-box">
+                            <div class="hint-label">Post-Interview Reflection</div>
+                            <p>Reflect on the process and identify specific areas for technical or behavioral improvement.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="mt-16 max-w-5xl mx-auto border-t border-slate-800 pt-8">
-            <div class="flex flex-wrap justify-center gap-4 mb-8">
-                <button onclick="window.location.href='tech.html'" class="nav-btn px-6 py-3 font-bold text-white bg-slate-800 rounded-lg shadow-md border border-slate-700">Technical Roadmaps</button>
-                <button onclick="window.location.href='nontech.html'" class="nav-btn px-6 py-3 font-bold text-white bg-slate-800 rounded-lg shadow-md border border-slate-700">Non-Technical Roadmaps</button>
-            </div>
-            
-            <div class="flex justify-between items-center">
-                <button onclick="window.location.href='./Phase1/Phase1.html'" class="nav-btn px-8 py-3 font-bold text-white bg-blue-600 rounded-lg shadow-lg">Previous</button>
-                <button onclick="window.location.href='../roadmap/pathfinder.html'" class="nav-btn px-8 py-3 font-bold text-white bg-blue-600 rounded-lg shadow-lg">Next</button>
-            </div>
+        <p class="footer-note">
+            Dive into our curated technical and non-technical roadmaps, designed to provide a structured blueprint for every career path.
+        </p>
+
+        <div class="roadmap-nav-links">
+            <button class="link-btn" onclick="window.location.href='tech.html'">Technical Roadmaps</button>
+            <button class="link-btn" onclick="window.location.href='nontech.html'">Non-Technical Roadmaps</button>
         </div>
     </div>
 
+    <nav class="bottom-nav">
+        <button class="nav-btn-prev" onclick="window.location.href='./Phase1/Phase1.html'">← Previous</button>
+        <span class="nav-label">CONVENTIONAL ROADMAP</span>
+        <button class="nav-btn-next" onclick="window.location.href='../roadmap/pathfinder.html'">Next →</button>
+    </nav>
+
     <script>
-        function toggleAccordion(button) {
-            const item = button.parentElement;
+        function toggleAccordion(btn) {
+            const item = btn.parentElement;
             const isActive = item.classList.contains('active');
-            
             document.querySelectorAll('.roadmap-item').forEach(el => el.classList.remove('active'));
-            
-            if (!isActive) {
-                item.classList.add('active');
-            }
+            if (!isActive) item.classList.add('active');
         }
     </script>
 </body>
