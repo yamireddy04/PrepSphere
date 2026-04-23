@@ -4,154 +4,325 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Phase 1: Foundation Building</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
---bg:#0d1117;
---surface:#131920;
---surface-2:#192130;
---blue:#4d9de0;
---blue-dim:rgba(77,157,224,0.12);
---blue-line:rgba(77,157,224,0.35);
---white:#f0f4f8;
---muted:rgba(240,244,248,0.45);
---faint:rgba(240,244,248,0.15);
---border:rgba(240,244,248,0.08);
+--bg:#0b0f1a;
+--surface:#131b2e;
+--surface-hover:#16213a;
+--border:rgba(255,255,255,0.08);
+--border-subtle:rgba(255,255,255,0.05);
+--accent:#2563eb;
+--accent-dim:rgba(37,99,235,0.15);
+--accent-border:rgba(37,99,235,0.3);
+--text-high:#ffffff;
+--text-mid:rgba(255,255,255,0.65);
+--text-low:rgba(255,255,255,0.38);
+--label:#2563eb;
 }
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;padding:64px 24px;display:flex;justify-content:center}
-.wrap{max-width:1080px;width:100%}
-.eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--blue);font-weight:400;margin-bottom:48px;display:flex;align-items:center;gap:12px}
-.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--blue)}
-.hero{margin-bottom:80px;border-bottom:1px solid var(--border);padding-bottom:64px}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,88px);font-weight:300;line-height:1.02;letter-spacing:-1px;color:var(--white);margin-bottom:28px}
-.hero h1 em{font-style:italic;color:var(--blue)}
-.hero p{font-size:16px;color:var(--muted);line-height:1.85;max-width:560px;font-weight:300}
-.section{margin-bottom:72px}
-.section-meta{display:grid;grid-template-columns:80px 1fr;gap:0 32px;align-items:start;margin-bottom:32px}
-.section-num{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;font-style:italic;line-height:1;color:var(--faint);user-select:none}
-.section-info{}
-.section-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--blue);font-weight:400;margin-bottom:6px}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;color:var(--white);line-height:1.2}
-.section-intro{font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:28px;padding-left:112px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--border)}
-.card{background:var(--surface);padding:28px 26px;border-top:2px solid var(--blue-line);transition:border-color 0.25s,background 0.25s}
-.card:hover{background:var(--surface-2);border-top-color:var(--blue)}
-.card-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--blue);font-weight:400;margin-bottom:14px;opacity:0.7}
-.card strong{display:block;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--white);margin-bottom:12px;line-height:1.25}
-.card p{font-size:13.5px;color:var(--muted);line-height:1.75;font-weight:300}
-.nav{display:flex;justify-content:space-between;align-items:center;margin-top:80px;padding-top:32px;border-top:1px solid var(--border)}
-.nav-hint{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--faint)}
-.nav-btn{font-family:'Outfit',sans-serif;font-size:13px;font-weight:400;letter-spacing:1px;text-decoration:none;padding:12px 28px;border:1px solid var(--blue-line);color:var(--blue);transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
-.nav-btn:hover{background:var(--blue-dim);border-color:var(--blue)}
-.nav-btn.prev{border-color:var(--border);color:var(--muted)}
-.nav-btn.prev:hover{border-color:var(--faint);color:var(--white)}
-@media(max-width:768px){body{padding:40px 20px}.hero h1{font-size:44px}.section-meta{grid-template-columns:1fr}.section-num{font-size:48px}.section-intro{padding-left:0}.cards{grid-template-columns:1fr}}
+body{
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:var(--text-high);
+min-height:100vh;
+padding:72px 24px 80px;
+display:flex;
+justify-content:center;
+}
+.wrap{max-width:860px;width:100%}
+
+.page-header{
+text-align:center;
+margin-bottom:64px;
+}
+.phase-eyebrow{
+font-size:0.7rem;
+font-weight:600;
+letter-spacing:3px;
+text-transform:uppercase;
+color:var(--text-low);
+margin-bottom:16px;
+}
+.page-title{
+font-size:clamp(2rem,5vw,3rem);
+font-weight:800;
+color:var(--text-high);
+letter-spacing:-1px;
+line-height:1.1;
+margin-bottom:14px;
+}
+.page-sub{
+font-size:0.95rem;
+color:var(--text-mid);
+line-height:1.75;
+max-width:520px;
+margin:0 auto;
+font-weight:400;
+}
+
+.divider{
+height:1px;
+background:var(--border);
+margin-bottom:56px;
+}
+
+.section{
+margin-bottom:56px;
+}
+.section-head{
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:8px;
+}
+.step-circle{
+width:30px;height:30px;border-radius:50%;
+background:var(--accent);
+color:#fff;
+font-size:0.72rem;font-weight:800;
+display:flex;align-items:center;justify-content:center;
+flex-shrink:0;
+}
+.step-meta{}
+.step-eyebrow{
+font-size:0.65rem;
+font-weight:600;
+letter-spacing:3px;
+text-transform:uppercase;
+color:var(--label);
+margin-bottom:2px;
+}
+.step-title{
+font-size:1.25rem;
+font-weight:700;
+color:var(--text-high);
+letter-spacing:-0.3px;
+}
+.section-intro{
+font-size:0.875rem;
+color:var(--text-mid);
+line-height:1.8;
+margin-bottom:20px;
+padding-left:44px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:1px;
+background:var(--border-subtle);
+border:1px solid var(--border);
+border-radius:10px;
+overflow:hidden;
+}
+.card{
+background:var(--surface);
+padding:24px 22px;
+transition:background 0.2s;
+}
+.card:hover{background:var(--surface-hover)}
+.card-tag{
+font-size:0.62rem;
+font-weight:700;
+letter-spacing:2.5px;
+text-transform:uppercase;
+color:var(--label);
+margin-bottom:10px;
+opacity:0.9;
+}
+.card strong{
+display:block;
+font-size:0.9rem;
+font-weight:700;
+color:var(--text-high);
+margin-bottom:8px;
+line-height:1.3;
+}
+.card p{
+font-size:0.82rem;
+color:var(--text-mid);
+line-height:1.75;
+font-weight:400;
+}
+
+.nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:64px;
+padding-top:24px;
+border-top:1px solid var(--border);
+}
+.nav-hint{
+font-size:0.62rem;
+font-weight:600;
+letter-spacing:3px;
+text-transform:uppercase;
+color:var(--text-low);
+}
+.nav-btn{
+font-family:'Inter',sans-serif;
+font-size:0.875rem;
+font-weight:600;
+text-decoration:none;
+padding:11px 26px;
+border-radius:8px;
+display:inline-flex;
+align-items:center;
+gap:8px;
+transition:all 0.2s;
+}
+.nav-btn.prev{
+background:transparent;
+border:1px solid var(--border);
+color:var(--text-mid);
+}
+.nav-btn.prev:hover{border-color:rgba(255,255,255,0.2);color:var(--text-high)}
+.nav-btn.next{
+background:var(--accent);
+border:none;
+color:#fff;
+}
+.nav-btn.next:hover{opacity:0.88;transform:translateY(-1px)}
+
+@media(max-width:680px){
+body{padding:48px 20px 64px}
+.section-intro{padding-left:0}
+.cards{grid-template-columns:1fr}
+.nav-hint{display:none}
+.page-title{font-size:1.8rem}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="eyebrow">Phase 01 &mdash; Foundation Building</div>
-<div class="hero">
-<h1>Before you apply,<br><em>build your base.</em></h1>
-<p>Foundation building is the first act of interview preparation — establishing a clear, comprehensive understanding of what you offer and where you're headed.</p>
+
+    <div class="page-header">
+        <div class="phase-eyebrow">Phase 01</div>
+        <h1 class="page-title">Foundation Building</h1>
+        <p class="page-sub">Foundation building is the first act of interview preparation — establishing a clear, comprehensive understanding of what you offer and where you're headed.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+        <div class="section-head">
+            <div class="step-circle">1</div>
+            <div class="step-meta">
+                <div class="step-eyebrow">Step One</div>
+                <div class="step-title">Pick a Roadmap</div>
+            </div>
+        </div>
+        <p class="section-intro">The first crucial step is to define your career direction — understanding various industry paths and choosing one that aligns with your interests and strengths.</p>
+        <div class="cards">
+            <div class="card">
+                <div class="card-tag">Direction</div>
+                <strong>Define Your Destination</strong>
+                <p>What kind of role or industry are you aiming for? Software Development, Marketing, Data Science, Healthcare Administration — commit to a direction.</p>
+            </div>
+            <div class="card">
+                <div class="card-tag">Research</div>
+                <strong>Explore Options</strong>
+                <p>Research different career roadmaps — Technical, Non-Technical, or Conventional — to understand progression and required skills for each path.</p>
+            </div>
+            <div class="card">
+                <div class="card-tag">Introspection</div>
+                <strong>Self-Reflection</strong>
+                <p>Consider your existing strengths and what you enjoy doing. Aligning your roadmap with your personal profile increases long-term motivation.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-head">
+            <div class="step-circle">2</div>
+            <div class="step-meta">
+                <div class="step-eyebrow">Step Two</div>
+                <div class="step-title">Build Your Resume</div>
+            </div>
+        </div>
+        <p class="section-intro">Your resume is a dynamic document — meticulously crafted to reflect your chosen career path and the specific roles you're targeting.</p>
+        <div class="cards">
+            <div class="card">
+                <div class="card-tag">Precision</div>
+                <strong>Tailor for Specificity</strong>
+                <p>Avoid a generic resume. Customize it to highlight skills and achievements most relevant to the role within your chosen roadmap.</p>
+            </div>
+            <div class="card">
+                <div class="card-tag">Impact</div>
+                <strong>Quantify Achievements</strong>
+                <p>Use numbers to demonstrate impact — "Increased website traffic by 20%" or "Reduced project delivery time by 10 days."</p>
+            </div>
+            <div class="card">
+                <div class="card-tag">Visibility</div>
+                <strong>Strategic Keywords</strong>
+                <p>Incorporate keywords from job descriptions to help your resume pass through Applicant Tracking Systems successfully.</p>
+            </div>
+            <div class="card">
+                <div class="card-tag">Clarity</div>
+                <strong>Clear Structure</strong>
+                <p>Organize logically with sections like Summary, Work Experience, Education, Skills, and relevant Projects.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-head">
+            <div class="step-circle">3</div>
+            <div class="step-meta">
+                <div class="step-eyebrow">Step Three</div>
+                <div class="step-title">Build a Compelling Cover Letter</div>
+            </div>
+        </div>
+        <p class="section-intro">A cover letter acts as a personalized introduction, connecting your experiences directly to the company's needs and values.</p>
+        <div class="cards">
+            <div class="card">
+                <div class="card-tag">Personal</div>
+                <strong>Personalize Your Approach</strong>
+                <p>Always address the letter to a specific hiring manager. Generic greetings are consistently less impactful than targeted ones.</p>
+            </div>
+            <div class="card">
+                <div class="card-tag">Alignment</div>
+                <strong>Demonstrate Alignment</strong>
+                <p>Explain how your skills align with the company's mission using examples that aren't repetitions from your resume.</p>
+            </div>
+            <div class="card">
+                <div class="card-tag">Authenticity</div>
+                <strong>Show Genuine Enthusiasm</strong>
+                <p>Reference recent company achievements to show you've done your homework. Authentic interest stands out in any application.</p>
+            </div>
+            <div class="card">
+                <div class="card-tag">Discipline</div>
+                <strong>Be Concise and Focused</strong>
+                <p>Keep it to a single page. Every paragraph should build a strong, clear case for why you are the ideal candidate.</p>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <a href="../exp/exp.html" class="nav-btn prev">← Previous</a>
+        <span class="nav-hint">Up Next: Choose Your Roadmap</span>
+        <a href="../roadmap/roadmap.html" class="nav-btn next">Next →</a>
+    </nav>
+
 </div>
-<div class="section">
-<div class="section-meta">
-<span class="section-num">01</span>
-<div class="section-info">
-<div class="section-label">Step One</div>
-<div class="section-title">Pick a Roadmap</div>
-</div>
-</div>
-<p class="section-intro">The first crucial step is to define your career direction — understanding various industry paths and choosing one that aligns with your interests and strengths.</p>
-<div class="cards">
-<div class="card">
-<div class="card-label">Direction</div>
-<strong>Define Your Destination</strong>
-<p>What kind of role or industry are you aiming for? Software Development, Marketing, Data Science, Healthcare Administration — commit to a direction.</p>
-</div>
-<div class="card">
-<div class="card-label">Research</div>
-<strong>Explore Options</strong>
-<p>Research different career roadmaps — Technical, Non-Technical, or Conventional — to understand progression and required skills for each path.</p>
-</div>
-<div class="card">
-<div class="card-label">Introspection</div>
-<strong>Self-Reflection</strong>
-<p>Consider your existing strengths and what you enjoy doing. Aligning your roadmap with your personal profile increases long-term motivation.</p>
-</div>
-</div>
-</div>
-<div class="section">
-<div class="section-meta">
-<span class="section-num">02</span>
-<div class="section-info">
-<div class="section-label">Step Two</div>
-<div class="section-title">Build Your Resume</div>
-</div>
-</div>
-<p class="section-intro">Your resume is a dynamic document — meticulously crafted to reflect your chosen career path and the specific roles you're targeting.</p>
-<div class="cards">
-<div class="card">
-<div class="card-label">Precision</div>
-<strong>Tailor for Specificity</strong>
-<p>Avoid a generic resume. Customize it to highlight skills and achievements most relevant to the role within your chosen roadmap.</p>
-</div>
-<div class="card">
-<div class="card-label">Impact</div>
-<strong>Quantify Achievements</strong>
-<p>Use numbers to demonstrate impact — "Increased website traffic by 20%" or "Reduced project delivery time by 10 days."</p>
-</div>
-<div class="card">
-<div class="card-label">Visibility</div>
-<strong>Strategic Keywords</strong>
-<p>Incorporate keywords from job descriptions to help your resume pass through Applicant Tracking Systems successfully.</p>
-</div>
-<div class="card">
-<div class="card-label">Clarity</div>
-<strong>Clear Structure</strong>
-<p>Organize logically with sections like Summary, Work Experience, Education, Skills, and relevant Projects.</p>
-</div>
-</div>
-</div>
-<div class="section">
-<div class="section-meta">
-<span class="section-num">03</span>
-<div class="section-info">
-<div class="section-label">Step Three</div>
-<div class="section-title">Build a Compelling Cover Letter</div>
-</div>
-</div>
-<p class="section-intro">A cover letter acts as a personalized introduction, connecting your experiences directly to the company's needs and values.</p>
-<div class="cards">
-<div class="card">
-<div class="card-label">Personal</div>
-<strong>Personalize Your Approach</strong>
-<p>Always address the letter to a specific hiring manager. Generic greetings are consistently less impactful than targeted ones.</p>
-</div>
-<div class="card">
-<div class="card-label">Alignment</div>
-<strong>Demonstrate Alignment</strong>
-<p>Explain how your skills align with the company's mission using examples that aren't repetitions from your resume.</p>
-</div>
-<div class="card">
-<div class="card-label">Authenticity</div>
-<strong>Show Genuine Enthusiasm</strong>
-<p>Reference recent company achievements to show you've done your homework. Authentic interest stands out in any application.</p>
-</div>
-<div class="card">
-<div class="card-label">Discipline</div>
-<strong>Be Concise and Focused</strong>
-<p>Keep it to a single page. Every paragraph should build a strong, clear case for why you are the ideal candidate.</p>
-</div>
-</div>
-</div>
-<nav class="nav">
-<a href="../exp/exp.html" class="nav-btn prev">&#8592; Previous</a>
-<span class="nav-hint">Up Next: Choose Your Roadmap</span>
-<a href="../roadmap/roadmap.html" class="nav-btn">Next &#8594;</a>
-</nav>
-</div>
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.section').forEach((el, i) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(20px)";
+        el.style.transition = `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`;
+        observer.observe(el);
+    });
+</script>
 </body>
 </html>
