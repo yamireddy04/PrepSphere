@@ -4,133 +4,183 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Phase 3: Apply for Jobs</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
---bg:#0d1117;
---surface:#131920;
---surface-2:#192130;
---blue:#4d9de0;
---blue-dim:rgba(77,157,224,0.12);
---blue-line:rgba(77,157,224,0.35);
---white:#f0f4f8;
---muted:rgba(240,244,248,0.45);
---faint:rgba(240,244,248,0.15);
---border:rgba(240,244,248,0.08);
+--bg:#080b12;
+--surface:#0d1220;
+--surface-2:#111828;
+--accent:#3b6ff5;
+--accent-dim:rgba(59,111,245,0.1);
+--accent-line:rgba(59,111,245,0.3);
+--white:#eef1f8;
+--mid:rgba(238,241,248,0.5);
+--low:rgba(238,241,248,0.22);
+--border:rgba(238,241,248,0.07);
+--border-2:rgba(238,241,248,0.12);
 }
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;padding:64px 24px;display:flex;justify-content:center}
-.wrap{max-width:1080px;width:100%}
-.eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--blue);font-weight:400;margin-bottom:48px;display:flex;align-items:center;gap:12px}
-.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--blue)}
-.hero{margin-bottom:80px;border-bottom:1px solid var(--border);padding-bottom:64px}
-.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,88px);font-weight:300;line-height:1.02;letter-spacing:-1px;color:var(--white);margin-bottom:28px}
-.hero h1 em{font-style:italic;color:var(--blue)}
-.hero p{font-size:16px;color:var(--muted);line-height:1.85;max-width:580px;font-weight:300}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:1px}
-.col{background:var(--bg);padding:0 32px 0 0}
-.col:last-child{padding:0 0 0 32px}
-.col-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--blue);font-weight:400;margin-bottom:8px}
-.col-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--white);margin-bottom:14px;line-height:1.2}
-.col-intro{font-size:14px;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:24px}
-.stack{display:flex;flex-direction:column;gap:1px;background:var(--border)}
-.stack-item{background:var(--surface);padding:20px 22px;border-left:2px solid var(--blue-line);transition:background 0.2s,border-left-color 0.2s;display:flex;gap:16px;align-items:flex-start}
-.stack-item:hover{background:var(--surface-2);border-left-color:var(--blue)}
-.stack-dot{width:6px;height:6px;min-width:6px;border-radius:50%;background:var(--blue);margin-top:7px;opacity:0.6}
-.stack-item strong{display:block;font-size:14px;font-weight:500;color:var(--white);margin-bottom:4px}
-.stack-item p{font-size:13px;color:var(--muted);line-height:1.7;font-weight:300}
-.full-section{margin-top:64px;margin-bottom:64px}
-.section-header{display:flex;align-items:baseline;gap:20px;margin-bottom:32px;border-bottom:1px solid var(--border);padding-bottom:20px}
-.section-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--blue);font-weight:400}
-.section-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--white)}
-.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border)}
-.tip{background:var(--surface);padding:24px 22px;border-top:2px solid var(--blue-line);display:flex;gap:20px;align-items:flex-start;transition:background 0.2s,border-top-color 0.2s}
-.tip:hover{background:var(--surface-2);border-top-color:var(--blue)}
-.tip-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;font-style:italic;line-height:1;color:var(--faint);user-select:none;min-width:32px}
-.tip strong{display:block;font-size:14px;font-weight:500;color:var(--white);margin-bottom:6px}
-.tip p{font-size:13px;color:var(--muted);line-height:1.7;font-weight:300}
-.closing{text-align:center;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;font-weight:300;color:var(--muted);margin:64px 0;padding:40px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);line-height:1.6}
-.nav{display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
-.nav-hint{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--faint)}
-.nav-btn{font-family:'Outfit',sans-serif;font-size:13px;font-weight:400;letter-spacing:1px;text-decoration:none;padding:12px 28px;border:1px solid var(--blue-line);color:var(--blue);transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
-.nav-btn:hover{background:var(--blue-dim);border-color:var(--blue)}
-.nav-btn.prev{border-color:var(--border);color:var(--muted)}
-.nav-btn.prev:hover{border-color:var(--faint);color:var(--white)}
-@media(max-width:768px){body{padding:40px 20px}.hero h1{font-size:44px}.two-col{grid-template-columns:1fr}.col,.col:last-child{padding:0}.tips-grid{grid-template-columns:1fr}}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden}
+.page{width:100%;padding:0}
+.hero{width:100%;padding:72px 48px 64px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+.phase-tag{display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+.phase-tag::before{content:'';width:20px;height:1px;background:var(--accent)}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(52px,6vw,88px);font-weight:800;line-height:.96;letter-spacing:-3px;color:var(--white);margin-bottom:24px}
+.hero-sub{font-size:15px;color:var(--mid);line-height:1.85;font-weight:300;max-width:420px}
+.hero-img{width:100%;aspect-ratio:4/3;background:var(--surface);border:1px solid var(--border-2);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.img-placeholder-icon{width:48px;height:48px;border:1.5px dashed var(--border-2);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.img-placeholder-icon svg{opacity:.35}
+.img-placeholder-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--low);font-family:'Syne',sans-serif;font-weight:600}
+.content{padding:0 48px 80px}
+.step-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.step-block:last-child{border-bottom:none}
+.step-meta{display:flex;align-items:center;gap:16px;margin-bottom:40px}
+.step-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent)}
+.step-line{flex:1;height:1px;background:var(--border-2)}
+.step-inner{display:grid;grid-template-columns:320px 1fr;gap:64px;align-items:start}
+.step-label{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--low);margin-bottom:10px}
+.step-title{font-family:'Syne',sans-serif;font-size:clamp(28px,3vw,38px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;color:var(--white);margin-bottom:18px}
+.step-intro{font-size:14px;color:var(--mid);line-height:1.85;font-weight:300}
+.step-img{width:100%;aspect-ratio:16/9;background:var(--surface);border:1px solid var(--border-2);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;margin-bottom:24px}
+.step-img img{width:100%;height:100%;object-fit:cover;display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border)}
+.card{background:var(--surface);padding:24px 20px;transition:background .2s}
+.card:hover{background:var(--surface-2)}
+.card-tag{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;opacity:.8}
+.card strong{display:block;font-size:13px;font-weight:500;color:var(--white);margin-bottom:8px;line-height:1.35}
+.card p{font-size:12px;color:var(--mid);line-height:1.8;font-weight:300}
+.tips-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.tips-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border)}
+.tip{background:var(--surface);padding:28px 24px;transition:background .2s;display:flex;gap:20px;align-items:flex-start}
+.tip:hover{background:var(--surface-2)}
+.tip-num{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;line-height:1;color:var(--accent-dim);user-select:none;min-width:32px;letter-spacing:-2px;opacity:.6}
+.tip strong{display:block;font-size:13px;font-weight:500;color:var(--white);margin-bottom:8px;line-height:1.35}
+.tip p{font-size:12px;color:var(--mid);line-height:1.8;font-weight:300}
+.closing{padding:64px 48px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px}
+.closing-line{width:3px;height:64px;background:var(--accent);opacity:.4;flex-shrink:0}
+.closing-text{font-family:'Syne',sans-serif;font-size:clamp(16px,2vw,22px);font-weight:600;letter-spacing:-0.5px;color:var(--mid);line-height:1.55}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:28px 48px;border-top:1px solid var(--border)}
+.nav-hint{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--low)}
+.nav-btn{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:12px 28px;transition:all .2s;display:inline-flex;align-items:center;gap:10px}
+.nav-btn.prev{border:1px solid var(--border-2);color:var(--mid)}
+.nav-btn.prev:hover{color:var(--white);background:var(--surface)}
+.nav-btn.next{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+.nav-btn.next:hover{opacity:.85}
+.step-block,.tips-block,.closing{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.step-block.visible,.tips-block.visible,.closing.visible{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;padding:48px 24px 40px}
+.hero-img{display:none}
+.content{padding:0 24px 60px}
+.step-inner{grid-template-columns:1fr}
+.step-img{display:none}
+.closing{padding:48px 24px}
+.nav{padding:24px}
+}
+@media(max-width:600px){
+.hero-title{font-size:44px;letter-spacing:-2px}
+.cards{grid-template-columns:1fr}
+.tips-inner{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<div class="eyebrow">Phase 03 &mdash; Apply for Jobs</div>
+<div class="page">
 <div class="hero">
-<h1>You're ready.<br><em>Now go get it.</em></h1>
-<p>Job applications are the practical step toward realizing your career goals. By actively seeking roles that align with your skills and interests, you significantly improve your chances of landing something you'll love.</p>
+<div class="hero-left">
+<div class="phase-tag">Phase 03</div>
+<h1 class="hero-title">Apply for<br>Jobs</h1>
+<p class="hero-sub">Job applications are the practical step toward realizing your career goals. By actively seeking roles that align with your skills, you significantly improve your chances of landing something you'll love.</p>
 </div>
-<div class="two-col">
-<div class="col">
-<div class="col-label">Where to Look</div>
-<div class="col-title">Job Search Strategies</div>
-<p class="col-intro">Cast your net wide but smart — know where the best opportunities live and go there first.</p>
-<div class="stack">
-<div class="stack-item">
-<div class="stack-dot"></div>
-<div>
+<div class="hero-img">
+<div class="img-placeholder-icon">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+</div>
+<span class="img-placeholder-label">Cover Image</span>
+</div>
+</div>
+<div class="content">
+<div class="step-block">
+<div class="step-meta">
+<span class="step-num">Section 01 — Where to Look</span>
+<div class="step-line"></div>
+</div>
+<div class="step-inner">
+<div class="step-heading">
+<div class="step-label">Strategy</div>
+<h2 class="step-title">Job Search Strategies</h2>
+<p class="step-intro">Cast your net wide but smart — know where the best opportunities live and go there first. Every channel has its own advantage; use them all deliberately.</p>
+</div>
+<div class="step-right">
+<div class="step-img">
+<div class="img-placeholder-icon">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+</div>
+<span class="img-placeholder-label">Section Image</span>
+</div>
+<div class="cards">
+<div class="card">
+<div class="card-tag">Digital</div>
 <strong>Leverage Online Job Boards</strong>
 <p>LinkedIn, Indeed, Glassdoor — search and filter for roles that match your profile and roadmap.</p>
 </div>
-</div>
-<div class="stack-item">
-<div class="stack-dot"></div>
-<div>
-<strong>Visit Company Websites Directly</strong>
+<div class="card">
+<div class="card-tag">Direct</div>
+<strong>Visit Company Websites</strong>
 <p>Regularly check the careers pages of companies you admire and apply before the crowd arrives.</p>
 </div>
-</div>
-<div class="stack-item">
-<div class="stack-dot"></div>
-<div>
+<div class="card">
+<div class="card-tag">Relationships</div>
 <strong>Network Strategically</strong>
 <p>Build genuine relationships with professionals in your field to uncover referrals and hidden opportunities.</p>
 </div>
-</div>
-<div class="stack-item">
-<div class="stack-dot"></div>
-<div>
+<div class="card">
+<div class="card-tag">In-Person</div>
 <strong>Attend Industry Events</strong>
 <p>Job fairs, hackathons, and career expos connect you with recruiters and hiring managers face-to-face.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="col">
-<div class="col-label">How to Stand Out</div>
-<div class="col-title">Apply Effectively</div>
-<p class="col-intro">It's not just about sending applications — it's about making each one count.</p>
-<div class="stack">
-<div class="stack-item">
-<div class="stack-dot"></div>
-<div>
+</div>
+<div class="step-block">
+<div class="step-meta">
+<span class="step-num">Section 02 — How to Stand Out</span>
+<div class="step-line"></div>
+</div>
+<div class="step-inner">
+<div class="step-heading">
+<div class="step-label">Execution</div>
+<h2 class="step-title">Apply Effectively</h2>
+<p class="step-intro">It's not just about sending applications — it's about making each one count. Quality and precision win over volume every time.</p>
+</div>
+<div class="step-right">
+<div class="step-img">
+<div class="img-placeholder-icon">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+</div>
+<span class="img-placeholder-label">Section Image</span>
+</div>
+<div class="cards">
+<div class="card">
+<div class="card-tag">Precision</div>
 <strong>Tailor Every Application</strong>
 <p>Customize your resume and cover letter per role. Highlight the most relevant skills and quantify your wins.</p>
 </div>
-</div>
-<div class="stack-item">
-<div class="stack-dot"></div>
-<div>
+<div class="card">
+<div class="card-tag">Intel</div>
 <strong>Research Thoroughly</strong>
 <p>Study the company's mission, culture, and recent updates. Know the role inside-out before applying.</p>
 </div>
-</div>
-<div class="stack-item">
-<div class="stack-dot"></div>
-<div>
-<strong>Maintain Your Online Presence</strong>
+<div class="card">
+<div class="card-tag">Visibility</div>
+<strong>Maintain Online Presence</strong>
 <p>Keep your LinkedIn updated with keywords recruiters search. Engage with industry discussions regularly.</p>
 </div>
-</div>
-<div class="stack-item">
-<div class="stack-dot"></div>
-<div>
+<div class="card">
+<div class="card-tag">Follow-Up</div>
 <strong>Follow Up Thoughtfully</strong>
 <p>Send a thank-you after interviews. Politely follow up if you haven't heard back within the expected window.</p>
 </div>
@@ -138,35 +188,35 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);min
 </div>
 </div>
 </div>
-<div class="full-section">
-<div class="section-header">
-<span class="section-label">Pro Tips</span>
-<span class="section-title">Stay Sharp Through the Process</span>
+<div class="tips-block">
+<div class="step-meta">
+<span class="step-num">Pro Tips — Stay Sharp</span>
+<div class="step-line"></div>
 </div>
-<div class="tips-grid">
+<div class="tips-inner">
 <div class="tip">
-<span class="tip-num">1</span>
+<span class="tip-num">01</span>
 <div>
 <strong>Practice Interview Questions</strong>
 <p>Familiarize yourself with common technical and HR questions before each round.</p>
 </div>
 </div>
 <div class="tip">
-<span class="tip-num">2</span>
+<span class="tip-num">02</span>
 <div>
 <strong>Conduct Mock Interviews</strong>
 <p>Practice with friends or mentors to build confidence and sharpen your delivery.</p>
 </div>
 </div>
 <div class="tip">
-<span class="tip-num">3</span>
+<span class="tip-num">03</span>
 <div>
 <strong>Stay Persistent</strong>
 <p>Rejections are part of the process — every "no" is data. Keep applying and improving.</p>
 </div>
 </div>
 <div class="tip">
-<span class="tip-num">4</span>
+<span class="tip-num">04</span>
 <div>
 <strong>Keep Learning</strong>
 <p>Upgrade your skills continuously with certifications, courses, or side projects.</p>
@@ -174,12 +224,20 @@ body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--white);min
 </div>
 </div>
 </div>
-<p class="closing">"By staying proactive and resilient, you will significantly boost your chances of landing exactly where you're meant to be."</p>
+</div>
+<div class="closing">
+<div class="closing-line"></div>
+<p class="closing-text">"By staying proactive and resilient, you will significantly boost your chances of landing exactly where you're meant to be."</p>
+</div>
 <nav class="nav">
-<a href="../phase2_transition/phase2_transition.html" class="nav-btn prev">&#8592; Previous</a>
+<a href="../phase2_transition/phase2_transition.html" class="nav-btn prev">← Previous</a>
 <span class="nav-hint">Up Next: HireHub</span>
-<a href="../hirehub/hirehub.html" class="nav-btn">Next &#8594;</a>
+<a href="../hirehub/hirehub.html" class="nav-btn next">Next →</a>
 </nav>
 </div>
+<script>
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.06});
+document.querySelectorAll('.step-block,.tips-block,.closing').forEach((el,i)=>{el.style.transitionDelay=`${i*0.05}s`;obs.observe(el)});
+</script>
 </body>
 </html>

@@ -4,150 +4,213 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Phase 2: Preparation</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
---bg:#0b0f1a;
---surface:#131b2e;
---surface-hover:#16213a;
---border:rgba(255,255,255,0.08);
---accent:#2563eb;
---text-high:#ffffff;
---text-mid:rgba(255,255,255,0.55);
---text-low:rgba(255,255,255,0.3);
+--bg:#080b12;
+--surface:#0d1220;
+--surface-2:#111828;
+--accent:#3b6ff5;
+--accent-dim:rgba(59,111,245,0.1);
+--accent-line:rgba(59,111,245,0.3);
+--white:#eef1f8;
+--mid:rgba(238,241,248,0.5);
+--low:rgba(238,241,248,0.22);
+--border:rgba(238,241,248,0.07);
+--border-2:rgba(238,241,248,0.12);
 }
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text-high);min-height:100vh;padding:72px 24px 80px;display:flex;justify-content:center}
-.wrap{max-width:860px;width:100%}
-.page-header{text-align:center;margin-bottom:56px}
-.phase-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-low);margin-bottom:14px}
-.page-title{font-size:clamp(1.9rem,5vw,3rem);font-weight:800;color:var(--text-high);letter-spacing:-1px;line-height:1.1;margin-bottom:14px}
-.page-sub{font-size:0.93rem;color:var(--text-mid);line-height:1.8;max-width:500px;margin:0 auto;font-weight:400}
-.divider{height:1px;background:var(--border);margin-bottom:52px}
-.section{margin-bottom:52px}
-.section-head{display:flex;align-items:center;gap:12px;margin-bottom:6px;padding-bottom:18px;border-bottom:1px solid var(--border)}
-.step-circle{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:0.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step-eyebrow{font-size:0.6rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
-.step-title{font-size:1.15rem;font-weight:700;color:var(--text-high);letter-spacing:-0.3px}
-.section-intro{font-size:0.875rem;color:var(--text-mid);line-height:1.8;margin-bottom:18px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.card{background:var(--surface);padding:22px 20px;transition:background 0.2s}
-.card:hover{background:var(--surface-hover)}
-.card-tag{font-size:0.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;opacity:0.85}
-.card strong{display:block;font-size:0.88rem;font-weight:700;color:var(--text-high);margin-bottom:7px;line-height:1.3}
-.card p{font-size:0.8rem;color:var(--text-mid);line-height:1.75;font-weight:400}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden}
+.page{width:100%;padding:0}
+.hero{width:100%;padding:72px 48px 64px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+.phase-tag{display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+.phase-tag::before{content:'';width:20px;height:1px;background:var(--accent)}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(52px,6vw,88px);font-weight:800;line-height:.96;letter-spacing:-3px;color:var(--white);margin-bottom:24px}
+.hero-sub{font-size:15px;color:var(--mid);line-height:1.85;font-weight:300;max-width:420px}
+.hero-img{width:100%;aspect-ratio:4/3;background:var(--surface);border:1px solid var(--border-2);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+.hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+.img-placeholder-icon{width:48px;height:48px;border:1.5px dashed var(--border-2);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.img-placeholder-icon svg{opacity:.35}
+.img-placeholder-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--low);font-family:'Syne',sans-serif;font-weight:600}
+.content{padding:0 48px 80px}
+.step-block{padding:64px 0;border-bottom:1px solid var(--border)}
+.step-block:last-child{border-bottom:none}
+.step-meta{display:flex;align-items:center;gap:16px;margin-bottom:40px}
+.step-num{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--accent)}
+.step-line{flex:1;height:1px;background:var(--border-2)}
+.step-inner{display:grid;grid-template-columns:320px 1fr;gap:64px;align-items:start}
+.step-label{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--low);margin-bottom:10px}
+.step-title{font-family:'Syne',sans-serif;font-size:clamp(28px,3vw,38px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;color:var(--white);margin-bottom:18px}
+.step-intro{font-size:14px;color:var(--mid);line-height:1.85;font-weight:300}
+.step-img{width:100%;aspect-ratio:16/9;background:var(--surface);border:1px solid var(--border-2);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;margin-bottom:24px}
+.step-img img{width:100%;height:100%;object-fit:cover;display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border)}
+.card{background:var(--surface);padding:24px 20px;transition:background .2s}
+.card:hover{background:var(--surface-2)}
+.card-tag{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;opacity:.8}
+.card strong{display:block;font-size:13px;font-weight:500;color:var(--white);margin-bottom:8px;line-height:1.35}
+.card p{font-size:12px;color:var(--mid);line-height:1.8;font-weight:300}
 .card-list{list-style:none;padding:0;margin-top:6px}
-.card-list li{font-size:0.8rem;color:var(--text-mid);line-height:1.75;padding:3px 0 3px 14px;position:relative}
-.card-list li::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:0.7rem;top:4px}
-.nav{display:flex;justify-content:space-between;align-items:center;margin-top:60px;padding-top:22px;border-top:1px solid var(--border)}
-.nav-hint{font-size:0.6rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-low)}
-.nav-btn{font-family:'Inter',sans-serif;font-size:0.875rem;font-weight:600;text-decoration:none;padding:10px 24px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s}
-.nav-btn.prev{background:transparent;border:1px solid var(--border);color:var(--text-mid)}
-.nav-btn.prev:hover{border-color:rgba(255,255,255,0.2);color:var(--text-high)}
-.nav-btn.next{background:var(--accent);border:none;color:#fff}
-.nav-btn.next:hover{opacity:0.88;transform:translateY(-1px)}
+.card-list li{font-size:12px;color:var(--mid);line-height:1.8;font-weight:300;padding:2px 0 2px 14px;position:relative}
+.card-list li::before{content:'—';position:absolute;left:0;color:var(--accent);font-size:10px;top:4px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:28px 48px;border-top:1px solid var(--border)}
+.nav-hint{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--low)}
+.nav-btn{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:12px 28px;transition:all .2s;display:inline-flex;align-items:center;gap:10px}
+.nav-btn.prev{border:1px solid var(--border-2);color:var(--mid)}
+.nav-btn.prev:hover{color:var(--white);background:var(--surface)}
+.nav-btn.next{background:var(--accent);color:#fff;border:1px solid var(--accent)}
+.nav-btn.next:hover{opacity:.85}
+.step-block{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.step-block.visible{opacity:1;transform:translateY(0)}
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;padding:48px 24px 40px}
+.hero-img{display:none}
+.content{padding:0 24px 60px}
+.step-inner{grid-template-columns:1fr}
+.step-img{display:none}
+.nav{padding:24px}
+}
 @media(max-width:600px){
-body{padding:44px 18px 60px}
+.hero-title{font-size:44px;letter-spacing:-2px}
 .cards{grid-template-columns:1fr}
-.nav-hint{display:none}
-.page-title{font-size:1.7rem}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-    <div class="page-header">
-        <div class="phase-eyebrow">Phase 02</div>
-        <h1 class="page-title">Preparation</h1>
-        <p class="page-sub">This phase converts your foundational assets into real-world interview performance. Through our Intervyu module, you gain the tactical intelligence and practice environments needed to clear every hiring round.</p>
-    </div>
-    <div class="divider"></div>
-    <div class="section">
-        <div class="section-head">
-            <div class="step-circle">1</div>
-            <div>
-                <div class="step-eyebrow">Module One</div>
-                <div class="step-title">PrepMaster</div>
-            </div>
-        </div>
-        <p class="section-intro">Strategic intelligence is the key to bypassing generic preparation. PrepMaster helps you understand the DNA of your target company before you walk in the door.</p>
-        <div class="cards">
-            <div class="card">
-                <div class="card-tag">Intel</div>
-                <strong>Company Intel</strong>
-                <p>Deep insights into specific interview patterns, frequently tested concepts, and selection criteria for major industry leaders.</p>
-            </div>
-            <div class="card">
-                <div class="card-tag">Structure</div>
-                <strong>Round Breakdown</strong>
-                <p>Understand exactly how many rounds to expect and the weightage given to technical versus cultural assessments.</p>
-            </div>
-        </div>
-    </div>
-    <div class="section">
-        <div class="section-head">
-            <div class="step-circle">2</div>
-            <div>
-                <div class="step-eyebrow">Module Two</div>
-                <div class="step-title">MockIT</div>
-            </div>
-        </div>
-        <p class="section-intro">A comprehensive library of resources and guides designed to help you ace the full gauntlet of standard recruitment rounds — from GDs to technical deep-dives.</p>
-        <div class="cards">
-            <div class="card">
-                <div class="card-tag">Core Rounds</div>
-                <strong>Round Practice</strong>
-                <ul class="card-list">
-                    <li>Group Discussions (GD)</li>
-                    <li>Spontaneous Speaking (JAM)</li>
-                    <li>Aptitude test mastery</li>
-                </ul>
-            </div>
-            <div class="card">
-                <div class="card-tag">Interviews</div>
-                <strong>Technical &amp; HR</strong>
-                <p>Specialized survival guides for deep-dive Technical rounds and behavioral HR interviews.</p>
-            </div>
-            <div class="card">
-                <div class="card-tag">Practice</div>
-                <strong>AI MCQ Generator</strong>
-                <p>Practice with standard and AI-generated MCQs to sharpen speed and accuracy under pressure.</p>
-            </div>
-        </div>
-    </div>
-    <div class="section">
-        <div class="section-head">
-            <div class="step-circle">3</div>
-            <div>
-                <div class="step-eyebrow">Module Three</div>
-                <div class="step-title">MockMyInterview</div>
-            </div>
-        </div>
-        <p class="section-intro">Our flagship AI-driven simulator — a personalized practice environment built around your exact target role and real-world job requirements.</p>
-        <div class="cards">
-            <div class="card">
-                <div class="card-tag">AI Engine</div>
-                <strong>JD Analysis</strong>
-                <p>Drop any Job Description into the engine to receive a fully customized preparation topic list and QA session tailored to that role.</p>
-            </div>
-        </div>
-    </div>
-    <nav class="nav">
-        <a href="../phase1_transition/phase1_transition.html" class="nav-btn prev">← Previous</a>
-        <span class="nav-hint">Up Next: PrepMaster</span>
-        <a href="../prepmaster/prepmaster.html" class="nav-btn next">Next →</a>
-    </nav>
+<div class="page">
+<div class="hero">
+<div class="hero-left">
+<div class="phase-tag">Phase 02</div>
+<h1 class="hero-title">Preparation</h1>
+<p class="hero-sub">This phase converts your foundational assets into real-world interview performance — tactical intelligence and practice environments to clear every hiring round.</p>
+</div>
+<div class="hero-img">
+<div class="img-placeholder-icon">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+</div>
+<span class="img-placeholder-label">Cover Image</span>
+</div>
+</div>
+<div class="content">
+<div class="step-block">
+<div class="step-meta">
+<span class="step-num">Module 01 — PrepMaster</span>
+<div class="step-line"></div>
+</div>
+<div class="step-inner">
+<div class="step-heading">
+<div class="step-label">Intelligence</div>
+<h2 class="step-title">PrepMaster</h2>
+<p class="step-intro">Strategic intelligence is the key to bypassing generic preparation. PrepMaster helps you understand the DNA of your target company before you walk in the door.</p>
+</div>
+<div class="step-right">
+<div class="step-img">
+<div class="img-placeholder-icon">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+</div>
+<span class="img-placeholder-label">Module Image</span>
+</div>
+<div class="cards">
+<div class="card">
+<div class="card-tag">Intel</div>
+<strong>Company Intel</strong>
+<p>Deep insights into specific interview patterns, frequently tested concepts, and selection criteria for major industry leaders.</p>
+</div>
+<div class="card">
+<div class="card-tag">Structure</div>
+<strong>Round Breakdown</strong>
+<p>Understand exactly how many rounds to expect and the weightage given to technical versus cultural assessments.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="step-block">
+<div class="step-meta">
+<span class="step-num">Module 02 — MockIT</span>
+<div class="step-line"></div>
+</div>
+<div class="step-inner">
+<div class="step-heading">
+<div class="step-label">Practice</div>
+<h2 class="step-title">MockIT</h2>
+<p class="step-intro">A comprehensive library of resources and guides designed to help you ace the full gauntlet of standard recruitment rounds — from GDs to technical deep-dives.</p>
+</div>
+<div class="step-right">
+<div class="step-img">
+<div class="img-placeholder-icon">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+</div>
+<span class="img-placeholder-label">Module Image</span>
+</div>
+<div class="cards">
+<div class="card">
+<div class="card-tag">Core Rounds</div>
+<strong>Round Practice</strong>
+<ul class="card-list">
+<li>Group Discussions (GD)</li>
+<li>Spontaneous Speaking (JAM)</li>
+<li>Aptitude test mastery</li>
+</ul>
+</div>
+<div class="card">
+<div class="card-tag">Interviews</div>
+<strong>Technical &amp; HR</strong>
+<p>Specialized survival guides for deep-dive Technical rounds and behavioral HR interviews.</p>
+</div>
+<div class="card">
+<div class="card-tag">Practice</div>
+<strong>AI MCQ Generator</strong>
+<p>Practice with standard and AI-generated MCQs to sharpen speed and accuracy under pressure.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="step-block">
+<div class="step-meta">
+<span class="step-num">Module 03 — MockMyInterview</span>
+<div class="step-line"></div>
+</div>
+<div class="step-inner">
+<div class="step-heading">
+<div class="step-label">Simulation</div>
+<h2 class="step-title">MockMyInterview</h2>
+<p class="step-intro">Our flagship AI-driven simulator — a personalized practice environment built around your exact target role and real-world job requirements.</p>
+</div>
+<div class="step-right">
+<div class="step-img">
+<div class="img-placeholder-icon">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+</div>
+<span class="img-placeholder-label">Module Image</span>
+</div>
+<div class="cards">
+<div class="card">
+<div class="card-tag">AI Engine</div>
+<strong>JD Analysis</strong>
+<p>Drop any Job Description into the engine to receive a fully customized preparation topic list and QA session tailored to that role.</p>
+</div>
+<div class="card">
+<div class="card-tag">Personalized</div>
+<strong>Role-Specific Prep</strong>
+<p>Every simulation session adapts to your target company, role seniority, and areas where you need the most practice.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="nav">
+<a href="../phase1_transition/phase1_transition.html" class="nav-btn prev">← Previous</a>
+<span class="nav-hint">Up Next: PrepMaster</span>
+<a href="../prepmaster/prepmaster.html" class="nav-btn next">Next →</a>
+</nav>
 </div>
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting){entry.target.style.opacity="1";entry.target.style.transform="translateY(0)"}
-        },{threshold:0.08});
-    document.querySelectorAll('.section').forEach((el,i)=>{
-        el.style.opacity="0";el.style.transform="translateY(20px)";
-        el.style.transition=`opacity 0.6s ease ${i*0.1}s,transform 0.6s ease ${i*0.1}s`;
-        observer.observe(el);
-    });
+const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.06});
+document.querySelectorAll('.step-block').forEach((el,i)=>{el.style.transitionDelay=`${i*0.05}s`;obs.observe(el)});
 </script>
 </body>
 </html>
