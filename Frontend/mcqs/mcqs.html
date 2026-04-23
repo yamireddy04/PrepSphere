@@ -6,452 +6,196 @@
   <title>MCQ | PrepSphere-Ultimate Prep Guide</title>
   <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
   <link rel="stylesheet" href="../shared/mobile.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root {
-      --primary-color: #ebe9e9;
-      --secondary-color: #e2e8f0;
-      --background-color: #1e293b; 
-      --card-bg-color: #2d3748;
-      --text-color: #e2e8f0;
-      --subtle-text-color: #a0aec0;
-      --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.2);
-      --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.3);
-      --border-radius: 12px;
-    }
-    
-    body {
-      font-family: 'Inter', sans-serif; /* Updated to Inter for consistency, fallback to sans-serif */
-      background-color: var(--background-color);
-      margin: 0;
-      padding: 2rem 1rem;
-      color: var(--text-color); 
-      line-height: 1.6;
-    }
+    body { font-family: 'Inter', sans-serif; }
 
-    .highlight-section {
-      max-width: 1000px;
-      color: var(--text-color); 
-      margin: 2rem auto;
-      padding: 0;
-    }
-    
-    .highlight-section h2 {
-      font-size: 2.2rem;
-      font-weight: 600;
-      color: var(--primary-color); 
-      text-align: center;
-      border-bottom: 2px solid var(--primary-color);
-      padding-bottom: 0.5rem;
-      margin-bottom: 0.5rem;
-      display: block;
-      width: fit-content;
-      margin: 0 auto 0.5rem auto;
-    }
-
-    .highlight-section p.subheading {
-      font-size: 1rem;
-      font-style: italic;
-      text-align: center;
-      margin-top: 0;
-      color: var(--subtle-text-color); 
-      margin-bottom: 2rem;
-    }
-    
-    .image-row {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap; 
-      gap: 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .image-container {
-      max-width: 45%;
-      text-align: center;
-      margin: 0;
-    }
-    
-    .image-container img {
-      max-width: 100%;
-      height: auto;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-md);
-    }
-
-    .flip-box-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .flip-box {
-      background-color: transparent;
-      width: 100%;
-      max-width: 300px;
-      perspective: 1000px;
-      cursor: pointer;
-      flex-grow: 1;
-    }
-
+    .flip-box { perspective: 1000px; cursor: pointer; }
     .flip-box-inner {
       position: relative;
       width: 100%;
-      min-height: 200px; 
-      height: auto; 
-      text-align: center;
+      height: 100%;
+      min-height: 200px;
       transition: transform 0.6s ease;
       transform-style: preserve-3d;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-light);
     }
-
     .flip-box:hover .flip-box-inner,
-    .flip-box.clicked .flip-box-inner {
-      transform: rotateY(180deg);
-      box-shadow: var(--shadow-md);
-    }
-
+    .flip-box.clicked .flip-box-inner { transform: rotateY(180deg); }
     .flip-box-front, .flip-box-back {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      padding: 1.5rem;
+      inset: 0;
+      padding: 1.75rem;
       backface-visibility: hidden;
-      border-radius: var(--border-radius);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 200px; 
-      box-sizing: border-box; 
+      border-radius: 0.75rem;
     }
-    
-    .flip-box-front {
-      background-color: var(--card-bg-color);
-      color: var(--text-color);
-    }
+    .flip-box-front { background-color: #1e293b; }
+    .flip-box-back { background-color: #1e293b; transform: rotateY(180deg); }
 
-    .flip-box-back {
-      background-color: var(--card-bg-color);
-      transform: rotateY(180deg);
-      color: var(--text-color);
+    .nav-btn {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-
-    .flip-box.red .flip-box-front { border-left: 6px solid #f87171; }
-    .flip-box.green .flip-box-front { border-left: 6px solid #48bb78; }
-    .flip-box.blue .flip-box-front { border-left: 6px solid #4299e1; }
-    
-    .flip-box.red .flip-box-back { border-left: 6px solid #f87171; }
-    .flip-box.green .flip-box-back { border-left: 6px solid #48bb78; }
-    .flip-box.blue .flip-box-back { border-left: 6px solid #4299e1; }
-
-    .flip-box .emoji {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(37,99,235,0.35);
     }
-    
-    .flip-box-front h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin: 0;
-      color: var(--secondary-color);
-    }
-
-    .flip-box-back ul {
-      text-align: left;
-      padding-left: 1.5rem;
-      margin: 0;
-    }
-    
-    .flip-box-back ul li {
-      font-size: 0.9rem;
-      margin-bottom: 0.3rem;
-    }
-
-    /* --- FIX FOR TABLE ALIGNMENT --- */
-    .resource-table {
-      width: 100%;
-      max-width: 1000px;
-      margin: 3rem auto;
-      border-collapse: separate;
-      border-spacing: 0;
-      box-shadow: var(--shadow-md);
-      background-color: var(--card-bg-color);
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      table-layout: fixed; /* Ensures columns respect widths */
-    }
-
-    .resource-table th,
-    .resource-table td {
-      padding: 1.25rem 1rem;
-      border-bottom: 1px solid #2d3748;
-      vertical-align: middle;
-    }
-
-    /* Align text to center for better visual balance */
-    .resource-table th:nth-child(1), .resource-table td:nth-child(1),
-    .resource-table th:nth-child(3), .resource-table td:nth-child(3),
-    .resource-table th:nth-child(4), .resource-table td:nth-child(4) {
-      text-align: center;
-    }
-
-    /* Subject Name remains left-aligned for readability */
-    .resource-table th:nth-child(2), .resource-table td:nth-child(2) {
-      text-align: left;
-      padding-left: 2rem;
-    }
-
-    /* Define column widths */
-    .resource-table th:nth-child(1) { width: 10%; }
-    .resource-table th:nth-child(2) { width: 45%; }
-    .resource-table th:nth-child(3) { width: 20%; }
-    .resource-table th:nth-child(4) { width: 25%; }
-
-    .resource-table thead tr {
-      background-color: #222935;
-      color: #fff;
-    }
-
-    .resource-table tr:last-child td {
-      border-bottom: none;
-    }
-
-    .resource-table tbody tr:hover {
-      background-color: #3d4659;
-      transition: background-color 0.2s ease;
-    }
-
-    .resource-table a {
-      color: #60a5fa; /* Brighter blue for links in dark mode */
-      text-decoration: none;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      background: rgba(37, 99, 235, 0.1);
-      transition: all 0.2s;
-    }
-
-    .resource-table a:hover {
-      background: rgba(37, 99, 235, 0.25);
-      color: #93c5fd;
-    }
-
-    .navigation-buttons button {
-      transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-      border: none;
-      cursor: pointer;
-      background: linear-gradient(to right, #2563eb, #3b82f6); 
-      color: white;
-    }
-
-    .navigation-buttons button:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); 
-      background: linear-gradient(to right, #3b82f6, #60a5fa); 
-    }
-    
-    .navigation-buttons button:active {
-      transform: translateY(0) scale(1);
-      box-shadow: none;
-    }
-
-
-    @media (max-width: 600px) {
-      body {
-        padding: 1rem;
-      }
-      .highlight-section h2 {
-        font-size: 1.5rem;
-      }
-      .resource-table {
-        table-layout: auto;
-      }
-      .resource-table thead {
-        display: none;
-      }
-      .resource-table tbody, .resource-table tr, .resource-table td {
-        display: block;
-        width: 100%;
-      }
-      .resource-table tr {
-        margin-bottom: 1rem;
-        border: 1px solid var(--card-bg-color);
-        border-radius: var(--border-radius);
-      }
-      .resource-table td {
-        text-align: right !important;
-        padding: 0.75rem 1rem;
-        border-bottom: 1px solid #2d3748;
-      }
-      .resource-table td:before {
-        content: attr(data-label);
-        float: left;
-        font-weight: 600;
-        text-transform: uppercase;
-        color: var(--subtle-text-color);
-      }
-      .resource-table a {
-          background: none;
-          padding: 0;
-      }
-    }
+    .nav-btn:active { transform: translateY(0); }
   </style>
 </head>
-<body>
+<body class="bg-slate-900 text-slate-200">
 
-  <div class="highlight-section">
-    <h2>Multiple Choice Questions (MCQ)</h2>
-    <p class="subheading">A Common Interview Assessment</p>
-    
-    <div class="image-row">
-      <div class="image-container">
-        <img src="../images/mcqs1.jpeg" alt="A person studying and taking notes for an exam.">
+  <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16 max-w-5xl">
+
+    <header class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-3">Multiple Choice Questions</h1>
+      <p class="text-base md:text-lg text-slate-400 max-w-2xl mx-auto">A common and high-impact interview assessment format used across technical and aptitude rounds.</p>
+    </header>
+
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+      <div class="flip-box h-52" onclick="this.classList.toggle('clicked')">
+        <div class="flip-box-inner">
+          <div class="flip-box-front border-t-4 border-red-400">
+            <div class="text-4xl mb-3">🤔</div>
+            <h3 class="text-lg font-bold text-white text-center">Why MCQs Are Used?</h3>
+          </div>
+          <div class="flip-box-back border-t-4 border-red-400">
+            <ul class="text-left text-slate-300 space-y-1.5 w-full text-sm">
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>Objective Assessment</li>
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>Efficiency in scoring</li>
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>Broad topic coverage</li>
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>Quick feedback</li>
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>Reduced bias</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="image-container">
-        <img src="../images/mcqs2.jpeg" alt="A person studying and taking notes for an exam.">
+
+      <div class="flip-box h-52" onclick="this.classList.toggle('clicked')">
+        <div class="flip-box-inner">
+          <div class="flip-box-front border-t-4 border-green-400">
+            <div class="text-4xl mb-3">📘</div>
+            <h3 class="text-lg font-bold text-white text-center">Common MCQ Topics</h3>
+          </div>
+          <div class="flip-box-back border-t-4 border-green-400">
+            <ul class="text-left text-slate-300 space-y-1.5 w-full text-sm">
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>Technical Subjects</li>
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>Aptitude &amp; Reasoning</li>
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>Domain-Specific Knowledge</li>
+            </ul>
+          </div>
+        </div>
       </div>
+
+      <div class="flip-box h-52" onclick="this.classList.toggle('clicked')">
+        <div class="flip-box-inner">
+          <div class="flip-box-front border-t-4 border-blue-400">
+            <div class="text-4xl mb-3">🧠</div>
+            <h3 class="text-lg font-bold text-white text-center">Subjects Covered</h3>
+          </div>
+          <div class="flip-box-back border-t-4 border-blue-400">
+            <ul class="text-left text-slate-300 space-y-1.5 w-full text-sm">
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>C, C++</li>
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>Python, Java</li>
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>IoT, DBMS, CN</li>
+              <li class="flex items-start gap-2"><span class="text-blue-400 mt-0.5">—</span>Aptitude &amp; Logical MCQs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-12">
+      <div class="overflow-x-auto rounded-xl border border-slate-700">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-blue-600 text-white">
+            <tr>
+              <th class="p-4 w-12 text-center">S.No</th>
+              <th class="p-4">Subject Name</th>
+              <th class="p-4 text-center">YouTube Link</th>
+              <th class="p-4 text-center">Mock Questions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-slate-800 hover:bg-slate-700 transition-colors duration-150 border-b border-slate-700">
+              <td class="p-4 text-center text-slate-400" data-label="S.No">1</td>
+              <td class="p-4 font-medium text-white" data-label="Subject Name">C</td>
+              <td class="p-4 text-center" data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=irqbmMNs2Bo" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Watch</a></td>
+              <td class="p-4 text-center" data-label="Mock Questions"><a href="https://drive.google.com/file/d/1mLZ_5AXFQ-Gz1kUNAfH8ZfuV03DNefdv/view?usp=sharing" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Practice</a></td>
+            </tr>
+            <tr class="bg-slate-800 hover:bg-slate-700 transition-colors duration-150 border-b border-slate-700">
+              <td class="p-4 text-center text-slate-400" data-label="S.No">2</td>
+              <td class="p-4 font-medium text-white" data-label="Subject Name">C++</td>
+              <td class="p-4 text-center" data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Watch</a></td>
+              <td class="p-4 text-center" data-label="Mock Questions"><a href="https://drive.google.com/file/d/1-vR0ECJTnKtqjRuafvn6AoNPoAdVglYu/view?usp=sharing" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Practice</a></td>
+            </tr>
+            <tr class="bg-slate-800 hover:bg-slate-700 transition-colors duration-150 border-b border-slate-700">
+              <td class="p-4 text-center text-slate-400" data-label="S.No">3</td>
+              <td class="p-4 font-medium text-white" data-label="Subject Name">Java</td>
+              <td class="p-4 text-center" data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=UmnCZ7-9yDY" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Watch</a></td>
+              <td class="p-4 text-center" data-label="Mock Questions"><a href="https://drive.google.com/file/d/13rY8Gh0WtNj9ZNm0Pasq7rWM43Ngkrf6/view?usp=sharing" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Practice</a></td>
+            </tr>
+            <tr class="bg-slate-800 hover:bg-slate-700 transition-colors duration-150 border-b border-slate-700">
+              <td class="p-4 text-center text-slate-400" data-label="S.No">4</td>
+              <td class="p-4 font-medium text-white" data-label="Subject Name">Python</td>
+              <td class="p-4 text-center" data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=vLqTf2b6GZw" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Watch</a></td>
+              <td class="p-4 text-center" data-label="Mock Questions"><a href="https://drive.google.com/file/d/1FjUGmPLAg7KUQpDc5f1pqUQbq3Im4gCo/view?usp=sharing" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Practice</a></td>
+            </tr>
+            <tr class="bg-slate-800 hover:bg-slate-700 transition-colors duration-150 border-b border-slate-700">
+              <td class="p-4 text-center text-slate-400" data-label="S.No">5</td>
+              <td class="p-4 font-medium text-white" data-label="Subject Name">DBMS</td>
+              <td class="p-4 text-center" data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=xHJ8Gtm0ILg" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Watch</a></td>
+              <td class="p-4 text-center" data-label="Mock Questions"><a href="https://drive.google.com/file/d/1jJijLzPXmK0tIWEnUG-yXsey8k_L4ZGY/view?usp=sharing" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Practice</a></td>
+            </tr>
+            <tr class="bg-slate-800 hover:bg-slate-700 transition-colors duration-150 border-b border-slate-700">
+              <td class="p-4 text-center text-slate-400" data-label="S.No">6</td>
+              <td class="p-4 font-medium text-white" data-label="Subject Name">OS</td>
+              <td class="p-4 text-center" data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=8XBtAjKwCm4" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Watch</a></td>
+              <td class="p-4 text-center" data-label="Mock Questions"><a href="https://drive.google.com/file/d/1-ZegyQ-2tihNFnaj2sO2XQOYJTASfuzc/view?usp=sharing" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Practice</a></td>
+            </tr>
+            <tr class="bg-slate-800 hover:bg-slate-700 transition-colors duration-150 border-b border-slate-700">
+              <td class="p-4 text-center text-slate-400" data-label="S.No">7</td>
+              <td class="p-4 font-medium text-white" data-label="Subject Name">CN</td>
+              <td class="p-4 text-center" data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=qUBHLZEtS0M" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Watch</a></td>
+              <td class="p-4 text-center" data-label="Mock Questions"><a href="https://drive.google.com/file/d/1Dv21Gkz0xBWG9DzzVcJ4chpSVEAF6qM2/view?usp=sharing" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Practice</a></td>
+            </tr>
+            <tr class="bg-slate-800 hover:bg-slate-700 transition-colors duration-150 border-b border-slate-700">
+              <td class="p-4 text-center text-slate-400" data-label="S.No">8</td>
+              <td class="p-4 font-medium text-white" data-label="Subject Name">SQL</td>
+              <td class="p-4 text-center" data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=hlGoQC332VM" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Watch</a></td>
+              <td class="p-4 text-center" data-label="Mock Questions"><a href="https://drive.google.com/file/d/1mfMff6cDu629H7TWCnzaqnhedIJ088tr/view?usp=sharing" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Practice</a></td>
+            </tr>
+            <tr class="bg-slate-800 hover:bg-slate-700 transition-colors duration-150 border-b border-slate-700">
+              <td class="p-4 text-center text-slate-400" data-label="S.No">9</td>
+              <td class="p-4 font-medium text-white" data-label="Subject Name">Front End (HTML, CSS, JS)</td>
+              <td class="p-4 text-center" data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=hddqkYK5eMQ" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Watch</a></td>
+              <td class="p-4 text-center" data-label="Mock Questions"><a href="https://drive.google.com/file/d/1r7G9iFNVDBHEn25GgADsLoSJUwKdjg-Q/view?usp=sharing" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Practice</a></td>
+            </tr>
+            <tr class="bg-slate-800 hover:bg-slate-700 transition-colors duration-150">
+              <td class="p-4 text-center text-slate-400" data-label="S.No">10</td>
+              <td class="p-4 font-medium text-white" data-label="Subject Name">Back End</td>
+              <td class="p-4 text-center" data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=1lqRA_8ArqU" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Watch</a></td>
+              <td class="p-4 text-center" data-label="Mock Questions"><a href="https://drive.google.com/file/d/1MYCAkJkl8OWoltnwd7JTkkADL2KAQeYb/view?usp=sharing" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Practice</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="flex justify-between items-center mt-8">
+      <button onclick="window.location.href='../aptitude/aptitude.html'" class="nav-btn px-6 py-3 font-bold text-white bg-blue-600 rounded-lg shadow-md">← Previous</button>
+      <button onclick="window.location.href='../quiz/quiz.html'" class="nav-btn px-6 py-3 font-bold text-white bg-blue-600 rounded-lg shadow-md">Next →</button>
     </div>
 
-    <div class="flip-box-container">
-      <div class="flip-box red" onclick="this.classList.toggle('clicked')">
-        <div class="flip-box-inner">
-          <div class="flip-box-front">
-            <div class="emoji">🤔</div>
-            <h3>Why MCQs Are Used?</h3>
-          </div>
-          <div class="flip-box-back">
-            <ul>
-              <li>Objective Assessment</li>
-              <li>Efficiency in scoring</li>
-              <li>Broad topic coverage</li>
-              <li>Quick feedback</li>
-              <li>Reduced bias</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-box green" onclick="this.classList.toggle('clicked')">
-        <div class="flip-box-inner">
-          <div class="flip-box-front">
-            <div class="emoji">📘</div>
-            <h3>Common MCQ Topics</h3>
-          </div>
-          <div class="flip-box-back">
-            <ul>
-              <li>Technical Subjects</li>
-              <li>Aptitude & Reasoning</li>
-              <li>Domain-Specific Knowledge</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-box blue" onclick="this.classList.toggle('clicked')">
-        <div class="flip-box-inner">
-          <div class="flip-box-front">
-            <div class="emoji">🧠</div>
-            <h3>Subjects Covered</h3>
-          </div>
-          <div class="flip-box-back">
-            <ul>
-              <li>C, C++</li>
-              <li>Python, Java</li>
-              <li>IoT</li>
-              <li>DBMS</li>
-              <li>CN</li>
-              <li>Aptitude & Logical MCQs</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 
-  <table class="resource-table">
-    <thead>
-      <tr>
-        <th>S.No</th>
-        <th>Subject Name</th>
-        <th>YouTube Link</th>
-        <th>Mock Questions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td data-label="S.No">1</td>
-        <td data-label="Subject Name">C</td>
-        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=irqbmMNs2Bo" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1mLZ_5AXFQ-Gz1kUNAfH8ZfuV03DNefdv/view?usp=sharing" target="_blank">Practice</a></td>
-      </tr>
-      <tr>
-        <td data-label="S.No">2</td>
-        <td data-label="Subject Name">C++</td>
-        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1-vR0ECJTnKtqjRuafvn6AoNPoAdVglYu/view?usp=sharing" target="_blank">Practice</a></td>
-      </tr>
-      <tr>
-        <td data-label="S.No">3</td>
-        <td data-label="Subject Name">Java</td>
-        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=UmnCZ7-9yDY" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/13rY8Gh0WtNj9ZNm0Pasq7rWC43Ngkrf6/view?usp=sharing" target="_blank">Practice</a></td>
-      </tr>
-      <tr>
-        <td data-label="S.No">4</td>
-        <td data-label="Subject Name">Python</td>
-        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=vLqTf2b6GZw" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1FjUGmPLAg7KUQpDc5f1pqUQbq3Im4gCo/view?usp=sharing" target="_blank">Practice</a></td>
-      </tr>
-      <tr>
-        <td data-label="S.No">5</td>
-        <td data-label="Subject Name">DBMS</td>
-        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=xHJ8Gtm0ILg" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1jJijLzPXmK0tIWEnUG-yXsey8k_L4ZGY/view?usp=sharing" target="_blank">Practice</a></td>
-      </tr>
-      <tr>
-        <td data-label="S.No">6</td>
-        <td data-label="Subject Name">OS</td>
-        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=8XBtAjKwCm4" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1-ZegyQ-2tihNFnaj2sO2XQOYJTASfuzc/view?usp=sharing" target="_blank">Practice</a></td>
-      </tr>
-      <tr>
-        <td data-label="S.No">7</td>
-        <td data-label="Subject Name">CN</td>
-        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=qUBHLZEtS0M" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1Dv21Gkz0xBWG9DzzVcJ4chpSVEAF6qM2/view?usp=sharing" target="_blank">Practice</a></td>
-      </tr>
-      <tr>
-        <td data-label="S.No">8</td>
-        <td data-label="Subject Name">SQL</td>
-        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=hlGoQC332VM" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1mfMff6cDu629H7TWCnzaqnhedIJ088tr/view?usp=sharing" target="_blank">Practice</a></td>
-      </tr>
-      <tr>
-        <td data-label="S.No">9</td>
-        <td data-label="Subject Name">Front End(HTML,CSS,Js)</td>
-        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=hddqkYK5eMQ" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1r7G9iFNVDBHEn25GgADsLoSJUwKdjg-Q/view?usp=sharing" target="_blank">Practice</a></td>
-      </tr>
-      <tr>
-        <td data-label="S.No">10</td>
-        <td data-label="Subject Name">Back End</td>
-        <td data-label="YouTube Link"><a href="https://www.youtube.com/watch?v=1lqRA_8ArqU" target="_blank">Watch</a></td>
-        <td data-label="Mock Questions"><a href="https://drive.google.com/file/d/1MYCAkJkl8OWoltnwd7JTkkADL2KAQeYb/view?usp=sharing" target="_blank">Practice</a></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="navigation-buttons flex justify-between mt-8 max-w-6xl mx-auto">
-    <button onclick="window.location.href = '../aptitude/aptitude.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Previous</button>
-    <button onclick="window.location.href = '../quiz/quiz.html'" class="px-6 py-3 font-bold text-white rounded-lg shadow-md">Next</button>
-  </div>
-  
+  <script>
+    document.querySelectorAll('.flip-box').forEach(box => {
+      box.addEventListener('click', () => box.classList.toggle('clicked'));
+    });
+  </script>
 </body>
 </html>
