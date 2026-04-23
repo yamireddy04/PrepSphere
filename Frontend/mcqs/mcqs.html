@@ -162,18 +162,19 @@
 
     .table-wrap {
       overflow-x: auto;
-      padding: 0 0 1.5rem;
+      width: 100%;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.9rem;
-      table-layout: fixed;
+      table-layout: auto;
     }
 
     thead tr {
       background: #2563eb;
+      width: 100%;
     }
 
     thead th {
@@ -184,14 +185,15 @@
       white-space: nowrap;
     }
 
-    thead th:nth-child(1) { width: 60px; text-align: center; }
-    thead th:nth-child(2) { width: auto; }
-    thead th:nth-child(3) { width: 160px; text-align: center; }
-    thead th:nth-child(4) { width: 160px; text-align: center; }
+    thead th:first-child { text-align: center; width: 5%; }
+    thead th:nth-child(2) { width: 50%; }
+    thead th:nth-child(3) { text-align: center; width: 22.5%; }
+    thead th:nth-child(4) { text-align: center; width: 22.5%; }
 
     tbody tr {
       border-bottom: 1px solid rgba(255,255,255,0.05);
       transition: background 0.2s;
+      width: 100%;
     }
 
     tbody tr:last-child { border-bottom: none; }
