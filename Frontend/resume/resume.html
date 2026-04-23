@@ -7,408 +7,198 @@
     <title>Resume Guide | PrepSphere</title>
     <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
     <link rel="stylesheet" href="../shared/mobile.css">
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --bg: #0b0e1a;
-            --surface: rgba(255, 255, 255, 0.04);
-            --surface-hover: rgba(255, 255, 255, 0.07);
-            --border: rgba(255, 255, 255, 0.08);
-            --border-active: rgba(255, 255, 255, 0.18);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.45);
-            --text-body: rgba(255, 255, 255, 0.7);
-            --accent: #3b6fff;
-            --accent-glow: rgba(59, 111, 255, 0.25);
-            --accent-subtle: rgba(59, 111, 255, 0.12);
-            --nav-bg: rgba(11, 14, 26, 0.92);
-        }
-
-        html { scroll-behavior: smooth; }
-
         body {
-            font-family: 'Sora', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-primary);
-            min-height: 100vh;
-            padding-bottom: 100px;
+            font-family: 'Bookman Old Style', sans-serif;
+            background-color: #eef2ff;
+            color: #1f2937;
         }
 
-        .noise-overlay {
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.4;
-        }
-
-        #guide-page {
-            position: relative;
-            z-index: 1;
-        }
-
-        .guide-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 80px 24px 40px;
-        }
-
-        .guide-header {
-            text-align: center;
-            margin-bottom: 64px;
-            animation: fadeUp 0.6s ease both;
-        }
-
-        .guide-header h1 {
-            font-size: clamp(2.4rem, 6vw, 3.8rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            color: var(--text-primary);
-            line-height: 1.1;
-            margin-bottom: 16px;
-        }
-
-        .guide-header p {
-            font-size: clamp(0.9rem, 2.5vw, 1.05rem);
-            color: var(--text-secondary);
-            font-weight: 300;
-            letter-spacing: 0.01em;
+        .container {
+            max-width: 1000px;
         }
 
         .card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: clamp(20px, 4vw, 32px);
-            margin-bottom: 16px;
-            transition: border-color 0.3s ease, background 0.3s ease;
-            animation: fadeUp 0.6s ease both;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            border-left: 4px solid #3b82f6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
-            border-color: var(--border-active);
-            background: var(--surface-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
         }
 
-        .card h2 {
-            font-size: clamp(1.1rem, 3vw, 1.4rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-            margin-bottom: 14px;
+        h1 {
+            color: #1e3a8a;
         }
 
-        .card h3 {
-            font-size: clamp(0.9rem, 2.5vw, 1.05rem);
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            letter-spacing: -0.01em;
+        h2 {
+            color: #1e40af;
         }
 
-        .card p {
-            font-size: clamp(0.85rem, 2vw, 0.95rem);
-            color: var(--text-body);
-            line-height: 1.75;
-            font-weight: 300;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        @media (max-width: 640px) {
-            .card-grid { grid-template-columns: 1fr; }
+        h3 {
+            color: #1e3a8a;
         }
 
         .list-style {
             list-style: none;
             padding-left: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
         }
 
         .list-style li {
             position: relative;
-            padding-left: 20px;
-            font-size: clamp(0.82rem, 2vw, 0.92rem);
-            color: var(--text-body);
-            font-weight: 300;
-            line-height: 1.6;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .list-style li::before {
-            content: '→';
+            content: '✓';
             position: absolute;
             left: 0;
-            color: var(--accent);
-            font-size: 0.8rem;
-        }
-
-        .card-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card-image img {
-            max-width: 100%;
-            width: clamp(280px, 70%, 700px);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            opacity: 0.9;
-        }
-
-        .inner-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-top: 16px;
-        }
-
-        @media (max-width: 640px) {
-            .inner-grid { grid-template-columns: 1fr; }
-        }
-
-        .btn-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        @media (max-width: 480px) {
-            .btn-row { grid-template-columns: 1fr; }
+            color: #3b82f6;
+            font-weight: bold;
         }
 
         .btn {
+            transition: transform 0.2s ease, background-color 0.2s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-family: 'Sora', sans-serif;
-            font-size: clamp(0.8rem, 2vw, 0.9rem);
-            font-weight: 600;
-            letter-spacing: 0.01em;
-            padding: 13px 20px;
-            border-radius: 10px;
-            border: none;
             cursor: pointer;
-            transition: all 0.25s ease;
-            background: var(--accent);
-            color: #fff;
-            box-shadow: 0 4px 20px var(--accent-glow);
-            text-align: center;
+            border: none;
         }
 
         .btn:hover {
-            background: #2d5eee;
-            box-shadow: 0 6px 28px rgba(59, 111, 255, 0.4);
             transform: translateY(-2px);
-        }
-
-        .buzzword-section-info {
-            font-size: clamp(0.82rem, 2vw, 0.92rem);
-            color: var(--text-body);
-            line-height: 1.75;
-            font-weight: 300;
+            opacity: 0.9;
         }
 
         .buzzword-container {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: clamp(20px, 4vw, 32px);
-            margin-bottom: 16px;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            width: 100%;
         }
 
         .buzzword-container h2 {
-            font-size: clamp(1.1rem, 3vw, 1.4rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
+            font-weight: 600;
+            color: #1e40af;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            position: relative;
         }
 
-        .buzzword-container > p {
+        .buzzword-container p {
             text-align: center;
-            font-size: clamp(0.82rem, 2vw, 0.9rem);
-            color: var(--text-secondary);
-            font-weight: 300;
-            margin-bottom: 24px;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .interactive-form {
+            text-align: left;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--text-body);
-            letter-spacing: 0.02em;
+            color: #1f2937;
         }
 
         textarea {
             width: 100%;
-            padding: 14px;
-            margin-bottom: 14px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            font-family: 'Sora', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 300;
-            color: var(--text-primary);
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
             box-sizing: border-box;
-            min-height: 180px;
-            resize: vertical;
-            transition: border-color 0.2s ease;
-        }
-
-        textarea::placeholder { color: var(--text-secondary); }
-
-        textarea:focus {
-            outline: none;
-            border-color: rgba(59, 111, 255, 0.5);
-            background: rgba(59, 111, 255, 0.05);
+            min-height: 200px;
         }
 
         .buzzword-btn {
-            background: var(--accent);
+            background-color: #3b82f6;
             color: white;
-            padding: 13px 20px;
+            padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 10px;
-            font-family: 'Sora', sans-serif;
-            font-size: 0.9rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             width: 100%;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 20px var(--accent-glow);
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         .buzzword-btn:hover {
-            background: #2d5eee;
+            background-color: #2563eb;
             transform: translateY(-2px);
-            box-shadow: 0 6px 28px rgba(59,111,255,0.4);
         }
 
         .loading-indicator {
-            margin-top: 14px;
+            margin-top: 1rem;
             font-style: italic;
-            font-size: 0.85rem;
-            color: var(--accent);
+            color: #3b82f6;
             text-align: center;
             animation: fade-in-out 1.5s infinite;
         }
 
         .results-box {
-            margin-top: 20px;
-            padding: 20px;
-            background: var(--accent-subtle);
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background-color: #e3f2fd;
             border-radius: 12px;
-            border: 1px solid rgba(59,111,255,0.25);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            border: 1px solid #60a5fa;
             word-wrap: break-word;
         }
 
         .results-box h3 {
-            margin-bottom: 12px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            color: #3b82f6;
         }
 
         .tag-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 0.5rem;
         }
 
         .tag {
-            background: var(--accent);
+            background-color: #3b82f6;
             color: white;
-            padding: 6px 14px;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.82rem;
-            font-weight: 500;
+            font-size: 0.9rem;
         }
 
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: var(--nav-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid var(--border);
-            padding: 16px 24px;
+        @keyframes fade-in-out {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .launcher-container {
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            display: none;
-        }
-
-        @media (min-width: 480px) { .nav-label { display: block; } }
-
-        .nav-btn-prev,
-        .nav-btn-next {
-            font-family: 'Sora', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 10px;
-            padding: 11px 22px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: 0.01em;
-        }
-
-        .nav-btn-prev {
-            background: var(--surface);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .nav-btn-prev:hover {
-            background: var(--surface-hover);
-            border-color: var(--border-active);
-        }
-
-        .nav-btn-next {
-            background: var(--accent);
-            color: #fff;
-            box-shadow: 0 4px 20px var(--accent-glow);
-        }
-
-        .nav-btn-next:hover {
-            background: #2d5eee;
-            box-shadow: 0 6px 28px rgba(59,111,255,0.4);
-            transform: translateY(-1px);
+            height: 100vh;
         }
 
         .resume-container-full {
@@ -416,11 +206,19 @@
             min-height: 11in;
             margin: 2rem auto;
             background-color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2);
-            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-radius: 0.75rem;
             padding: 2rem;
             display: none;
-            color: #1f2937;
+        }
+
+        [contenteditable]:hover {
+            outline: 2px dashed #93c5fd;
+            cursor: text;
+        }
+
+        [contenteditable]:focus {
+            outline: 2px solid #3b82f6;
         }
 
         .resume-container-full h1,
@@ -431,7 +229,6 @@
 
         .resume-container-full h1 {
             color: #1f2937;
-            font-family: 'Sora', sans-serif;
         }
 
         .resume-container-full h2 {
@@ -442,153 +239,119 @@
             margin-bottom: 1rem;
             width: 100%;
             display: block;
-            font-family: 'Sora', sans-serif;
         }
 
-        .resume-container-full h3 {
-            font-family: 'Sora', sans-serif;
+        .template-button {
+            background-color: #3b82f6;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            border: none;
         }
 
-        .resume-container-full p,
-        .resume-container-full li,
-        .resume-container-full span,
-        .resume-container-full div {
-            font-family: 'Sora', sans-serif;
-        }
-
-        [contenteditable]:hover {
-            outline: 2px dashed rgba(59,111,255,0.4);
-            cursor: text;
-        }
-
-        [contenteditable]:focus {
-            outline: 2px solid #3b6fff;
+        .template-button:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
         }
 
         .page-buttons {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 24px auto;
-            max-width: 8.5in;
-            padding: 0 24px;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            gap: 1rem;
         }
 
         .page-buttons .nav-button {
-            font-family: 'Sora', sans-serif;
-            background: var(--surface);
-            color: var(--text-primary);
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 11px 22px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
+            background-color: #6b7280;
+            color: white;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease;
             cursor: pointer;
-            transition: all 0.25s ease;
         }
 
         .page-buttons .nav-button:hover {
-            background: var(--surface-hover);
-            border-color: var(--border-active);
+            background-color: #4b5563;
         }
 
         .page-buttons .action-button {
-            font-family: 'Sora', sans-serif;
-            background: var(--accent);
-            color: #fff;
-            font-size: 0.85rem;
+            background-color: #3b82f6;
+            color: white;
             font-weight: 600;
-            padding: 11px 22px;
-            border-radius: 10px;
-            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s ease;
             cursor: pointer;
-            transition: all 0.25s ease;
-            box-shadow: 0 4px 20px var(--accent-glow);
         }
 
         .page-buttons .action-button:hover {
-            background: #2d5eee;
-            box-shadow: 0 6px 28px rgba(59,111,255,0.4);
-            transform: translateY(-1px);
-        }
-
-        #students-template,
-        #pivots-template {
-            position: relative;
-            z-index: 1;
-            padding-bottom: 40px;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fade-in-out {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
-        }
-
-        @media (max-width: 480px) {
-            .guide-container { padding: 60px 16px 40px; }
-            .guide-header { margin-bottom: 40px; }
-            .bottom-nav { padding: 14px 16px; }
-            .nav-btn-prev, .nav-btn-next { padding: 10px 16px; font-size: 0.8rem; }
-        }
-
-        @media (min-width: 1024px) {
-            .guide-container { padding: 100px 24px 40px; }
+            background-color: #2563eb;
         }
 
         @media print {
-            .noise-overlay { display: none; }
-            .bottom-nav { display: none !important; }
-            .page-buttons { display: none !important; }
-            #guide-page { display: none !important; }
+            .launcher-container {
+                display: none !important;
+            }
+
             .resume-container-full {
                 display: block !important;
                 box-shadow: none;
                 margin: 0;
                 padding: 0.5in;
                 min-height: auto;
-                border-radius: 0;
+            }
+
+            .page-buttons {
+                display: none !important;
             }
         }
     </style>
 </head>
 
-<body>
-    <div class="noise-overlay"></div>
+<body class="p-6 md:p-12">
 
     <div id="main-app-container">
 
         <div id="guide-page">
-            <div class="guide-container">
-                <header class="guide-header">
-                    <h1>Resume Guide</h1>
-                    <p>Everything you need to know about crafting a compelling resume.</p>
+            <div class="container mx-auto space-y-12">
+                <header class="text-center">
+                    <h1 class="text-5xl font-bold mb-2">Resume Guide</h1>
+                    <p class="text-xl text-gray-500 italic">Everything you need to know about crafting a compelling
+                        resume.</p>
                 </header>
 
-                <div class="card" style="animation-delay:0.05s">
-                    <h2>🌟 What is a Resume?</h2>
-                    <p>A resume is a formal document that provides a summary of a person's professional and academic history. Its primary purpose is to highlight your skills, qualifications, and experience to a potential employer, serving as a powerful marketing tool to secure an interview.</p>
+                <div class="card">
+                    <h2 class="text-3xl font-semibold mb-4">🌟 What is a Resume?</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        A resume is a formal document that provides a summary of a person's professional and academic
+                        history. Its primary purpose is to highlight your skills, qualifications, and experience to a
+                        potential employer, serving as a powerful marketing tool to secure an interview.
+                    </p>
                 </div>
 
-                <div class="card-grid" style="margin-bottom:16px">
-                    <div class="card" style="margin-bottom:0;animation-delay:0.1s">
-                        <h2>🎯 Why is it Used?</h2>
-                        <ul class="list-style">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="card">
+                        <h2 class="text-3xl font-semibold mb-4">🎯 Why is it Used?</h2>
+                        <ul class="list-style text-gray-700">
                             <li>To apply for jobs and internships.</li>
                             <li>To showcase your academic achievements and projects.</li>
                             <li>For career switching, to highlight transferable skills.</li>
                             <li>To make a strong first impression and get an interview.</li>
                         </ul>
                     </div>
-                    <div class="card" style="margin-bottom:0;animation-delay:0.15s">
-                        <h2>🔍 What Recruiters Look For</h2>
-                        <ul class="list-style">
+                    <div class="card">
+                        <h2 class="text-3xl font-semibold mb-4">🔍 What Recruiters Look For</h2>
+                        <ul class="list-style text-gray-700">
                             <li>Relevance to the job description.</li>
                             <li>Quantifiable achievements over just responsibilities.</li>
                             <li>Keywords that match the job posting.</li>
@@ -598,19 +361,23 @@
                     </div>
                 </div>
 
-                <div class="card card-image" style="animation-delay:0.2s">
+                <div class="card flex justify-center items-center p-8">
                     <img src="../images/resume.jpeg"
-                        onerror="this.onerror=null; this.src='https://placehold.co/800x450/0b0e1a/3b6fff?text=Resume+Guide';"
+                        onerror="this.onerror=null; this.src='https://placehold.co/800x450/eef2ff/3b82f6?text=Image+Placeholder:+Recruiting';"
+                        class="max-w-xl rounded-lg shadow-md"
                         alt="A stylized illustration of recruiters analyzing a resume." />
                 </div>
 
-                <div class="card" style="animation-delay:0.25s">
-                    <h2>🧩 Key Components & Writing Tips</h2>
-                    <p style="margin-bottom:16px">A strong resume is built on key components and careful writing. Tailor it for each role and use action verbs to describe your accomplishments.</p>
-                    <div class="inner-grid">
+                <div class="card">
+                    <h2 class="text-3xl font-semibold mb-4">🧩 Key Components & Writing Tips</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A strong resume is built on key components and careful writing. Tailor it for each role and use
+                        action verbs to describe your accomplishments.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <h3>Core Sections</h3>
-                            <ul class="list-style">
+                            <h3 class="text-xl font-semibold mb-2">Core Sections</h3>
+                            <ul class="list-style text-gray-700">
                                 <li>Header: Contact Info, Professional Links.</li>
                                 <li>Summary/Objective: A brief professional statement.</li>
                                 <li>Experience: Your work history with achievements.</li>
@@ -619,9 +386,9 @@
                             </ul>
                         </div>
                         <div>
-                            <h3>Best Practices</h3>
-                            <ul class="list-style">
-                                <li>Use action verbs (e.g., managed, developed).</li>
+                            <h3 class="text-xl font-semibold mb-2">Best Practices</h3>
+                            <ul class="list-style text-gray-700">
+                                <li>Use action verbs (e.g., `managed`, `developed`).</li>
                                 <li>Quantify achievements with numbers.</li>
                                 <li>Keep it concise, ideally one page.</li>
                                 <li>Proofread carefully to avoid typos.</li>
@@ -631,46 +398,72 @@
                     </div>
                 </div>
 
-                <div class="card" style="animation-delay:0.3s">
-                    <h2>🧾 Resume Templates</h2>
-                    <p style="margin-bottom:14px">Resume templates provide a structured and professional framework, saving you time and ensuring your resume is clean and easy to read.</p>
-                    <h3 style="margin-bottom:8px">How ATS-Friendly Formats Help</h3>
-                    <p>Many companies use Applicant Tracking Systems (ATS) to filter resumes. Using a simple, clean template with standard headings and keywords significantly increases your chances of passing this automated screening process.</p>
+                <div class="card">
+                    <h2 class="text-3xl font-semibold mb-4">🧾 Resume Templates</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Resume templates provide a structured and professional framework, saving you time and ensuring
+                        your resume is clean and easy to read.
+                    </p>
+                    <h3 class="text-xl font-semibold mb-2">How ATS-Friendly Formats Help</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Many companies use Applicant Tracking Systems (ATS) to filter resumes. Using a simple, clean
+                        template with standard headings and keywords significantly increases your chances of passing
+                        this automated screening process.
+                    </p>
                 </div>
 
-                <div class="card" style="animation-delay:0.35s">
-                    <div class="btn-row">
-                        <button onclick="showPage('students-template')" class="btn">Templates for Students and Freshers</button>
-                        <button onclick="showPage('pivots-template')" class="btn">Templates for Pivots</button>
-                    </div>
+                <div class="card grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                    <button onclick="showPage('students-template')"
+                        class="btn bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg text-lg hover:bg-blue-700">
+                        Templates for Students and Freshers
+                    </button>
+                    <button onclick="showPage('pivots-template')"
+                        class="btn bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg text-lg hover:bg-blue-700">
+                        Templates for Pivots
+                    </button>
                 </div>
-
-                <div class="card" style="animation-delay:0.4s">
-                    <h2>Buzzwords</h2>
-                    <p class="buzzword-section-info">Buzzwords play a crucial role in making/getting a resume shortlisted. Buzzwords are important because they are the keywords that Applicant Tracking Systems (ATS) and recruiters scan for to quickly identify relevant candidates. Using them effectively signals to both automated systems and hiring managers that your skills and experience align with the job requirements. Use the below buzzword generator by pasting the job description and click on "Generate Buzzwords" to help identify and gather the buzzwords, incorporating which in the resume makes your chances of getting shortlisted higher.</p>
+                <div class="card">
+                    <h2 class="text-3xl font-semibold mb-4">Buzzwords</h2>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Buzzwords play a crucial role in making/getting a resume shorlisted. Buzzwords are important
+                        because they are the keywords that Applicant Tracking Systems (ATS) and recruiters scan for to
+                        quickly identify relevant candidates. Using them effectively signals to both automated systems
+                        and hiring managers that your skills and experience align with the job requirements. Use the
+                        below buzzword generator by pasting the job description and click on "Generate Buzzwords" to
+                        help identify and gather the buzzwords, incorporating which in the resume makes your chances of
+                        getting shortlisted higher.
+                    </p>
                 </div>
-
-                <div class="buzzword-container" style="animation-delay:0.45s">
-                    <h2>✨ Buzzword Generator</h2>
+                <div class="card buzzword-container mx-auto mt-12">
+                    <h2 class="text-3xl font-semibold mb-4">✨ Buzzword Generator</h2>
                     <p>Paste a job description to extract key buzzwords and skills.</p>
                     <div class="interactive-form">
-                        <label for="job-description">Job Description</label>
-                        <textarea id="job-description" placeholder="Paste the full text of the job description here..."></textarea>
+                        <textarea id="job-description"
+                            placeholder="Paste the full text of the job description here..."></textarea>
+
                         <button onclick="generateBuzzwords()" class="buzzword-btn">Generate Buzzwords</button>
-                        <div id="loading-indicator" class="loading-indicator" style="display: none;">Analyzing job description...</div>
+
+                        <div id="loading-indicator" class="loading-indicator" style="display: none;">Analyzing job
+                            description...</div>
+
                         <div id="results-box" class="results-box" style="display: none;">
-                            <h3>Generated Buzzwords</h3>
+                            <h3>Generated Buzzwords:</h3>
                             <div id="buzzword-list" class="tag-list"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <nav class="bottom-nav">
-                <button class="nav-btn-prev" onclick="window.location.href = '../roadmap/pathfinder.html'">← Previous</button>
-                <span class="nav-label">RESUME GUIDE</span>
-                <button class="nav-btn-next" onclick="window.location.href = '../coverletter/coverletter.html'">Next →</button>
-            </nav>
+            <div class="flex justify-between items-center mt-12 container mx-auto">
+                <button onclick="window.location.href = '../roadmap/pathfinder.html'" class="btn bg-blue-600 text-white font-semibold py-2 px-8 rounded-lg">
+                    Previous
+                </button>
+                
+                <button onclick="window.location.href = '../coverletter/coverletter.html'" class="btn bg-blue-600 text-white font-semibold py-2 px-8 rounded-lg">
+                    Next
+                </button>
+            </div>
+
         </div>
 
         <div id="students-template" class="hidden">
@@ -692,29 +485,48 @@
                 <section>
                     <h2 class="text-lg uppercase">Education</h2>
                     <div class="flex justify-between items-start mb-2">
-                        <div contenteditable="true" class="font-semibold text-gray-800">College / University Name (Highest qualification - Masters)</div>
-                        <div contenteditable="true" class="text-sm text-gray-500">State, Country (XXXX-XXXX)</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            College / University Name (Highest qualification - Masters)
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-500">
+                            State, Country (XXXX-XXXX)
+                        </div>
                     </div>
                     <div class="mb-4">
                         <p contenteditable="true" class="text-sm text-gray-700">Major (Branch); GPA/CGPA 0.00</p>
                     </div>
+
                     <div class="flex justify-between items-start mb-2">
-                        <div contenteditable="true" class="font-semibold text-gray-800">College / University Name (Highest qualification - Bachelors)</div>
-                        <div contenteditable="true" class="text-sm text-gray-500">State, Country (XXXX-XXXX)</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            College / University Name (Highest qualification - Bachelors)
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-500">
+                            State, Country (XXXX-XXXX)
+                        </div>
                     </div>
                     <div class="mb-4">
                         <p contenteditable="true" class="text-sm text-gray-700">Major (Branch); GPA/CGPA 0.00</p>
                     </div>
+
                     <div class="flex justify-between items-start mb-2">
-                        <div contenteditable="true" class="font-semibold text-gray-800">College Name (XII)</div>
-                        <div contenteditable="true" class="text-sm text-gray-500">State, Country (XXXX-XXXX)</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            College Name (XII)
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-500">
+                            State, Country (XXXX-XXXX)
+                        </div>
                     </div>
                     <div class="mb-4">
                         <p contenteditable="true" class="text-sm text-gray-700">XII - (Branch), percentage - 00%</p>
                     </div>
+
                     <div class="flex justify-between items-start mb-2">
-                        <div contenteditable="true" class="font-semibold text-gray-800">School Name (X)</div>
-                        <div contenteditable="true" class="text-sm text-gray-500">State, Country (XXXX-XXXX)</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            School Name (X)
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-500">
+                            State, Country (XXXX-XXXX)
+                        </div>
                     </div>
                     <div class="mb-4">
                         <p contenteditable="true" class="text-sm text-gray-700">X, CGPA/percentage - 00%</p>
@@ -726,57 +538,92 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
                             <p class="font-semibold text-sm text-gray-800">Languages:</p>
-                            <div contenteditable="true" class="text-sm text-gray-700">C, C++, Java, Python, SQL</div>
+                            <div contenteditable="true" class="text-sm text-gray-700">
+                                C, C++, Java, Python, SQL
+                            </div>
                         </div>
                         <div class="flex flex-col">
                             <p class="font-semibold text-sm text-gray-800">Frameworks:</p>
-                            <div contenteditable="true" class="text-sm text-gray-700">Spring, Flask, React, Django</div>
+                            <div contenteditable="true" class="text-sm text-gray-700">
+                                Spring, Flask, React, Django
+                            </div>
                         </div>
                         <div class="flex flex-col">
                             <p class="font-semibold text-sm text-gray-800">Tools:</p>
-                            <div contenteditable="true" class="text-sm text-gray-700">Visual Studio Code, Spck Editor, Git, Docker</div>
+                            <div contenteditable="true" class="text-sm text-gray-700">
+                                Visual Studio Code, Spck Editor, Git, Docker
+                            </div>
                         </div>
                         <div class="flex flex-col">
                             <p class="font-semibold text-sm text-gray-800">Technologies:</p>
-                            <div contenteditable="true" class="text-sm text-gray-700">HTML, CSS, JavaScript, AWS, Azure</div>
+                            <div contenteditable="true" class="text-sm text-gray-700">
+                                HTML, CSS, JavaScript, AWS, Azure
+                            </div>
                         </div>
                         <div class="flex flex-col">
                             <p class="font-semibold text-sm text-gray-800">Soft Skills:</p>
-                            <div contenteditable="true" class="text-sm text-gray-700">Good communication, Rapport building, Teamwork</div>
+                            <div contenteditable="true" class="text-sm text-gray-700">
+                                Good communication, Rapport building, Teamwork
+                            </div>
                         </div>
                     </div>
                 </section>
-
                 <section>
                     <h2 class="text-lg uppercase">Coursework</h2>
-                    <div contenteditable="true" class="text-sm text-gray-700 leading-relaxed">Data Structures and Algorithms, Machine Learning, Artificial Intelligence, Database Systems, Software Engineering</div>
+                    <div contenteditable="true" class="text-sm text-gray-700 leading-relaxed">
+                        Data Structures and Algorithms, Machine Learning, Artificial Intelligence, Database Systems,
+                        Software Engineering
+                    </div>
                 </section>
 
                 <section>
                     <h2 class="text-lg uppercase">Projects</h2>
                     <div class="mb-4">
-                        <div contenteditable="true" class="font-semibold text-gray-800">Project Name (1)</div>
-                        <div contenteditable="true" class="text-sm text-gray-700 mt-1">Description of the project, features, technologies used, outcome.</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            Project Name (1)
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-700 mt-1">
+                            Description of the project, features, technologies used, outcome.
+                        </div>
                     </div>
                     <div class="mb-4">
-                        <div contenteditable="true" class="font-semibold text-gray-800">Project Name (2)</div>
-                        <div contenteditable="true" class="text-sm text-gray-700 mt-1">Description of the project, features, technologies used, outcome.</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            Project Name (2)
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-700 mt-1">
+                            Description of the project, features, technologies used, outcome.
+                        </div>
                     </div>
                     <div class="mb-4">
-                        <div contenteditable="true" class="font-semibold text-gray-800 italic">Example: E-commerce website</div>
-                        <div contenteditable="true" class="text-sm text-gray-700 mt-1">Developed a robust e-commerce platform using MERN stack, enabling seamless online shopping experiences. Implemented features like product catalog, shopping cart, secure checkout, and order tracking.</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800 italic">
+                            Example: E-commerce website
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-700 mt-1">
+                            Developed a robust e-commerce platform using MERN stack, enabling seamless online shopping
+                            experiences. Implemented features like product catalog, shopping cart, secure checkout, and
+                            order tracking.
+                        </div>
                     </div>
                 </section>
 
                 <section>
                     <h2 class="text-lg uppercase">Internships</h2>
                     <div class="mb-4">
-                        <div contenteditable="true" class="font-semibold text-gray-800">Internship name (course)</div>
-                        <div contenteditable="true" class="text-sm text-gray-700 mt-1">Description of the internship. Focus on accomplishments: Instead of just listing duties, highlight what you achieved. Quantify your achievements.</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            Internship name (course)
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-700 mt-1">
+                            Description of the internship. Focus on accomplishments: Instead of just listing duties,
+                            highlight what you achieved. Quantify your achievements.
+                        </div>
                     </div>
                     <div class="mb-4">
-                        <div contenteditable="true" class="font-semibold text-gray-800 italic">Example - Ybi Internship (Data Analytics)</div>
-                        <div contenteditable="true" class="text-sm text-gray-700 mt-1">Mastered data gathering, identification and cleaning for analysis preparation.</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800 italic">
+                            Example - Ybi Internship (Data Analytics)
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-700 mt-1">
+                            Mastered data gathering, identification and cleaning for analysis preparation.
+                        </div>
                     </div>
                 </section>
 
@@ -801,9 +648,15 @@
                 </section>
             </div>
             <div class="page-buttons">
-                <button onclick="showPage('guide-page')" class="nav-button">Previous</button>
-                <button onclick="downloadAsPdf('students')" id="download-button-students" class="action-button">Download as PDF</button>
-                <button onclick="showPage('pivots-template')" class="nav-button">Next</button>
+                <button onclick="showPage('guide-page')" class="nav-button">
+                    Previous
+                </button>
+                <button onclick="downloadAsPdf('students')" id="download-button-students" class="action-button">
+                    Download as PDF
+                </button>
+                <button onclick="showPage('pivots-template')" class="nav-button">
+                    Next
+                </button>
             </div>
         </div>
 
@@ -826,29 +679,48 @@
                 <section>
                     <h2 class="text-lg uppercase">Education</h2>
                     <div class="flex justify-between items-start mb-2">
-                        <div contenteditable="true" class="font-semibold text-gray-800">College / University name (highest qualification - Masters)</div>
-                        <div contenteditable="true" class="text-sm text-gray-500">State, Country (XXXX-XXXX)</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            College / University name (highest qualification - Masters)
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-500">
+                            State, Country (XXXX-XXXX)
+                        </div>
                     </div>
                     <div class="mb-4">
                         <p contenteditable="true" class="text-sm text-gray-700">Major (Branch); GPA/CGPA 0.00</p>
                     </div>
+
                     <div class="flex justify-between items-start mb-2">
-                        <div contenteditable="true" class="font-semibold text-gray-800">College / University name (highest qualification - Bachelors)</div>
-                        <div contenteditable="true" class="text-sm text-gray-500">State, Country (XXXX-XXXX)</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            College / University name (highest qualification -Bachelors)
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-500">
+                            State, Country (XXXX-XXXX)
+                        </div>
                     </div>
                     <div class="mb-4">
                         <p contenteditable="true" class="text-sm text-gray-700">Major (Branch); GPA/CGPA 0.00</p>
                     </div>
+
                     <div class="flex justify-between items-start mb-2">
-                        <div contenteditable="true" class="font-semibold text-gray-800">College name</div>
-                        <div contenteditable="true" class="text-sm text-gray-500">State, Country (XXXX-XXXX)</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            College name
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-500">
+                            State, Country (XXXX-XXXX)
+                        </div>
                     </div>
                     <div class="mb-4">
                         <p contenteditable="true" class="text-sm text-gray-700">XII - (Branch), percentage -</p>
                     </div>
+
                     <div class="flex justify-between items-start mb-2">
-                        <div contenteditable="true" class="font-semibold text-gray-800">School name</div>
-                        <div contenteditable="true" class="text-sm text-gray-500">State, Country (XXXX-XXXX)</div>
+                        <div contenteditable="true" class="font-semibold text-gray-800">
+                            School name
+                        </div>
+                        <div contenteditable="true" class="text-sm text-gray-500">
+                            State, Country (XXXX-XXXX)
+                        </div>
                     </div>
                     <div class="mb-4">
                         <p contenteditable="true" class="text-sm text-gray-700">X, CGPA/percentage -</p>
@@ -860,23 +732,33 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex flex-col">
                             <p class="font-semibold text-sm text-gray-800">Languages:</p>
-                            <div contenteditable="true" class="text-sm text-gray-700">(Example: C, C++, JAVA, Python, SQL)</div>
+                            <div contenteditable="true" class="text-sm text-gray-700">
+                                (Example: C, C++, JAVA, Python, SQL)
+                            </div>
                         </div>
                         <div class="flex flex-col">
                             <p class="font-semibold text-sm text-gray-800">Frameworks:</p>
-                            <div contenteditable="true" class="text-sm text-gray-700">(Example: Spring, Flask, ... etc)</div>
+                            <div contenteditable="true" class="text-sm text-gray-700">
+                                (Example: Spring, Flask, ... etc)
+                            </div>
                         </div>
                         <div class="flex flex-col">
                             <p class="font-semibold text-sm text-gray-800">Tools:</p>
-                            <div contenteditable="true" class="text-sm text-gray-700">(Example: Visual Studio Code, Spck Editor etc)</div>
+                            <div contenteditable="true" class="text-sm text-gray-700">
+                                (Example: Visual Studio Code, Spck Editor etc)
+                            </div>
                         </div>
                         <div class="flex flex-col">
                             <p class="font-semibold text-sm text-gray-800">Technologies:</p>
-                            <div contenteditable="true" class="text-sm text-gray-700">(Example: HTML, CSS, ....)</div>
+                            <div contenteditable="true" class="text-sm text-gray-700">
+                                (Example: HTML, CSS, ....)
+                            </div>
                         </div>
                         <div class="flex flex-col">
                             <p class="font-semibold text-sm text-gray-800">Soft Skills:</p>
-                            <div contenteditable="true" class="text-sm text-gray-700">(Example: Good communication, Rapport building ......)</div>
+                            <div contenteditable="true" class="text-sm text-gray-700">
+                                (Example: Good communication, Rapport building ......)
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -885,24 +767,39 @@
                     <h2 class="text-lg uppercase">Work Experience</h2>
                     <div class="mb-4">
                         <div class="flex justify-between items-start">
-                            <div contenteditable="true" class="font-semibold text-gray-800">[Job Title] | Company Name | [City, State or Country]</div>
-                            <div contenteditable="true" class="text-sm text-gray-500">[Start Date] - [End Date] (or "Present")</div>
+                            <div contenteditable="true" class="font-semibold text-gray-800">
+                                [Job Title] | Company Name | [City, State or Country]
+                            </div>
+                            <div contenteditable="true" class="text-sm text-gray-500">
+                                [Start Date] - [End Date] (or "Present")
+                            </div>
                         </div>
                         <ul class="list-disc list-inside text-sm text-gray-700 mt-1">
-                            <li contenteditable="true">Key Responsibilities: Use bullet points starting with strong action verbs (e.g., Led, Managed, Designed).</li>
-                            <li contenteditable="true">Key Achievements: Quantify results wherever possible (e.g., "Increased sales by 20% in six months"). Showcase notable accomplishments and their impact on the team or company.</li>
+                            <li contenteditable="true">Key Responsibilities: Use bullet points starting with strong
+                                action verbs (e.g., Led, Managed, Designed).</li>
+                            <li contenteditable="true">Key Achievements: Quantify results wherever possible (e.g.,
+                                "Increased sales by 20% in six months"). Showcase notable accomplishments and their
+                                impact on the team or company.</li>
                         </ul>
                     </div>
                     <div class="mb-4">
                         <div class="flex justify-between items-start">
-                            <div contenteditable="true" class="font-semibold text-gray-800">Software Engineer | XYZ Technologies | San Francisco, CA</div>
-                            <div contenteditable="true" class="text-sm text-gray-500">Jan 2020-Present</div>
+                            <div contenteditable="true" class="font-semibold text-gray-800">
+                                Software Engineer | XYZ Technologies | San Francisco, CA
+                            </div>
+                            <div contenteditable="true" class="text-sm text-gray-500">
+                                Jan 2020-Present
+                            </div>
                         </div>
                         <ul class="list-disc list-inside text-sm text-gray-700 mt-1">
-                            <li contenteditable="true">Developed and optimized scalable web applications for over 1 million users.</li>
-                            <li contenteditable="true">Collaborated with cross-functional teams to design user-friendly interfaces.</li>
-                            <li contenteditable="true">Improved application response time by 35% through efficient coding practices.</li>
-                            <li contenteditable="true">Spearheaded a critical project that boosted user retention by 15%.</li>
+                            <li contenteditable="true">Developed and optimized scalable web applications for over 1
+                                million users.</li>
+                            <li contenteditable="true">Collaborated with cross-functional teams to design user-friendly
+                                interfaces.</li>
+                            <li contenteditable="true">Improved application response time by 35% through efficient
+                                coding practices.</li>
+                            <li contenteditable="true">Spearheaded a critical project that boosted user retention by
+                                15%.</li>
                         </ul>
                     </div>
                 </section>
@@ -911,20 +808,31 @@
                     <h2 class="text-lg uppercase">Projects</h2>
                     <div class="mb-4">
                         <div class="flex justify-between items-start">
-                            <div contenteditable="true" class="font-semibold text-gray-800">Project name (1)</div>
-                            <div contenteditable="true" class="text-sm text-gray-500">[Start Date] - [End Date]</div>
+                            <div contenteditable="true" class="font-semibold text-gray-800">
+                                Project name (1)
+                            </div>
+                            <div contenteditable="true" class="text-sm text-gray-500">
+                                [Start Date] - [End Date]
+                            </div>
                         </div>
                         <ul class="list-disc list-inside text-sm text-gray-700 mt-1">
-                            <li contenteditable="true">Description of the project, features, technologies used, outcome.</li>
+                            <li contenteditable="true">Description of the project, features, technologies used, outcome.
+                            </li>
                         </ul>
                     </div>
                     <div class="mb-4">
                         <div class="flex justify-between items-start">
-                            <div contenteditable="true" class="font-semibold text-gray-800 italic">Example: E-commerce website</div>
-                            <div contenteditable="true" class="text-sm text-gray-500">[Start Date] - [End Date]</div>
+                            <div contenteditable="true" class="font-semibold text-gray-800 italic">
+                                Example: E-commerce website
+                            </div>
+                            <div contenteditable="true" class="text-sm text-gray-500">
+                                [Start Date] - [End Date]
+                            </div>
                         </div>
                         <ul class="list-disc list-inside text-sm text-gray-700 mt-1">
-                            <li contenteditable="true">Developed a robust e-commerce platform using MERN stack, enabling seamless online shopping experiences. Implemented features like product catalog, shopping cart, secure checkout, and order tracking.</li>
+                            <li contenteditable="true">Developed a robust e-commerce platform using MERN stack, enabling
+                                seamless online shopping experiences. Implemented features like product catalog,
+                                shopping cart, secure checkout, and order tracking.</li>
                         </ul>
                     </div>
                 </section>
@@ -945,18 +853,22 @@
                 </section>
             </div>
             <div class="page-buttons">
-                <button onclick="showPage('students-template')" class="nav-button">Previous</button>
-                <button onclick="downloadAsPdf('pivots')" id="download-button" class="action-button">Download as PDF</button>
-                <button onclick="showPage('guide-page')" class="nav-button">Next</button>
+                <button onclick="showPage('students-template')" class="nav-button">
+                    Previous
+                </button>
+                <button onclick="downloadAsPdf('pivots')" id="download-button" class="action-button">
+                    Download as PDF
+                </button>
+                <button onclick="showPage('guide-page')" class="nav-button">
+                    Next
+                </button>
             </div>
         </div>
 
     </div>
 
-    <script src="https://cdn.tailwindcss.com"></script>
     <script type="module">
         import { API_BASE_URL } from '../js/config.js';
-
         window.showPage = function(pageId) {
             document.getElementById('guide-page').style.display = 'none';
             document.getElementById('students-template').style.display = 'none';
@@ -1018,7 +930,7 @@
                 if (!response.ok) throw new Error('Failed to connect to AI server');
 
                 const data = await response.json();
-
+                
                 if (data.buzzwords && Array.isArray(data.buzzwords)) {
                     data.buzzwords.forEach(word => {
                         const tag = document.createElement('span');
