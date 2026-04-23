@@ -12,204 +12,57 @@
 --surface:#131b2e;
 --surface-hover:#16213a;
 --border:rgba(255,255,255,0.08);
---border-subtle:rgba(255,255,255,0.05);
 --accent:#2563eb;
---accent-dim:rgba(37,99,235,0.15);
---accent-border:rgba(37,99,235,0.3);
 --text-high:#ffffff;
---text-mid:rgba(255,255,255,0.65);
---text-low:rgba(255,255,255,0.38);
---label:#2563eb;
+--text-mid:rgba(255,255,255,0.55);
+--text-low:rgba(255,255,255,0.3);
 }
-body{
-font-family:'Inter',sans-serif;
-background:var(--bg);
-color:var(--text-high);
-min-height:100vh;
-padding:72px 24px 80px;
-display:flex;
-justify-content:center;
-}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text-high);min-height:100vh;padding:72px 24px 80px;display:flex;justify-content:center}
 .wrap{max-width:860px;width:100%}
-
-.page-header{
-text-align:center;
-margin-bottom:64px;
-}
-.phase-eyebrow{
-font-size:0.7rem;
-font-weight:600;
-letter-spacing:3px;
-text-transform:uppercase;
-color:var(--text-low);
-margin-bottom:16px;
-}
-.page-title{
-font-size:clamp(2rem,5vw,3rem);
-font-weight:800;
-color:var(--text-high);
-letter-spacing:-1px;
-line-height:1.1;
-margin-bottom:14px;
-}
-.page-sub{
-font-size:0.95rem;
-color:var(--text-mid);
-line-height:1.75;
-max-width:520px;
-margin:0 auto;
-font-weight:400;
-}
-
-.divider{
-height:1px;
-background:var(--border);
-margin-bottom:56px;
-}
-
-.section{
-margin-bottom:56px;
-}
-.section-head{
-display:flex;
-align-items:center;
-gap:14px;
-margin-bottom:8px;
-}
-.step-circle{
-width:30px;height:30px;border-radius:50%;
-background:var(--accent);
-color:#fff;
-font-size:0.72rem;font-weight:800;
-display:flex;align-items:center;justify-content:center;
-flex-shrink:0;
-}
-.step-meta{}
-.step-eyebrow{
-font-size:0.65rem;
-font-weight:600;
-letter-spacing:3px;
-text-transform:uppercase;
-color:var(--label);
-margin-bottom:2px;
-}
-.step-title{
-font-size:1.25rem;
-font-weight:700;
-color:var(--text-high);
-letter-spacing:-0.3px;
-}
-.section-intro{
-font-size:0.875rem;
-color:var(--text-mid);
-line-height:1.8;
-margin-bottom:20px;
-padding-left:44px;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:1px;
-background:var(--border-subtle);
-border:1px solid var(--border);
-border-radius:10px;
-overflow:hidden;
-}
-.card{
-background:var(--surface);
-padding:24px 22px;
-transition:background 0.2s;
-}
+.page-header{text-align:center;margin-bottom:56px}
+.phase-eyebrow{font-size:0.68rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-low);margin-bottom:14px}
+.page-title{font-size:clamp(1.9rem,5vw,3rem);font-weight:800;color:var(--text-high);letter-spacing:-1px;line-height:1.1;margin-bottom:14px}
+.page-sub{font-size:0.93rem;color:var(--text-mid);line-height:1.8;max-width:500px;margin:0 auto;font-weight:400}
+.divider{height:1px;background:var(--border);margin-bottom:52px}
+.section{margin-bottom:52px}
+.section-head{display:flex;align-items:center;gap:12px;margin-bottom:6px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.step-circle{width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:0.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-eyebrow{font-size:0.6rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+.step-title{font-size:1.15rem;font-weight:700;color:var(--text-high);letter-spacing:-0.3px}
+.section-intro{font-size:0.875rem;color:var(--text-mid);line-height:1.8;margin-bottom:18px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.card{background:var(--surface);padding:22px 20px;transition:background 0.2s}
 .card:hover{background:var(--surface-hover)}
-.card-tag{
-font-size:0.62rem;
-font-weight:700;
-letter-spacing:2.5px;
-text-transform:uppercase;
-color:var(--label);
-margin-bottom:10px;
-opacity:0.9;
-}
-.card strong{
-display:block;
-font-size:0.9rem;
-font-weight:700;
-color:var(--text-high);
-margin-bottom:8px;
-line-height:1.3;
-}
-.card p{
-font-size:0.82rem;
-color:var(--text-mid);
-line-height:1.75;
-font-weight:400;
-}
-
-.nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-top:64px;
-padding-top:24px;
-border-top:1px solid var(--border);
-}
-.nav-hint{
-font-size:0.62rem;
-font-weight:600;
-letter-spacing:3px;
-text-transform:uppercase;
-color:var(--text-low);
-}
-.nav-btn{
-font-family:'Inter',sans-serif;
-font-size:0.875rem;
-font-weight:600;
-text-decoration:none;
-padding:11px 26px;
-border-radius:8px;
-display:inline-flex;
-align-items:center;
-gap:8px;
-transition:all 0.2s;
-}
-.nav-btn.prev{
-background:transparent;
-border:1px solid var(--border);
-color:var(--text-mid);
-}
+.card-tag{font-size:0.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;opacity:0.85}
+.card strong{display:block;font-size:0.88rem;font-weight:700;color:var(--text-high);margin-bottom:7px;line-height:1.3}
+.card p{font-size:0.8rem;color:var(--text-mid);line-height:1.75;font-weight:400}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:60px;padding-top:22px;border-top:1px solid var(--border)}
+.nav-hint{font-size:0.6rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text-low)}
+.nav-btn{font-family:'Inter',sans-serif;font-size:0.875rem;font-weight:600;text-decoration:none;padding:10px 24px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s}
+.nav-btn.prev{background:transparent;border:1px solid var(--border);color:var(--text-mid)}
 .nav-btn.prev:hover{border-color:rgba(255,255,255,0.2);color:var(--text-high)}
-.nav-btn.next{
-background:var(--accent);
-border:none;
-color:#fff;
-}
+.nav-btn.next{background:var(--accent);border:none;color:#fff}
 .nav-btn.next:hover{opacity:0.88;transform:translateY(-1px)}
-
-@media(max-width:680px){
-body{padding:48px 20px 64px}
-.section-intro{padding-left:0}
+@media(max-width:600px){
+body{padding:44px 18px 60px}
 .cards{grid-template-columns:1fr}
 .nav-hint{display:none}
-.page-title{font-size:1.8rem}
+.page-title{font-size:1.7rem}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-
     <div class="page-header">
         <div class="phase-eyebrow">Phase 01</div>
         <h1 class="page-title">Foundation Building</h1>
         <p class="page-sub">Foundation building is the first act of interview preparation — establishing a clear, comprehensive understanding of what you offer and where you're headed.</p>
     </div>
-
     <div class="divider"></div>
-
     <div class="section">
         <div class="section-head">
             <div class="step-circle">1</div>
-            <div class="step-meta">
+            <div>
                 <div class="step-eyebrow">Step One</div>
                 <div class="step-title">Pick a Roadmap</div>
             </div>
@@ -233,11 +86,10 @@ body{padding:48px 20px 64px}
             </div>
         </div>
     </div>
-
     <div class="section">
         <div class="section-head">
             <div class="step-circle">2</div>
-            <div class="step-meta">
+            <div>
                 <div class="step-eyebrow">Step Two</div>
                 <div class="step-title">Build Your Resume</div>
             </div>
@@ -266,11 +118,10 @@ body{padding:48px 20px 64px}
             </div>
         </div>
     </div>
-
     <div class="section">
         <div class="section-head">
             <div class="step-circle">3</div>
-            <div class="step-meta">
+            <div>
                 <div class="step-eyebrow">Step Three</div>
                 <div class="step-title">Build a Compelling Cover Letter</div>
             </div>
@@ -299,28 +150,20 @@ body{padding:48px 20px 64px}
             </div>
         </div>
     </div>
-
     <nav class="nav">
         <a href="../exp/exp.html" class="nav-btn prev">← Previous</a>
         <span class="nav-hint">Up Next: Choose Your Roadmap</span>
         <a href="../roadmap/conventional.html" class="nav-btn next">Next →</a>
     </nav>
-
 </div>
 <script>
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
-            }
-        });
-    }, { threshold: 0.08 });
-
-    document.querySelectorAll('.section').forEach((el, i) => {
-        el.style.opacity = "0";
-        el.style.transform = "translateY(20px)";
-        el.style.transition = `opacity 0.6s ease ${i * 0.1}s, transform 0.6s ease ${i * 0.1}s`;
+            if(entry.isIntersecting){entry.target.style.opacity="1";entry.target.style.transform="translateY(0)"}
+        },{threshold:0.08});
+    document.querySelectorAll('.section').forEach((el,i)=>{
+        el.style.opacity="0";el.style.transform="translateY(20px)";
+        el.style.transition=`opacity 0.6s ease ${i*0.1}s,transform 0.6s ease ${i*0.1}s`;
         observer.observe(el);
     });
 </script>
