@@ -1,165 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PrepMaster | PrepSphere</title>
-  <link rel="icon" type="image/jpeg" href="../images/logo.jpeg">
-  <link rel="stylesheet" href="../shared/mobile.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-    .glass-card {
-      background: rgba(30, 41, 59, 0.7);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .company-tag {
-      transition: all 0.3s ease;
-    }
-    .company-tag:hover {
-      transform: scale(1.05);
-      background: rgba(59, 130, 246, 0.2);
-      border-color: #3b82f6;
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PrepMaster | PrepSphere</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh;padding-bottom:90px}
+.container{max-width:1200px;margin:0 auto;padding:48px 20px}
+header{text-align:center;margin-bottom:48px}
+header h1{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;color:#fff;letter-spacing:-0.03em;margin-bottom:12px}
+header p{font-size:clamp(1rem,2vw,1.2rem);color:#94a3b8;max-width:600px;margin:0 auto}
+.info-card{background:rgba(30,41,59,0.7);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.08);border-left:4px solid #3b82f6;border-radius:16px;padding:clamp(20px,4vw,32px);margin-bottom:48px}
+.info-card p{color:#cbd5e1;line-height:1.7;font-size:clamp(0.9rem,1.5vw,1rem);margin-bottom:20px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.info-item{display:flex;align-items:flex-start;gap:12px}
+.info-icon{background:#2563eb;border-radius:10px;padding:8px;font-size:16px;flex-shrink:0;line-height:1}
+.info-item h3{font-weight:700;color:#fff;font-size:0.95rem;margin-bottom:4px}
+.info-item p{font-size:0.82rem;color:#94a3b8;margin:0}
+section{margin-bottom:44px}
+.section-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.section-header h2{font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;white-space:nowrap}
+.section-line{height:1px;flex:1;background:#1e293b}
+.company-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.company-btn{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:16px 12px;text-align:center;cursor:pointer;text-decoration:none;display:block;transition:all 0.25s ease}
+.company-btn:hover{transform:scale(1.04);border-color:#3b82f6;background:rgba(59,130,246,0.12)}
+.company-btn:active{transform:scale(0.98)}
+.company-name{font-weight:600;color:#fff;font-size:clamp(0.8rem,1.5vw,0.92rem);display:block;margin-bottom:6px}
+.badge{font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;display:inline-block}
+.badge-both{color:#60a5fa}
+.badge-dsa{color:#fbbf24}
+.badge-aptitude{color:#34d399}
+.badge-assessment{color:#c084fc}
+nav{position:fixed;bottom:0;left:0;width:100%;background:rgba(30,41,59,0.85);backdrop-filter:blur(12px);border-top:1px solid #334155;padding:14px 20px;z-index:100}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.nav-btn{padding:10px 24px;font-weight:700;font-size:0.9rem;border-radius:10px;cursor:pointer;border:none;transition:all 0.2s ease}
+.nav-prev{background:#334155;color:#fff}
+.nav-prev:hover{background:#475569}
+.nav-next{background:#2563eb;color:#fff;box-shadow:0 4px 20px rgba(37,99,235,0.3)}
+.nav-next:hover{background:#1d4ed8}
+.nav-label{color:#64748b;font-size:0.85rem;font-weight:500}
+@media(max-width:480px){
+  .company-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-label{display:none}
+  .nav-btn{padding:10px 16px;font-size:0.82rem}
+}
+</style>
 </head>
-<body class="bg-slate-900 text-slate-200 min-h-screen pb-24">
+<body>
 
-  <div class="container mx-auto px-4 py-12 md:px-8 lg:px-16">
-    <header class="text-center mb-12">
-      <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-4 tracking-tight">
-        PrepMaster
-      </h1>
-      <p class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
-        Integrated learning and assessment tool designed for targeted company preparation.
-      </p>
-    </header>
+<div class="container">
+  <header>
+    <h1>PrepMaster</h1>
+    <p>Integrated learning and assessment tool designed for targeted company preparation.</p>
+  </header>
 
-    <div class="glass-card p-8 rounded-2xl mb-12 border-l-4 border-blue-500 shadow-2xl">
-      <p class="text-lg text-slate-300 leading-relaxed mb-6">
-        <strong>PrepMaster</strong> equips candidates with targeted preparation strategies based on specific company expectations. It helps identify the core focus areas of different organizations, enabling users to tailor their preparation accordingly.
-      </p>
-      <div class="grid md:grid-cols-2 gap-6">
-        <div class="flex items-start gap-3">
-          <div class="bg-blue-600 p-2 rounded-lg mt-1">🚀</div>
-          <div>
-            <h3 class="font-bold text-white">Domain-Specific Insights</h3>
-            <p class="text-sm text-slate-400">Understand emphasis on Aptitude, DSA, or Core Technical knowledge.</p>
-          </div>
+  <div class="info-card">
+    <p><strong>PrepMaster</strong> equips candidates with targeted preparation strategies based on specific company expectations. It helps identify the core focus areas of different organizations, enabling users to tailor their preparation accordingly.</p>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-icon">🚀</div>
+        <div>
+          <h3>Domain-Specific Insights</h3>
+          <p>Understand emphasis on Aptitude, DSA, or Core Technical knowledge.</p>
         </div>
-        <div class="flex items-start gap-3">
-          <div class="bg-blue-600 p-2 rounded-lg mt-1">📊</div>
-          <div>
-            <h3 class="font-bold text-white">Company Trends</h3>
-            <p class="text-sm text-slate-400">Insights derived from past recruitment patterns and interview experiences.</p>
-          </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📊</div>
+        <div>
+          <h3>Company Trends</h3>
+          <p>Insights derived from past recruitment patterns and interview experiences.</p>
         </div>
       </div>
     </div>
-
-    <section class="mb-12">
-      <div class="flex items-center gap-4 mb-6">
-        <h2 class="text-2xl font-bold text-white">DSA + Aptitude Companies</h2>
-        <div class="h-px flex-grow bg-slate-700"></div>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">TCS</p>
-          <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Both</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Wipro</p>
-          <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Both</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Cognizant</p>
-          <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Both</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Accenture</p>
-          <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Both</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Deloitte</p>
-          <span class="text-[10px] text-blue-400 font-bold uppercase tracking-widest">Both</span>
-        </div>
-        </div>
-    </section>
-
-    <section class="mb-12">
-      <div class="flex items-center gap-4 mb-6">
-        <h2 class="text-2xl font-bold text-white">DSA-Focused Companies</h2>
-        <div class="h-px flex-grow bg-slate-700"></div>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Google</p>
-          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">DSA Only</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Amazon</p>
-          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">DSA Only</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Microsoft</p>
-          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">DSA Only</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Meta</p>
-          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">DSA Only</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Flipkart</p>
-          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest">DSA Only</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="mb-12">
-      <div class="flex items-center gap-4 mb-6">
-        <h2 class="text-2xl font-bold text-white">Aptitude-Focused Companies</h2>
-        <div class="h-px flex-grow bg-slate-700"></div>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Tech Mahindra</p>
-          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Aptitude</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">HCL Tech</p>
-          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Aptitude</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">Mindtree</p>
-          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Aptitude</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">EY India</p>
-          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Aptitude</span>
-        </div>
-        <div class="company-tag bg-slate-800/50 p-4 rounded-xl border border-slate-700 text-center">
-          <p class="font-semibold text-white">KPMG</p>
-          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">Aptitude</span>
-        </div>
-      </div>
-    </section>
   </div>
 
-  <nav class="fixed bottom-0 left-0 w-full bg-slate-800/80 backdrop-blur-md border-t border-slate-700 p-4">
-    <div class="max-w-6xl mx-auto flex justify-between items-center">
-      <button onclick="window.location.href='../phase2/phase2.html'" class="px-6 py-2 bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-lg transition-all active:scale-95">
-        ← Previous
-      </button>
-      <div class="text-slate-500 text-sm font-medium hidden md:block">PrepMaster Module</div>
-      <button onclick="window.location.href='../MockIt/mockit.html'" class="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg shadow-lg shadow-blue-900/20 transition-all active:scale-95">
-        Next →
-      </button>
+  <section>
+    <div class="section-header">
+      <h2>DSA + Aptitude Companies</h2>
+      <div class="section-line"></div>
     </div>
-  </nav>
+    <div class="company-grid">
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1nfADjHiKaMKhOChFAHHZIDGr66LJlmDZ?usp=drive_link" target="_blank"><span class="company-name">TCS</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1x6McgyGlRF1uYpcG51adsD7W0db8uOee?usp=drive_link" target="_blank"><span class="company-name">Wipro</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1d5I1KTBJETIPBNBGc8rG1innZCeDG7VI?usp=drive_link" target="_blank"><span class="company-name">Cognizant</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/14KY-N173ZGD3P-1PsceLAAl6mf0xplk_?usp=drive_link" target="_blank"><span class="company-name">Accenture</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1SbFKmZcr6Xl6b_uSkVof3Qp4Jhl1dK8y?usp=drive_link" target="_blank"><span class="company-name">Deloitte</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/16WWF8fq86ERYh7f4npFTGFVaxYM-ZFjh?usp=drive_link" target="_blank"><span class="company-name">Infosys</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1Dge7E_VsA6RtnQDJ7gcJGhnPHvLm6DOj?usp=drive_link" target="_blank"><span class="company-name">Capgemini</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1Abvu_pE7IvLWPhvctLagolCeNkIRLiGj?usp=drive_link" target="_blank"><span class="company-name">IBM</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1OZnyUeft9ply_2fyhyyM-tOiy_pumd6g?usp=drive_link" target="_blank"><span class="company-name">Mphasis</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/159wsJZI-xGNEU4dYatZ3_4XxUEIMNbsa?usp=drive_link" target="_blank"><span class="company-name">Hexaware</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1JtqXR8yyGB1WFhCzY89y8ZOmYz27KrHe?usp=drive_link" target="_blank"><span class="company-name">Zoho</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1rmk4WEgl88fJwRcdxi82XKunS3QtKJ1F?usp=drive_link" target="_blank"><span class="company-name">L&T</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/128MmvOOq7VlGV6g-zisyk_mhJFlzpyUk?usp=drive_link" target="_blank"><span class="company-name">Robert Bosch</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1OcqUjgTUCCczyv8xRBNZbofb5rp_B-ce?usp=drive_link" target="_blank"><span class="company-name">Dell</span><span class="badge badge-both">Both</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1_K_s6JPC7kRmsADozqbOdI9ORfvi4nZw?usp=drive_link" target="_blank"><span class="company-name">Zenpact</span><span class="badge badge-both">Both</span></a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-header">
+      <h2>DSA-Focused Companies</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="company-grid">
+      <a class="company-btn" href="PLACEHOLDER_GOOGLE" target="_blank"><span class="company-name">Google</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="PLACEHOLDER_AMAZON" target="_blank"><span class="company-name">Amazon</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="PLACEHOLDER_MICROSOFT" target="_blank"><span class="company-name">Microsoft</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="PLACEHOLDER_META" target="_blank"><span class="company-name">Meta</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="PLACEHOLDER_FLIPKART" target="_blank"><span class="company-name">Flipkart</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1QmZkLXI4uZjGu7kOhjBuIFQGwBlsIPfx?usp=drive_link" target="_blank"><span class="company-name">EPAM</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1Uc83IsPFsouJlgxTTnZEKokAU76qZvwT?usp=drive_link" target="_blank"><span class="company-name">Huawei Tech</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1TkK5WjJ7Xy2tXYuxUOPBzb9mbdYlrih1?usp=drive_link" target="_blank"><span class="company-name">Lumen Data</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/170EY9sQuQHfAfQqoy4PSXnE9cKn6YH7Y?usp=drive_link" target="_blank"><span class="company-name">LG Soft</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1SPX88IucArthCKCRrlPHQevvzNpCQ3JV?usp=drive_link" target="_blank"><span class="company-name">TEK System</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1pE5lzCXVzgfakYQCAFAqgw_-SSpHv-3-?usp=drive_link" target="_blank"><span class="company-name">Unisys</span><span class="badge badge-dsa">DSA Only</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1jOYtJntH5pAZyLk7jI1EBoFbz-q5hUKE?usp=drive_link" target="_blank"><span class="company-name">CoCubes</span><span class="badge badge-dsa">DSA Only</span></a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-header">
+      <h2>Aptitude-Focused Companies</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="company-grid">
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1S8X2ePQCyFCvY6H28ZR_iasrtn_n6_DT?usp=drive_link" target="_blank"><span class="company-name">Tech Mahindra</span><span class="badge badge-aptitude">Aptitude</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1PJCcLt4D9Oq4ynap6T5rO2s7_gegiOA2?usp=drive_link" target="_blank"><span class="company-name">HCL Tech</span><span class="badge badge-aptitude">Aptitude</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1lf2Vcncc8-gfpJEPrtKAt04fOe_UIcQ7?usp=drive_link" target="_blank"><span class="company-name">Mindtree</span><span class="badge badge-aptitude">Aptitude</span></a>
+      <a class="company-btn" href="PLACEHOLDER_EY" target="_blank"><span class="company-name">EY India</span><span class="badge badge-aptitude">Aptitude</span></a>
+      <a class="company-btn" href="PLACEHOLDER_KPMG" target="_blank"><span class="company-name">KPMG</span><span class="badge badge-aptitude">Aptitude</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1JfS3bLRGJC-JD3QFDr7f17xweMfsRTc7?usp=drive_link" target="_blank"><span class="company-name">Sopra Steria</span><span class="badge badge-aptitude">Aptitude</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1NQJnH5gpr7gj-eEnqmayENu2Wp82TWRa?usp=drive_link" target="_blank"><span class="company-name">SecureEyes</span><span class="badge badge-aptitude">Aptitude</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1Mzhjd3CCWUQ5R_dCKx57EqfURrxos37x?usp=drive_link" target="_blank"><span class="company-name">Ion Idea</span><span class="badge badge-aptitude">Aptitude</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1pj5wPDJ3mE8MJNdLVfYJPfLgMPjpdlAy?usp=drive_link" target="_blank"><span class="company-name">ZenQ</span><span class="badge badge-aptitude">Aptitude</span></a>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-header">
+      <h2>Assessment Platforms</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="company-grid">
+      <a class="company-btn" href="https://drive.google.com/drive/folders/16gkza8e294gPXdmejStqU7F_GwTsx76S?usp=drive_link" target="_blank"><span class="company-name">AMCAT</span><span class="badge badge-assessment">Platform</span></a>
+      <a class="company-btn" href="https://drive.google.com/drive/folders/1A-62aD5UyXv11Dw5vjQ2yXifIJpnG-by?usp=drive_link" target="_blank"><span class="company-name">eLitmus</span><span class="badge badge-assessment">Platform</span></a>
+    </div>
+  </section>
+</div>
+
+<nav>
+  <div class="nav-inner">
+    <button class="nav-btn nav-prev" onclick="window.location.href='../phase2/phase2.html'">← Previous</button>
+    <span class="nav-label">PrepMaster Module</span>
+    <button class="nav-btn nav-next" onclick="window.location.href='../MockIt/mockit.html'">Next →</button>
+  </div>
+</nav>
 
 </body>
 </html>
