@@ -43,7 +43,7 @@ Everything a candidate needs before active preparation begins.
 |---|---|
 | **Roadmap** | Curated technical and non-technical learning paths by role. Includes **Pathfinder** — an AI tool that generates a personalised roadmap (what to learn, what to build, where to learn) from a target role description |
 | **Resume Builder** | Explains ATS, what recruiters look for, and includes a **Buzzword Generator** (paste a JD → get ATS keywords) and an in-platform resume editor with download |
-| **Cover Letter** | Guidance on structure and tone, plus an AI generator that drafts a tailored cover letter from the user's background and target JD |
+| **Cover Letter** | Guidance on structure and tone, plus a **Buzzword Generator** that identifies what key points and phrases should appear in a cover letter based on the target JD, and a curated set of ready-to-use **cover letter templates** — similar in format to the resume templates |
 
 ---
 
@@ -53,7 +53,7 @@ Full-coverage practice across every round type in a typical placement process.
 
 | Module | What It Does |
 |---|---|
-| **PrepMaster** | Company-specific insights — whether a company is aptitude-heavy, DSA-heavy, or both, with round-by-round breakdowns |
+| **PrepMaster** | Company-specific insights and preparation material — whether a company is aptitude-heavy, DSA-heavy, or both, with round-by-round breakdowns and curated study resources per company |
 | **MockIt** | Covers every round: Group Discussion, Aptitude (topic table with resources), JAM, HR Interview, MCQs (subject table + **AI MCQ Generator** with gamified quiz and scoring), and Technical Interview (platforms, resources) |
 | **Mock My Interview (MMI)** | Paste a Job Description → AI extracts core mastery topics and generates a predicted question bank with strategic model answers |
 
@@ -67,6 +67,7 @@ Guides candidates through the job application lifecycle from start to finish.
 |---|---|
 | **Job Portals** | Curated, categorised directory of global, Indian, startup, internship, and remote job platforms with guidance on how to use them effectively |
 | **Proactive Outreach** | Cold email, LinkedIn DM, and follow-up strategies with ready-to-use templates — including how to respond professionally after rejection |
+| **HireHub AI** | An AI-powered platform that analyses your resume and delivers a real-time, verified, and personalised job dashboard with best-fit fresher opportunities and direct apply links |
 
 ---
 
