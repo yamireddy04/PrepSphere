@@ -111,6 +111,24 @@
   </nav>
 
   <script>
+    const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:5000'
+      : 'https://prepsphere-o7wh.onrender.com';
+
+    async function pollForResult(jobId) {
+      const maxAttempts = 60;
+      let attempts = 0;
+      while (attempts < maxAttempts) {
+        await new Promise(r => setTimeout(r, 2000));
+        const res = await fetch(`${API_BASE_URL}/api/jobs/${jobId}`);
+        const job = await res.json();
+        if (job.status === 'completed') return job.result;
+        if (job.status === 'failed') throw new Error(job.error || 'AI failed to generate roadmap');
+        attempts++;
+      }
+      throw new Error('Timed out waiting for AI response');
+    }
+
     async function generatePath() {
       const role = document.getElementById('roleInput').value.trim();
       if (!role) return;
@@ -122,19 +140,21 @@
       genBtn.disabled = true;
       loader.classList.remove('hidden');
       container.classList.add('hidden');
-      container.innerHTML = ''; 
+      container.innerHTML = '';
 
       try {
-        const response = await fetch('https://prepsphere-o7wh.onrender.com/api/roadmap', { 
+        const response = await fetch(`${API_BASE_URL}/api/roadmap`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ role })
         });
-        
+
         if (!response.ok) throw new Error("Server error");
-        const data = await response.json();
+
+        const { jobId } = await response.json();
+        const data = await pollForResult(jobId);
         renderRoadmapHTML(data);
-        
+
       } catch (error) {
         console.error("Pathfinder Error:", error);
         alert("Failed to reach the AI. Check if your Render backend is awake!");

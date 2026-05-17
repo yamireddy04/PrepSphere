@@ -392,7 +392,7 @@
                         content is included in ATS processing.In such cases the cover letter must also have buzzwords to
                         get past the shorlisting stage. Hiring managers often use ATS to search for skills,
                         certifications, and role-specific keywords. If your cover letter has relevant buzzwords from the
-                        job description (like “REST APIs,” “team collaboration,” “TypeScript,” “data structures,” etc.),
+                        job description (like "REST APIs," "team collaboration," "TypeScript," "data structures," etc.),
                         it improves your match score.
                     </p>
                 </div>
@@ -542,6 +542,20 @@
     <script type="module">
         import { API_BASE_URL } from '../js/config.js';
 
+        async function pollForResult(jobId) {
+            const maxAttempts = 60;
+            let attempts = 0;
+            while (attempts < maxAttempts) {
+                await new Promise(r => setTimeout(r, 2000));
+                const res = await fetch(`${API_BASE_URL}/api/jobs/${jobId}`);
+                const job = await res.json();
+                if (job.status === 'completed') return job.result;
+                if (job.status === 'failed') throw new Error(job.error || 'AI failed to generate buzzwords');
+                attempts++;
+            }
+            throw new Error('Timed out waiting for AI response');
+        }
+
         window.showPage = function(pageId) {
             const pages = ['guide-page', 'students-template', 'pivots-template'];
             pages.forEach(id => {
@@ -615,11 +629,12 @@
                 });
 
                 if (!response.ok) throw new Error('Network error. Is your backend running?');
-                
-                const data = await response.json();
-                
-                if (data.buzzwords && Array.isArray(data.buzzwords)) {
-                    data.buzzwords.forEach(word => {
+
+                const { jobId } = await response.json();
+                const result = await pollForResult(jobId);
+
+                if (result && Array.isArray(result)) {
+                    result.forEach(word => {
                         const tag = document.createElement('span');
                         tag.className = 'tag';
                         tag.textContent = word;

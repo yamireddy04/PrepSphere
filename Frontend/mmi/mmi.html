@@ -182,6 +182,20 @@
     <script type="module">
         import { API_BASE_URL } from '../js/config.js';
 
+        async function pollForResult(jobId) {
+            const maxAttempts = 60;
+            let attempts = 0;
+            while (attempts < maxAttempts) {
+                await new Promise(r => setTimeout(r, 2000));
+                const res = await fetch(`${API_BASE_URL}/api/jobs/${jobId}`);
+                const job = await res.json();
+                if (job.status === 'completed') return job.result;
+                if (job.status === 'failed') throw new Error(job.error || 'AI failed to generate interview prep');
+                attempts++;
+            }
+            throw new Error('Timed out waiting for AI response');
+        }
+
         async function generateMock() {
             const jd = document.getElementById('jd-input').value;
             if (!jd || jd.length < 50) return alert("Please provide a more comprehensive Job Description.");
@@ -195,11 +209,12 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ jobDescription: jd })
                 });
-                
+
                 if (!response.ok) throw new Error("API Connection Error");
-                
-                const data = await response.json();
-                renderDashboard(data);
+
+                const { jobId } = await response.json();
+                const result = await pollForResult(jobId);
+                renderDashboard(result);
             } catch (err) {
                 console.error(err);
                 alert("The AI engine is currently busy. Please check if your backend is running on Port 5000.");

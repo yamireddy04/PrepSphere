@@ -217,6 +217,20 @@
         let score = 0;
         let answered = false;
 
+        async function pollForResult(jobId) {
+            const maxAttempts = 60;
+            let attempts = 0;
+            while (attempts < maxAttempts) {
+                await new Promise(r => setTimeout(r, 2000));
+                const res = await fetch(`${API_BASE_URL}/api/jobs/${jobId}`);
+                const job = await res.json();
+                if (job.status === 'completed') return job.result;
+                if (job.status === 'failed') throw new Error(job.error || 'AI failed to generate quiz');
+                attempts++;
+            }
+            throw new Error('Timed out waiting for AI response');
+        }
+
         async function generateQuiz() {
             const content = document.getElementById('quiz-content').value;
             if (!content || content.trim().length < 50) {
@@ -234,8 +248,9 @@
                 });
 
                 if (!response.ok) throw new Error("API Error");
-                const data = await response.json();
-                questions = data.questions;
+
+                const { jobId } = await response.json();
+                questions = await pollForResult(jobId);
 
                 if (!questions || questions.length === 0) {
                     throw new Error("No questions returned");

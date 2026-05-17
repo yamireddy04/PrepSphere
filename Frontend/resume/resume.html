@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -869,6 +868,21 @@
 
     <script type="module">
         import { API_BASE_URL } from '../js/config.js';
+
+        async function pollForResult(jobId) {
+            const maxAttempts = 60;
+            let attempts = 0;
+            while (attempts < maxAttempts) {
+                await new Promise(r => setTimeout(r, 2000));
+                const res = await fetch(`${API_BASE_URL}/api/jobs/${jobId}`);
+                const job = await res.json();
+                if (job.status === 'completed') return job.result;
+                if (job.status === 'failed') throw new Error(job.error || 'AI failed to generate buzzwords');
+                attempts++;
+            }
+            throw new Error('Timed out waiting for AI response');
+        }
+
         window.showPage = function(pageId) {
             document.getElementById('guide-page').style.display = 'none';
             document.getElementById('students-template').style.display = 'none';
@@ -929,10 +943,11 @@
 
                 if (!response.ok) throw new Error('Failed to connect to AI server');
 
-                const data = await response.json();
-                
-                if (data.buzzwords && Array.isArray(data.buzzwords)) {
-                    data.buzzwords.forEach(word => {
+                const { jobId } = await response.json();
+                const result = await pollForResult(jobId);
+
+                if (result && Array.isArray(result)) {
+                    result.forEach(word => {
                         const tag = document.createElement('span');
                         tag.className = 'tag';
                         tag.textContent = word;
