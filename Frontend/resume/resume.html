@@ -866,23 +866,7 @@
 
     </div>
 
-    <script type="module">
-        import { API_BASE_URL } from '../js/config.js';
-
-        async function pollForResult(jobId) {
-            const maxAttempts = 60;
-            let attempts = 0;
-            while (attempts < maxAttempts) {
-                await new Promise(r => setTimeout(r, 2000));
-                const res = await fetch(`${API_BASE_URL}/api/jobs/${jobId}`);
-                const job = await res.json();
-                if (job.status === 'completed') return job.result;
-                if (job.status === 'failed') throw new Error(job.error || 'AI failed to generate buzzwords');
-                attempts++;
-            }
-            throw new Error('Timed out waiting for AI response');
-        }
-
+    <script>
         window.showPage = function(pageId) {
             document.getElementById('guide-page').style.display = 'none';
             document.getElementById('students-template').style.display = 'none';
@@ -935,29 +919,36 @@
             buzzwordList.innerHTML = '';
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/generate-buzzwords`, {
+                const res = await fetch('/api/groq', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ jobDescription })
+                    body: JSON.stringify({
+                        model: 'llama-3.3-70b-versatile',
+                        temperature: 0.5,
+                        max_tokens: 1024,
+                        messages: [
+                            { role: 'system', content: 'You are an ATS expert. Extract 15 essential buzzwords/skills from the job description. Return ONLY a comma-separated list.' },
+                            { role: 'user', content: jobDescription }
+                        ]
+                    })
                 });
 
-                if (!response.ok) throw new Error('Failed to connect to AI server');
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.error || 'Failed to reach AI');
 
-                const { jobId } = await response.json();
-                const result = await pollForResult(jobId);
+                const text = data.choices[0].message.content || '';
+                const words = text.split(',').map(w => w.trim()).filter(w => w !== '');
 
-                if (result && Array.isArray(result)) {
-                    result.forEach(word => {
-                        const tag = document.createElement('span');
-                        tag.className = 'tag';
-                        tag.textContent = word;
-                        buzzwordList.appendChild(tag);
-                    });
-                    resultsBox.style.display = 'block';
-                }
+                words.forEach(word => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag';
+                    tag.textContent = word;
+                    buzzwordList.appendChild(tag);
+                });
+                resultsBox.style.display = 'block';
             } catch (error) {
                 console.error('AI Error:', error);
-                alert('Connection error. Is your backend server running on Port 5000?');
+                alert('Failed to generate buzzwords: ' + error.message);
             } finally {
                 loadingIndicator.style.display = 'none';
             }
