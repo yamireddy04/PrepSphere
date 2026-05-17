@@ -28,6 +28,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
 const serverAdapter = new ExpressAdapter();
 serverAdapter.setBasePath("/admin/queues");
 
@@ -51,20 +52,23 @@ app.use("/admin/queues", (req, res, next) => {
     }
     next();
 }, serverAdapter.getRouter());
+
 app.use("/api/auth", authRoutes);
 app.use(rateLimiter);
 app.use("/api/jobs", jobRoutes);
+
 async function enqueueJob(queue, queueName, jobData) {
     const jobId = crypto.randomUUID();
     await Job.create({ jobId, queue: queueName, status: "queued" });
     await queue.add(queueName, { jobId, ...jobData });
     return jobId;
 }
+
 app.post("/api/roadmap", async (req, res) => {
     try {
         const { role } = req.body;
         if (!role) return res.status(400).json({ error: "No job role provided" });
-        const jobId = await enqueueJob(queues.roadmap, "prepsphere:ai:roadmap", { role });
+        const jobId = await enqueueJob(queues.roadmap, "prepsphere-ai-roadmap", { role });
         res.status(202).json({ jobId });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -75,7 +79,7 @@ app.post("/api/generate-buzzwords", async (req, res) => {
     try {
         const { jobDescription } = req.body;
         if (!jobDescription) return res.status(400).json({ error: "No description provided" });
-        const jobId = await enqueueJob(queues.buzzwords, "prepsphere:ai:buzzwords", { jobDescription });
+        const jobId = await enqueueJob(queues.buzzwords, "prepsphere-ai-buzzwords", { jobDescription });
         res.status(202).json({ jobId });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -86,7 +90,7 @@ app.post("/api/mock-interview", async (req, res) => {
     try {
         const { jobDescription } = req.body;
         if (!jobDescription) return res.status(400).json({ error: "No Job Description provided" });
-        const jobId = await enqueueJob(queues.interview, "prepsphere:ai:interview", { jobDescription });
+        const jobId = await enqueueJob(queues.interview, "prepsphere-ai-interview", { jobDescription });
         res.status(202).json({ jobId });
     } catch (err) {
         res.status(500).json({ error: err.message });
@@ -97,16 +101,18 @@ app.post("/api/generate-quiz", async (req, res) => {
     try {
         const { content } = req.body;
         if (!content) return res.status(400).json({ error: "No content provided" });
-        const jobId = await enqueueJob(queues.quiz, "prepsphere:ai:quiz", { content });
+        const jobId = await enqueueJob(queues.quiz, "prepsphere-ai-quiz", { content });
         res.status(202).json({ jobId });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
+
 app.use((err, req, res, next) => {
     console.error("[Server] Unhandled error:", err.message);
     res.status(500).json({ error: "Internal server error" });
 });
+
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB Connected"))
     .catch(err => console.log("MongoDB Error:", err));

@@ -1,4 +1,4 @@
-require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") }); // FIX #1
+require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") });
 
 const { Worker } = require("bullmq");
 const mongoose   = require("mongoose");
@@ -20,10 +20,10 @@ mongoose
     });
 
 const MAX_ATTEMPTS = {
-    "prepsphere:ai:roadmap":   3,
-    "prepsphere:ai:buzzwords": 4,
-    "prepsphere:ai:interview": 3,
-    "prepsphere:ai:quiz":      5,
+    "prepsphere-ai-roadmap":   3,
+    "prepsphere-ai-buzzwords": 4,
+    "prepsphere-ai-interview": 3,
+    "prepsphere-ai-quiz":      5,
 };
 
 async function processJob(job) {
@@ -40,8 +40,9 @@ async function processJob(job) {
 
     let result;
 
+    // switch checks which queue this job came from, then calls the right AI function
     switch (job.queueName) {
-        case "prepsphere:ai:roadmap": {
+        case "prepsphere-ai-roadmap": {
             const { role } = job.data;
             result = await generateRoadmap(role);
             if (!result || result.error) {
@@ -50,7 +51,7 @@ async function processJob(job) {
             break;
         }
 
-        case "prepsphere:ai:buzzwords": {
+        case "prepsphere-ai-buzzwords": {
             const { jobDescription } = job.data;
             result = await extractBuzzwords(jobDescription);
             if (!result || result.length === 0 || result.includes("AI is busy. Try again in 30s.")) {
@@ -59,7 +60,7 @@ async function processJob(job) {
             break;
         }
 
-        case "prepsphere:ai:interview": {
+        case "prepsphere-ai-interview": {
             const { jobDescription } = job.data;
             result = await generateMockInterview(jobDescription);
             if (!result || !result.topics || !result.interviews) {
@@ -68,7 +69,7 @@ async function processJob(job) {
             break;
         }
 
-        case "prepsphere:ai:quiz": {
+        case "prepsphere-ai-quiz": {
             const { content } = job.data;
             result = await generateQuiz(content);
             if (!result || !Array.isArray(result) || result.length === 0) {
@@ -112,18 +113,19 @@ async function handleFailure(job, error) {
         );
     }
 }
+
 const QUEUE_NAMES = [
-    "prepsphere:ai:roadmap",
-    "prepsphere:ai:buzzwords",
-    "prepsphere:ai:interview",
-    "prepsphere:ai:quiz",
+    "prepsphere-ai-roadmap",
+    "prepsphere-ai-buzzwords",
+    "prepsphere-ai-interview",
+    "prepsphere-ai-quiz",
 ];
 
 const CONCURRENCY = {
-    "prepsphere:ai:roadmap":   2,
-    "prepsphere:ai:buzzwords": 5,
-    "prepsphere:ai:interview": 3,
-    "prepsphere:ai:quiz":      4,
+    "prepsphere-ai-roadmap":   2,
+    "prepsphere-ai-buzzwords": 5,
+    "prepsphere-ai-interview": 3,
+    "prepsphere-ai-quiz":      4,
 };
 
 const workers = QUEUE_NAMES.map((queueName) => {
@@ -149,6 +151,7 @@ const workers = QUEUE_NAMES.map((queueName) => {
     console.log(`[Worker] Listening on "${queueName}" | concurrency: ${CONCURRENCY[queueName]}`);
     return worker;
 });
+
 async function shutdown() {
     console.log("[Worker] Shutting down gracefully…");
     await Promise.all(workers.map((w) => w.close()));
