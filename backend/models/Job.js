@@ -12,10 +12,10 @@ const jobSchema = new mongoose.Schema(
       type: String,
       required: true,
       enum: [
-        "prepsphere:ai:roadmap",
-        "prepsphere:ai:buzzwords",
-        "prepsphere:ai:interview",
-        "prepsphere:ai:quiz",
+        "prepsphere-ai-roadmap",
+        "prepsphere-ai-buzzwords",
+        "prepsphere-ai-interview",
+        "prepsphere-ai-quiz",
       ],
     },
     status: {
